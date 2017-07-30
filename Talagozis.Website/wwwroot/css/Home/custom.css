@@ -1,0 +1,13 @@
+.intro-title1 {
+  font-size: 36px;
+}
+@media (min-width: 768px) {
+  .intro-title1 {
+    font-size: 40px;
+  }
+}
+@media (min-width:992px) {
+  .intro-title1 {
+    font-size: 46px;
+  }
+}
