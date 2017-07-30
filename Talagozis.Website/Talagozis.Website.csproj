@@ -13,6 +13,10 @@
   <ItemGroup>
     <None Remove="Properties\PublishProfiles\talagozisVM - Web Deploy.pubxml" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\favicon(CT).ico" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
@@ -29,6 +33,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\Layout\Home.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

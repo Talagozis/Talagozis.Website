@@ -29,12 +29,12 @@ namespace Talagozis.Website.Controllers
         };
 
 
-            return View("Views/Home/CV.cshtml", person);
+            return View("~/Views/Home/CV.cshtml", person);
         }
 
         public IActionResult Error()
         {
-            return View("Views/Shared/Error.cshtml");
+            return View("~/Views/Shared/Error.cshtml");
         }
     }
 }
