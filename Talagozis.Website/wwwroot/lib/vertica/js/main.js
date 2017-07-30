@@ -123,7 +123,7 @@ $(document).ready(function(){
 });
 
 //Run on Window Load
-$(window).load(function(){
+$(window).on('load',function(){
   //Page loader
   $('#page-loader').fadeOut(200, function(){});
 

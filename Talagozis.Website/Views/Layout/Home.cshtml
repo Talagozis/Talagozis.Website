@@ -1,4 +1,4 @@
-@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +33,7 @@
         <link href="~/lib/vertica/vendor/nivo-lightbox/themes/default/default.css" rel="stylesheet" type="text/css" />
         <link href="~/lib/vertica/vendor/animate.css" rel="stylesheet">
         
-        <link rel="stylesheet" href="~/lib/vertica/css/styles.css" />
+        <link href="~/lib/vertica/css/styles.css" rel="stylesheet"/>
 
         <link href="~/css/home/custom.css" rel="stylesheet" />        
     </environment>
@@ -79,7 +79,20 @@
                 crossorigin="anonymous"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
+
         <script src="~/lib/vertica/js/main.js" asp-append-version="true"></script>
+
+        <script src="~/lib/vertica/vendor/jquery.easing.min.js"></script>
+        <script src="~/lib/vertica/vendor/jquery.mousewheel.min.js"></script>
+        <script src="~/lib/vertica/vendor/jquery.nicescroll.min.js"></script>
+        <script src="~/lib/vertica/vendor/jquery.nicescroll.plus.js"></script>
+        <script src="~/lib/vertica/vendor/waypoints.min.js"></script>
+        <script src="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.min.js"></script>
+        <script src="~/lib/vertica/vendor/jquery.bxslider.min.js"></script>
+        <script src="~/lib/vertica/vendor/jquery.validate.min.js"></script>
+        <script src="~/lib/vertica/vendor/placeholders.jquery.min.js"></script>
+        <script src="~/lib/vertica/vendor/cross-browser.js"></script>
+
     </environment>
 
     @RenderSection("Scripts", required: false)
