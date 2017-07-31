@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Talagozis.Website.App_Plugins;
+using Talagozis.Website.Models;
 
 namespace Talagozis.Website.Controllers
 {
