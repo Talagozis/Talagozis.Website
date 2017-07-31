@@ -16,6 +16,7 @@ namespace Talagozis.Website.Models
         public string gender { get; set; }
         public string email { get; set; }
         public string linkedinLink { get; set; }
+        public string githubLink { get; set; }
         public string[] jobTitles { get; set; }
         public ICollection<Education> educations { get; set; }
         public ICollection<WorkingExperience> workingExperience { get; set; }

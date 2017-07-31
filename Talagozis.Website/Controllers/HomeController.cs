@@ -27,7 +27,8 @@ namespace Talagozis.Website.Controllers
                 email = "christos@talagozis.com",
                 gender = "Male",
                 jobTitles = new string[] { "Backend Web Developer", "Desktop Developer" },
-                linkedinLink = "https://www.linkedin.com/in/talagozis/",
+                linkedinLink = @"https://www.linkedin.com/in/talagozis/",
+                githubLink = @"https://github.com/Talagozis",
                 educations = new List<Education>
                 {
                     new Education
