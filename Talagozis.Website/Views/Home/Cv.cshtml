@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Talagozis.Website.Models
+@{
     Layout = "~/Views/Layout/Home.cshtml";
 }
 @model Talagozis.Website.Models.Person
@@ -323,93 +324,41 @@
             <!-- /SECTION TITLE -->
 
             <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content line-content-education">
-                  <!-- Graduation title -->
-                  <h3 class="section-item-title-1">GRAPHIC DESIGN</h3>
-                  <!-- /Graduation title -->
-                  <!-- Graduation time -->
-                    <h4 class="graduation-time">
-                      <i class="fa fa-university"></i>St. Patrick University (2 Years Course) - <span class="graduation-date">Graduation May 2013</span>
-                    </h4>
-                  <!-- /Graduation time -->
-                  <!-- content -->
-                  <div class="graduation-description">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            @foreach(Education education in Model.educations)
+            {            
+              <div class="line row">
+                <!-- Margin Collums (necessary for the timeline effect) -->
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education "></div>
+                <!-- /Margin Collums -->
+                <!-- Item Content -->
+                <div class="col-md-8 content-wrap bg1">
+                  <div class="line-content line-content-education">
+                    <!-- Graduation title -->
+                    <h3 class="section-item-title-1">@education.title</h3>
+                    <!-- /Graduation title -->
+                    <!-- Graduation time -->
+                      <h4 class="graduation-time">
+                        <i class="fa fa-university"></i>
+                        <span>@education.university (@education.courseYears Years Course)</span>
+                        <span class="graduation-date">Graduation @education.graduationDate.ToString("MMMM yyyy")</span>
+                      </h4>
+                    <!-- /Graduation time -->
+                    <!-- content -->
+                    <div class="graduation-description">
+                      <p>@education.description</p>
+                    </div>
+                    <!-- /Content -->
                   </div>
-                  <!-- /Content -->
                 </div>
+                <!-- /Item Content -->
+                <!-- Margin Collum -->
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                <!-- /Margin Collum -->
               </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum -->
-            </div>
+            }
             <!-- /SECTION ITEM -->   
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content line-content-education">
-                  <!-- Graduation title -->
-                  <h3 class="section-item-title-1">MASTER OF WEB DESIGN</h3>
-                  <!-- /Graduation title -->
-                  <!-- Graduation time -->
-                  <h4 class="graduation-time"><i class="fa fa-university"></i> St. Patrick University (2 Years Course) - <span class="graduation-date">Graduation May 2013</span></h4>
-                  <!-- /Graduation time -->
-                  <!-- content -->
-                  <div class="graduation-description">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!--/Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->   
-
-             <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content line-content-education">
-                  <!-- Graduation title -->
-                  <h3 class="section-item-title-1">GRAPHIC DESIGN</h3>
-                  <!-- /Graduation title -->
-                  <!-- Graduation time -->
-                  <h4 class="graduation-time"><i class="fa fa-university"></i> St. Patrick University (2 Years Course) - <span class="graduation-date">Graduation May 2013</span></h4>
-                  <!-- /Graduation time -->
-                  <!-- content -->
-                  <div class="graduation-description">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->       
+    
           </section>
           <!-- ==>> /SECTION: EDUCATION <<==== -->  
 
@@ -446,120 +395,37 @@
             <!-- /SECTION TITLE -->
 
             <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content line-content-education">
-                  <!-- Work Place -->
-                  <h3 class="section-item-title-1">Black Tie Corp</h3>
-                  <!-- /work place -->
-                  <!-- Graduation time -->
-                  <h4 class="job"><i class="fa fa-flag"></i> Web Designer - <span class="job-date">June 2012 - Current</span></h4>
-                  <!-- /Graduation time -->
-                  <!-- content -->
-                  <div class="job-description">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            @foreach(WorkingExperience workingExperience in Model.workingExperience)
+            {     
+              <div class="line row">
+                <!-- Margin Collums (necessary for the timeline effect) -->
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work "></div>
+                <!-- /Margin Collums -->
+                <!-- Item Content -->
+                <div class="col-md-8 content-wrap bg1">
+                  <div class="line-content line-content-education">
+                    <!-- Work Place -->
+                    <h3 class="section-item-title-1">@workingExperience.companyName</h3>
+                    <!-- /work place -->
+                    <!-- Graduation time -->
+                    <h4 class="job"><i class="fa fa-flag"></i> @workingExperience.position - <span class="job-date">@workingExperience.startDate.ToString("MMMM yyyy") - @(workingExperience.endDate.HasValue ? workingExperience.endDate.Value.ToString("MMMM yyyy") : "Current")</span></h4>
+                    <!-- /Graduation time -->
+                    <!-- content -->
+                    <div class="job-description">
+                      <p>@workingExperience.description</p>
+                    </div>
+                    <!-- /Content -->
                   </div>
-                  <!-- /Content -->
                 </div>
+                <!-- /Item Content -->
+                <!-- Margin Collum-->
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                <!-- /Margin Collum-->
               </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
+            }
             <!-- /SECTION ITEM -->
 
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content line-content-education">
-                  <!-- Work Place -->
-                  <h3 class="section-item-title-1">Oasis Ltda.</h3>
-                  <!-- /work place -->
-                  <!-- Graduation time -->
-                  <h4 class="job"><i class="fa fa-flag"></i> Front-end Developer - <span class="job-date">Jan 2010 - Apr 2012</span></h4>
-                  <!-- /Graduation time -->
-                  <!-- content -->
-                  <div class="job-description">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->  
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content line-content-education">
-                  <!-- Work Place -->
-                  <h3 class="section-item-title-1">Dupstudio</h3>
-                  <!-- /work place -->
-                  <!-- Graduation time -->
-                  <h4 class="job"><i class="fa fa-flag"></i> Designer - <span class="job-date">Jan 2010 - Apr 2012</span></h4>
-                  <!-- /Graduation time -->
-                  <!-- content -->
-                  <div class="job-description">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->  
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content line-content-education">
-                  <!-- Work Place -->
-                  <h3 class="section-item-title-1">Dotrex Co.</h3>
-                  <!-- /work place -->
-                  <!-- Graduation time -->
-                  <h4 class="job"><i class="fa fa-flag"></i> Designer - <span class="job-date">Jan 2010 - Apr 2012</span></h4>
-                  <!-- /Graduation time -->
-                  <!-- content -->
-                  <div class="job-description">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  </div>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->  
           </section>
           <!-- ==>> /SECTION: WORK EXPERIENCE <<==== --> 
 
