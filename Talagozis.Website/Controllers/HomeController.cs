@@ -16,7 +16,7 @@ namespace Talagozis.Website.Controllers
         public IActionResult CV()
         {
             string TEST_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
-
+            TEST_TEXT = string.Empty;
 
             Person person = new Person
             {
@@ -27,8 +27,13 @@ namespace Talagozis.Website.Controllers
                 email = "christos@talagozis.com",
                 gender = "Male",
                 jobTitles = new string[] { "Backend Web Developer", "Desktop Developer" },
+                address = "10-12 Irodotou, Serres, Greece",
+                maritalStatus = "Single",
+                nationality = "Greek",
+                phoneNumber = "+30 697 8348753",
                 linkedinLink = @"https://www.linkedin.com/in/talagozis/",
                 githubLink = @"https://github.com/Talagozis",
+                description = TEST_TEXT,
                 educations = new List<Education>
                 {
                     new Education
@@ -38,6 +43,16 @@ namespace Talagozis.Website.Controllers
                         description = TEST_TEXT,
                         graduationDate = new DateTime(2017, 5, 1),
                         university = "Technological Educational Institute of Central Macedonia, Greece",
+                        thesisTitle = "Parallel processing techniques for feature selection with the use of Feature Subset Selection algorithm",
+                        mainCourses = new string[] 
+                        { 
+                            "Business Information Systems",
+                            "Statistical Analysis Tools",
+                            "Mobile Development",
+                            "Parallel and Distributed Programming",
+                            "Intelligence Systems",
+                            "Information and Network Security"
+                        }
                     },
                     new Education
                     {
@@ -46,6 +61,20 @@ namespace Talagozis.Website.Controllers
                         description = TEST_TEXT,
                         graduationDate = new DateTime(2014, 9, 1),
                         university = "Technological Educational Institute of Central Macedonia, Greece",
+                        thesisTitle = "Development of parallel algorithms using MATLAB Parallel Computing Toolbox",
+                        mainCourses = new string[] 
+                        { 
+                            "Object-Oriented Programming in C ++ and Java",
+                            "Visual Programming in C ++ and Java",
+                            "Computer Architecture",
+                            "Automatic Control System",
+                            "Algorithms and Data structures",
+                            "Operational Systems",
+                            "Web Development in PHP",
+                            "Evolutionary Computation",
+                            "Pattern Recognition",
+                            "Neural Networks",
+                        }                    
                     },
                 },
                 workingExperience = new List<WorkingExperience>

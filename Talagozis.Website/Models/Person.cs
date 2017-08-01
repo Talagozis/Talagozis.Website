@@ -15,6 +15,10 @@ namespace Talagozis.Website.Models
         public string pob { get; set; }
         public string gender { get; set; }
         public string email { get; set; }
+        public string address { get; set; }
+        public string phoneNumber { get; set; }
+        public string nationality { get; set; }
+        public string maritalStatus { get; set; }
         public string linkedinLink { get; set; }
         public string githubLink { get; set; }
         public string[] jobTitles { get; set; }
@@ -23,6 +27,7 @@ namespace Talagozis.Website.Models
         public ICollection<Skill> skills { get; set; }
         public ICollection<Interest> interests { get; set; }
         public ICollection<Portfolio> portfolios { get; set; }
+        public string description { get; set; }
     }
 
 
