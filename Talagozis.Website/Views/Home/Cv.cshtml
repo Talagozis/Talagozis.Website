@@ -403,9 +403,9 @@
                     <div class="graduation-description">
                       <p>Main courses:</p>
                       <ul class="" style="padding-left:40px; margin-bottom:20px;">
-                        @foreach(string course in education.mainCourses)
+                        @foreach(Course course in education.mainCourses)
                         {
-                          <li class="">@course</li>
+                          <li class="">@course.name</li>
                         }
                       </ul>
                       <p>Thesis: <strong>@education.thesisTitle</strong></p>
@@ -457,7 +457,7 @@
             <!-- /SECTION TITLE -->
 
             <!-- SECTION ITEM -->
-            @foreach(WorkingExperience workingExperience in Model.workingExperience)
+            @foreach(WorkExperience workExperience in Model.workExperience)
             {     
               <div class="line row">
                 <!-- Margin Collums (necessary for the timeline effect) -->
@@ -468,14 +468,14 @@
                 <div class="col-md-8 content-wrap bg1">
                   <div class="line-content line-content-education">
                     <!-- Work Place -->
-                    <h3 class="section-item-title-1">@workingExperience.companyName</h3>
+                    <h3 class="section-item-title-1">@workExperience.companyName</h3>
                     <!-- /work place -->
                     <!-- Graduation time -->
-                    <h4 class="job"><i class="fa fa-flag"></i> @workingExperience.position - <span class="job-date">@workingExperience.startDate.ToString("MMMM yyyy") - @(workingExperience.endDate.HasValue ? workingExperience.endDate.Value.ToString("MMMM yyyy") : "Current")</span></h4>
+                    <h4 class="job"><i class="fa fa-flag"></i> @workExperience.position - <span class="job-date">@workExperience.startDate.ToString("MMMM yyyy") - @(workExperience.endDate.HasValue ? workExperience.endDate.Value.ToString("MMMM yyyy") : "Current")</span></h4>
                     <!-- /Graduation time -->
                     <!-- content -->
                     <div class="job-description">
-                      <p>@workingExperience.description</p>
+                      <p>@workExperience.description</p>
                     </div>
                     <!-- /Content -->
                   </div>

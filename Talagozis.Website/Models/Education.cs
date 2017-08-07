@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Talagozis.Website.Models
 {
@@ -9,7 +10,8 @@ namespace Talagozis.Website.Models
         public int courseYears { get; set; }
         public DateTime graduationDate { get; set; }
         public string thesisTitle { get; set; }
-        public string[] mainCourses { get; set; }
         public string description { get; set; }
+        public ICollection<Course> mainCourses { get; set; }
+        public ICollection<Project> projects { get; set; }
     }
 }

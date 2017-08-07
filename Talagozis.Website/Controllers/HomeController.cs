@@ -44,14 +44,14 @@ namespace Talagozis.Website.Controllers
                         graduationDate = new DateTime(2017, 5, 1),
                         university = "Technological Educational Institute of Central Macedonia, Greece",
                         thesisTitle = "Parallel processing techniques for feature selection with the use of Feature Subset Selection algorithm",
-                        mainCourses = new string[] 
-                        { 
-                            "Business Information Systems",
-                            "Statistical Analysis Tools",
-                            "Mobile Development",
-                            "Parallel and Distributed Programming",
-                            "Intelligence Systems",
-                            "Information and Network Security"
+                        mainCourses = new List<Course> 
+                        {
+                            new Course { name = "Business Information Systems"},
+                            new Course { name = "Statistical Analysis Tools"},
+                            new Course { name = "Mobile Development"},
+                            new Course { name = "Parallel and Distributed Programming"},
+                            new Course { name = "Intelligence Systems"},
+                            new Course { name = "Information and Network Security"},
                         }
                     },
                     new Education
@@ -62,51 +62,48 @@ namespace Talagozis.Website.Controllers
                         graduationDate = new DateTime(2014, 9, 1),
                         university = "Technological Educational Institute of Central Macedonia, Greece",
                         thesisTitle = "Development of parallel algorithms using MATLAB Parallel Computing Toolbox",
-                        mainCourses = new string[] 
+                        mainCourses = new List<Course> 
                         { 
-                            "Object-Oriented Programming in C ++ and Java",
-                            "Visual Programming in C ++ and Java",
-                            "Computer Architecture",
-                            "Automatic Control System",
-                            "Algorithms and Data structures",
-                            "Operational Systems",
-                            "Web Development in PHP",
-                            "Evolutionary Computation",
-                            "Pattern Recognition",
-                            "Neural Networks",
+                            new Course { name = "Object-Oriented Programming in C ++ and Java"},
+                            new Course { name = "Visual Programming in C ++ and Java"},
+                            new Course { name = "Computer Architecture"},
+                            new Course { name = "Automatic Control System"},
+                            new Course { name = "Algorithms and Data structures"},
+                            new Course { name = "Operational Systems"},
+                            new Course { name = "Web Development in PHP"},
+                            new Course { name = "Evolutionary Computation"},
+                            new Course { name = "Pattern Recognition"},
+                            new Course { name = "Neural Networks"},
                         }                    
                     },
                 },
-                workingExperience = new List<WorkingExperience>
+                workExperience = new List<WorkExperience>
                 {
-                    new WorkingExperience
+                    new WorkExperience
                     {
                         position = "Full-Stack Software Developer",
                         companyName = "Freelancer",
                         startDate = new DateTime(2014, 10, 1),
                         endDate = null,
                         description = "Design, develop, test, publish and monitor desktop and web applications in .NET",
-                        project = "",
                         typeOfBusiness = "Software development for business automation"
                     },
-                    new WorkingExperience
+                    new WorkExperience
                     {
                         position = "Full-Stack Web Developer",
                         companyName = "BlumenRiviera",
                         startDate = new DateTime(2013, 10, 1),
                         endDate = new DateTime(2014, 8, 1),
                         description = "Design, develop and test web applications in Java, Velocity and PHP",
-                        project = "",
                         typeOfBusiness = "Software development for vacation booking",
                     },
-                    new WorkingExperience
+                    new WorkExperience
                     {
                         position = "Desktop Developer",
                         companyName = "Serres Computer Software",
                         startDate = new DateTime(2012, 11, 1),
                         endDate = new DateTime(2013, 5, 1),
                         description = "Design and develop software with .NET, Test software, Publish and reporting",
-                        project = "",
                         typeOfBusiness = "",
                     },
                 },
