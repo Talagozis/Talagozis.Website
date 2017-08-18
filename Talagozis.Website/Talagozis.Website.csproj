@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
     <ApplicationInsightsResourceId>/subscriptions/78ff8d1d-d1d1-49ae-9764-b761494f266d/resourcegroups/Talagozis.Website/providers/microsoft.insights/components/Talagozis.Website</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/78ff8d1d-d1d1-49ae-9764-b761494f266d/resourcegroups/Talagozis.Website/providers/microsoft.insights/components/Talagozis.Website</ApplicationInsightsAnnotationResourceId>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
