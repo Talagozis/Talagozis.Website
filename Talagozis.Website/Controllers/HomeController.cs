@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Talagozis.Website.Models;
 
@@ -52,7 +51,12 @@ namespace Talagozis.Website.Controllers
                             new Course { name = "Parallel and Distributed Programming"},
                             new Course { name = "Intelligence Systems"},
                             new Course { name = "Information and Network Security"},
-                        }
+                        },
+                        projects = new List<Project>
+                        {
+                            new Project { name = "Evolutionary Computation"},
+                            new Project { name = "RentMyHouse", description = "Online property booking"},
+                        },
                     },
                     new Education
                     {
@@ -74,7 +78,11 @@ namespace Talagozis.Website.Controllers
                             new Course { name = "Evolutionary Computation"},
                             new Course { name = "Pattern Recognition"},
                             new Course { name = "Neural Networks"},
-                        }                    
+                        },
+                        projects = new List<Project>
+                        {
+                            new Project { name = "Employee skills simulation software development using Java"}
+                        },
                     },
                 },
                 workExperience = new List<WorkExperience>
@@ -86,7 +94,19 @@ namespace Talagozis.Website.Controllers
                         startDate = new DateTime(2014, 10, 1),
                         endDate = null,
                         description = "Design, develop, test, publish and monitor desktop and web applications in .NET",
-                        typeOfBusiness = "Software development for business automation"
+                        typeOfBusiness = "Software development for business automation",
+                        projects = new List<Project>
+                        {
+                            new Project { name = "Amvrosia", description = TEST_TEXT },
+                            new Project { name = "Logger", description = TEST_TEXT },
+                            new Project { name = "Fridges", description = "Fridges Manager" },
+                            new Project { name = "KTEL", description = "Greece Buses Routes" },
+                            new Project { name = "Protocol", description = "Protocol manager" },
+                            new Project { name = "Storehouse", description = "Storehouse manager" },
+                            new Project { name = "Nektar Production", description = TEST_TEXT },
+                            new Project { name = "Nektar Analytics", description = TEST_TEXT },
+                            new Project { name = "Nektar Sales", description = TEST_TEXT },
+                        },
                     },
                     new WorkExperience
                     {
@@ -96,6 +116,11 @@ namespace Talagozis.Website.Controllers
                         endDate = new DateTime(2014, 8, 1),
                         description = "Design, develop and test web applications in Java, Velocity and PHP",
                         typeOfBusiness = "Software development for vacation booking",
+                        projects = new List<Project>
+                        {
+                            new Project { name = "BlumenRiviera.com", description = "Online property booking" },
+                            new Project { name = "SyncUBooking", description = "Online property booking synchronization" },
+                        },
                     },
                     new WorkExperience
                     {
@@ -105,9 +130,14 @@ namespace Talagozis.Website.Controllers
                         endDate = new DateTime(2013, 5, 1),
                         description = "Design and develop software with .NET, Test software, Publish and reporting",
                         typeOfBusiness = "",
+                        projects = new List<Project>
+                        {
+                            new Project { name = "Gym Manager", description = TEST_TEXT },
+                            new Project { name = "Invoice Manager", description = TEST_TEXT },
+                        },
                     },
                 },
-        };
+            };
 
 
             return View("~/Views/Home/CV.cshtml", person);
