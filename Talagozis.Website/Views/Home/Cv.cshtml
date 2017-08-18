@@ -402,14 +402,21 @@
                     <!-- /Graduation time -->
                     <!-- content -->
                     <div class="graduation-description">
-                      <p>Main courses:</p>
-                      <ul class="" style="padding-left:40px; margin-bottom:20px;">
-                        @foreach(Course course in education.mainCourses)
-                        {
-                          <li class="">@course.name</li>
-                        }
-                      </ul>
-                      <p>Thesis: <strong>@education.thesisTitle</strong></p>
+                        <p>Thesis: <strong>@education.thesisTitle</strong></p>
+                        <p>Projects: </p>
+                        <ul class="" style="padding-left:40px; margin-bottom:20px;">
+                            @foreach(Project project in education.projects)
+                            {
+                                <li class="">@project.name</li>
+                            }
+                        </ul>
+                        <p>Main courses:</p>
+                        <ul class="" style="padding-left:40px; margin-bottom:20px;">
+                            @foreach(Course course in education.mainCourses)
+                            {
+                                <li class="">@course.name</li>
+                            }
+                        </ul>
                     </div>
                     <!-- /Content -->
                   </div>
@@ -476,7 +483,14 @@
                     <!-- /Graduation time -->
                     <!-- content -->
                     <div class="job-description">
-                      <p>@workExperience.description</p>
+                        <p>@workExperience.description</p>
+                        <p>Projects: </p>
+                        <ul class="" style="padding-left:40px; margin-bottom:20px;">
+                            @foreach(Project project in workExperience.projects)
+                            {
+                                <li class="">@project.name</li>
+                            }
+                        </ul>
                     </div>
                     <!-- /Content -->
                   </div>

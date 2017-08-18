@@ -128,7 +128,7 @@ namespace Talagozis.Website.Controllers
                         companyName = "Serres Computer Software",
                         startDate = new DateTime(2012, 11, 1),
                         endDate = new DateTime(2013, 5, 1),
-                        description = "Design and develop software with .NET, Test software, Publish and reporting",
+                        description = "Design and develop software with .NET, testing, publishing and reporting",
                         typeOfBusiness = "",
                         projects = new List<Project>
                         {
