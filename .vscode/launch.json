@@ -9,12 +9,10 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/Talagozis.Website/bin/Debug/netcoreapp1.1/Talagozis.Website.dll",
+            "program": "${workspaceRoot}/Talagozis.Website/bin/Debug/netcoreapp2.0/Talagozis.Website.dll",
             "args": [],
             "cwd": "${workspaceRoot}/Talagozis.Website",
             "stopAtEntry": false,
-            "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
                 "enabled": false,
                 "args": "${auto-detect-url}",
@@ -35,7 +33,7 @@
             "sourceFileMap": {
                 "/Views": "${workspaceRoot}/Views"
             }
-        },
+        },        
         {
             "name": ".NET Core Attach",
             "type": "coreclr",
