@@ -93,11 +93,10 @@ namespace Talagozis.Website.Controllers
                         companyName = "Freelancer",
                         startDate = new DateTime(2014, 10, 1),
                         endDate = null,
-                        description = "Design, develop, test, publish and monitor desktop and web applications in .NET",
+                        description = "Design, develop, test, publish and monitor desktop and web applications in .NET.",
                         typeOfBusiness = "Software development for business automation",
                         projects = new List<Project>
                         {
-                            new Project { name = "Amvrosia", description = TEST_TEXT },
                             new Project { name = "Logger", description = TEST_TEXT },
                             new Project { name = "Fridges", description = "Fridges Manager" },
                             new Project { name = "KTEL", description = "Greece Buses Routes" },
@@ -110,6 +109,37 @@ namespace Talagozis.Website.Controllers
                     },
                     new WorkExperience
                     {
+                        position = "Full-Stack Software Developer",
+                        companyName = "Serres Delivery",
+                        startDate = new DateTime(2016, 5, 1),
+                        endDate = null,
+                        description = "Design, develop, test, publish and monitor Amvrosia platform using ASP.NET, ReactJs, WPF, Azure and much more.",
+                        typeOfBusiness = "Online food delivery platform",
+                        link = "//serresdelivery.gr",
+                        projects = new List<Project>
+                        {
+                            new Project { name = "Amvrosia Web Platform", description = TEST_TEXT },
+                            new Project { name = "Amvrosia Web Api", description = TEST_TEXT },
+                            new Project { name = "Amvrosia Payment Portal", description = TEST_TEXT },
+                            new Project { name = "Amvrosia Desktop Application", description = TEST_TEXT },
+                        },
+                    },
+                    new WorkExperience
+                    {
+                        position = "Machine Learning Software Developer",
+                        companyName = "Technological Educational Institute of Central Macedonia",
+                        startDate = new DateTime(2016, 7, 12),
+                        endDate = null,
+                        description = "Design and develop algorithms for data clustering using Matlab tools.",
+                        typeOfBusiness = "Reasearch and Development",
+                        projects = new List<Project>
+                        {
+                            new Project { name = "k-Means algorithm", description = TEST_TEXT },
+                            new Project { name = "Feature Subset Selection algorithm", description = TEST_TEXT },
+                        },
+                    },
+                    new WorkExperience
+                    {
                         position = "Full-Stack Web Developer",
                         companyName = "BlumenRiviera",
                         startDate = new DateTime(2013, 10, 1),
@@ -118,8 +148,8 @@ namespace Talagozis.Website.Controllers
                         typeOfBusiness = "Software development for vacation booking",
                         projects = new List<Project>
                         {
-                            new Project { name = "BlumenRiviera.com", description = "Online property booking" },
-                            new Project { name = "SyncUBooking", description = "Online property booking synchronization" },
+                            new Project { name = "BlumenRiviera.com", description = "Online property booking." },
+                            new Project { name = "SyncUBooking", description = "Online property booking synchronization." },
                         },
                     },
                     new WorkExperience
@@ -128,7 +158,7 @@ namespace Talagozis.Website.Controllers
                         companyName = "Serres Computer Software",
                         startDate = new DateTime(2012, 11, 1),
                         endDate = new DateTime(2013, 5, 1),
-                        description = "Design and develop software with .NET, testing, publishing and reporting",
+                        description = "Design and develop software with .NET, testing, publishing and reporting.",
                         typeOfBusiness = "",
                         projects = new List<Project>
                         {
