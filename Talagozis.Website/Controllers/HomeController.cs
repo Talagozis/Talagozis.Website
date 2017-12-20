@@ -113,7 +113,7 @@ namespace Talagozis.Website.Controllers
                         companyName = "Serres Delivery",
                         startDate = new DateTime(2016, 5, 1),
                         endDate = null,
-                        description = "Design, develop, test, publish and monitor Amvrosia platform using ASP.NET, ReactJs, WPF, Azure and much more.",
+                        description = "Design, develop, test, publish and monitor Amvrosia platform using ASP.NET, ReactJs, SignalR, WPF, Azure and much more.",
                         typeOfBusiness = "Online food delivery platform",
                         link = "//serresdelivery.gr",
                         projects = new List<Project>
