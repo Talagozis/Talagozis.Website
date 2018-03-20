@@ -11,3 +11,15 @@
     font-size: 46px;
   }
 }
+@media (min-width: 1300px) {
+    .container {
+        width: 1270px;
+    }
+}
+.project-name {
+  font-size: 13px;
+  font-weight: bold;
+}
+.project-description {
+  color: #999999;
+}
