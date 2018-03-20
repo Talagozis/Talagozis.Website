@@ -16,3 +16,10 @@
         width: 1270px;
     }
 }
+.project-name {
+  font-size: 13px;
+  font-weight: bold;
+}
+.project-description {
+  color: #999999;
+}

@@ -25,7 +25,7 @@ namespace Talagozis.Website.Controllers
                 pob = "Serres, Greece",
                 email = "christos@talagozis.com",
                 gender = "Male",
-                jobTitles = new string[] { "Backend Web Developer", "Desktop Developer" },
+                jobTitles = new string[] { "Fullstack Web Developer", "Software Engineer" },
                 address = "10-12 Irodotou, Serres, Greece",
                 maritalStatus = "Single",
                 nationality = "Greek",
@@ -54,8 +54,8 @@ namespace Talagozis.Website.Controllers
                         },
                         projects = new List<Project>
                         {
-                            new Project { name = "Evolutionary Computation"},
-                            new Project { name = "RentMyHouse", description = "Online property booking"},
+                            new Project { name = "Evolutionary Computation", description = "Best solution optimization using simulation of population evolution"},
+                            new Project { name = "RentMyHouse", description = "Online property booking platform"},
                         },
                     },
                     new Education
@@ -81,7 +81,7 @@ namespace Talagozis.Website.Controllers
                         },
                         projects = new List<Project>
                         {
-                            new Project { name = "Employee skills simulation software development using Java"}
+                            new Project { name = "Employee skills simulation software development using Java" }
                         },
                     },
                 },
@@ -89,22 +89,35 @@ namespace Talagozis.Website.Controllers
                 {
                     new WorkExperience
                     {
-                        position = "Full-Stack Software Developer",
                         companyName = "Freelancer",
+                        position = "Full-Stack Software Developer",
                         startDate = new DateTime(2014, 10, 1),
                         endDate = null,
-                        description = "Design, develop, test, publish and monitor desktop and web applications in .NET.",
+                        description = "Design, develop, test, publish and monitor desktop and web applications in .NET, Django, ReactJs, Ionic and many other cool frameworks.",
                         typeOfBusiness = "Software development for business automation",
                         projects = new List<Project>
                         {
-                            new Project { name = "Logger", description = TEST_TEXT },
-                            new Project { name = "Fridges", description = "Fridges Manager" },
+                            new Project { name = "Cloud Business", description = "Cloud invoice management platform" },
+                            new Project { name = "Logger", description = "Software analytics service for tracking and monitoring" },
                             new Project { name = "KTEL", description = "Greece Buses Routes" },
-                            new Project { name = "Protocol", description = "Protocol manager" },
-                            new Project { name = "Storehouse", description = "Storehouse manager" },
-                            new Project { name = "Nektar Production", description = TEST_TEXT },
-                            new Project { name = "Nektar Analytics", description = TEST_TEXT },
-                            new Project { name = "Nektar Sales", description = TEST_TEXT },
+                            new Project { name = "Protocol", description = "Protocol management application" },
+                            new Project { name = "Storehouse", description = "Warehouse management application" },
+                        },
+                    },
+                    new WorkExperience
+                    {
+                        companyName = "Nektar Kourtidis Bros S.A.",
+                        position = "Chief Technology Officer",
+                        startDate = new DateTime(2014, 8, 1),
+                        endDate = null,
+                        description = "Design and develop the Enterprise Resource Planning platform using microservices architecture in .NET, Azure, Cognitive services and much more.",
+                        typeOfBusiness = "Soft drinks producation",
+                        projects = new List<Project>
+                        {
+                            new Project { name = "Production Management", description = TEST_TEXT },
+                            new Project { name = "Analytics and Insights", description = TEST_TEXT },
+                            new Project { name = "CRM and Sale Predictions", description = TEST_TEXT },
+                            new Project { name = "Fridges Management", description = TEST_TEXT },
                         },
                     },
                     new WorkExperience
@@ -113,7 +126,7 @@ namespace Talagozis.Website.Controllers
                         companyName = "Serres Delivery",
                         startDate = new DateTime(2016, 5, 1),
                         endDate = null,
-                        description = "Design, develop, test, publish and monitor Amvrosia platform using ASP.NET, ReactJs, SignalR, WPF, Azure and much more.",
+                        description = "Design, develop, test, publish and monitor Amvrosia platform using ASP.NET, ReactJs, SignalR, WPF, Azure and many other amazing technologies.",
                         typeOfBusiness = "Online food delivery platform",
                         link = "//serresdelivery.gr",
                         projects = new List<Project>
@@ -126,11 +139,11 @@ namespace Talagozis.Website.Controllers
                     },
                     new WorkExperience
                     {
-                        position = "Machine Learning Software Developer",
+                        position = "Machine Learning Software Engineer",
                         companyName = "Technological Educational Institute of Central Macedonia",
                         startDate = new DateTime(2016, 7, 12),
                         endDate = null,
-                        description = "Design and develop algorithms for data clustering using Matlab tools.",
+                        description = "Research and develop algorithms for data clustering and information classification using Matlab tools and Python.",
                         typeOfBusiness = "Reasearch and Development",
                         projects = new List<Project>
                         {
@@ -158,7 +171,7 @@ namespace Talagozis.Website.Controllers
                         companyName = "Serres Computer Software",
                         startDate = new DateTime(2012, 11, 1),
                         endDate = new DateTime(2013, 5, 1),
-                        description = "Design and develop software with .NET, testing, publishing and reporting.",
+                        description = "Design and develop software with .NET and Java.",
                         typeOfBusiness = "",
                         projects = new List<Project>
                         {

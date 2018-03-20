@@ -380,12 +380,12 @@
             <!-- /SECTION TITLE -->
 
             <!-- SECTION ITEM -->
-            @foreach(Education education in Model.educations)
+            @foreach(Education education in Model.educations.OrderByDescending(a => a.graduationDate))
             {            
               <div class="line row">
                 <!-- Margin Collums (necessary for the timeline effect) -->
                 <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education "></div>
+                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education"></div>
                 <!-- /Margin Collums -->
                 <!-- Item Content -->
                 <div class="col-md-8 content-wrap bg1">
@@ -407,7 +407,13 @@
                         <ul class="" style="padding-left:40px; margin-bottom:20px;">
                             @foreach(Project project in education.projects)
                             {
-                                <li class="">@project.name</li>
+                                <li class="">
+                                  <span class="project-name">@project.name</span>
+                                  @if(!string.IsNullOrWhiteSpace(project.description))
+                                  {
+                                    <p class="project-description">@project.description</p>
+                                  }
+                                </li>
                             }
                         </ul>
                         <p>Main courses:</p>
@@ -465,7 +471,7 @@
             <!-- /SECTION TITLE -->
 
             <!-- SECTION ITEM -->
-            @foreach(WorkExperience workExperience in Model.workExperience)
+            @foreach(WorkExperience workExperience in Model.workExperience.OrderByDescending(a => a.startDate))
             {     
               <div class="line row">
                 <!-- Margin Collums (necessary for the timeline effect) -->
@@ -488,7 +494,13 @@
                         <ul class="" style="padding-left:40px; margin-bottom:20px;">
                             @foreach(Project project in workExperience.projects)
                             {
-                                <li class="">@project.name</li>
+                                <li class="">
+                                  <span class="project-name">@project.name</span>
+                                  @if(!string.IsNullOrWhiteSpace(project.description))
+                                  {
+                                    <p class="project-description">@project.description</p>
+                                  }
+                                </li>
                             }
                         </ul>
                     </div>
