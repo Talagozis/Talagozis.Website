@@ -11,15 +11,6 @@
 
     <meta name="google-site-verification" content="S1X7cY9BACeSAkVE-OOhvwmyAYzRrhFSO7OF1Lx0jvg" />
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48776471-2"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-48776471-2');
-    </script>
 
     <environment names="Development">    
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
@@ -104,6 +95,23 @@
         <script src="~/lib/vertica/vendor/jquery.validate.min.js"></script>
         <script src="~/lib/vertica/vendor/placeholders.jquery.min.js"></script>
         <script src="~/lib/vertica/vendor/cross-browser.js"></script>
+        
+        @if (Context.Request.Headers["X-Logger-Tracking"] != "28E245EC432A4049BB62942920CA1DBB")
+        {
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48776471-2"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'UA-48776471-2');
+            </script>
+
+		    <script> 
+                var ci = '1DiMxeW9WFob2g5ZQNNXrrx2kRyGd7ELDV47A9rRpSr4doyzaB7UC6TIfqBOPq6Y'; var d = document; var i = d.createElement('script'); i.src = '//logger.talagozis.com/Content/Script/request.js?cache=' + new Date().getFullYear() + new Date().getMonth() + new Date().getDate(); d.head.appendChild(i); 
+            </script>
+        }
 
     </environment>
 

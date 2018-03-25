@@ -43,6 +43,7 @@ namespace Talagozis.Website
             }
             else
             {
+                //app.UseDeveloperExceptionPage();
                 app.UseExceptionHandler("/Home/Error");
             }
 
