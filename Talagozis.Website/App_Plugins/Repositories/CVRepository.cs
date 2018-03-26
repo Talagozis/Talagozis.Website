@@ -173,6 +173,55 @@ internal class CVRepository
                     },
                 },
             },
+            awards = new List<Awards>
+            {
+                new Awards
+                {
+                    title  = "2nd place at Hackathon 1.0",
+                    issuer = "Technological Educational Institute of Central Macedonia & SerresTech",
+                    issueDate = new DateTime(2016, 4, 17),
+                },
+            },
+            researchExperience = new List<ResearchExperience>
+            {
+                new ResearchExperience
+                {
+                    title = "k-Means algorithm",
+                    organizationName = "Technological Educational Institute of Central Macedonia, Greece",
+                    link = string.Empty,
+                    tutorNames = new [] { "Varsamis D." },
+                    startDate = new DateTime(2016, 7, 12),
+                    endDate = null,
+                    description = "Research and develop algorithms for data clustering using Matlab tools and Python.",
+
+                },
+                new ResearchExperience
+                {
+                    title = "Feature Subset Selection algorithm",
+                    organizationName = "Technological Educational Institute of Central Macedonia, Greece",
+                    link = string.Empty,
+                    tutorNames = new [] { "Varsamis D." },
+                    startDate = new DateTime(2016, 12, 12),
+                    endDate = null,
+                    description = "Research and develop algorithms for information classification using Matlab tools and Python.",
+
+                },
+                new ResearchExperience
+                {
+                    title = "Parallel processing optimization techniques",
+                    organizationName = "Technological Educational Institute of Central Macedonia, Greece",
+                    link = string.Empty,
+                    tutorNames = new [] { "Varsamis D." },
+                    startDate = new DateTime(2012, 11, 18),
+                    endDate = new DateTime(2016, 7, 1),
+                    description = "Develop algorithms for information classification optimization through parallel processing.",
+
+                },
+            },
+            skills = new List<Skill> { },
+            interests = new List<Interest> { },
+            portfolios = new List<Portfolio> { },
+
         };
 
 
