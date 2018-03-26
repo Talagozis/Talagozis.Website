@@ -132,20 +132,6 @@ internal class CVRepository
                 },
                 new WorkExperience
                 {
-                    position = "Machine Learning Software Engineer",
-                    companyName = "Technological Educational Institute of Central Macedonia",
-                    startDate = new DateTime(2016, 7, 12),
-                    endDate = null,
-                    description = "Research and develop algorithms for data clustering and information classification using Matlab tools and Python.",
-                    typeOfBusiness = "Reasearch and Development",
-                    projects = new List<Project>
-                    {
-                        new Project { name = "k-Means algorithm", description = TEST_TEXT },
-                        new Project { name = "Feature Subset Selection algorithm", description = TEST_TEXT },
-                    },
-                },
-                new WorkExperience
-                {
                     position = "Full-Stack Web Developer",
                     companyName = "BlumenRiviera",
                     startDate = new DateTime(2013, 10, 1),
@@ -171,15 +157,6 @@ internal class CVRepository
                         new Project { name = "Gym Manager", description = TEST_TEXT },
                         new Project { name = "Invoice Manager", description = TEST_TEXT },
                     },
-                },
-            },
-            awards = new List<Awards>
-            {
-                new Awards
-                {
-                    title  = "2nd place at Hackathon 1.0",
-                    issuer = "Technological Educational Institute of Central Macedonia & SerresTech",
-                    issueDate = new DateTime(2016, 4, 17),
                 },
             },
             researchExperience = new List<ResearchExperience>
@@ -216,6 +193,17 @@ internal class CVRepository
                     endDate = new DateTime(2016, 7, 1),
                     description = "Develop algorithms for information classification optimization through parallel processing.",
 
+                },
+            },
+            awards = new List<Awards>
+            {
+                new Awards
+                {
+                    title  = "2nd place at Hackathon 1.0",
+                    issuer = "SerresTech & Technological Educational Institute of Central Macedonia",
+                    issueDate = new DateTime(2016, 4, 17),
+                    description = string.Empty,
+                    link = string.Empty,
                 },
             },
             skills = new List<Skill> { },
