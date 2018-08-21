@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Talagozis.Website.Models;
+using Talagozis.Website.Models.Cv;
 
 internal class CVRepository
 {

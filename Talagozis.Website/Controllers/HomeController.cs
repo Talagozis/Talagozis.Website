@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Talagozis.Website.Models;
+using Talagozis.Website.Models.Cv;
 
 namespace Talagozis.Website.Controllers
 {

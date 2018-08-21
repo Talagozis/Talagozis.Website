@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Talagozis.Website.Models
+namespace Talagozis.Website.Models.Cv
 {
     public class VolunteerExperience
     {

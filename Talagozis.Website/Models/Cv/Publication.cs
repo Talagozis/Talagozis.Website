@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Talagozis.Website.Models
+namespace Talagozis.Website.Models.Cv
 {
     public class Publication
     {

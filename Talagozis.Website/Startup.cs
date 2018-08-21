@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
+using Piranha;
+using Piranha.AspNetCore.Identity.SQLite;
 
 namespace Talagozis.Website
 {
@@ -26,19 +29,30 @@ namespace Talagozis.Website
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.Configure<MvcOptions>(options =>
             {
-                options.Filters.Add(new RequireHttpsAttribute());
+                // options.Filters.Add(new RequireHttpsAttribute());
             });
 
-            // Add framework services.
-            services.AddMvc();
+            services.AddMvc(config =>
+            {
+                config.ModelBinderProviders.Insert(0, new Piranha.Manager.Binders.AbstractModelBinderProvider());
+            });
+            services.AddPiranhaApplication();
+            services.AddPiranhaFileStorage();
+            services.AddPiranhaImageSharp();
+            services.AddPiranhaEF(options => options.UseSqlite("Filename=./piranha.blog.db"));
+            services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=./piranha.blog.db"));
+            services.AddPiranhaManager();
+            services.AddSingleton<ICache, Piranha.Cache.MemCache>();
+
+            return services.BuildServiceProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider services)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -51,20 +65,54 @@ namespace Talagozis.Website
             else
             {
                 var options = new RewriteOptions().AddRedirectToHttps();
-
                 app.UseRewriter(options);
 
                 //app.UseDeveloperExceptionPage();
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            // Initialize Piranha
+            var api = services.GetService<IApi>();
+            App.Init(api);
+
+            // Configure cache level
+            App.CacheLevel = Piranha.Cache.CacheLevel.None;
+
+            // Build content types
+            var pageTypeBuilder = new Piranha.AttributeBuilder.PageTypeBuilder(api)
+                .AddType(typeof(Models.BlogArchive))
+                .AddType(typeof(Models.StandardPage))
+                .AddType(typeof(Models.StartPage))
+                .Build()
+                .DeleteOrphans();
+
+            var postTypeBuilder = new Piranha.AttributeBuilder.PostTypeBuilder(api)
+                .AddType(typeof(Models.BlogPost))
+                .Build()
+                .DeleteOrphans();
+
+            var siteTypeBuilder = new Piranha.AttributeBuilder.SiteTypeBuilder(api)
+                .AddType(typeof(Models.BlogSite))
+                .Build()
+                .DeleteOrphans();
+
+
             app.UseStaticFiles();
+            app.UseAuthentication();
+            app.UsePiranha();
+            app.UsePiranhaManager();
+
+            // Piranha.App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(name: "areaRoute",
+                    template: "{area:exists}/{controller}/{action}/{id?}",
+                    defaults: new { controller = "Home", action = "Index" });
+
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=home}/{action=index}/{id?}");
             });
         }
     }

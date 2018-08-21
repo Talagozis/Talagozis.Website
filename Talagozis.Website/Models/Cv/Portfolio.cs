@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Talagozis.Website.Models
+namespace Talagozis.Website.Models.Cv
 {
-    public class Skill
+    public class Portfolio
     {
         public string title { get; set; }
     }
