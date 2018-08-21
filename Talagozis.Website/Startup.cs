@@ -82,8 +82,8 @@ namespace Talagozis.Website
             var pageTypeBuilder = new Piranha.AttributeBuilder.PageTypeBuilder(api)
                 .AddType(typeof(Models.BlogArchive))
                 .AddType(typeof(Models.StandardPage))
-                .AddType(typeof(Models.StartPage))
-                .Build()
+				.AddType(typeof(Models.HomePage))
+				.Build()
                 .DeleteOrphans();
 
             var postTypeBuilder = new Piranha.AttributeBuilder.PostTypeBuilder(api)
@@ -106,7 +106,8 @@ namespace Talagozis.Website
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "areaRoute",
+                routes.MapRoute(
+                    name: "areaRoute",
                     template: "{area:exists}/{controller}/{action}/{id?}",
                     defaults: new { controller = "Home", action = "Index" });
 
