@@ -9,7 +9,16 @@ namespace Talagozis.Website.Controllers
     {
         public IActionResult Index()
         {
-            return this.CV();
+            return this.HomePage();
+        }
+
+        public IActionResult HomePage()
+        {
+            CVRepository cVRepository = new CVRepository();
+
+            Person person = cVRepository.GetMyCV();
+
+            return View("~/Views/Home/HomePage.cshtml", person);
         }
 
         public IActionResult CV()

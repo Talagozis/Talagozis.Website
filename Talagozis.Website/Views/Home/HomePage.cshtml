@@ -1,0 +1,42 @@
+@using Talagozis.Website.Models.Cv
+@{
+    Layout = "~/Views/Layout/Home.cshtml";
+}
+@model Talagozis.Website.Models.Cv.Person
+
+<section class="header">
+	<div >
+		<div id="particles-js">
+
+			<div class="title">
+				<h1>Hi! i am <span class="pattaya">Christos</span></h1>
+				<p class="type">Graphic Designer.</p>
+				<span class="typed-cursor" style="animation-iteration-count: 0;">|</span>  <!-- You Can Edit the title on the custom.js File -->
+				<a href="#portfolio" class="btn-manisa">My Portfolio</a>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+@section css {
+	<style>
+		#particles-js {
+			background-image: url("https://i.pinimg.com/originals/cc/ec/5a/ccec5a97b1f4e4488c5aac512125215f.jpg"); 
+			background-size: cover; 
+			background-repeat: no-repeat; 
+			background-position: 50% 80%;
+			height: 600px;
+		}
+	</style>
+}
+
+@section js {
+	<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+	<script src="http://manisa.bouthythemes.com/js/custom.js"></script>
+	<script>
+		particlesJS.load('particles-js', '/js/particlesjs-config.json', function() {
+			console.log('callback - particles.js config loaded');
+		});
+	</script>
+}
