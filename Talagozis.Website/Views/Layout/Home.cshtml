@@ -37,7 +37,7 @@
 	
 	@Html.Raw(JavaScriptSnippet.FullScript)
 </head>
-<body data-spy="scroll" >
+<body style="overflow: auto;">
 
 	<nav class="navbar navbar-inverse" style="margin-bottom: 0; background-color: #212121; border-radius: 0;">
         <div class="container">
@@ -62,11 +62,31 @@
 
 	<div>
 		@RenderBody()
-		<hr />
-		<footer>
-			<p>&copy; 2017 - Talagozis Christos</p>
-		</footer>
 	</div>
+
+	<hr />
+
+	<footer class="text-center">
+		<div class="footer-content">
+			<div class="social-media-footer">
+				<a href="https://www.facebook.com/" target="_blank"><i class="manisa-facebook"></i></a> <!-- You Can Edit the link here -->
+				<a href="https://www.twitter.com/" target="_blank"><i class="manisa-twitter"></i></a> <!-- You Can Edit the link here -->
+				<a href="https://www.tumblr.com/" target="_blank"><i class="manisa-tumblr"></i></a> <!-- You Can Edit the link here -->
+				<a href="https://www.youtube.com/" target="_blank"><i class="manisa-youtube"></i></a> <!-- You Can Edit the link here -->
+				<a href="https://www.dribbble.com/" target="_blank"><i class="manisa-dribbble"></i></a> <!-- You Can Edit the link here -->
+			</div>
+			<div>
+				<a asp-area="" asp-controller="Home" asp-action="Index" class="" style="font-size: 35px; font-weight: normal; letter-spacing: 1px; font-family: Bebas Neue; line-height: 35px; padding: 10px;">
+					<span style="color: #3ac3cb;">CHRISTOS</span><span class="grey" style="color: #212121;">TALAGOZIS</span>
+				</a>
+			</div>
+			<div class="copyright">
+				<p>© Copyright 2017. </p>
+				<p>All Right Reserved By <span>Bouthaina</span></p>
+			</div>
+		</div>
+		<p>&copy; 2017 - Talagozis Christos</p>
+	</footer>
 
 	<environment names="Development">
 		<script src="~/lib/jquery/dist/jquery.js"></script>
