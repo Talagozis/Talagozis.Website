@@ -14,9 +14,14 @@
 			background-position: 50% 80%;
 			height: 460px;
 		}
+		section.blog, section.educ, section.stat, section.contact {
+			background-image: url('/images/pattern.jpg')
+		}
+		.educ .education .title .infos-educ .info-timeline span {
+			display: inline;
+		}
 	</style>
 	<link rel="stylesheet" href="~/css/default-color.manisa.css" /> 
-	<!-- <link rel="stylesheet" href="~/lib/font-awesome-4.7.0/css/font-awesome.css" />  -->
 	<link rel="stylesheet" href="~/lib/manisa/css/manisa-icon.css" />
 	<link rel="stylesheet" href="http://manisa.bouthythemes.com/css/lightbox.min.css" />
 	<link rel="stylesheet" href="http://manisa.bouthythemes.com/css/slick.css" />
@@ -55,7 +60,7 @@
 	</div>
 </section>
 
-<section id="blog" class="blog text-center" style="background-image: url('/images/pattern.jpg')">
+<section id="blog" class="blog text-center" style="padding-bottom: 100px; margin-bottom: 0;">
 	<div class="container">
 		<div class="title">
 			<h2 class="text-uppercase">Blog</h2>
@@ -170,47 +175,22 @@
 				<div class="col-lg-6 col-md-12">
 					<div class="title first-timeline open-timeline">
 						<h3>Education</h3>
-						<!-- Start Education Number 1 -->
-						<div class="infos-educ">
-							<span class="roundtimeline"></span>
-							<div class="info-timeline">
-								<h5>IT Engineer</h5>
-								<span class="date">02/2014 - 12/2015</span>
-								<span> | </span>
-								<span class="job">university</span>
-								<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil</p>
-								<span class="timeline-de"></span>
+						
+						@foreach(Education education in Model.educations.OrderByDescending(a => a.graduationDate))
+            			{      
+							<div class="infos-educ">
+								<span class="roundtimeline"></span>
+								<div class="info-timeline">
+									<h5>@education.title</h5>
+									<span class="date">Graduation @(education.graduationDate.ToString("MMMM yyyy"))</span>
+									<span> | </span>
+									<span class="job">@education.university</span>
+									<p>@education.description</p>
+									<span class="timeline-de"></span>
+								</div>
 							</div>
-						</div>
-						<!-- End Education Number 1 -->
-						<!-- ====================== -->
-						<!-- Star Education Number 2 -->
-						<div class="infos-educ">
-							<span class="roundtimeline"></span>
-							<div class="info-timeline">
-								<h5>Specialization Course</h5>
-								<span class="date">02/2014 - 12/2015</span>
-								<span> | </span>
-								<span class="job">university</span>
-								<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-								<span class="timeline-de"></span>
-							</div>
-						</div>
-						<!-- End Education Number 2 -->
-						<!-- ====================== -->
-						<!-- Star Education Number 3 -->
-						<div class="infos-educ">
-							<span class="roundtimeline"></span>
-							<div class="info-timeline">
-								<h5>Frontend-developer</h5>
-								<span class="date">02/2014 - 12/2015</span>
-								<span> | </span>
-								<span class="job">university</span>
-								<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit</p>
-								<span class="timeline-de"></span>
-							</div>
-						</div>
-						<!-- End Education Number 3 -->
+						}
+
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-12">
