@@ -34,3 +34,8 @@ body {
 .project-description {
   color: #999999;
 }
+
+/*Bootstrap 4*/
+.nav-item {
+  margin: 0 10px;
+}
