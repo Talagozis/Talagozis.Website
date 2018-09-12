@@ -12,14 +12,14 @@
 			background-size: cover; 
 			background-repeat: no-repeat; 
 			background-position: 50% 80%;
-			height: 600px;
+			height: 460px;
 		}
 	</style>
 }
 
 @section js {
 	<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-	<script src="http://manisa.bouthythemes.com/js/custom.js"></script>
+	<script src="~/js/manisa.js"></script>
 	<script src="http://manisa.bouthythemes.com/js/typed.js"></script>
 	<script>
 		particlesJS.load('particles-js', '/js/particlesjs-config.json', function() {
@@ -28,12 +28,23 @@
 	</script>
 }
 
-<section class="header row">
-		<div id="particles-js">
+<section class="header row" style="background-image: none;">
+	<div id="particles-js" style="position: relative;">
 
 		<div class="title">
 			<h1>Hi! i am <span class="pattaya">Christos</span></h1>
-			<p class="type"></p>
+			<div id="typed-strings">
+				<p>
+					<span>Need some</span>
+					<strong>Magic?</strong>
+				</p>
+				<p>
+					<span>Need some</span>
+					<strong>Science?</strong>
+				</p>
+				<p>I can do both!</p>
+			</div>
+			<p id="typed" class="type"></p>
 		</div> 
 
 	</div>
