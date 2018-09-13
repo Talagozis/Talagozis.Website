@@ -77,6 +77,21 @@ internal class CVRepository
                         new Project { name = "Employee skills simulation software development using Java" }
                     },
                 },
+                new Education
+                {
+                    title = "Bachelor degree in Computer Engineering",
+                    courseYears = 4,
+                    description = TEST_TEXT,
+                    graduationDate = new DateTime(2012, 6, 1),
+                    university = "Vilnius Gediminas Technical University, Lithuania",
+                    mainCourses = new List<Course>
+                    {
+                        new Course { name = "Digital devices "},
+                        new Course { name = "Computer Architecture "},
+                        new Course { name = "Software Design "},
+                        new Course { name = "  Script Programming using Javascript"}
+                    }
+                },
             },
             workExperience = new List<WorkExperience>
             {
