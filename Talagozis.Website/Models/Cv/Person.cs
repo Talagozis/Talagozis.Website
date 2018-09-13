@@ -15,7 +15,8 @@ namespace Talagozis.Website.Models.Cv
         public string pob { get; set; }
         public string gender { get; set; }
         public string email { get; set; }
-        public string address { get; set; }
+		public string emailWeb => this.email.Replace("@", "[at]");
+		public Address Address { get; set; }
         public string phoneNumber { get; set; }
         public string nationality { get; set; }
         public string maritalStatus { get; set; }

@@ -19,7 +19,16 @@ internal class CVRepository
             email = "christos@talagozis.com",
             gender = "Male",
             jobTitles = new string[] { "Fullstack Web Developer", "Software Engineer" },
-            address = "10-12 Irodotou, Serres, Greece",
+            Address = new Address
+            {
+                line = "10-12 Irodotou",
+                region = "Serres",
+                city = "Serres",
+                country = "Greece",
+                municipality = "Serres",
+                lat = 41.0865808m,
+                lon = 23.513035m,
+            },
             maritalStatus = "Single",
             nationality = "Greek",
             phoneNumber = "+30 697 8348753",

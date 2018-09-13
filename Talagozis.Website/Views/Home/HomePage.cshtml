@@ -249,22 +249,22 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-6 col-xs-12 number">
 					<i class="manisa-heart"></i>
-					<span class="counter">1200</span>
+					<span class="counter">@Model.workExperience.Count()</span>
 					<p>Happy Client</p>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12 number">
 					<i class="manisa-coffe"></i>
-					<span class="counter">154</span>
+					<span class="counter">@(Math.Round((DateTime.Now - new DateTime(2012, 11, 1)).Days * 0.6, 0))</span>
 					<p>Cup Of Coffee</p>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12 number">
 					<i class="manisa-star"></i>
-					<span class="counter">102</span>
+					<span class="counter">@(Model.educations.Where(a => a.projects != null).SelectMany(a => a.projects).Where(a => a != null).Count() + Model.workExperience.Where(a => a.projects != null).SelectMany(a => a.projects).Count())</span>
 					<p>Successful Projects</p>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12 number">
 					<i class="manisa-cup"></i>
-					<span class="counter">320</span>
+					<span class="counter">@Model.awards.Count</span>
 					<p>Award Won</p>
 				</div>
 			</div>
@@ -272,7 +272,7 @@
 	</div>
 </section>
 
-<section id="contact" class="contact text-center active-nav">
+<section id="contact" class="contact text-center active-nav" style="padding-bottom: 60px; margin-bottom: 0;">
 	<div class="container">
 		<div class="title">
 			<h2 class="text-uppercase">Get In Touch</h2>
@@ -282,19 +282,19 @@
 				<div class="col-lg col-sm-4">
 					<div class="email">
 						<i class="manisa-envelope"></i>
-						<span>manisa@email.com</span>
+						<span>@Model.emailWeb</span>
 					</div>
 				</div>
 				<div class="col-lg col-sm-4">
 					<div class="phone">
 						<i class="manisa-call-end"></i>
-						<span>+123 456 7899</span>
+						<span>@Model.phoneNumber</span>
 					</div>
 				</div>
 				<div class="col-lg col-sm-4">
 					<div class="address">
 						<i class="manisa-pointer"></i>
-						<span>123 Street Name, City , 32008</span>
+						<span>@(Model.Address.city), @Model.Address.country</span>
 					</div>
 				</div>
 			</div>
