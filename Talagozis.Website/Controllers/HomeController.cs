@@ -1,22 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Piranha;
 using Talagozis.Website.Models.Cv;
 
 namespace Talagozis.Website.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IApi _api;
+
+        public HomeController(IApi api) 
         {
-            return this.HomePage();
+            _api = api;
+        }
+        public IActionResult Index(Guid blogId)
+        {
+            return this.HomePage(blogId);
         }
 
-        public IActionResult HomePage()
+        public IActionResult HomePage(Guid Id)
         {
+            Id = new Guid("f6682da4-11f4-40b4-b118-470bcc198613");
+
             CVRepository cVRepository = new CVRepository();
 
             Person person = cVRepository.GetMyCV();
+
+            ViewBag.Id = Id;
+            ViewBag.latestPosts = _api.Posts.GetAll<Models.BlogPost>(Id).ToList();
 
             return View("~/Views/Home/HomePage.cshtml", person);
         }
