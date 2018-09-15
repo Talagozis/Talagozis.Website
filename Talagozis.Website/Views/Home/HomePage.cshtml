@@ -20,13 +20,17 @@
             background-position: 50% 80%;
             height: 460px;
         }
-
         section.blog, section.educ, section.stat, section.contact {
             background-image: url('/images/pattern.jpg')
         }
-
         .educ .education .title .infos-educ .info-timeline span {
             display: inline;
+        }
+        .infos-post .short-description-block a {
+            color: #007bff;
+        }
+        .infos-post .short-description-block {
+            font-size: 14px;
         }
     </style>
     <link rel="stylesheet" href="~/lib/manisa/css/manisa-icon.css" />
@@ -73,18 +77,20 @@
             <h2 class="text-uppercase">Blog</h2>
         </div>
         <div class="row">
-            @*@ViewBag.Id
-                @ViewBag.latestPosts.Count*@
             @foreach (BlogPost post in ViewBag.latestPosts)
             {
                 <div class="col-lg-4 col-md-12">
                     <div class="post">
                         <div class="category-post">
-                            <a href="#" target="_blank"><span>food</span></a>
+                            <a href="@((ViewBag.archives as List<BlogArchive>).Single(a => a.Id == post.BlogId).Slug)" target="_blank">
+                                <span>
+                                    @((ViewBag.archives as List<BlogArchive>).Single(a => a.Id == post.BlogId).Title)
+                                </span>
+                            </a>
                         </div>
                         <div class="img-post">
                             <a href="blog-post.html" target="_blank">
-                                <img src="@Url.Content(post.Heading.PrimaryImage.Resize(Api, 334, 334))" class="img-fluid" alt="img-post">
+                                <img src="@Url.Content(post.Heading.PrimaryImage.Resize(Api, 334, 222))" class="img-fluid" alt="img-post">
                             </a>
                         </div>
                         <div class="infos-post">
@@ -93,22 +99,27 @@
                             </h3>
                             <span>- @post.Published.Value.ToString("dd MMM yyyy") -</span>
                             <hr>
+                            <div class="short-description-block">
+                                @Html.Raw(post.Heading.shortDescription)
+                            </div>
                         </div>
                         <div class="tags-post">
                             <i class="manisa-tag"></i>
                             <span>
                                 @foreach (var tag in post.Tags)
                                 {
-                                    <a href="@tag.Slug" target="_blank">@tag.Title</a>
+                                    <a href="@tag.Slug" target="_blank">
+                                        @tag.Title@(tag != post.Tags.Last() ? ", " : "")
+                                    </a>
                                 }
                             </span>
 
                         </div>
                         @*<div class="comments-post d-none d-sm-block">
-                                <a href="#" target="_blank">
+                            <a href="#" target="_blank">
                                 <span>220</span><i class="manisa-bubble"></i>
-                                </a>
-                            </div>*@
+                            </a>
+                        </div>*@
                     </div>
                 </div>
             }
