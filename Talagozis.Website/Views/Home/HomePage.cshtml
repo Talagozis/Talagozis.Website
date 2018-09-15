@@ -32,6 +32,9 @@
         .infos-post .short-description-block {
             font-size: 14px;
         }
+        .educ .education .title .infos-educ .info-timeline span {
+            letter-spacing: 0.4px;
+        }
     </style>
     <link rel="stylesheet" href="~/lib/manisa/css/manisa-icon.css" />
     <link rel="stylesheet" href="http://manisa.bouthythemes.com/css/lightbox.min.css" />
@@ -77,7 +80,7 @@
             <h2 class="text-uppercase">Blog</h2>
         </div>
         <div class="row">
-            @foreach (BlogPost post in ViewBag.latestPosts)
+            @foreach (BlogPost post in (ViewBag.latestPosts as IEnumerable<BlogPost>).Take(3))
             {
                 <div class="col-lg-4 col-md-12">
                     <div class="post">
@@ -258,46 +261,35 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="title open-timeline">
                         <h3>Experience</h3>
-                        <!-- Start Experience Number 1 -->
-                        <div class="infos-educ">
-                            <span class="roundtimeline"></span>
-                            <div class="info-timeline">
-                                <h5>Frontend-developer</h5>
-                                <span class="date">11/2015 - Current</span>
-                                <span> | </span>
-                                <span class="job">university</span>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                                <span class="timeline-de"></span>
+
+                        @foreach (WorkExperience workExperience in Model.workExperience.OrderByDescending(a => a.startDate).Take(3))
+                        {
+                            <div class="infos-educ">
+                                <span class="roundtimeline"></span>
+                                <div class="info-timeline">
+                                    <h5>@workExperience.position</h5>
+                                    <span class="date">
+                                        @workExperience.startDate.ToString("MM/yyyy") 
+                                        - 
+                                        @(workExperience.endDate.HasValue ? workExperience.endDate.Value.ToString("MM/yyyy") : "Current")
+                                    </span>
+                                    @* 
+                                        <span> | </span>
+                                        <span class="job">@workExperience.companyName</span> 
+                                    *@
+                                    <span> | </span>
+                                    <span class="typeOfBusiness" style="letter-spacing: 0;">
+                                        @workExperience.typeOfBusiness
+                                    </span>
+                                    <p class="description" style="font-size: 13px;">
+                                        @workExperience.description
+                                    </p>
+                                    <span class="timeline-de"></span>
+                                </div>
                             </div>
-                        </div>
-                        <!-- End Experience Number 1 -->
-                        <!-- ====================== -->
-                        <!-- Star Experience Number 2 -->
-                        <div class="infos-educ">
-                            <span class="roundtimeline"></span>
-                            <div class="info-timeline">
-                                <h5>Web Designer</h5>
-                                <span class="date">01/2014 - 8/2015</span>
-                                <span> | </span>
-                                <span class="job">university</span>
-                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
-                                <span class="timeline-de"></span>
-                            </div>
-                        </div>
-                        <!-- End Experience Number 2 -->
-                        <!-- Star Education Number 3 -->
-                        <div class="infos-educ">
-                            <span class="roundtimeline"></span>
-                            <div class="info-timeline">
-                                <h5>Graphic Designer</h5>
-                                <span class="date">09/2012 - 012/2013</span>
-                                <span> | </span>
-                                <span class="job">university</span>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                                <span class="timeline-de"></span>
-                            </div>
-                        </div>
-                        <!-- End Education Number 3 -->
+                        }
+
+                        
                     </div>
                 </div>
             </div>
