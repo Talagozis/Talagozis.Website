@@ -99,7 +99,8 @@ internal class CVRepository
                         new Course { name = "Computer Architecture "},
                         new Course { name = "Software Design "},
                         new Course { name = "  Script Programming using Javascript"}
-                    }
+                    },
+                    projects = new List<Project>(),
                 },
             },
             workExperience = new List<WorkExperience>
