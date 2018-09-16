@@ -8,7 +8,31 @@
 
 @section css {
 	<style>
-
+        .header-blog-post {
+            background-image: url(@Url.Content(Model.Heading.PrimaryImage.Resize(Api, 720, 480)));
+            background-position: center;
+        }
+        section.header-blog-post {
+            width: auto;
+        }
+        article.post {
+            margin-bottom: 35px;
+        }
+        .blog-filter-header h1 {
+            font-style: italic;
+            color: #bf360c;
+            font-weight: normal;
+        }
+        .post .post-title a {
+            color: #37474f;
+            font-weight: 600;
+        }
+        .post .post-published, .post .post-category {
+            font-size: 0.9rem;
+        }
+        .post .post-category a{
+            color: #039be5;
+        }
 	</style>
 }
 
@@ -35,6 +59,14 @@
         return "";
     };
 }
+
+<section class="header-blog-post text-center active-nav row">
+    <div class="overlay">
+        <div class="title">
+            <h1>@Model.Title</h1>
+        </div>
+    </div>
+</section>
 
 <div class="container archive">
     @if (Model.Archive.Category != null) {
@@ -63,46 +95,63 @@
         </div>        
     }
 
+<hr/>
+
     @foreach (var post in Model.Archive.Posts) 
     {
-        <article>
+        <article class="post">
             <header>
-                @if (post.Regions.Heading.PrimaryImage.HasValue) 
+                @if (false && post.Regions.Heading.PrimaryImage.HasValue) 
                 {
                     <div class="row justify-content-center">
                         <div class="col-sm">
-                            <a href="@post.Permalink"><img src="@Url.Content(post.Regions.Heading.PrimaryImage.Resize(Api, 930, 360))"></a>
+                            <a href="@post.Permalink">
+                                <img src="@Url.Content(post.Regions.Heading.PrimaryImage.Resize(Api, 360, 360))">
+                            </a>
                         </div>
                     </div>
                 }
-                <div class="row justify-content-center">
+                <div class="row ">
                     <div class="col-sm-10">
-                        <h2><a href="@post.Permalink">@post.Title</a></h2>
-                        <p class="post-meta">
-                            <strong>In</strong> <a href="@Model.Permalink/category/@post.Category.Slug">@post.Category.Title</a>
-                            <span class="sep">&#9670;</span>
-                            <strong>Tags</strong>
+                        <h2 class="post-title">
+                            <a href="@post.Permalink">@post.Title</a>
+                        </h2>
+                        <p class="post-published">
+                            <span>Published:</span>
+                            <span>@post.Published.Value.ToString("dd MMMM yyyy")</span>
+                        </p>
+                        <p class="post-category">
+                            <span>Category:</span> 
+                            <a href="@Model.Permalink/category/@post.Category.Slug" style="font-weight: 600; font-size: 1rem;">
+                                @post.Category.Title
+                            </a>
+
+                            <span>Tags:</span>
+    
                             @foreach (var tag in post.Tags) 
-                            {
-                                <span class="tag"><a href="@Model.Permalink/tag/@tag.Slug">#@tag.Title</a></span>
+                            {                        
+                                <span class="tags-post" style="background-color: #019d9b; border-radius: 27px; padding: 2px 10px; margin-right: 4px;">
+                                    <i class="manisa-tag"></i>
+                                    <span>
+                                        <a href="@Model.Permalink/tag/@tag.Slug" style="color: white;">@tag.Title</a>
+                                    </span>
+                                </span>
                             }
-                            <span class="sep">&#9670;</span>
-                            <strong>Published</strong>
-                            @post.Published.Value.ToString("yyyy-MM-dd")
+
                         </p>
                     </div>
                 </div>
             </header>
-            <div class="row justify-content-center">
+            <div class="row">
                 <div class="col-sm-10">
                     <div class="ingress">
-                        @Html.Raw(post.Regions.Heading.Ingress)
+                        @Html.Raw(post.Regions.Heading.shortDescription)
                     </div>
-                    <p><a class="btn btn-link" href="@post.Permalink">Read more</a></p>
                 </div>
             </div>
         </article>
     }
+
     @if (Model.Archive.TotalPages > 1) {
         <div class="row">
             <div class="col-sm">
@@ -140,4 +189,5 @@
             </div>
         </div>        
     }
+
 </div>
