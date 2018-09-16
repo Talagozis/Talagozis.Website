@@ -7,6 +7,17 @@
 body {
   font-family: 'Open Sans', 'Poppins', sans-serif;
 }
+body nav.navbar {
+  margin-bottom: 0; 
+  /* background-color: #212121;  */
+  border-radius: 0;
+  background-image: url('/images/pattern.jpg');
+}
+body nav.navbar ul a{
+  font-weight: 600; 
+  color: #424242;
+  letter-spacing: 0.1px;
+}
 
 
 .intro-title1 {
