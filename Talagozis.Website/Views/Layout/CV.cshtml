@@ -11,14 +11,17 @@
 
 	<meta name="google-site-verification" content="S1X7cY9BACeSAkVE-OOhvwmyAYzRrhFSO7OF1Lx0jvg" />
 
+
 	<environment names="Development">    
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-		<!-- <link href="~/lib/bootstrap/dist/css/bootstrap.css"  rel="stylesheet" /> -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<link href="http://manisa.bouthythemes.com/css/main.css" rel="stylesheet" />
-		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-		<link rel="stylesheet" href="~/css/default-color.manisa.css" /> 
+		<link href="~/lib/bootstrap/dist/css/bootstrap.css"  rel="stylesheet" />
+		
+		<link href="~/lib/vertica/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.css" rel="stylesheet">
+		<link href="~/lib/vertica/vendor/nivo-lightbox/themes/default/default.css" rel="stylesheet" type="text/css" />
+		<link href="~/lib/vertica/vendor/animate.css" rel="stylesheet">
+		
+		<link href="~/lib/vertica/css/styles.css" rel="stylesheet" />
 
 		<link href="~/css/home/custom.css" rel="stylesheet" />  
 
@@ -29,89 +32,33 @@
 		<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
 			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
 			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+		
+		<link href="~/lib/vertica/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.css" rel="stylesheet">
+		<link href="~/lib/vertica/vendor/nivo-lightbox/themes/default/default.css" rel="stylesheet" type="text/css" />
+		<link href="~/lib/vertica/vendor/animate.css" rel="stylesheet">
+		
+		<link href="~/lib/vertica/css/styles.css" rel="stylesheet"/>
 
-		<link href="http://manisa.bouthythemes.com/css/main.css" rel="stylesheet" />
-		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-		<link rel="stylesheet" href="~/css/default-color.manisa.css" /> 
-
-		<link href="~/css/home/custom.css" rel="stylesheet" /> 
+		<link href="~/css/home/custom.css" rel="stylesheet" />        
 
 		@RenderSection("css", true)
 	</environment>
-
+	
 	@Html.Raw(JavaScriptSnippet.FullScript)
 </head>
-<body style="overflow: auto;">
-
-	<nav class="navbar navbar-inverse navbar-expand-lg">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="font-size: 35px; letter-spacing: 1px; font-family: Bebas Neue; line-height: 30px;">
-					<span style="color: #3ac3cb;">CHRISTOS</span><span class="grey" style="color: #424242 ;">TALAGOZIS</span>
-				</a>
-            </div>
-
-			<div class="collapse navbar-collapse">
-				<ul class="navbar-nav mr-auto">
-				</ul>
-				<ul class="navbar-nav ml-auto">
-					<!-- <li class="nav-item">
-						<a asp-area="" asp-controller="Home" asp-action="Index" style="color: #03a9f4; font-weight: bold;">Home</a>
-					</li> -->
-					<li class="nav-item"><a asp-area="" asp-controller="Home" asp-action="Blog">Blog</a></li>
-					<li class="nav-item"><a asp-area="" asp-controller="Home" asp-action="Services" >Services</a></li>
-					<li class="nav-item"><a asp-area="" asp-controller="Home" asp-action="Work" >Work</a></li>
-                    <li class="nav-item"><a asp-area="" asp-controller="Home" asp-action="Research" >Research</a></li>
-                    <li class="nav-item"><a asp-area="" asp-controller="Home" asp-action="Contact" >Contact</a></li>
-					<li class="nav-item" style="padding: 1px 12px; border-radius: 27px; background-color: #019d9b;">
-						<a asp-area="" asp-controller="Home" asp-action="CV" style="color: white; font-weight: bold;">CV</a>
-					</li>	
-					<!-- <li class="nav-item" style="padding: 1px 12px; border-radius: 27px; background-color: #f44336  ;" >
-						<a asp-area="" asp-controller="Home" asp-action="Blog" style="color: white; font-weight: bold;">Blog</a>
-					</li> -->
-					</ul>
-			</div>
-
-            <!-- <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right" >
- 
-                </ul>
-            </div> -->
-        </div>
-    </nav>
-
-	<div class="container-fluid">
+<body data-spy="scroll" data-target="#side-menu">
+	<div class="container body-content">
 		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; 2017 - Talagozis Christos</p>
+		</footer>
 	</div>
-
-	<footer class="text-center" style="border-top: solid #e2e2e2 1px;">
-		<div class="footer-content">
-			<div class="social-media-footer">
-				<a href="https://www.linkedin.com/in/talagozis/" target="_blank">
-					<i class="fa fa-linkedin" style="font-size: 20px;" ></i>
-				</a>
-				<a href="https://github.com/Talagozis" target="_blank">
-					<i class="fa fa-github" style="font-size: 20px;" ></i>
-				</a>
-			</div>
-			<div>
-				<a asp-area="" asp-controller="Home" asp-action="Index" class="" style="font-size: 35px; font-weight: normal; letter-spacing: 1px; font-family: Bebas Neue; line-height: 35px; padding: 10px;">
-					<span style="color: #3ac3cb;">CHRISTOS</span><span class="grey" style="color: #212121;">TALAGOZIS</span>
-				</a>
-			</div>
-			<div class="copyright">
-				<p>© Copyright 2013 - @(DateTime.Now.Year).</p>
-				<p>All Right Reserved By <span>Talagozis</span></p>
-			</div>
-		</div>
-		<!-- <p>&copy; 2017 - Talagozis Christos</p> -->
-	</footer>
 
 	<environment names="Development">
 		<script src="~/lib/jquery/dist/jquery.js"></script>
-		<!-- <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script> -->
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 		<script src="~/lib/vertica/js/main.js" asp-append-version="true"></script>
 
 		<script src="~/lib/vertica/vendor/jquery.easing.min.js"></script>

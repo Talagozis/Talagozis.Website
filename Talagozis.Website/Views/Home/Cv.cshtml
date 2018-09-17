@@ -1,12 +1,15 @@
 ﻿@using System.Linq
-@using Talagozis.Website.Models
+@using Talagozis.Website.Models.Cv
 @{
-    Layout = "~/Views/Layout/Home.cshtml";
+    Layout = "~/Views/Layout/Cv.cshtml";
 }
-@model Talagozis.Website.Models.Person
+@model Talagozis.Website.Models.Cv.Person
 
+@section css {
+}
 
-
+@section js {
+}
 
 
 <!-- Page Loader
@@ -126,7 +129,7 @@
           <div class="profile-pic">
             <div class="profile-border">
               <!-- Put your picture here ( 308px by 308px for retina display)-->
-              <img src="images/cv-avatar.jpg" alt="">
+              <img src="/images/cv-avatar.jpg" alt="">
               <!-- /Put your picture here -->
             </div>          
           </div>
@@ -345,8 +348,9 @@
             <!-- /SECTION ITEM --> 
           </section>
           <!-- ==>> /SECTION: PROFILE INFOS -->     
+            
 
-          <!-- ====>> SECTION: EDUCATION <<====-->
+            <!-- ====>> SECTION: EDUCATION <<====-->
           <section class="timeline education" id="education">
 
             <!-- Margin (necessary for the timeline effect) -->
@@ -363,8 +367,7 @@
             <div class="line row">
               <!-- Margin Collums (necessary for the timeline effect) -->
               <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height">
-              </div>              
+              <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>              
               <!-- /Margin Collums -->
               <!-- Item Content -->
               <div class="col-md-8 content-wrap bg1">
@@ -437,8 +440,9 @@
     
           </section>
           <!-- ==>> /SECTION: EDUCATION <<==== -->  
+            
 
-          <!-- ====>> SECTION: WORK EXPERIENCE <<====-->
+            <!-- ====>> SECTION: WORK EXPERIENCE <<====-->
           <section class="timeline work-experience" id="works">
 
             <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
@@ -517,6 +521,148 @@
 
           </section>
           <!-- ==>> /SECTION: WORK EXPERIENCE <<==== --> 
+
+
+          <!-- ====>> SECTION: REASEARCH EXPERIENCE <<====-->
+        <section class="timeline education" id="education">
+
+            <!-- Margin (necessary for the timeline effect) -->
+            <div class="line row timeline-margin">
+                <div class="content-wrap">
+                    <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                    <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+                    <div class="col-md-9 bg1 full-height"></div>
+                </div>
+            </div>
+            <!-- /Margin -->
+
+            <!-- SECTION TITLE -->
+            <div class="line row">
+                <!-- Margin Collums (necessary for the timeline effect) -->
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>    
+              <!-- /Margin Collums -->
+              <!-- Item Content -->
+              <div class="col-md-8 content-wrap bg1">
+                <!-- Section title -->
+                <h2 class="section-title">Research Experience</h2>
+                <!-- /Section title -->
+              </div>
+              <!-- /Item Content -->
+              <!-- Margin Collum-->
+              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+              <!-- /Margin Collum-->
+            </div>
+            <!-- /SECTION TITLE -->
+
+            <!-- SECTION ITEM -->
+            @foreach(ResearchExperience researchExperience in Model.researchExperience.OrderByDescending(a => a.startDate))
+            {     
+              <div class="line row">
+                <!-- Margin Collums (necessary for the timeline effect) -->
+                  <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                  <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education2"></div>
+                <!-- /Margin Collums -->
+                <!-- Item Content -->
+                <div class="col-md-8 content-wrap bg1">
+                  <div class="line-content line-content-education">
+                    <!-- Research Place -->
+                    <h3 class="section-item-title-1">@researchExperience.title</h3>
+                    <!-- /research place -->
+                    <!-- Graduation time -->
+                    <h4 class="job">
+                      <i class="fa fa-university"></i> @researchExperience.organizationName - 
+                      <span class="job-date">@researchExperience.startDate.ToString("MMMM yyyy") - @(researchExperience.endDate.HasValue ? researchExperience.endDate.Value.ToString("MMMM yyyy") : "Current")</span>
+                    </h4>
+                    <!-- /Graduation time -->
+                    <!-- content -->
+                    <div class="job-description">                        
+                        <p>Tutors: <strong>@(string.Join(',', researchExperience.tutorNames))</strong></p>
+                        <p>@researchExperience.description</p>                        
+                    </div>
+                    <!-- /Content -->
+                  </div>
+                </div>
+                <!-- /Item Content -->
+                <!-- Margin Collum-->
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                <!-- /Margin Collum-->
+              </div>
+            }
+            <!-- /SECTION ITEM -->
+
+          </section>
+          <!-- ==>> /SECTION: REASEARCH EXPERIENCE <<==== --> 
+
+
+          <!-- ====>> SECTION: AWARD <<====-->
+          <section class="timeline work-experience" id="works">
+
+            <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
+            <div class="line row timeline-margin">
+              <div class="content-wrap">
+                  <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                  <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+                  <div class="col-md-9 bg1 full-height"></div>
+              </div>
+            </div>
+            <!-- /VERTICAL MARGIN -->
+
+            <!-- SECTION TITLE -->
+            <div class="line row">
+                <!-- Margin Collums (necessary for the timeline effect) -->
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+                <!-- /Margin Collums -->
+                <!-- Item Content -->
+                <div class="col-md-8 content-wrap bg1">
+                    <!-- Section title -->
+                    <h2 class="section-title">Awards</h2>
+                    <!-- /Section title -->
+                </div>
+                <!-- /Item Content -->
+                <!-- Margin Collum-->
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                <!-- /Margin Collum-->
+            </div>
+            <!-- /SECTION TITLE -->
+
+            <!-- SECTION ITEM -->
+            @foreach(Awards award in Model.awards.OrderByDescending(a => a.issueDate))
+            {     
+              <div class="line row">
+                <!-- Margin Collums (necessary for the timeline effect) -->
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work2 "></div>
+                <!-- /Margin Collums -->
+                <!-- Item Content -->
+                <div class="col-md-8 content-wrap bg1">
+                  <div class="line-content line-content-education">
+                    <!-- Work Place -->
+                    <h3 class="section-item-title-1">@award.title</h3>
+                    <!-- /work place -->
+                    <!-- Graduation time -->
+                    <h4 class="job"><i class="fa fa-flag"></i> @award.issuer - <span class="job-date">@award.issueDate.ToString("MMMM yyyy")</span></h4>
+                    <!-- /Graduation time -->
+                    <!-- content -->
+                    <div class="job-description">
+                        <p>@award.description</p>                        
+                    </div>
+                    <!-- /Content -->
+                  </div>
+                </div>
+                <!-- /Item Content -->
+                <!-- Margin Collum-->
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                <!-- /Margin Collum-->
+              </div>
+            }
+            <!-- /SECTION ITEM -->
+
+          </section>
+          <!-- ==>> /SECTION: AWARD <<==== --> 
+
+
           @*
           <!-- ====>> SECTION: SKILLS <<====-->
           <section class="timeline skills" id="skills">
