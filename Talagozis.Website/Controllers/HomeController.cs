@@ -52,6 +52,10 @@ namespace Talagozis.Website.Controllers
             return View("~/Views/Home/CV.cshtml", person);
         }
 
+        public IActionResult Contact()
+        {
+            return View("~/Views/Home/Contact.cshtml");
+        }
         public Person getJson()
         {
             CVRepository cVRepository = new CVRepository();

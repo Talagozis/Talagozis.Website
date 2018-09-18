@@ -109,11 +109,19 @@ namespace Talagozis.Website
                 routes.MapRoute(
                     name: "areaRoute",
                     template: "{area:exists}/{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index" });
+                    defaults: new { controller = "Home", action = "Index" }
+                );
+
+                routes.MapRoute(
+                    name: "defaultHome",
+                    template: "{action}",
+                    defaults: new { controller = "Home", action = "Index" }
+                );
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=home}/{action=index}/{id?}");
+                    template: "{controller=home}/{action=index}/{id?}"
+                );
             });
         }
     }
