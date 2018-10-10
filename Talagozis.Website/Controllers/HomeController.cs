@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using Talagozis.Website.Models.Cv;
@@ -15,12 +16,13 @@ namespace Talagozis.Website.Controllers
         {
             _api = api;
         }
-        public IActionResult Index()
+        
+        public async Task<IActionResult> Index()
         {
-            return this.HomePage();
+            return await this.HomePage();
         }
 
-        public IActionResult HomePage()
+        public async Task<IActionResult> HomePage()
         {
             var csharpArchiveId = new Guid("f6682da4-11f4-40b4-b118-470bcc198613");
             var javaArchiveId = new Guid("e8ed04db-e33b-46fe-97d7-e0e025a269e2");
@@ -40,8 +42,32 @@ namespace Talagozis.Website.Controllers
 			ViewBag.latestPosts = csharpPosts.Concat(javaPosts);
 			ViewBag.archives = archives;
 
+            //ViewBag.pod = await Talagozis.Web.Services.Bing.getPictureOfTheDay();
+
+
 			return View("~/Views/Home/HomePage.cshtml", person);
         }
+
+        public async Task<IActionResult> Blog()
+        {
+            var csharpArchiveId = new Guid("f6682da4-11f4-40b4-b118-470bcc198613");
+            var javaArchiveId = new Guid("e8ed04db-e33b-46fe-97d7-e0e025a269e2");
+
+            var csharpPosts = _api.Posts.GetAll<Models.BlogPost>(csharpArchiveId).ToList();
+            var javaPosts = _api.Posts.GetAll<Models.BlogPost>(javaArchiveId).ToList();
+			var archives = new List<Models.BlogArchive>
+            { 
+                _api.Archives.GetById<Models.BlogArchive>(csharpArchiveId, 1, null, null, null), 
+                _api.Archives.GetById<Models.BlogArchive>(javaArchiveId, 1, null, null, null), 
+            };
+
+			ViewBag.latestPosts = csharpPosts.Concat(javaPosts);
+			ViewBag.archives = archives;
+
+
+			return View("~/Views/Home/Blog.cshtml", archives);
+        }
+
 
         public IActionResult CV()
         {
