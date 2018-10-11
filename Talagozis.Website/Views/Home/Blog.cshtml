@@ -31,6 +31,9 @@
         .header-blog {
             margin-bottom: 0;
         }
+        .blog-page .col-lg-4 {
+            margin-bottom: 80px;
+        }
     </style>
     <link rel="stylesheet" href="~/lib/manisa/css/manisa-icon.css" />
     <link rel="stylesheet" href="http://manisa.bouthythemes.com/css/lightbox.min.css" />
@@ -62,11 +65,11 @@
 
             @foreach (BlogArchive archive in Model)
             {
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-4 col-md-12">
                     <div class="post">
                         <div class="img-post">
                             <a href="@archive.Slug" style="display: block;">
-                                <img src="@Url.Content(archive.Heading.PrimaryImage.Resize(Api, 334, 222))" class="img-fluid" alt="archive.Title" style="width: 100%;" />
+                                <img src="@Url.Content(archive.Heading.PrimaryImage.Resize(Api, 430, 290))" class="img-fluid" alt="archive.Title" style="width: 100%;" />
                             </a>
                         </div>
                         <div class="infos-post">
@@ -80,6 +83,14 @@
                             <div>
                                 @Html.Raw(archive.Heading.shortDescription)
                             </div>
+                        </div>
+                        <div class="tags-post">
+                            <i class="manisa-tag"></i>
+                            <span>
+                                <a href="#" target="_blank">foods</a>, 
+                                <a href="#" target="_blank">blog</a>, 
+                                <a href="#" target="_blank">post</a>
+                            </span>                            
                         </div>
                         <div class="comments-post d-none d-sm-block">
                             <a href="#" target="_blank">
