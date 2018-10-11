@@ -22,7 +22,7 @@
             height: 460px;
         }
         section.blog, section.educ, section.stat, section.contact {
-            background-image: url('/images/pattern.jpg')
+            background-image: url('/images/pattern.jpg');
             background-size: auto;
         }
         section.header, section.blog, section.educ, section.stat, section.contact {
@@ -103,7 +103,7 @@
                         </div>
                         <div class="infos-post">
                             <h3>
-                                <a href="@post.Slug" target="_blank">@post.Title</a>
+                                <a href="@post.Slug" >@post.Title</a>
                             </h3>
                             <span>- @post.Published.Value.ToString("dd MMM yyyy") -</span>
                             <hr>

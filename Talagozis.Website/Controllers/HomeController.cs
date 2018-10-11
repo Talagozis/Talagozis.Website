@@ -44,24 +44,24 @@ namespace Talagozis.Website.Controllers
 
             //ViewBag.pod = await Talagozis.Web.Services.Bing.getPictureOfTheDay();
 
-
 			return View("~/Views/Home/HomePage.cshtml", person);
         }
 
+        
         public async Task<IActionResult> Blog()
         {
             var csharpArchiveId = new Guid("f6682da4-11f4-40b4-b118-470bcc198613");
             var javaArchiveId = new Guid("e8ed04db-e33b-46fe-97d7-e0e025a269e2");
 
-            var csharpPosts = _api.Posts.GetAll<Models.BlogPost>(csharpArchiveId).ToList();
-            var javaPosts = _api.Posts.GetAll<Models.BlogPost>(javaArchiveId).ToList();
+            // var csharpPosts = _api.Posts.GetAll<Models.BlogPost>(csharpArchiveId).ToList();
+            // var javaPosts = _api.Posts.GetAll<Models.BlogPost>(javaArchiveId).ToList();
 			var archives = new List<Models.BlogArchive>
             { 
                 _api.Archives.GetById<Models.BlogArchive>(csharpArchiveId, 1, null, null, null), 
                 _api.Archives.GetById<Models.BlogArchive>(javaArchiveId, 1, null, null, null), 
             };
 
-			ViewBag.latestPosts = csharpPosts.Concat(javaPosts);
+			// ViewBag.latestPosts = csharpPosts.Concat(javaPosts);
 			ViewBag.archives = archives;
 
 

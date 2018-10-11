@@ -1,4 +1,5 @@
 using Piranha.AttributeBuilder;
+using Piranha.Extend.Fields;
 using Piranha.Models;
 
 namespace Talagozis.Website.Models
@@ -11,5 +12,6 @@ namespace Talagozis.Website.Models
         /// </summary>
         [Region]
         public Regions.Heading Heading { get; set; }
+
     }
 }
