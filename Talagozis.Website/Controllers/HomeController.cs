@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
+using Talagozis.Website.Models;
 using Talagozis.Website.Models.Cv;
 
 namespace Talagozis.Website.Controllers
@@ -31,15 +32,14 @@ namespace Talagozis.Website.Controllers
 
             Person person = cVRepository.GetMyCV();
 
-            var csharpPosts = _api.Posts.GetAll<Models.BlogPost>(csharpArchiveId).ToList();
-            var javaPosts = _api.Posts.GetAll<Models.BlogPost>(javaArchiveId).ToList();
+            var allPosts = _api.Posts.GetAll<BlogPost>();
 			var archives = new List<Models.BlogArchive> 
             { 
                 _api.Archives.GetById<Models.BlogArchive>(csharpArchiveId, 1, null, null, null), 
                 _api.Archives.GetById<Models.BlogArchive>(javaArchiveId, 1, null, null, null), 
             };
 
-			ViewBag.latestPosts = csharpPosts.Concat(javaPosts);
+			ViewBag.latestPosts = allPosts;
 			ViewBag.archives = archives;
 
             //ViewBag.pod = await Talagozis.Web.Services.Bing.getPictureOfTheDay();
@@ -58,8 +58,6 @@ namespace Talagozis.Website.Controllers
             var reactJsArchiveId = new Guid("6e23dca6-c9ae-4560-af54-ffffea6edefd");
             var aspNetCoreArchiveId = new Guid("bdfcd253-fd56-4554-8b81-94de6a3dea83");
 
-            // var csharpPosts = _api.Posts.GetAll<Models.BlogPost>(csharpArchiveId).ToList();
-            // var javaPosts = _api.Posts.GetAll<Models.BlogPost>(javaArchiveId).ToList();
 			var archives = new List<Models.BlogArchive>
             { 
                 _api.Archives.GetById<Models.BlogArchive>(csharpArchiveId, 1, null, null, null), 
@@ -71,7 +69,6 @@ namespace Talagozis.Website.Controllers
                 _api.Archives.GetById<Models.BlogArchive>(aspNetCoreArchiveId, 1, null, null, null),
             };
 
-			// ViewBag.latestPosts = csharpPosts.Concat(javaPosts);
 			ViewBag.archives = archives;
 
 			return View("~/Views/Home/Blog.cshtml", archives);

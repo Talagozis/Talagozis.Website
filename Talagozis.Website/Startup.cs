@@ -73,7 +73,7 @@ namespace Talagozis.Website
 
             // Initialize Piranha
             var api = services.GetService<IApi>();
-            App.Init(api);
+            App.Init();
 
             // Configure cache level
             App.CacheLevel = Piranha.Cache.CacheLevel.None;
