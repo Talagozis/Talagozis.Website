@@ -13,20 +13,15 @@
 
 @section css {
     <style>
-        #particles-js {
-            /* background-image: url("@ViewBag.pod"); */
-            background-image: url("/images/cover.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: 50% 80%;
-            height: 460px;
-        }
-        section.blog, section.educ, section.stat, section.contact {
+        section.blog {
             background-image: url('/images/pattern.jpg');
             background-size: auto;
         }
-        section.header, section.blog, section.educ, section.stat, section.contact {
+        section.header, section.blog {
             width: auto;
+        }
+        section.header {
+            background-position: inherit;
         }
         .header-blog {
             margin-bottom: 0;
@@ -55,9 +50,9 @@
 }
 
 
-<section class="header-blog row">
+<section class="header header-blog row">
     <div class="overlay">
-        <h1>The Blogs</h1>
+        <h1>The Blog</h1>
     </div>
 </section>
 

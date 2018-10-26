@@ -27,22 +27,22 @@ namespace Talagozis.Website.Controllers
         {
             var csharpArchiveId = new Guid("f6682da4-11f4-40b4-b118-470bcc198613");
             var javaArchiveId = new Guid("e8ed04db-e33b-46fe-97d7-e0e025a269e2");
+            var aspNetCoreArchiveId = new Guid("bdfcd253-fd56-4554-8b81-94de6a3dea83");
 
             CVRepository cVRepository = new CVRepository();
-
             Person person = cVRepository.GetMyCV();
 
             var allPosts = _api.Posts.GetAll<BlogPost>();
+            var allSites = _api.Sites.GetAll();
 			var archives = new List<Models.BlogArchive> 
             { 
                 _api.Archives.GetById<Models.BlogArchive>(csharpArchiveId, 1, null, null, null), 
                 _api.Archives.GetById<Models.BlogArchive>(javaArchiveId, 1, null, null, null), 
+                _api.Archives.GetById<Models.BlogArchive>(aspNetCoreArchiveId, 1, null, null, null), 
             };
 
 			ViewBag.latestPosts = allPosts;
 			ViewBag.archives = archives;
-
-            //ViewBag.pod = await Talagozis.Web.Services.Bing.getPictureOfTheDay();
 
 			return View("~/Views/Home/HomePage.cshtml", person);
         }
@@ -73,7 +73,6 @@ namespace Talagozis.Website.Controllers
 
 			return View("~/Views/Home/Blog.cshtml", archives);
         }
-
 
         public IActionResult CV()
         {
