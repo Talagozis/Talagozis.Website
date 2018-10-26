@@ -43,8 +43,8 @@ namespace Talagozis.Website
             services.AddPiranhaApplication();
             services.AddPiranhaFileStorage();
             services.AddPiranhaImageSharp();
-            services.AddPiranhaEF(options => options.UseSqlite("Filename=./piranha.blog.db"));
-            services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=./piranha.blog.db"));
+            services.AddPiranhaEF(options => options.UseSqlite("Filename=./App_Data/piranha.blog.db"));
+            services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=./App_Data/piranha.blog.db"));
             services.AddPiranhaManager();
             services.AddSingleton<ICache, Piranha.Cache.MemCache>();
 
