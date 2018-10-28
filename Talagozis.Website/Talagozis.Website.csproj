@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.1</TargetFramework>
+	  <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -33,7 +34,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="App_Plugins\" />
-		<Folder Include="App_Data\" />
 		<Folder Include="Properties\PublishProfiles\" />
 	</ItemGroup>
 	<ItemGroup>
