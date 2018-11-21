@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Piranha;
 using Piranha.AspNetCore.Identity.SQLite;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Talagozis.Website
 {
@@ -41,7 +44,7 @@ namespace Talagozis.Website
                 config.ModelBinderProviders.Insert(0, new Piranha.Manager.Binders.AbstractModelBinderProvider());
             });
             services.AddPiranhaApplication();
-            services.AddPiranhaFileStorage();
+            services.AddPiranhaFileStorage("uploads/", "~/uploads/");
             services.AddPiranhaImageSharp();
             System.IO.Directory.CreateDirectory("./App_Data");
             services.AddPiranhaEF(options => options.UseSqlite("Filename=./App_Data/piranha.blog.db"));
@@ -98,6 +101,11 @@ namespace Talagozis.Website
                 .DeleteOrphans();
 
 
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"uploads")),
+                RequestPath = new PathString("/uploads")
+            });
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UsePiranha();
