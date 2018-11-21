@@ -16,15 +16,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.4" />
+		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
-		<PackageReference Include="Piranha" Version="5.2.1" />
-		<PackageReference Include="Piranha.AspNetCore" Version="5.2.1" />
-		<PackageReference Include="Piranha.AspNetCore.Identity.SQLite" Version="5.2.1" />
-		<PackageReference Include="Piranha.AttributeBuilder" Version="5.2.0" />
-		<PackageReference Include="Piranha.ImageSharp" Version="5.2.0-rc1" />
-		<PackageReference Include="Piranha.Local.FileStorage" Version="5.2.0" />
-		<PackageReference Include="Piranha.Manager" Version="5.2.1" />
+		<PackageReference Include="Piranha" Version="5.3.0" />
+		<PackageReference Include="Piranha.AspNetCore" Version="5.3.0" />
+		<PackageReference Include="Piranha.AspNetCore.Identity.SQLite" Version="5.3.0" />
+		<PackageReference Include="Piranha.AttributeBuilder" Version="5.3.0" />
+		<PackageReference Include="Piranha.ImageSharp" Version="5.3.0-rc1" />
+		<PackageReference Include="Piranha.Local.FileStorage" Version="5.3.0" />
+		<PackageReference Include="Piranha.Manager" Version="5.3.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
