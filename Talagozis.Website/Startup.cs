@@ -34,6 +34,10 @@ namespace Talagozis.Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            Directory.CreateDirectory("../database");
+            Directory.CreateDirectory("../uploads");
+            Directory.CreateDirectory("../logs");
+
             services.Configure<MvcOptions>(options =>
             {
                 // options.Filters.Add(new RequireHttpsAttribute());
@@ -44,11 +48,10 @@ namespace Talagozis.Website
                 config.ModelBinderProviders.Insert(0, new Piranha.Manager.Binders.AbstractModelBinderProvider());
             });
             services.AddPiranhaApplication();
-            services.AddPiranhaFileStorage("uploads/", "~/uploads/");
-            services.AddPiranhaImageSharp();
-            System.IO.Directory.CreateDirectory("./App_Data");
-            services.AddPiranhaEF(options => options.UseSqlite("Filename=./App_Data/piranha.blog.db"));
-            services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=./App_Data/piranha.blog.db"));
+            services.AddPiranhaFileStorage(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads/"), "~/uploads/");
+            services.AddPiranhaImageSharp();            
+            services.AddPiranhaEF(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
+            services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
             services.AddPiranhaManager();
             services.AddSingleton<ICache, Piranha.Cache.MemCache>();
 
@@ -103,7 +106,7 @@ namespace Talagozis.Website
 
             app.UseStaticFiles(new StaticFileOptions()
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"uploads")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads")),
                 RequestPath = new PathString("/uploads")
             });
             app.UseStaticFiles();

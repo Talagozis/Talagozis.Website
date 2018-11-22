@@ -297,4 +297,6 @@ __pycache__/
 
 
 *.db
-**/wwwroot/uploads/
+**/database/
+**/uploads/
+**/logs/
