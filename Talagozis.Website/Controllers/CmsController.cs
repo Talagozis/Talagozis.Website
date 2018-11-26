@@ -62,6 +62,9 @@ namespace Talagozis.Website.Controllers
         {
             var model = _api.Posts.GetById<Models.BlogPost>(id);
 
+            ViewBag.categories = _api.Categories.GetAll(model.BlogId);
+            ViewBag.tags = _api.Tags.GetAll(model.BlogId);
+
             return View(model);
         }
     }

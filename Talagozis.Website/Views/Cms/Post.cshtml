@@ -1,3 +1,4 @@
+@using Piranha.Data
 @inject Piranha.IApi Api
 
 @{
@@ -14,6 +15,50 @@
     <link href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css' rel='stylesheet' type='text/css'>
 
     <style>
+        header {
+            background-color: #34434e;
+            color: white;
+        }
+        header h1 {
+            margin: 30px 0;
+        }
+        header p {
+            margin-bottom: 2rem;
+        }
+        header a {
+            color: #c4bfa4;
+        }
+        header div.post-shortdescription {
+            font-style: italic;
+        }
+
+        .sidebar h3 {
+            color: #d45c20;
+            font-style: italic;
+            border-bottom: 1px solid #eee;
+            margin: .5em 0 .3em;
+            margin-top: 0.5em;
+            padding-bottom: 8px;
+        }
+        .label-default {
+            background-color: #777;
+        }
+        .label {
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 80%;
+            font-weight: 700;
+            line-height: 2;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+            margin-right: 2px;
+        }
+        .label a {
+            color: #fff;
+        }
+
 	</style>
 }
 
@@ -23,36 +68,75 @@
 	</script>
 }
 
-<div class="container">
-    <article>
-        <header>
-            @if (Model.Heading.PrimaryImage.HasValue) 
-            {
-                <div class="row justify-content-center">
-                    <div class="col-sm">
-                        <img src="@Url.Content(Model.Heading.PrimaryImage.Resize(Api, 360, 270))">
-                    </div>
-                </div>
-            }
+<article>
+    <header class="row">
+        @if (Model.Heading.PrimaryImage.HasValue) 
+        {
             <div class="row justify-content-center">
-                <div class="col-sm-10">
-                    <h1>@Model.Title</h1>
-                    <p class="post-meta">
-                        <strong>In</strong>
-                        <a href="/category/@Model.Category.Slug">@Model.Category.Title</a>
-                        <span class="sep">&#9670;</span>
-                        <strong>Tags</strong>
-                        @foreach (var tag in Model.Tags) 
-                        {
-                            <span class="tag"><a href="/tag/@tag.Slug">#@tag.Title</a></span>
-                        }
-                        <span class="sep">&#9670;</span>
-                        <strong>Published</strong>
-                        @Model.Published.Value.ToString("yyyy-MM-dd")
-                    </p>
+                <div class="col-sm">
+                    <img src="@Url.Content(Model.Heading.PrimaryImage.Resize(Api, 360, 270))">
                 </div>
             </div>
-        </header>
-        @Html.DisplayFor(m => m.Blocks)
-    </article>
-</div>
+        }
+        <div class="container">
+            <div class="col-sm-10">
+                <h1>@Model.Title</h1>
+                <div class="post-shortdescription">
+                   @Html.Raw(Model.Heading.shortDescription)
+                </div>
+                <p class="post-meta">
+                    <strong>In</strong>
+                    <a href="/category/@Model.Category.Slug">@Model.Category.Title</a>
+                    <span class="sep">&#9670;</span>
+                    <strong>Tags</strong>
+                    @foreach (var tag in Model.Tags) 
+                    {
+                        <span class="tag">
+                            <a href="/tag/@tag.Slug">#@tag.Title</a>
+                        </span>
+                    }
+                    <span class="sep">&#9670;</span>
+                    <strong>Published</strong>
+                    @Model.Published.Value.ToString("yyyy-MM-dd")
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <section class="row">
+
+        <div class="col-10">
+            @Html.DisplayFor(m => m.Blocks)
+        </div>
+
+        <div class="col-2 sidebar">
+
+            <div class="idget-extra widget-tag-cloud widget" style="margin-bottom: 30px;">
+                <h3>Categories in this archive</h3>
+                <ul class="topics-list list-unstyled">
+                    @foreach(var category in (ViewBag.categories as IEnumerable<Category>))
+                    {
+                        <li class="topic-item label label-default">
+                            <a href="@category.Slug">.@category.Title</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="idget-extra widget-tag-cloud widget" style="margin-bottom: 30px;">
+                <h3>Tags in this archive</h3>
+                <ul class="topics-list list-unstyled">
+                    @foreach(var tag in (ViewBag.tags as IEnumerable<Tag>))
+                    {
+                        <li class="topic-item label label-default">
+                            <a href="@tag.Slug">@tag.Title</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+
+    </section>
+
+</article>
