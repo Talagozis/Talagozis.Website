@@ -14,6 +14,7 @@ using Piranha.AspNetCore.Identity.SQLite;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Talagozis.Website.Models.Blocks;
 
 namespace Talagozis.Website
 {
@@ -86,23 +87,25 @@ namespace Talagozis.Website
             App.CacheLevel = Piranha.Cache.CacheLevel.None;
 
             // Build content types
-            var pageTypeBuilder = new Piranha.AttributeBuilder.PageTypeBuilder(api)
+            new Piranha.AttributeBuilder.PageTypeBuilder(api)
                 .AddType(typeof(Models.BlogArchive))
                 .AddType(typeof(Models.StandardPage))
 				.AddType(typeof(Models.HomePage))
 				.Build()
                 .DeleteOrphans();
 
-            var postTypeBuilder = new Piranha.AttributeBuilder.PostTypeBuilder(api)
+           new Piranha.AttributeBuilder.PostTypeBuilder(api)
                 .AddType(typeof(Models.BlogPost))
                 .Build()
                 .DeleteOrphans();
 
-            var siteTypeBuilder = new Piranha.AttributeBuilder.SiteTypeBuilder(api)
+            new Piranha.AttributeBuilder.SiteTypeBuilder(api)
                 .AddType(typeof(Models.BlogSite))
                 .Build()
                 .DeleteOrphans();
 
+            App.Blocks.Register<SeparatorBlock>();
+            App.Blocks.Register<CodeBlock>();
 
             app.UseStaticFiles(new StaticFileOptions()
             {
