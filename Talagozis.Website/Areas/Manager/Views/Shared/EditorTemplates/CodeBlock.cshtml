@@ -1,18 +1,14 @@
 @model Talagozis.Website.Models.Blocks.CodeBlock
 @{
-    var prefix = Html.ViewData.TemplateInfo.HtmlFieldPrefix
-        .Replace("[", "_").Replace("]", "_").Replace(".", "_");    
+    var prefix = Html.ViewData.TemplateInfo.HtmlFieldPrefix.Replace("[", "_").Replace("]", "_").Replace(".", "_");
+    var isEmpty = string.IsNullOrWhiteSpace(Model.Body.Value);
 }
 
 @Html.HiddenFor(m => m.Body.Value, "")
-<div class="content-preview">
-    <blockquote>
-        <div class="editor-area" contenteditable="true" data-id="@(prefix)_Body_Value">
-            @if (!string.IsNullOrWhiteSpace(Model.Body.Value)) {
-                @Html.Raw(Model.Body.Value)
-            } else {
-                <text>&nbsp;</text>
-            }
-        </div>
-    </blockquote>
+<div id="Editor_@Guid.NewGuid()" class="block-editor content-preview editor-area @(isEmpty ? "empty" : "check-empty")" data-id="@(prefix)_Body_Value">
+    @if (!string.IsNullOrWhiteSpace(Model.Body.Value)) {
+        @Html.Raw(Model.Body.Value)
+    } else {
+        <p></p>
+    }
 </div>
