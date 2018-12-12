@@ -1,5 +1,4 @@
 @using Talagozis.Website.Models.Cv
-@using Piranha.Models
 @using Talagozis.Website.Models
 
 @inject Piranha.IApi Api
@@ -12,7 +11,7 @@
 
 
 @section css {
-    <style>
+<style>
         #particles-js {
             /* background-image: url("@ViewBag.pod"); */
             background-image: url("/images/cover.jpg");
@@ -21,7 +20,7 @@
             background-position: 50% 80%;
             height: 460px;
         }
-        section.blog, section.educ, section.stat, section.contact {
+        section.blog,  section.stat, section.contact {
             background-image: url('/images/pattern.jpg');
             background-size: auto;
         }
@@ -37,6 +36,9 @@
         .infos-post .short-description-block {
             font-size: 14px;
         }
+        section.educ {
+            background-color: #F9F9F9;
+        }
         .educ .education .title .infos-educ .info-timeline span {
             letter-spacing: 0.4px;
         }
@@ -47,7 +49,7 @@
             min-height: 150px;
             line-height: 1.6;
         }
-    </style>
+</style>
     <link rel="stylesheet" href="~/lib/manisa/css/manisa-icon.css" />
     <link rel="stylesheet" href="//manisa.bouthythemes.com/css/lightbox.min.css" />
     <link rel="stylesheet" href="//manisa.bouthythemes.com/css/slick.css" />
@@ -85,21 +87,24 @@
 
     </div>
 </section>
-@*
-<section id="blog" class="blog text-center row" style="padding-bottom: 100px; margin-bottom: 0;">
+
+<section id="blog" class="blog text-center row" style="padding-bottom: 120px; margin-bottom: 0; border-bottom: 1px solid #D9D9D9;">
     <div class="container">
         <div class="title">
             <h2 class="text-uppercase">Blog</h2>
         </div>
+
         <div class="row">
+            @{ List<BlogArchive> archives = ViewBag.archives as List<BlogArchive>; }
             @foreach (BlogPost post in (ViewBag.latestPosts as IEnumerable<BlogPost>).Take(3))
             {
+                BlogArchive archive = archives.Single(a => a.Id == post.BlogId);
                 <div class="col-lg-4 col-md-12">
                     <div class="post">
                         <div class="category-post">
-                            <a href="@((ViewBag.archives as List<BlogArchive>).Single(a => a.Id == post.BlogId).Slug)" target="_blank">
+                            <a href="@(archive.Permalink)">
                                 <span>
-                                    @((ViewBag.archives as List<BlogArchive>).Single(a => a.Id == post.BlogId).Title)
+                                    @(archive.Title)
                                 </span>
                             </a>
                         </div>
@@ -110,7 +115,7 @@
                         </div>
                         <div class="infos-post">
                             <h3>
-                                <a href="@post.Slug" >@post.Title</a>
+                                <a href="@post.Permalink">@post.Title</a>
                             </h3>
                             <span>- @post.Published.Value.ToString("dd MMM yyyy") -</span>
                             <hr>
@@ -123,7 +128,7 @@
                             <span>
                                 @foreach (var tag in post.Tags)
                                 {
-                                    <a href="@tag.Slug" target="_blank">
+                                    <a href="@archive.Permalink/tag/@tag.Slug" target="_blank">
                                         @tag.Title@(tag != post.Tags.Last() ? ", " : "")
                                     </a>
                                 }
@@ -139,113 +144,15 @@
                 </div>
             }
 
-<!--
-            <!-- Start Blog Number 1 -->
-            <div class="col-lg-4 col-md-12">
-                <div class="post">
-                    <div class="category-post">
-                        <a href="#" target="_blank"><span>food</span></a>
-                    </div>
-                    <div class="img-post">
-                        <a href="blog-post.html" target="_blank"><img src="http://manisa.bouthythemes.com/images/blog/01.jpg" class="img-fluid" alt="img-post"></a>
-                    </div>
-                    <div class="infos-post">
-                        <h3><a href="blog-post.html" target="_blank">Sed ut perspiciatis unde omnis</a></h3>
-                        <span>- 30 sept 2017 -</span>
-                        <hr>
-                        <p>Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab...</p>
-                    </div>
-                    <div class="tags-post">
-                        <i class="manisa-tag"></i>
-                        <span>
-                            <a href="#" target="_blank">foods</a>,
-                            <a href="#" target="_blank">blog</a>,
-                            <a href="#" target="_blank">post</a>
-                        </span>
-
-                    </div>
-                    <div class="comments-post d-none d-sm-block">
-                        <a href="#" target="_blank">
-                            <span>220</span><i class="manisa-bubble"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- End Blog Number 1 -->
-            <!-- ===================== -->
-            <!-- Start Blog Number 2 -->
-            <div class="col-lg-4 col-md-12">
-                <div class="post">
-                    <div class="category-post">
-                        <a href="#" target="_blank"><span>draw</span></a>
-                    </div>
-                    <div class="img-post">
-                        <a href="blog-post.html" target="_blank"><img src="http://manisa.bouthythemes.com/images/blog/02.jpg" class="img-fluid" alt="img-post"></a>
-                    </div>
-                    <div class="infos-post">
-                        <h3><a href="blog-post.html" target="_blank">At vero eos et accus amus iusto</a></h3>
-                        <span>- 17 oct 2017 -</span>
-                        <hr>
-                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dol...</p>
-                    </div>
-                    <div class="tags-post">
-                        <i class="manisa-tag"></i>
-                        <span>
-                            <a href="#" target="_blank">blog</a>,
-                            <a href="#" target="_blank">post</a>
-                        </span>
-
-                    </div>
-                    <div class="comments-post d-none d-sm-block">
-                        <a href="#" target="_blank">
-                            <span>199</span><i class="manisa-bubble"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- End Blog Number 2 -->
-            <!-- ===================== -->
-            <!-- Start Blog Number 3 -->
-            <div class="col-lg-4 col-md-12">
-                <div class="post">
-                    <div class="category-post">
-                        <a href="#" target="_blank"><span>lifestyle</span></a>
-                    </div>
-                    <div class="img-post">
-                        <a href="blog-post.html" target="_blank"><img src="http://manisa.bouthythemes.com/images/blog/03.jpg" class="img-fluid" alt="img-post"></a>
-                    </div>
-                    <div class="infos-post">
-                        <h3><a href="blog-post.html" target="_blank">Neque porro quisquam dolorem</a></h3>
-                        <span>- 25 oct 2017 -</span>
-                        <hr>
-                        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam ut aliquid...</p>
-                    </div>
-                    <div class="tags-post">
-                        <i class="manisa-tag"></i>
-                        <span>
-                            <a href="#" target="_blank">lifestyle</a>,
-                            <a href="#" target="_blank">blog</a>,
-                            <a href="#" target="_blank">post</a>
-                        </span>
-
-                    </div>
-                    <div class="comments-post d-none d-sm-block">
-                        <a href="#" target="_blank">
-                            <span>521</span><i class="manisa-bubble"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- End Blog Number 3 -->
-
--->
-
         </div>
-        <a asp-area="" asp-controller="Home" asp-action="Blog"class="btn-manisa">See More</a>
+        
+        <div class="row">
+            <a asp-area="" asp-controller="Home" asp-action="Blog" class="btn-manisa">Check Blog</a>
+        </div>
     </div>
 </section>
-*@
-<section class="educ row">
+
+<section class="educ row" style="padding-bottom: 150px;">
     <div class="container">
         <div class="education">
             <div class="row">
@@ -306,10 +213,15 @@
                 </div>
             </div>
         </div>
+        
+        <div class="row">
+            <a asp-area="" asp-controller="Home" asp-action="CV" class="btn-manisa">See full CV</a>
+        </div>
+
     </div>
 </section>
 
-<section class="stat text-center row">
+<section class="stat text-center row" >
     <div class="overlay">
         <div class="container">
             <div class="row">
