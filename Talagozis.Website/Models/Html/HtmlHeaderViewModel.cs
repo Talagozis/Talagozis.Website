@@ -15,6 +15,8 @@ namespace Talagozis.Website.Models.Html
 
     public class Breadcrump
     {
+        public string plainSlug { get; set; }
+        public string page { get; set; }
         public string area { get; set; }
         public string controller { get; set; }
         public string action { get; set; }

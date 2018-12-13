@@ -23,7 +23,7 @@
 
         <link rel="stylesheet" type="text/css" href="~/css/default-color.manisa.css" />
 
-        <link href="~/css/home/custom.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="~/css/home/custom.css?v=20181213" />
 
         @RenderSection("css", true)
     </environment>
@@ -36,7 +36,7 @@
 
 	    <link rel="stylesheet" type="text/css" href="~/css/default-color.manisa.css" />
 
-	    <link href="~/css/home/custom.css" rel="stylesheet" />
+	    <link rel="stylesheet" type="text/css" href="~/css/home/custom.css?v=20181213" />
 
 		@RenderSection("css", true)
 	</environment>
@@ -78,7 +78,18 @@
                     @foreach (var breadcrump in Model.htmlHeader.breadcrumps)
                     {
                         <li class="breadcrumb-item">
-                            <a asp-area="@breadcrump.area" asp-controller="@breadcrump.controller" asp-action="@breadcrump.action">@breadcrump.text</a>
+                            @if (!string.IsNullOrWhiteSpace(breadcrump.page))
+                            {
+                                <a asp-page="@breadcrump.page">@breadcrump.text</a>
+                            }
+                            else if (!string.IsNullOrWhiteSpace(breadcrump.plainSlug))
+                            {
+                                <a href="@breadcrump.plainSlug">@breadcrump.text</a>
+                            }
+                            else
+                            {
+                                <a asp-area="@breadcrump.area" asp-controller="@breadcrump.controller" asp-action="@breadcrump.action">@breadcrump.text</a>
+                            }
                         </li>
                     }
                 </ol>

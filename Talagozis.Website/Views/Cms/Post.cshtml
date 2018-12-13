@@ -1,14 +1,28 @@
 @using Piranha.Data
+@using Talagozis.Website.Models.Html
+@using Talagozis.Website.Models.ViewModels
 @inject Piranha.IApi Api
+
+@model PostViewModel
 
 @{
     Layout = "~/Views/Layout/Home.cshtml";
 }
+
 @{
-    ViewBag.Title = Model.Title;
+    Model.htmlHeader = new HtmlHeaderViewModel
+    {
+        title = "Blog",
+        breadcrumps = new List<Breadcrump>
+        {
+            new Breadcrump {text = "Home"},
+            new Breadcrump {action = "Blog", text = "Blog"},
+            new Breadcrump {plainSlug = Model.BlogArchive.Permalink, text = Model.BlogArchive.Title},
+            new Breadcrump {plainSlug = Model.BlogPost.Slug, text = Model.BlogPost.Title},
+        },
+    };
 }
 
-@model Talagozis.Website.Models.BlogPost
 
 
 @section css {
@@ -19,18 +33,22 @@
             background-color: #34434e;
             color: white;
         }
-        header h1 {
-            margin: 30px 0;
-        }
-        header p {
-            margin-bottom: 2rem;
-        }
-        header a {
-            color: #c4bfa4;
-        }
-        header div.post-shortdescription {
-            font-style: italic;
-        }
+
+            header h1 {
+                margin: 30px 0;
+            }
+
+            header p {
+                margin-bottom: 2rem;
+            }
+
+            header a {
+                color: #c4bfa4;
+            }
+
+            header div.post-shortdescription {
+                font-style: italic;
+            }
 
         .sidebar h3 {
             color: #d45c20;
@@ -40,9 +58,11 @@
             margin-top: 0.5em;
             padding-bottom: 8px;
         }
+
         .label-default {
             background-color: #777;
         }
+
         .label {
             display: inline;
             padding: .2em .6em .3em;
@@ -55,41 +75,37 @@
             border-radius: .25em;
             margin-right: 2px;
         }
-        .label a {
-            color: #fff;
-        }
 
-	</style>
+            .label a {
+                color: #fff;
+            }
+    </style>
 }
 
-@section js {
-	<script>
-
-	</script>
-}
+@section js { }
 
 <article>
     <header class="row">
-        @if (Model.Heading.PrimaryImage.HasValue) 
+        @if (Model.BlogPost.Heading.PrimaryImage.HasValue)
         {
             <div class="row justify-content-center">
                 <div class="col-sm">
-                    <img src="@Url.Content(Model.Heading.PrimaryImage.Resize(Api, 360, 270))">
+                    <img src="@Url.Content(Model.BlogPost.Heading.PrimaryImage.Resize(Api, 360, 270))">
                 </div>
             </div>
         }
         <div class="container">
             <div class="col-sm-10">
-                <h1>@Model.Title</h1>
+                <h1>@Model.BlogPost.Title</h1>
                 <div class="post-shortdescription">
-                   @Html.Raw(Model.Heading.shortDescription)
+                    @Html.Raw(Model.BlogPost.Heading.shortDescription)
                 </div>
                 <p class="post-meta">
                     <strong>In</strong>
-                    <a href="/category/@Model.Category.Slug">@Model.Category.Title</a>
+                    <a href="/category/@Model.BlogPost.Category.Slug">@Model.BlogPost.Category.Title</a>
                     <span class="sep">&#9670;</span>
                     <strong>Tags</strong>
-                    @foreach (var tag in Model.Tags) 
+                    @foreach (var tag in Model.BlogPost.Tags)
                     {
                         <span class="tag">
                             <a href="/tag/@tag.Slug">#@tag.Title</a>
@@ -97,7 +113,7 @@
                     }
                     <span class="sep">&#9670;</span>
                     <strong>Published</strong>
-                    @Model.Published.Value.ToString("yyyy-MM-dd")
+                    @Model.BlogPost.Published.Value.ToString("yyyy-MM-dd")
                 </p>
             </div>
         </div>
@@ -106,7 +122,7 @@
     <section class="row">
 
         <div class="col-10">
-            @Html.DisplayFor(m => m.Blocks)
+            @Html.DisplayFor(m => m.BlogPost.Blocks)
         </div>
 
         <div class="col-2 sidebar">
@@ -114,7 +130,7 @@
             <div class="idget-extra widget-tag-cloud widget" style="margin-bottom: 30px;">
                 <h3>Categories in this archive</h3>
                 <ul class="topics-list list-unstyled">
-                    @foreach(var category in (ViewBag.categories as IEnumerable<Category>))
+                    @foreach (var category in Model.Categories)
                     {
                         <li class="topic-item label label-default">
                             <a href="@category.Slug">.@category.Title</a>
@@ -126,7 +142,7 @@
             <div class="idget-extra widget-tag-cloud widget" style="margin-bottom: 30px;">
                 <h3>Tags in this archive</h3>
                 <ul class="topics-list list-unstyled">
-                    @foreach(var tag in (ViewBag.tags as IEnumerable<Tag>))
+                    @foreach (var tag in Model.Tags)
                     {
                         <li class="topic-item label label-default">
                             <a href="@tag.Slug">@tag.Title</a>
