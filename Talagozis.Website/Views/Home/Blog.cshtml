@@ -1,15 +1,24 @@
-@using Talagozis.Website.Models.Cv
-@using Piranha.Models
 @using Talagozis.Website.Models
+@using Talagozis.Website.Models.Html
 
 @inject Piranha.IApi Api
+@model Talagozis.Website.Models.ViewModels.BlogViewModel
 
 @{
     Layout = "~/Views/Layout/Home.cshtml";
 }
-@model List<Talagozis.Website.Models.BlogArchive>
 
-
+@{
+    Model.htmlHeader = new HtmlHeaderViewModel
+    {
+        title = "Blog",
+        breadcrumps = new List<Breadcrump>
+        {
+            new Breadcrump {text = "Home"},
+            new Breadcrump {action = "Blog", text = "Blog"}
+        },
+    };
+}
 
 @section css {
     <style>
@@ -17,18 +26,29 @@
             background-image: url('/images/pattern.jpg');
             background-size: auto;
         }
+
         section.header, section.blog {
             width: auto;
         }
+
         section.header {
             background-position: inherit;
         }
+
         .header-blog {
             margin-bottom: 0;
+            height: 350px;
         }
+
+            .header-blog h1 {
+                height: 350px;
+                line-height: 350px;
+            }
+
         .blog-page .col-lg-4 {
             margin-bottom: 80px;
         }
+
         .blog .post .img-post {
             border-bottom: 1px solid #eeeeee;
         }
@@ -61,7 +81,7 @@
     <div class="container">
         <div class="row">
 
-            @foreach (BlogArchive archive in Model)
+            @foreach (BlogArchive archive in Model.Archives)
             {
                 <div class="col-lg-4 col-md-12">
                     <div class="post">
@@ -85,14 +105,14 @@
                         <div class="tags-post">
                             <i class="manisa-tag"></i>
                             <span>
-                                <a href="#" target="_blank">foods</a>, 
-                                <a href="#" target="_blank">blog</a>, 
+                                <a href="#" target="_blank">foods</a>,
+                                <a href="#" target="_blank">blog</a>,
                                 <a href="#" target="_blank">post</a>
-                            </span>                            
+                            </span>
                         </div>
                         <div class="comments-post d-none d-sm-block">
                             <a href="#" target="_blank">
-                            <span>220</span><i class="manisa-bubble"></i>
+                                <span>220</span><i class="manisa-bubble"></i>
                             </a>
                         </div>
                     </div>

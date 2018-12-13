@@ -5,28 +5,36 @@
 }
 
 body {
-  font-family: 'Open Sans', 'Montserrat', 'Poppins', sans-serif;
+    font-family: 'Open Sans', 'Montserrat', 'Poppins', sans-serif;
 }
 body nav.navbar {
-  margin-bottom: 0; 
-  /* background-color: #212121;  */
-  border-radius: 0;
-  background-image: url('/images/pattern.jpg');
+    z-index: 1;
+}
+body nav.navbar.smooth {
+    box-shadow: 0 0 4px rgba(51, 51, 51, 0.10);
+}
+body nav.navbar, body nav.breadcrumb {
+    margin-bottom: 0;
+    border-radius: 0;
+    background: url('/images/pattern.jpg');
 }
 body nav.navbar ul a{
-  font-weight: 600; 
-  color: #424242;
-  letter-spacing: 0.1px;
+    font-weight: 600; 
+    color: #424242;
+    letter-spacing: 0.1px;
 }
 
+footer {
+    background-color: #fefefe;
+}
 
 .intro-title1 {
-  font-size: 36px;
+    font-size: 36px;
 }
 @media (min-width: 768px) {
-  .intro-title1 {
-    font-size: 40px;
-  }
+    .intro-title1 {
+        font-size: 40px;
+    }
 }
 @media (min-width:992px) {
   .intro-title1 {
@@ -54,3 +62,17 @@ body nav.navbar ul a{
   font-size: 16px;
 }
 
+body nav.breadcrumb {
+    padding: .3rem 1rem;
+    box-shadow: 0 0 15px -2px rgba(51, 51, 51, 0.15);
+    position: relative;
+}
+ol.breadcrumb {
+    margin-bottom: 0;
+    padding: 0 1rem;
+    background-color: transparent;
+}
+    ol.breadcrumb a {
+        font-size: 0.9rem;
+        color: #757575;
+    }

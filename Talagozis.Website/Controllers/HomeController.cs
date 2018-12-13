@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
 using Piranha;
 using Talagozis.Website.Models;
 using Talagozis.Website.Models.Cv;
+using Talagozis.Website.Models.ViewModels;
 
 namespace Talagozis.Website.Controllers
 {
@@ -26,33 +25,25 @@ namespace Talagozis.Website.Controllers
 
         public IActionResult HomePage()
         {
-            //var csharpArchiveId = new Guid("f6682da4-11f4-40b4-b118-470bcc198613");
-            //var javaArchiveId = new Guid("e8ed04db-e33b-46fe-97d7-e0e025a269e2");
-            //var aspNetCoreArchiveId = new Guid("bdfcd253-fd56-4554-8b81-94de6a3dea83");
-
             CVRepository cVRepository = new CVRepository();
             Person person = cVRepository.GetMyCV();
 
             var allPosts = _api.Posts.GetAll<BlogPost>().Where(a => _api.Archives.GetById<BlogArchive>(a.BlogId, 1, null, null, null).Published.HasValue);
 
-            //List<BlogArchive> archives = new List<BlogArchive>
-            //{ 
-            //    //_api.Archives.GetById<Models.BlogArchive>(csharpArchiveId, 1, null, null, null), 
-            //    //_api.Archives.GetById<Models.BlogArchive>(javaArchiveId, 1, null, null, null), 
-            //    _api.Archives.GetById<BlogArchive>(aspNetCoreArchiveId, 1, null, null, null),
-            //};
-
             List<BlogArchive> archives = _api.Posts.GetAll<BlogPost>().Select(a => _api.Archives.GetById<BlogArchive>(a.BlogId, 1, null, null, null)).ToList();
             archives = archives.Where(a => a.Published.HasValue).ToList();
             archives = archives.GroupBy(p => p.Id).Select(g => g.First()).ToList();
 
-            ViewBag.latestPosts = allPosts;
-			ViewBag.archives = archives;
+            HomePageViewModel homePageViewModel = new HomePageViewModel
+            {
+                Person = person,
+                Archives = archives,
+                LatestPosts = allPosts.ToList()
+            };
 
-			return View("~/Views/Home/HomePage.cshtml", person);
+			return View("~/Views/Home/HomePage.cshtml", homePageViewModel);
         }
 
-        
         public IActionResult Blog()
         {
             var csharpArchiveId = new Guid("f6682da4-11f4-40b4-b118-470bcc198613");
@@ -76,7 +67,12 @@ namespace Talagozis.Website.Controllers
 
 			ViewBag.archives = archives;
 
-			return View("~/Views/Home/Blog.cshtml", archives);
+            BlogViewModel blogViewModel = new BlogViewModel
+            {
+                Archives = archives,
+            };
+
+            return View("~/Views/Home/Blog.cshtml", blogViewModel);
         }
 
         public IActionResult CV()
@@ -90,8 +86,11 @@ namespace Talagozis.Website.Controllers
 
         public IActionResult Contact()
         {
-            return View("~/Views/Home/Contact.cshtml");
+            ContactViewModel contactViewModel = new ContactViewModel();
+
+            return View("~/Views/Home/Contact.cshtml", contactViewModel);
         }
+
         public Person getJson()
         {
             CVRepository cVRepository = new CVRepository();
@@ -103,5 +102,6 @@ namespace Talagozis.Website.Controllers
         {
             return View("~/Views/Shared/Error.cshtml");
         }
+
     }
 }
