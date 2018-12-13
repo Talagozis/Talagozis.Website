@@ -65,11 +65,11 @@ namespace Talagozis.Website.Controllers
                 _api.Archives.GetById<BlogArchive>(aspNetCoreArchiveId, 1, null, null, null),
             }.Where(a => a.Published.HasValue).ToList();
 
-			ViewBag.archives = archives;
-
             BlogViewModel blogViewModel = new BlogViewModel
             {
                 Archives = archives,
+                Categories = archives.SelectMany(a => _api.Categories.GetAll(a.Id)).ToList(),
+                Tags = archives.SelectMany(a => _api.Tags.GetAll(a.Id)).ToList(),
             };
 
             return View("~/Views/Home/Blog.cshtml", blogViewModel);

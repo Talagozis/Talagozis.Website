@@ -22,7 +22,6 @@
 @section css {
     <style>
         #particles-js {
-            /* background-image: url("@ViewBag.pod"); */
             background-image: url("/images/cover.jpg");
             background-size: cover;
             background-repeat: no-repeat;
@@ -36,20 +35,28 @@
         section.header, section.blog, section.educ, section.stat, section.contact {
             width: auto;
         }
+        section.blog {
+            padding-bottom: 180px;
+            margin-bottom: 0;
+            border-bottom: 1px solid #D9D9D9;
+        }
+        section.educ {
+            padding-bottom: 140px;
+            background-color: #F9F9F9;
+        }
+        section.contact {
+            padding-bottom: 60px;
+            margin-bottom: 0;
+        }
         .educ .education .title .infos-educ .info-timeline span {
             display: inline;
-        }
-        .infos-post .short-description-block a {
-            color: #007bff;
+            letter-spacing: 0.4px;
         }
         .infos-post .short-description-block {
             font-size: 14px;
         }
-        section.educ {
-            background-color: #F9F9F9;
-        }
-        .educ .education .title .infos-educ .info-timeline span {
-            letter-spacing: 0.4px;
+        .infos-post .short-description-block a {
+            color: #007bff;
         }
         .blog .post .infos-post h3 {
             min-height: 90px;
@@ -57,6 +64,15 @@
         .blog .post .infos-post p {
             min-height: 150px;
             line-height: 1.6;
+        }
+        .blog .btn-manisa {
+            margin: 100px auto 0;
+        }
+        .educ .btn-manisa {
+            margin: 60px auto 0;
+        }
+        .category-post span.title {
+            white-space: nowrap;
         }
     </style>
     <link rel="stylesheet" href="~/lib/manisa/css/manisa-icon.css" />
@@ -97,7 +113,7 @@
     </div>
 </section>
 
-<section id="blog" class="blog text-center row" style="padding-bottom: 120px; margin-bottom: 0; border-bottom: 1px solid #D9D9D9;">
+<section id="blog" class="blog text-center row">
     <div class="container">
         <div class="title">
             <h2 class="text-uppercase">Blog</h2>
@@ -111,7 +127,7 @@
                     <div class="post">
                         <div class="category-post">
                             <a href="@(archive.Permalink)">
-                                <span>
+                                <span class="title">
                                     @(archive.Title)
                                 </span>
                             </a>
@@ -160,7 +176,7 @@
     </div>
 </section>
 
-<section class="educ row" style="padding-bottom: 150px;">
+<section class="educ row">
     <div class="container">
         <div class="education">
             <div class="row">
@@ -258,7 +274,7 @@
     </div>
 </section>
 
-<section id="contact" class="contact text-center active-nav row" style="padding-bottom: 60px; margin-bottom: 0;">
+<section id="contact" class="contact text-center active-nav row">
     <div class="container">
         <div class="title">
             <h2 class="text-uppercase">Get In Touch</h2>

@@ -1,7 +1,7 @@
 @using Talagozis.Website.Models
 @using Talagozis.Website.Models.Html
-
 @inject Piranha.IApi Api
+
 @model Talagozis.Website.Models.ViewModels.BlogViewModel
 
 @{
@@ -39,18 +39,22 @@
             margin-bottom: 0;
             height: 350px;
         }
-
-            .header-blog h1 {
-                height: 350px;
-                line-height: 350px;
-            }
-
+        .header-blog h1 {
+            height: 350px;
+            line-height: 350px;
+        }
         .blog-page .col-lg-4 {
             margin-bottom: 80px;
         }
 
         .blog .post .img-post {
             border-bottom: 1px solid #eeeeee;
+        }
+        .img-post a {
+            display: block;
+        }
+        .img-post a img.img-fluid {
+            width: 100%;
         }
     </style>
     <link rel="stylesheet" href="~/lib/manisa/css/manisa-icon.css" />
@@ -86,8 +90,8 @@
                 <div class="col-lg-4 col-md-12">
                     <div class="post">
                         <div class="img-post">
-                            <a href="@archive.Slug" style="display: block;">
-                                <img src="@Url.Content(archive.Heading.PrimaryImage.Resize(Api, 430, 290))" class="img-fluid" alt="archive.Title" style="width: 100%;" />
+                            <a href="@archive.Slug">
+                                <img src="@Url.Content(archive.Heading.PrimaryImage.Resize(Api, 430, 290))" class="img-fluid" alt="archive.Title" />
                             </a>
                         </div>
                         <div class="infos-post">
@@ -96,7 +100,7 @@
                                     @archive.Title
                                 </a>
                             </h3>
-                            <!-- <span>- 30 sept 2017 -</span> -->
+                            @*<span>- Latest: 30 sept 2017 -</span>*@ 
                             <hr>
                             <div>
                                 @Html.Raw(archive.Heading.shortDescription)
@@ -105,16 +109,20 @@
                         <div class="tags-post">
                             <i class="manisa-tag"></i>
                             <span>
-                                <a href="#" target="_blank">foods</a>,
-                                <a href="#" target="_blank">blog</a>,
-                                <a href="#" target="_blank">post</a>
+                                @{ var selectedTags = Model.Tags.Where(a => a.BlogId == archive.Id).Take(3).ToList();}
+                                @foreach (var tag in selectedTags)
+                                {
+                                    <a href="@archive.Permalink/tag/@tag.Slug" target="_blank">
+                                        @tag.Title@(tag != selectedTags.Last(a => a.BlogId == archive.Id) ? ", " : "")
+                                    </a>
+                                }
                             </span>
                         </div>
-                        <div class="comments-post d-none d-sm-block">
+                        @*<div class="comments-post d-none d-sm-block">
                             <a href="#" target="_blank">
                                 <span>220</span><i class="manisa-bubble"></i>
                             </a>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             }
