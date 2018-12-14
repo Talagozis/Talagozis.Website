@@ -82,7 +82,7 @@ ol.breadcrumb {
     padding: 0 1rem;
     background-color: transparent;
 }
-    ol.breadcrumb a {
-        font-size: 0.9rem;
-        color: #757575;
-    }
+ol.breadcrumb a {
+    font-size: 0.9rem;
+    color: #757575;
+}
