@@ -123,7 +123,7 @@
                                     <span class="sep">|</span>
 
                                     <span style="color: #f5f5f5;">Tags:</span>
-                                    @foreach (var tag in Model.BlogPost.Tags)
+                                    foreach (var tag in Model.BlogPost.Tags)
                                     {
                                         <span class="tag">
                                             <a class="tag-label" href="@Model.BlogArchive.Permalink/tag/@tag.Slug">
