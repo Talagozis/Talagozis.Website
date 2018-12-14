@@ -118,11 +118,11 @@ namespace Talagozis.Website
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "areaRoute",
-                    template: "{area:exists}/{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index" }
-                );
+                //routes.MapRoute(
+                //    name: "areaRoute",
+                //    template: "{area:exists}/{controller}/{action}/{id?}",
+                //    defaults: new { controller = "Home", action = "Index" }
+                //);
 
                 routes.MapRoute(
                     name: "defaultHome",

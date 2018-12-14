@@ -15,7 +15,7 @@
         breadcrumps = new List<Breadcrump>
         {
             new Breadcrump {text = "Home"},
-            new Breadcrump {action = "Blog", text = "Blog"}
+            new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
         },
     };
 }
@@ -90,13 +90,13 @@
                 <div class="col-lg-4 col-md-12">
                     <div class="post">
                         <div class="img-post">
-                            <a href="@archive.Slug">
+                            <a href="@archive.Permalink">
                                 <img src="@Url.Content(archive.Heading.PrimaryImage.Resize(Api, 430, 290))" class="img-fluid" alt="archive.Title" />
                             </a>
                         </div>
                         <div class="infos-post">
                             <h3>
-                                <a href="@archive.Slug">
+                                <a href="@archive.Permalink">
                                     @archive.Title
                                 </a>
                             </h3>

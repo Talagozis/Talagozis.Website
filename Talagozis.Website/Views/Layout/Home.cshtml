@@ -60,10 +60,10 @@
                         <a asp-area="" asp-controller="Home" asp-action="Blog">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a asp-area="" asp-action="Contact">Contact</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                     </li>
-                    <li class="nav-item" style="padding: 1px 12px; border-radius: 27px; background-color: #019d9b;">
-                        <a asp-area="" asp-action="CV" style="color: white; font-weight: bold;">CV</a>
+                    <li class="nav-item strong">
+                        <a asp-area="" asp-controller="Home" asp-action="CV">CV</a>
                     </li>
                 </ul>
             </div>
@@ -84,7 +84,7 @@
                             }
                             else if (!string.IsNullOrWhiteSpace(breadcrump.plainSlug))
                             {
-                                <a href="/@breadcrump.plainSlug">@breadcrump.text</a>
+                                <a href="@breadcrump.plainSlug">@breadcrump.text</a>
                             }
                             else
                             {
