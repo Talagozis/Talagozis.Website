@@ -39,19 +39,25 @@
         header p {
             margin-bottom: 2rem;
         }
-        header a {
-            color: #c4bfa4;
-        }
         header div.post-shortdescription {
             font-style: italic;
         }
         .sidebar h3 {
             color: #d45c20;
-            font-style: italic;
+            font-size: 1.4rem;
             border-bottom: 1px solid #eee;
             margin: .5em 0 .3em;
             margin-top: 0.5em;
             padding-bottom: 8px;
+        }
+        a.category-label {
+            color: #ef6c00;
+        }
+        a.tag-label {
+            color: #ef6c00;
+        }
+        .list-unstyled {;
+            padding: 0 8px;
         }
         .label-default {
             background-color: #777;
@@ -90,27 +96,52 @@
                 </div>
             </div>
         }
-        <div class="container">
-            <div class="col-sm-10">
-                <h1>@Model.BlogPost.Title</h1>
-                <div class="post-shortdescription">
-                    @Html.Raw(Model.BlogPost.Heading.shortDescription)
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-10">
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-10">
+
+                            <h1>@Model.BlogPost.Title</h1>
+                            <div class="post-shortdescription">
+                                @Html.Raw(Model.BlogPost.Heading.shortDescription)
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-10">
+
+                            <p class="pull-left">
+                                <span style="color: #f5f5f5;">Category</span>
+                                <a class="category-label" href="/category/@Model.BlogPost.Category.Slug">@Model.BlogPost.Category.Title</a>
+                                
+                                @if (Model.BlogPost.Tags.Any())
+                                {
+                                    <span class="sep">|</span>
+
+                                    <span style="color: #f5f5f5;">Tags:</span>
+                                    @foreach (var tag in Model.BlogPost.Tags)
+                                    {
+                                        <span class="tag">
+                                            <a class="tag-label" href="@Model.BlogArchive.Permalink/tag/@tag.Slug">
+                                                @tag.Title@(tag != Model.BlogPost.Tags.Last() ? ", " : "")
+                                            </a>
+                                        </span>
+                                    }
+                                }
+                            </p>
+                            <p class="pull-right">
+                                <span style="color: #f5f5f5;">Published:</span>
+                                <strong>@Model.BlogPost.Published.Value.ToString("dd MMMM yyyy")</strong>
+                            </p>
+
+                        </div>
+                    </div>
+
                 </div>
-                <p class="post-meta">
-                    <strong>In</strong>
-                    <a href="/category/@Model.BlogPost.Category.Slug">@Model.BlogPost.Category.Title</a>
-                    <span class="sep">&#9670;</span>
-                    <strong>Tags</strong>
-                    @foreach (var tag in Model.BlogPost.Tags)
-                    {
-                        <span class="tag">
-                            <a href="/tag/@tag.Slug">#@tag.Title</a>
-                        </span>
-                    }
-                    <span class="sep">&#9670;</span>
-                    <strong>Published</strong>
-                    @Model.BlogPost.Published.Value.ToString("yyyy-MM-dd")
-                </p>
             </div>
         </div>
     </header>
@@ -123,25 +154,25 @@
 
         <div class="col-3 sidebar">
 
-            <div class="idget-extra widget-tag-cloud widget" style="margin-bottom: 30px;">
+            <div class="" style="margin-bottom: 30px;">
                 <h3>Categories in this archive</h3>
-                <ul class="topics-list list-unstyled">
+                <ul class="list-unstyled">
                     @foreach (var category in Model.Categories)
                     {
-                        <li class="topic-item label label-default">
-                            <a href="@category.Slug">.@category.Title</a>
+                        <li class="label label-default">
+                            <a href="@Model.BlogArchive.Permalink/category/@category.Slug">@category.Title</a>
                         </li>
                     }
                 </ul>
             </div>
 
-            <div class="idget-extra widget-tag-cloud widget" style="margin-bottom: 30px;">
+            <div style="margin-bottom: 30px;">
                 <h3>Tags in this archive</h3>
-                <ul class="topics-list list-unstyled">
+                <ul class="list-unstyled">
                     @foreach (var tag in Model.Tags)
                     {
-                        <li class="topic-item label label-default">
-                            <a href="@tag.Slug">@tag.Title</a>
+                        <li class="label label-default">
+                            <a href="@Model.BlogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>
                         </li>
                     }
                 </ul>
