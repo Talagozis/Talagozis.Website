@@ -1,0 +1,126 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Talagozis Christos CV</title>
+
+	<link rel="shortcut icon" href="favicon.ico?v=2" type="image/x-icon">
+	<link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
+
+	<meta name="google-site-verification" content="S1X7cY9BACeSAkVE-OOhvwmyAYzRrhFSO7OF1Lx0jvg" />
+
+
+	<environment names="Development">    
+		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+		<link href="~/lib/bootstrap/dist/css/bootstrap.css"  rel="stylesheet" />
+		
+		<link href="~/lib/vertica/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.css" rel="stylesheet">
+		<link href="~/lib/vertica/vendor/nivo-lightbox/themes/default/default.css" rel="stylesheet" type="text/css" />
+		<link href="~/lib/vertica/vendor/animate.css" rel="stylesheet">
+		
+		<link href="~/lib/vertica/css/styles.css" rel="stylesheet" />
+
+		<link href="~/css/home/custom.css" rel="stylesheet" />  
+
+		@RenderSection("css", true)
+	</environment>
+	<environment names="Staging,Production">
+		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+		
+		<link href="~/lib/vertica/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.css" rel="stylesheet">
+		<link href="~/lib/vertica/vendor/nivo-lightbox/themes/default/default.css" rel="stylesheet" type="text/css" />
+		<link href="~/lib/vertica/vendor/animate.css" rel="stylesheet">
+		
+		<link href="~/lib/vertica/css/styles.css" rel="stylesheet"/>
+
+		<link href="~/css/home/custom.css" rel="stylesheet" />        
+
+		@RenderSection("css", true)
+	</environment>
+	
+	@Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+<body data-spy="scroll" data-target="#side-menu">
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; 2017 - Talagozis Christos</p>
+		</footer>
+	</div>
+
+	<environment names="Development">
+		<script src="~/lib/jquery/dist/jquery.js"></script>
+		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="~/lib/vertica/js/main.js" asp-append-version="true"></script>
+
+		<script src="~/lib/vertica/vendor/jquery.easing.min.js"></script>
+		<script src="~/lib/vertica/vendor/jquery.mousewheel.min.js"></script>
+		<script src="~/lib/vertica/vendor/jquery.nicescroll.min.js"></script>
+		<script src="~/lib/vertica/vendor/jquery.nicescroll.plus.js"></script>
+		<script src="~/lib/vertica/vendor/waypoints.min.js"></script>
+		<script src="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.min.js"></script>
+		<script src="~/lib/vertica/vendor/jquery.bxslider.min.js"></script>
+		<script src="~/lib/vertica/vendor/jquery.validate.min.js"></script>
+		<script src="~/lib/vertica/vendor/placeholders.jquery.min.js"></script>
+		<script src="~/lib/vertica/vendor/cross-browser.js"></script>
+
+        @RenderSection("js", true)
+	</environment>
+	<environment names="Staging,Production">
+		<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+				asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+				asp-fallback-test="window.jQuery"
+				crossorigin="anonymous"
+				integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+		</script>
+		<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+				asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+				asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+				crossorigin="anonymous"
+				integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+		</script>
+
+		<script src="~/lib/vertica/js/main.js" asp-append-version="true"></script>
+
+		<script src="~/lib/vertica/vendor/jquery.easing.min.js"></script>
+		<script src="~/lib/vertica/vendor/jquery.mousewheel.min.js"></script>
+		<script src="~/lib/vertica/vendor/jquery.nicescroll.min.js"></script>
+		<script src="~/lib/vertica/vendor/jquery.nicescroll.plus.js"></script>
+		<script src="~/lib/vertica/vendor/waypoints.min.js"></script>
+		<script src="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.min.js"></script>
+		<script src="~/lib/vertica/vendor/jquery.bxslider.min.js"></script>
+		<script src="~/lib/vertica/vendor/jquery.validate.min.js"></script>
+		<script src="~/lib/vertica/vendor/placeholders.jquery.min.js"></script>
+		<script src="~/lib/vertica/vendor/cross-browser.js"></script>
+		
+		@if (Context.Request.Headers["X-Logger-Tracking"] != "28E245EC432A4049BB62942920CA1DBB")
+		{
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-48776471-2"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+
+				gtag('config', 'UA-48776471-2');
+			</script>
+
+			<script> 
+				var ci = '1DiMxeW9WFob2g5ZQNNXrrx2kRyGd7ELDV47A9rRpSr4doyzaB7UC6TIfqBOPq6Y'; var d = document; var i = d.createElement('script'); i.src = '//logger.talagozis.com/Content/Script/request.js?cache=' + new Date().getFullYear() + new Date().getMonth() + new Date().getDate(); d.head.appendChild(i); 
+			</script>
+		}
+
+        @RenderSection("js", true)
+	</environment>
+
+	@RenderSection("Scripts", required: false)
+</body>
+</html>

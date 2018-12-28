@@ -549,12 +549,20 @@ p {
   background-size: 400px 500px;
 }
 .timeline-education {
-  background: url('../img/progress-education4.png') no-repeat center center;
+  background: url('../img/progress-education3.png') no-repeat center center;
   background-size: 400px 500px;
+}
+.timeline-education2 {
+    background: url('../img/progress-education4.png') no-repeat center center;
+    background-size: 400px 500px;
 }
 .timeline-work {
   background: url('../img/progress-work3.png') no-repeat center center;
   background-size: 400px 500px;
+}
+.timeline-work2 {
+    background: url('../img/progress-work2.png') no-repeat center center;
+    background-size: 400px 500px;
 }
 .timeline-mail {
   background: url('../img/progress-mail3.png') no-repeat center center;

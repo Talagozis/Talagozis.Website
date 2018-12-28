@@ -1,0 +1,185 @@
+@using Talagozis.Website.Models.Html
+@using Talagozis.Website.Models.ViewModels
+@inject Piranha.IApi Api
+
+@model PostViewModel
+
+@{
+    Layout = "~/Views/Layout/Home.cshtml";
+}
+
+@{
+    Model.htmlHeader = new HtmlHeaderViewModel
+    {
+        title = "Blog",
+        breadcrumps = new List<Breadcrump>
+        {
+            new Breadcrump {text = "Home"},
+            new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
+            new Breadcrump {plainSlug = Model.BlogArchive.Permalink, text = Model.BlogArchive.Title},
+            new Breadcrump {plainSlug = Model.BlogPost.Slug, text = Model.BlogPost.Title},
+        },
+    };
+}
+
+
+
+@section css {
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css' rel='stylesheet' type='text/css'>
+
+    <style>
+        header {
+            background-color: #34434e;
+            color: white;
+        }
+        header h1 {
+            margin: 30px 0;
+        }
+
+        header p {
+            margin-bottom: 2rem;
+        }
+        header div.post-shortdescription {
+            font-style: italic;
+        }
+        .sidebar h3 {
+            color: #d45c20;
+            font-size: 1.4rem;
+            border-bottom: 1px solid #eee;
+            margin: .5em 0 .3em;
+            margin-top: 0.5em;
+            padding-bottom: 8px;
+        }
+        a.category-label {
+            color: #ef6c00;
+        }
+        a.tag-label {
+            color: #ef6c00;
+        }
+        .list-unstyled {;
+            padding: 0 8px;
+        }
+        .label-default {
+            background-color: #777;
+        }
+        .label {
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 80%;
+            font-weight: 700;
+            line-height: 2;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+            margin-right: 2px;
+        }
+        .label a {
+            color: #fff;
+        }
+        div.codeblock {
+            padding: 15px 10px;
+            border-radius: 2px;
+        }
+    </style>
+}
+
+@section js { }
+
+<article>
+    <header class="row">
+        @if (Model.BlogPost.Heading.PrimaryImage.HasValue)
+        {
+            <div class="row justify-content-center">
+                <div class="col-sm">
+                    <img src="@Url.Content(Model.BlogPost.Heading.PrimaryImage.Resize(Api, 360, 270))">
+                </div>
+            </div>
+        }
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-10">
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-10">
+
+                            <h1>@Model.BlogPost.Title</h1>
+                            <div class="post-shortdescription">
+                                @Html.Raw(Model.BlogPost.Heading.shortDescription)
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-10">
+
+                            <p class="pull-left">
+                                <span style="color: #f5f5f5;">Category</span>
+                                <a class="category-label" href="/category/@Model.BlogPost.Category.Slug">@Model.BlogPost.Category.Title</a>
+                                
+                                @if (Model.BlogPost.Tags.Any())
+                                {
+                                    <span class="sep">|</span>
+
+                                    <span style="color: #f5f5f5;">Tags:</span>
+                                    foreach (var tag in Model.BlogPost.Tags)
+                                    {
+                                        <span class="tag">
+                                            <a class="tag-label" href="@Model.BlogArchive.Permalink/tag/@tag.Slug">
+                                                @tag.Title@(tag != Model.BlogPost.Tags.Last() ? ", " : "")
+                                            </a>
+                                        </span>
+                                    }
+                                }
+                            </p>
+                            <p class="pull-right">
+                                <span style="color: #f5f5f5;">Published:</span>
+                                <strong>@Model.BlogPost.Published.Value.ToString("dd MMMM yyyy")</strong>
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="row">
+
+        <div class="col-9">
+            @Html.DisplayFor(m => m.BlogPost.Blocks)
+        </div>
+
+        <div class="col-3 sidebar">
+
+            <div class="" style="margin-bottom: 30px;">
+                <h3>Categories in this archive</h3>
+                <ul class="list-unstyled">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <li class="label label-default">
+                            <a href="@Model.BlogArchive.Permalink/category/@category.Slug">@category.Title</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <h3>Tags in this archive</h3>
+                <ul class="list-unstyled">
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <li class="label label-default">
+                            <a href="@Model.BlogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+
+    </section>
+
+</article>

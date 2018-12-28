@@ -1,0 +1,305 @@
+@using Talagozis.Website.Models.Cv
+@using Talagozis.Website.Models
+@using Talagozis.Website.Models.Html
+
+@inject Piranha.IApi Api
+@model Talagozis.Website.Models.ViewModels.HomePageViewModel
+
+@{
+    Layout = "~/Views/Layout/Home.cshtml";
+}
+
+@{
+    Model.htmlHeader = new HtmlHeaderViewModel
+    {
+        title = "Home",
+        breadcrumps = new List<Breadcrump>(),
+    };
+}
+
+
+
+@section css {
+    <style>
+        #particles-js {
+            background-image: url("/images/cover.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 80%;
+            height: 460px;
+        }
+        section.blog,  section.stat, section.contact {
+            background-image: url('/images/pattern.jpg');
+            background-size: auto;
+        }
+        section.header, section.blog, section.educ, section.stat, section.contact {
+            width: auto;
+        }
+        section.blog {
+            padding-bottom: 180px;
+            margin-bottom: 0;
+            border-bottom: 1px solid #D9D9D9;
+        }
+        section.educ {
+            padding-bottom: 140px;
+            background-color: #F9F9F9;
+        }
+        section.contact {
+            padding-bottom: 60px;
+            margin-bottom: 0;
+        }
+        .educ .education .title .infos-educ .info-timeline span {
+            display: inline;
+            letter-spacing: 0.4px;
+        }
+        .infos-post .short-description-block {
+            font-size: 14px;
+        }
+        .infos-post .short-description-block a {
+            color: #007bff;
+        }
+        .blog .post .infos-post h3 {
+            min-height: 90px;
+        }
+        .blog .post .infos-post p {
+            min-height: 150px;
+            line-height: 1.6;
+        }
+        .blog .btn-manisa {
+            margin: 100px auto 0;
+        }
+        .educ .btn-manisa {
+            margin: 60px auto 0;
+        }
+        .category-post span.title {
+            white-space: nowrap;
+        }
+    </style>
+    <link rel="stylesheet" href="~/lib/manisa/css/manisa-icon.css" />
+    <link rel="stylesheet" href="//manisa.bouthythemes.com/css/lightbox.min.css" />
+    <link rel="stylesheet" href="//manisa.bouthythemes.com/css/slick.css" />
+}
+
+@section js {
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="~/js/manisa.js"></script>
+    <script src="//manisa.bouthythemes.com/js/typed.js"></script>
+    <script>
+        particlesJS.load('particles-js', '/js/particlesjs-config.json', function () {
+            console.log('callback - particles.js config loaded');
+        });
+    </script>
+}
+
+<section class="header row" style="background-image: none; height: auto;">
+    <div class="col" id="particles-js" style="position: relative;">
+
+        <div class="title">
+            <h1>Hi! I am <span class="pattaya">Christos</span></h1>
+            <div id="typed-strings">
+                <p>
+                    <span>Need some</span>
+                    <strong>Magic?</strong>
+                </p>
+                <p>
+                    <span>Need some</span>
+                    <strong>Science?</strong>
+                </p>
+                <p>I can do both !</p>
+            </div>
+            <p id="typed" class="type"></p>
+        </div>
+
+    </div>
+</section>
+
+<section id="blog" class="blog text-center row">
+    <div class="container">
+        <div class="title">
+            <h2 class="text-uppercase">Blog</h2>
+        </div>
+
+        <div class="row">
+            @foreach (BlogPost post in Model.LatestPosts.Take(3))
+            {
+                BlogArchive archive = Model.Archives.Single(a => a.Id == post.BlogId);
+                <div class="col-lg-4 col-md-12">
+                    <div class="post">
+                        <div class="category-post">
+                            <a href="@(archive.Permalink)">
+                                <span class="title">
+                                    @(archive.Title)
+                                </span>
+                            </a>
+                        </div>
+                        <div class="img-post">
+                            <a href="blog-post.html" target="_blank">
+                                <img src="@Url.Content(post.Heading.PrimaryImage.Resize(Api, 334, 222))" class="img-fluid" alt="img-post">
+                            </a>
+                        </div>
+                        <div class="infos-post">
+                            <h3>
+                                <a href="@post.Permalink">@post.Title</a>
+                            </h3>
+                            <span>- @post.Published.Value.ToString("dd MMM yyyy") -</span>
+                            <hr>
+                            <div class="short-description-block">
+                                @Html.Raw(post.Heading.shortDescription)
+                            </div>
+                        </div>
+                        <div class="tags-post">
+                            <i class="manisa-tag"></i>
+                            <span>
+                                @foreach (var tag in post.Tags)
+                                {
+                                    <a href="@archive.Permalink/tag/@tag.Slug">
+                                        @tag.Title@(tag != post.Tags.Last() ? ", " : "")
+                                    </a>
+                                }
+                            </span>
+
+                        </div>
+                        <!--<div class="comments-post d-none d-sm-block">
+                            <a href="#" target="_blank">
+                                <span>220</span><i class="manisa-bubble"></i>
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="row">
+            <a asp-area="" asp-controller="Home" asp-action="Blog" class="btn-manisa">Check Blog</a>
+        </div>
+    </div>
+</section>
+
+<section class="educ row">
+    <div class="container">
+        <div class="education">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="title first-timeline open-timeline">
+                        <h3>Education</h3>
+
+                        @foreach (Education education in Model.Person.educations.OrderByDescending(a => a.graduationDate))
+                        {
+                            <div class="infos-educ">
+                                <span class="roundtimeline"></span>
+                                <div class="info-timeline">
+                                    <h5>@education.title</h5>
+                                    <span class="date">Graduation @(education.graduationDate.ToString("MMMM yyyy"))</span>
+                                    <span> | </span>
+                                    <span class="job">@education.university</span>
+                                    <p>@education.description</p>
+                                    <span class="timeline-de"></span>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="title open-timeline">
+                        <h3>Experience</h3>
+
+                        @foreach (WorkExperience workExperience in Model.Person.workExperience.OrderByDescending(a => a.startDate).Take(3))
+                        {
+                            <div class="infos-educ">
+                                <span class="roundtimeline"></span>
+                                <div class="info-timeline">
+                                    <h5>@workExperience.position</h5>
+                                    <span class="date">
+                                        @workExperience.startDate.ToString("MM/yyyy")
+                                        -
+                                        @(workExperience.endDate.HasValue ? workExperience.endDate.Value.ToString("MM/yyyy") : "Current")
+                                    </span>
+                                    @*
+                                        <span> | </span>
+                                        <span class="job">@workExperience.companyName</span>
+                                    *@
+                                    <span> | </span>
+                                    <span class="typeOfBusiness" style="letter-spacing: 0;">
+                                        @workExperience.typeOfBusiness
+                                    </span>
+                                    <p class="description" style="font-size: 13px;">
+                                        @workExperience.description
+                                    </p>
+                                    <span class="timeline-de"></span>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <a asp-area="" asp-controller="Home" asp-action="CV" class="btn-manisa">See full CV</a>
+        </div>
+
+    </div>
+</section>
+
+<section class="stat text-center row">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12 number">
+                    <i class="manisa-heart"></i>
+                    <span class="counter">@Model.Person.workExperience.Count()</span>
+                    <p>Happy Client</p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 number">
+                    <i class="manisa-coffe"></i>
+                    <span class="counter">@(Math.Round((DateTime.Now - new DateTime(2012, 11, 1)).Days * 0.6, 0))</span>
+                    <p>Cup Of Coffee</p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 number">
+                    <i class="manisa-star"></i>
+                    <span class="counter">@(Model.Person.educations.Where(a => a.projects != null).SelectMany(a => a.projects).Where(a => a != null).Count() + Model.Person.workExperience.Where(a => a.projects != null).SelectMany(a => a.projects).Count())</span>
+                    <p>Successful Projects</p>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 number">
+                    <i class="manisa-cup"></i>
+                    <span class="counter">@Model.Person.awards.Count</span>
+                    <p>Award Won</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact text-center active-nav row">
+    <div class="container">
+        <div class="title">
+            <h2 class="text-uppercase">Get In Touch</h2>
+        </div>
+        <div class="contact-content">
+            <div class="row">
+                <div class="col-lg col-sm-4">
+                    <div class="email">
+                        <i class="manisa-envelope"></i>
+                        <span>@Model.Person.emailWeb</span>
+                    </div>
+                </div>
+                <div class="col-lg col-sm-4">
+                    <div class="phone">
+                        <i class="manisa-call-end"></i>
+                        <span>@Model.Person.phoneNumber</span>
+                    </div>
+                </div>
+                <div class="col-lg col-sm-4">
+                    <div class="address">
+                        <i class="manisa-pointer"></i>
+                        <span>@(Model.Person.Address.city), @Model.Person.Address.country</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,236 @@
+@using System.Globalization
+@using Talagozis.Website.Models.Html
+@inject Piranha.IApi Api
+
+@model Talagozis.Website.Models.ViewModels.ArchiveViewModel
+
+@{
+    Layout = "~/Views/Layout/Home.cshtml";
+}
+
+@{
+    Model.htmlHeader = new HtmlHeaderViewModel
+    {
+        title = "Blog",
+        breadcrumps = new List<Breadcrump>
+        {
+            new Breadcrump {text = "Home"},
+            new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
+            new Breadcrump {plainSlug = Model.BlogArchive.Permalink, text = Model.BlogArchive.Title}
+        },
+    };
+}
+
+
+@section css {
+<style>
+        .header-blog-post {
+            background-image: url(@Url.Content(Model.BlogArchive.Heading.PrimaryImage.Resize(Api, 720, 480)));
+            background-position: center;
+            height: 250px;
+        }
+
+        section.header-blog-post {
+            width: auto;
+        }
+        article.post {
+            margin-bottom: 35px;
+        }
+        .blog-filter-header h1 {
+            font-style: italic;
+            color: #bf360c;
+            font-weight: normal;
+        }
+        .post .post-title a {
+            color: #37474f;
+            font-weight: 600;
+        }
+        .post .post-published, .post .post-category {
+            font-size: 0.9rem;
+        }
+        .post .post-category a{
+            color: #d45c20;
+        }
+        .post strong {
+            color: #37474f;
+        }
+        .post .post-published span {
+            color: #455a64;
+        }
+        .post .post-category > a {
+            font-weight: 600; 
+            font-size: 0.95rem;
+        }
+</style>
+}
+
+@section js { }
+
+@{
+    ViewBag.Title = Model.BlogArchive.Title;
+
+    Func<string> BlogLink = () =>
+    {
+        return Model.BlogArchive.Permalink
+            + (Model.BlogArchive.Archive.Category != null ? $"/category/{Model.BlogArchive.Archive.Category.Slug}" : "")
+            + (Model.BlogArchive.Archive.Year.HasValue ? $"/{Model.BlogArchive.Archive.Year}" : "")
+            + (Model.BlogArchive.Archive.Month.HasValue ? $"/{Model.BlogArchive.Archive.Month}" : "");
+    };
+
+    Func<string> MonthName = () =>
+    {
+        if (Model.BlogArchive.Archive.Month.HasValue)
+        {
+            return new DateTime(2018, Model.BlogArchive.Archive.Month.Value, 1).ToString("MMMM", CultureInfo.InvariantCulture);
+        }
+        return "";
+    };
+}
+
+<section class="header-blog-post text-center active-nav row">
+    <div class="overlay">
+        <div class="title">
+            <h1>@Model.BlogArchive.Title</h1>
+        </div>
+    </div>
+</section>
+
+<div class="container archive">
+    @if (Model.BlogArchive.Archive.Category != null)
+    {
+        <div class="row">
+            <div class="col blog-filter-header">
+                <h1>Category: @Model.BlogArchive.Archive.Category.Title</h1>
+            </div>
+        </div>
+    }
+    else if (Model.BlogArchive.Archive.Tag != null)
+    {
+        <div class="row">
+            <div class="col blog-filter-header">
+                <h1>Tag: @Model.BlogArchive.Archive.Tag.Title</h1>
+            </div>
+        </div>
+    }
+    else if (Model.BlogArchive.Archive.Year.HasValue)
+    {
+        <div class="row">
+            <div class="col blog-filter-header">
+                <h1>Posts from @MonthName() @Model.BlogArchive.Archive.Year</h1>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col blog-filter-header">
+                <h1>Latest posts</h1>
+            </div>
+        </div>
+    }
+
+    <hr />
+
+    @foreach (var post in Model.BlogArchive.Archive.Posts)
+    {
+        <article class="post">
+            <header>
+                @if (false && post.Regions.Heading.PrimaryImage.HasValue)
+                {
+                    <div class="row justify-content-center">
+                        <div class="col-sm">
+                            <a href="@post.Permalink">
+                                <img src="@Url.Content(post.Regions.Heading.PrimaryImage.Resize(Api, 360, 360))">
+                            </a>
+                        </div>
+                    </div>
+                }
+                <div class="row ">
+                    <div class="col-sm-10">
+
+                        <h2 class="post-title">
+                            <a href="@post.Permalink">@post.Title</a>
+                        </h2>
+
+                        <p class="post-published">
+                            <span>Published:</span>
+                            <strong>@post.Published.Value.ToString("dd MMMM yyyy")</strong>
+                        </p>
+
+                        <p class="post-category">
+                            <span>Category:</span>
+                            <a href="@Model.BlogArchive.Permalink/category/@post.Category.Slug">
+                                @post.Category.Title
+                            </a>
+                            
+                            @if (post.Tags.Any())
+                            {
+                                <span class="sep">|</span>
+
+                                <span>Tags:</span>
+                                foreach (var tag in post.Tags)
+                                {
+                                    <span class="tags-post" style="background-color: #019d9b; border-radius: 27px; padding: 2px 10px; margin-right: 4px;">
+                                        <i class="manisa-tag"></i>
+                                        <span>
+                                            <a href="@Model.BlogArchive.Permalink/tag/@tag.Slug" style="color: white;">@tag.Title</a>
+                                        </span>
+                                    </span>
+                                }
+                            }
+                        </p>
+
+                    </div>
+                </div>
+            </header>
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="ingress">
+                        @Html.Raw(post.Regions.Heading.shortDescription)
+                    </div>
+                </div>
+            </div>
+        </article>
+    }
+
+    @if (Model.BlogArchive.Archive.TotalPages > 1)
+    {
+        <div class="row">
+            <div class="col-sm">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="@BlogLink()/page/1">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="@BlogLink()/page/@Math.Max(1, Model.BlogArchive.Archive.CurrentPage - 1)">
+                                <span aria-hidden="true">&lsaquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        @for (var n = 1; n <= Model.BlogArchive.Archive.TotalPages; n++)
+                        {
+                            <li class="page-item @(Model.BlogArchive.Archive.CurrentPage == n ? "active" : "")"><a class="page-link" href="@BlogLink()/page/@n">@n</a></li>
+                        }
+                        <li class="page-item">
+                            <a class="page-link" href="@BlogLink()/page/@Math.Min(Model.BlogArchive.Archive.TotalPages, Model.BlogArchive.Archive.CurrentPage + 1)">
+                                <span aria-hidden="true">&rsaquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="@BlogLink()/page/@Model.BlogArchive.Archive.TotalPages">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    }
+
+</div>

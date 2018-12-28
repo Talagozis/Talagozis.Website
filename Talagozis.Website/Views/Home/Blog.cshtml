@@ -1,0 +1,133 @@
+@using Talagozis.Website.Models
+@using Talagozis.Website.Models.Html
+@inject Piranha.IApi Api
+
+@model Talagozis.Website.Models.ViewModels.BlogViewModel
+
+@{
+    Layout = "~/Views/Layout/Home.cshtml";
+}
+
+@{
+    Model.htmlHeader = new HtmlHeaderViewModel
+    {
+        title = "Blog",
+        breadcrumps = new List<Breadcrump>
+        {
+            new Breadcrump {text = "Home"},
+            new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
+        },
+    };
+}
+
+@section css {
+    <style>
+        section.blog {
+            background-image: url('/images/pattern.jpg');
+            background-size: auto;
+        }
+
+        section.header, section.blog {
+            width: auto;
+        }
+
+        section.header {
+            background-position: inherit;
+        }
+
+        .header-blog {
+            margin-bottom: 0;
+            height: 350px;
+        }
+        .header-blog h1 {
+            height: 350px;
+            line-height: 350px;
+        }
+        .blog-page .col-lg-4 {
+            margin-bottom: 80px;
+        }
+
+        .blog .post .img-post {
+            border-bottom: 1px solid #eeeeee;
+        }
+        .img-post a {
+            display: block;
+        }
+        .img-post a img.img-fluid {
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="~/lib/manisa/css/manisa-icon.css" />
+    <link rel="stylesheet" href="//manisa.bouthythemes.com/css/lightbox.min.css" />
+    <link rel="stylesheet" href="//manisa.bouthythemes.com/css/slick.css" />
+}
+
+@section js {
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="~/js/manisa.js"></script>
+    <script src="//manisa.bouthythemes.com/js/typed.js"></script>
+    <script>
+        particlesJS.load('particles-js', '/js/particlesjs-config.json', function () {
+            console.log('callback - particles.js config loaded');
+        });
+    </script>
+}
+
+
+<section class="header header-blog row">
+    <div class="overlay">
+        <h1>The Blog</h1>
+    </div>
+</section>
+
+<section class="blog blog-page text-center active-nav row">
+
+    <div class="container">
+        <div class="row">
+
+            @foreach (BlogArchive archive in Model.Archives)
+            {
+                <div class="col-lg-4 col-md-12">
+                    <div class="post">
+                        <div class="img-post">
+                            <a href="@archive.Permalink">
+                                <img src="@Url.Content(archive.Heading.PrimaryImage.Resize(Api, 430, 290))" class="img-fluid" alt="archive.Title" />
+                            </a>
+                        </div>
+                        <div class="infos-post">
+                            <h3>
+                                <a href="@archive.Permalink">
+                                    @archive.Title
+                                </a>
+                            </h3>
+                            @*<span>- Latest: 30 sept 2017 -</span>*@ 
+                            <hr>
+                            <div>
+                                @Html.Raw(archive.Heading.shortDescription)
+                            </div>
+                        </div>
+                        <div class="tags-post">
+                            <i class="manisa-tag"></i>
+                            <span>
+                                @{ var selectedTags = Model.Tags.Where(a => a.BlogId == archive.Id).Take(3).ToList();}
+                                @foreach (var tag in selectedTags)
+                                {
+                                    <a href="@archive.Permalink/tag/@tag.Slug" target="_blank">
+                                        @tag.Title@(tag != selectedTags.Last(a => a.BlogId == archive.Id) ? ", " : "")
+                                    </a>
+                                }
+                            </span>
+                        </div>
+                        @*<div class="comments-post d-none d-sm-block">
+                            <a href="#" target="_blank">
+                                <span>220</span><i class="manisa-bubble"></i>
+                            </a>
+                        </div>*@
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</section>
