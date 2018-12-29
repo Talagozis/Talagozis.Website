@@ -14,6 +14,7 @@ using Piranha.AspNetCore.Identity.SQLite;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Talagozis.Website.Models.Configurations;
 
 namespace Talagozis.Website
 {
@@ -54,6 +55,9 @@ namespace Talagozis.Website
             services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
             services.AddPiranhaManager();
             services.AddSingleton<ICache, Piranha.Cache.MemCache>();
+
+            services.AddOptions();
+            services.Configure<PaypalCredentials>(Configuration.GetSection("Paypal"));
 
             return services.BuildServiceProvider();
         }
