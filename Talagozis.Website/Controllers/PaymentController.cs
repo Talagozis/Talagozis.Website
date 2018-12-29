@@ -24,15 +24,24 @@ namespace Talagozis.Website.Controllers
         public async Task<IActionResult> Purchase([FromServices]IOptions<PaypalCredentials> paypalCredentials, uint productBid)
         {
             PaypalService paypalService = new PaypalService(paypalCredentials.Value);
-            var redirectLink = await paypalService.purchase(1.5m);
+            var redirectLink = await paypalService.purchase(1m);
 
             return Redirect(redirectLink);
         }
 
-        public async Task<IActionResult> Success(string paymentId, string token, string PayerID)
+        public async Task<IActionResult> Success([FromServices]IOptions<PaypalCredentials> paypalCredentials, string paymentId, string token, string PayerID)
         {
+            PaypalService paypalService = new PaypalService(paypalCredentials.Value);
 
-            return Ok("Success!");
+            try
+            {
+                await paypalService.approve(PayerID, paymentId);
+                return Ok("Success!");
+            }
+            catch (Exception e)
+            {
+                return Ok("Failed!");
+            }
         }
 
         public async Task<IActionResult> Canceled()

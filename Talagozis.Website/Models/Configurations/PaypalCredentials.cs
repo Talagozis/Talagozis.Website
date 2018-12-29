@@ -6,5 +6,6 @@ namespace Talagozis.Website.Models.Configurations
     {
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
+        public string RedirectUrlsDomain { get; set; }
     }
 }
