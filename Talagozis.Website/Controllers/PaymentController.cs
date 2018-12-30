@@ -24,7 +24,7 @@ namespace Talagozis.Website.Controllers
         public async Task<IActionResult> Purchase([FromServices]IOptions<PaypalCredentials> paypalCredentials, uint productBid)
         {
             PaypalService paypalService = new PaypalService(paypalCredentials.Value);
-            var redirectLink = await paypalService.purchase(1m);
+            var redirectLink = await paypalService.purchase(productBid == 1 ? 3.5m : 5m);
 
             return Redirect(redirectLink);
         }

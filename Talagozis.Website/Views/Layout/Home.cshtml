@@ -57,9 +57,6 @@
                 <ul class="navbar-nav mr-auto"></ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a asp-area="" asp-controller="Payment" asp-action="">Payment</a>
-                    </li>
-                    <li class="nav-item">
                         <a asp-area="" asp-controller="Home" asp-action="Blog">Blog</a>
                     </li>
                     <li class="nav-item">
@@ -106,7 +103,13 @@
 
     <footer class="text-center" style="border-top: solid #e2e2e2 1px;">
         <div class="footer-content">
-            <div class="social-media-footer">
+            <div style="padding: 50px 0 30px;">
+                <a asp-area="" asp-controller="Payment" asp-action="">
+                    <img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/PP_Acceptance_Marks_for_LogoCenter_76x48.png" style="height: 40px; margin-right: 10px;" />
+                    <span style="font-size: 17px; color: #424242;">Buy me a coffee?</span>
+                </a>
+            </div>
+            <div class="social-media-footer" style="padding: 20px 0 20px;">
                 <a href="https://www.linkedin.com/in/talagozis/" target="_blank">
                     <i class="fa fa-linkedin" style="font-size: 20px;"></i>
                 </a>
