@@ -37,6 +37,10 @@
 		<Folder Include="Properties\PublishProfiles\" />
 	</ItemGroup>
 	<ItemGroup>
+	  <None Include="Views\Layout\CV.cshtml" />
+	  <None Include="Views\Layout\Home.cshtml" />
+	</ItemGroup>
+	<ItemGroup>
 	  <Content Update="Views\Payment\Payment.cshtml">
 	    <Pack>$(IncludeRazorContentInPack)</Pack>
 	  </Content>
