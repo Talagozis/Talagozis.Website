@@ -494,19 +494,22 @@
                     <!-- content -->
                     <div class="job-description">
                         <p>@workExperience.description</p>
-                        <p>Projects: </p>
-                        <ul class="" style="padding-left:40px; margin-bottom:20px;">
-                            @foreach(Project project in workExperience.projects)
-                            {
-                                <li class="">
-                                  <span class="project-name">@project.name</span>
-                                  @if(!string.IsNullOrWhiteSpace(project.description))
-                                  {
-                                    <p class="project-description">@project.description</p>
-                                  }
-                                </li>
-                            }
-                        </ul>
+                        @if (workExperience.projects != null && workExperience.projects.Any())
+                        {
+                            <p>Projects: </p>
+                            <ul class="" style="padding-left:40px; margin-bottom:20px;">
+                                @foreach(Project project in workExperience.projects)
+                                {
+                                    <li class="">
+                                        <span class="project-name">@project.name</span>
+                                        @if(!string.IsNullOrWhiteSpace(project.description))
+                                        {
+                                            <p class="project-description">@project.description</p>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        }
                     </div>
                     <!-- /Content -->
                   </div>
