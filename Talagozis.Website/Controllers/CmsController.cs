@@ -7,7 +7,7 @@ using Talagozis.Website.Models.ViewModels;
 
 namespace Talagozis.Website.Controllers
 {
-    public class CmsController : Controller
+    public class CmsController : BaseController
     {
         private readonly IApi _api;
 

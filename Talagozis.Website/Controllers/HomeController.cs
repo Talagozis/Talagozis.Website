@@ -9,7 +9,7 @@ using Talagozis.Website.Models.ViewModels;
 
 namespace Talagozis.Website.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IApi _api;
 
@@ -48,6 +48,7 @@ namespace Talagozis.Website.Controllers
         {
             var csharpArchiveId = new Guid("f6682da4-11f4-40b4-b118-470bcc198613");
             var javaArchiveId = new Guid("e8ed04db-e33b-46fe-97d7-e0e025a269e2");
+            var javascriptArchiveId = new Guid("9a82888a-03ee-4522-950a-6407adf7f413");
             var machineLearningArchiveId = new Guid("f1891e6d-1efc-4795-8759-133bb977c9e4");
             var ionicArchiveId = new Guid("d3f5e1a5-7f27-4fe9-b033-4a817745694d");
             var flutterArchiveId = new Guid("09b2c5b9-21ac-4ffe-8413-5bc0256b7756");
@@ -58,6 +59,7 @@ namespace Talagozis.Website.Controllers
             {
                 _api.Archives.GetById<BlogArchive>(csharpArchiveId, 1, null, null, null),
                 _api.Archives.GetById<BlogArchive>(javaArchiveId, 1, null, null, null),
+                _api.Archives.GetById<BlogArchive>(javascriptArchiveId, 1, null, null, null),
                 _api.Archives.GetById<BlogArchive>(machineLearningArchiveId, 1, null, null, null),
                 _api.Archives.GetById<BlogArchive>(ionicArchiveId, 1, null, null, null),
                 _api.Archives.GetById<BlogArchive>(flutterArchiveId, 1, null, null, null),

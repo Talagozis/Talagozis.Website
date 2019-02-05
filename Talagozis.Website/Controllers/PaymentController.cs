@@ -10,7 +10,7 @@ using Talagozis.Website.Models.ViewModels;
 
 namespace Talagozis.Website.Controllers
 {
-    public class PaymentController : Controller
+    public class PaymentController : BaseController
     {       
         [HttpGet]
         public IActionResult Index()

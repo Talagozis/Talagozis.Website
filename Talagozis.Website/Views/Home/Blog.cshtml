@@ -13,10 +13,10 @@
     {
         title = "Blog",
         breadcrumps = new List<Breadcrump>
-        {
-            new Breadcrump {text = "Home"},
-            new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
-        },
+{
+    new Breadcrump {text = "Home"},
+    new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
+},
     };
 }
 
@@ -39,10 +39,12 @@
             margin-bottom: 0;
             height: 350px;
         }
-        .header-blog h1 {
-            height: 350px;
-            line-height: 350px;
-        }
+
+            .header-blog h1 {
+                height: 350px;
+                line-height: 350px;
+            }
+
         .blog-page .col-lg-4 {
             margin-bottom: 80px;
         }
@@ -50,16 +52,15 @@
         .blog .post .img-post {
             border-bottom: 1px solid #eeeeee;
         }
+
         .img-post a {
             display: block;
         }
-        .img-post a img.img-fluid {
-            width: 100%;
-        }
+
+            .img-post a img.img-fluid {
+                width: 100%;
+            }
     </style>
-    <link rel="stylesheet" href="~/lib/manisa/css/manisa-icon.css" />
-    <link rel="stylesheet" href="//manisa.bouthythemes.com/css/lightbox.min.css" />
-    <link rel="stylesheet" href="//manisa.bouthythemes.com/css/slick.css" />
 }
 
 @section js {
@@ -100,7 +101,7 @@
                                     @archive.Title
                                 </a>
                             </h3>
-                            @*<span>- Latest: 30 sept 2017 -</span>*@ 
+                            @*<span>- Latest: 30 sept 2017 -</span>*@
                             <hr>
                             <div>
                                 @Html.Raw(archive.Heading.shortDescription)
@@ -119,10 +120,10 @@
                             </span>
                         </div>
                         @*<div class="comments-post d-none d-sm-block">
-                            <a href="#" target="_blank">
-                                <span>220</span><i class="manisa-bubble"></i>
-                            </a>
-                        </div>*@
+                                <a href="#" target="_blank">
+                                    <span>220</span><i class="manisa-bubble"></i>
+                                </a>
+                            </div>*@
                     </div>
                 </div>
             }
