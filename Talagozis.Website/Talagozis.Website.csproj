@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.1</TargetFramework>
+	  <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
+    <Version>1.19.2.18</Version>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -15,15 +17,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.1" />
-		<PackageReference Include="Piranha" Version="5.1.2" />
-		<PackageReference Include="Piranha.AspNetCore" Version="5.1.2" />
-		<PackageReference Include="Piranha.AspNetCore.Identity.SQLite" Version="5.1.0" />
-		<PackageReference Include="Piranha.AttributeBuilder" Version="5.1.0" />
-		<PackageReference Include="Piranha.ImageSharp" Version="5.1.0-rc1" />
-		<PackageReference Include="Piranha.Local.FileStorage" Version="5.1.0" />
-		<PackageReference Include="Piranha.Manager" Version="5.1.2" />
+		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
+		<PackageReference Include="PayPal" Version="2.0.0-rc2" />
+		<PackageReference Include="Piranha" Version="5.3.0" />
+		<PackageReference Include="Piranha.AspNetCore" Version="5.3.0" />
+		<PackageReference Include="Piranha.AspNetCore.Identity.SQLite" Version="5.3.0" />
+		<PackageReference Include="Piranha.AttributeBuilder" Version="5.3.0" />
+		<PackageReference Include="Piranha.ImageSharp" Version="5.3.0-rc1" />
+		<PackageReference Include="Piranha.Local.FileStorage" Version="5.3.0" />
+		<PackageReference Include="Piranha.Manager" Version="5.3.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
@@ -32,13 +35,16 @@
 		<WCFMetadata Include="Connected Services" />
 	</ItemGroup>
 	<ItemGroup>
-		<Folder Include="App_Plugins\" />
 		<Folder Include="Properties\PublishProfiles\" />
 	</ItemGroup>
 	<ItemGroup>
-		<Content Update="Views\Layout\Home.cshtml">
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
+	  <None Include="Views\Layout\CV.cshtml" />
+	  <None Include="Views\Layout\Home.cshtml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Update="Views\Payment\Payment.cshtml">
+	    <Pack>$(IncludeRazorContentInPack)</Pack>
+	  </Content>
 	</ItemGroup>
 
 </Project>

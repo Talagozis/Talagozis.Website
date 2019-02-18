@@ -1,10 +1,181 @@
-﻿@{
-    ViewData["Title"] = "Contact";
-}
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
+﻿@using Talagozis.Website.Models.Html
 
-<address>
+@model Talagozis.Website.Models.ViewModels.ContactViewModel
+
+@{
+    Layout = "~/Views/Layout/Home.cshtml";
+}
+
+@{
+    Model.htmlHeader = new HtmlHeaderViewModel
+    {
+        title = "Contact",
+        breadcrumps = new List<Breadcrump>
+        {
+            new Breadcrump {text = "Home"},
+            new Breadcrump {controller = "Home",action = "Contact", text = "Contact"},
+        },
+    };
+}
+
+@section css {
+    <style>
+        .section-head {
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+            .section-head h3 {
+                font-weight: 900;
+                font-size: 40px;
+                position: relative;
+                display: inline-block;
+                z-index: 4;
+            }
+
+        .contact {
+            padding-bottom: 30px;
+        }
+
+            .contact .info .item {
+                margin-bottom: 30px;
+            }
+
+                .contact .info .item span {
+                    display: inline-block
+                }
+
+                .contact .info .item .icon {
+                    font-size: 25px;
+                    margin-bottom: 15px;
+                    width: 60px;
+                    height: 60px;
+                    line-height: 60px;
+                    background: #019d9b;
+                    border-radius: 50%;
+                    -webkit-transition: all .5s;
+                    transition: all .5s;
+                    color: white;
+                }
+
+                .contact .info .item h6 {
+                    font-weight: 700;
+                    margin-bottom: 10px;
+                }
+
+            .contact .form input[type="text"], .contact .form input[type="email"], .contact .form textarea {
+                width: 100%;
+                border: 0;
+                border-radius: 5px;
+                padding: 10px;
+                background: #f4f4f4;
+            }
+
+            .contact .form .buton {
+                padding: 10px 40px;
+            }
+
+        .buton-bg {
+            background: #1c1c1c;
+            color: #eee;
+        }
+
+        .buton {
+            padding: 10px 30px;
+            border: 1px solid #1c1c1c;
+            border-radius: 5px;
+            font-size: 15px;
+            -webkit-transition: all .5s;
+            transition: all .5s;
+        }
+    </style>
+}
+
+@section js {
+    <script src="~/js/manisa.js"></script>
+}
+
+
+<section class="contact row" data-scroll-index="6">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="section-head">
+                    <h3>Contact me</h3>
+                </div>
+            </div>
+
+            <div class="offset-md-1 col-md-10">
+
+                <div class="row info text-center mb-50">
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="item">
+                            <span class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                            <h6>Email</h6>
+                            <p>christos[at]talagozis.com</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="item">
+                            <span class="icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                            <h6>Phone</h6>
+                            <p>+30 697 8348753</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4">
+                        <div class="item">
+                            <span class="icon"><i class="fa fa-location-arrow" aria-hidden="true"></i></span>
+                            <h6>Address</h6>
+                            <p>Serres, Greece</p>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <form class="form" id="contact-form" method="post" action="contact.php" novalidate="true">
+                    <div class="messages"></div>
+
+                    <div class="controls">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input id="form_name" name="name" placeholder="Name" required="required" type="text">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input id="form_email" name="email" placeholder="Email" required="required" type="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea id="form_message" name="message" placeholder="Message" rows="4" required="required"></textarea>
+                                </div>
+
+                                <input value="Submit" class="buton buton-bg disabled" type="submit">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- <address>
     One Microsoft Way<br />
     Redmond, WA 98052-6399<br />
     <abbr title="Phone">P:</abbr>
@@ -14,4 +185,4 @@
 <address>
     <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
     <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+</address> -->

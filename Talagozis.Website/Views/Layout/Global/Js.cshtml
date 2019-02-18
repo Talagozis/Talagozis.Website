@@ -1,0 +1,15 @@
+﻿@if (Context.Request.Headers["X-Logger-Tracking"] != "28E245EC432A4049BB62942920CA1DBB")
+{
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48776471-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-48776471-2');
+    </script>
+
+    <script>
+        var ci = '1DiMxeW9WFob2g5ZQNNXrrx2kRyGd7ELDV47A9rRpSr4doyzaB7UC6TIfqBOPq6Y'; var d = document; var i = d.createElement('script'); i.src = '//logger.talagozis.com/Content/Script/request.js?cache=' + new Date().getFullYear() + new Date().getMonth() + new Date().getDate(); d.head.appendChild(i);
+    </script>
+}

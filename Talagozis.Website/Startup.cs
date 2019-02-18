@@ -11,6 +11,10 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Piranha;
 using Piranha.AspNetCore.Identity.SQLite;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Talagozis.Website.Models.Configurations;
 
 namespace Talagozis.Website
 {
@@ -31,6 +35,10 @@ namespace Talagozis.Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            Directory.CreateDirectory("../database");
+            Directory.CreateDirectory("../uploads");
+            Directory.CreateDirectory("../logs");
+
             services.Configure<MvcOptions>(options =>
             {
                 // options.Filters.Add(new RequireHttpsAttribute());
@@ -41,12 +49,15 @@ namespace Talagozis.Website
                 config.ModelBinderProviders.Insert(0, new Piranha.Manager.Binders.AbstractModelBinderProvider());
             });
             services.AddPiranhaApplication();
-            services.AddPiranhaFileStorage();
-            services.AddPiranhaImageSharp();
-            services.AddPiranhaEF(options => options.UseSqlite("Filename=./piranha.blog.db"));
-            services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=./piranha.blog.db"));
+            services.AddPiranhaFileStorage(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads/"), "~/uploads/");
+            services.AddPiranhaImageSharp();            
+            services.AddPiranhaEF(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
+            services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
             services.AddPiranhaManager();
             services.AddSingleton<ICache, Piranha.Cache.MemCache>();
+
+            services.AddOptions();
+            services.Configure<PaypalCredentials>(Configuration.GetSection("Paypal"));
 
             return services.BuildServiceProvider();
         }
@@ -73,7 +84,7 @@ namespace Talagozis.Website
 
             // Initialize Piranha
             var api = services.GetService<IApi>();
-            App.Init(api);
+            App.Init();
 
             // Configure cache level
             App.CacheLevel = Piranha.Cache.CacheLevel.None;
@@ -97,6 +108,11 @@ namespace Talagozis.Website
                 .DeleteOrphans();
 
 
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads")),
+                RequestPath = new PathString("/uploads")
+            });
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UsePiranha();
@@ -106,14 +122,22 @@ namespace Talagozis.Website
 
             app.UseMvc(routes =>
             {
+                //routes.MapRoute(
+                //    name: "areaRoute",
+                //    template: "{area:exists}/{controller}/{action}/{id?}",
+                //    defaults: new { controller = "Home", action = "Index" }
+                //);
+
                 routes.MapRoute(
-                    name: "areaRoute",
-                    template: "{area:exists}/{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index" });
+                    name: "defaultHome",
+                    template: "{action}",
+                    defaults: new { controller = "Home", action = "Index" }
+                );
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=home}/{action=index}/{id?}");
+                    template: "{controller=home}/{action=index}/{id?}"
+                );
             });
         }
     }

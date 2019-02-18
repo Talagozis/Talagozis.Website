@@ -115,11 +115,13 @@ internal class CVRepository
                     typeOfBusiness = "Software development for business automation",
                     projects = new List<Project>
                     {
+                        //new Project { name = "HaciendaVerde", description = "Real estate booking" },
                         new Project { name = "Cloud Business", description = "Cloud invoice management platform" },
                         new Project { name = "Logger", description = "Software analytics service for tracking and monitoring" },
                         new Project { name = "KTEL", description = "Greece Buses Routes" },
                         new Project { name = "Protocol", description = "Protocol management application" },
                         new Project { name = "Storehouse", description = "Warehouse management application" },
+                        new Project { name = "Land registry", description = "Land registry service platform" },
                     },
                 },
                 new WorkExperience
@@ -154,6 +156,26 @@ internal class CVRepository
                         new Project { name = "Amvrosia Payment Portal", description = TEST_TEXT },
                         new Project { name = "Amvrosia Desktop Application", description = TEST_TEXT },
                     },
+                },
+                new WorkExperience
+                {
+                    position = "Full-Stack Software Developer",
+                    companyName = "CNOP",
+                    startDate = new DateTime(2018, 6, 1),
+                    endDate = new DateTime(2019, 1, 1),
+                    description = "Develop software and operations for CNOP platform using ASP.NET Core, AngularJs and CouchDB on AWS.",
+                    typeOfBusiness = "Stock market for shoes",
+                    link = "//cnop.com",
+                },
+                new WorkExperience
+                {
+                    position = "Machine Learning Engineer",
+                    companyName = "StarBet",
+                    startDate = new DateTime(2018, 3, 1),
+                    endDate = null,
+                    description = "Design and develop binomial regression and classification software on big data using F#, ML.NET and TensorFlow.",
+                    typeOfBusiness = "Anomaly detection and score predictions on international football matches.",
+                    link = "//starbet.gr",
                 },
                 new WorkExperience
                 {

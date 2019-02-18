@@ -297,4 +297,8 @@ __pycache__/
 
 
 *.db
-**/wwwroot/uploads/
+**/database/
+**/uploads/
+**/logs/
+**/appsettings.Production.json
+**/appsettings.Development.json

@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using System;
+using System.Linq;
+using Talagozis.Website.Models;
+using Talagozis.Website.Models.ViewModels;
 
 namespace Talagozis.Website.Controllers
 {
-    public class CmsController : Controller
+    public class CmsController : BaseController
     {
         private readonly IApi _api;
 
@@ -37,8 +40,33 @@ namespace Talagozis.Website.Controllers
             else if (tag.HasValue)
                 model = _api.Archives.GetByTagId<Models.BlogArchive>(id, tag.Value, page, year, month);
             else model = _api.Archives.GetById<Models.BlogArchive>(id, page, year, month);
-            
-            return View(model);
+
+            ArchiveViewModel archiveViewModel = new ArchiveViewModel
+            {
+                BlogArchive = model,
+            };
+
+            return View(archiveViewModel);
+        }
+
+        /// <summary>
+        /// Gets the post with the given id.
+        /// </summary>
+        /// <param name="id">The unique post id</param>
+        [Route("post")]
+        public IActionResult Post(Guid id)
+        {
+            var model = _api.Posts.GetById<Models.BlogPost>(id);
+
+            PostViewModel postViewModel = new PostViewModel
+            {
+                BlogPost = model,
+                BlogArchive = _api.Archives.GetById<BlogArchive>(model.BlogId, null, null, null, null),
+                Categories = _api.Categories.GetAll(model.BlogId).ToList(),
+                Tags = _api.Tags.GetAll(model.BlogId).ToList(),
+            };
+
+            return View(postViewModel);
         }
 
         /// <summary>
@@ -53,16 +81,5 @@ namespace Talagozis.Website.Controllers
             return View(model);
         }
 
-        /// <summary>
-        /// Gets the post with the given id.
-        /// </summary>
-        /// <param name="id">The unique post id</param>
-        [Route("post")]
-        public IActionResult Post(Guid id) 
-        {
-            var model = _api.Posts.GetById<Models.BlogPost>(id);
-
-            return View(model);
-        }
     }
 }
