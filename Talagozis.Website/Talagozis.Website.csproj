@@ -4,29 +4,30 @@
 		<TargetFramework>netcoreapp2.1</TargetFramework>
 	  <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
     <Version>1.19.2.18</Version>
-	</PropertyGroup>
+    <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+	  <Description>Talagozis personal web site and blog.</Description>
+	  <Copyright>Talagozis 2013-2019</Copyright>
+	  <PackageProjectUrl>https://github.com/Talagozis/Talagozis.Website</PackageProjectUrl>
+	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
 
-	<PropertyGroup>
-		<ApplicationInsightsResourceId>/subscriptions/78ff8d1d-d1d1-49ae-9764-b761494f266d/resourcegroups/Talagozis.Website/providers/microsoft.insights/components/Talagozis.Website</ApplicationInsightsResourceId>
-		<ApplicationInsightsAnnotationResourceId>/subscriptions/78ff8d1d-d1d1-49ae-9764-b761494f266d/resourcegroups/Talagozis.Website/providers/microsoft.insights/components/Talagozis.Website</ApplicationInsightsAnnotationResourceId>
-		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-	</PropertyGroup>
+  <PropertyGroup>
+    <ApplicationInsightsResourceId>/subscriptions/78ff8d1d-d1d1-49ae-9764-b761494f266d/resourcegroups/Talagozis.Website/providers/microsoft.insights/components/Talagozis.Website</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/78ff8d1d-d1d1-49ae-9764-b761494f266d/resourcegroups/Talagozis.Website/providers/microsoft.insights/components/Talagozis.Website</ApplicationInsightsAnnotationResourceId>
+  </PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Properties\PublishProfiles\talagozisVM - Web Deploy.pubxml" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
+		<PackageReference Include="Microsoft.AspNetCore.All" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
 		<PackageReference Include="PayPal" Version="2.0.0-rc2" />
-		<PackageReference Include="Piranha" Version="5.3.0" />
-		<PackageReference Include="Piranha.AspNetCore" Version="5.3.0" />
+		<PackageReference Include="Piranha" Version="5.3.1" />
+		<PackageReference Include="Piranha.AspNetCore" Version="5.3.1" />
 		<PackageReference Include="Piranha.AspNetCore.Identity.SQLite" Version="5.3.0" />
 		<PackageReference Include="Piranha.AttributeBuilder" Version="5.3.0" />
 		<PackageReference Include="Piranha.ImageSharp" Version="5.3.0-rc1" />
 		<PackageReference Include="Piranha.Local.FileStorage" Version="5.3.0" />
-		<PackageReference Include="Piranha.Manager" Version="5.3.0" />
+		<PackageReference Include="Piranha.Manager" Version="5.3.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
