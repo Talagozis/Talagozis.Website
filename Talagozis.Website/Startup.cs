@@ -14,7 +14,8 @@ using Piranha.AspNetCore.Identity.SQLite;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-using Talagozis.Website.Models.Configurations;
+using Talagozis.AspNetCore.Services.Paypal;
+using PaypalCredentials = Talagozis.Website.Models.Configurations.PaypalCredentials;
 
 namespace Talagozis.Website
 {
@@ -56,8 +57,9 @@ namespace Talagozis.Website
             services.AddPiranhaManager();
             services.AddSingleton<ICache, Piranha.Cache.MemCache>();
 
-            services.AddOptions();
-            services.Configure<PaypalCredentials>(Configuration.GetSection("Paypal"));
+            //services.AddOptions();
+
+            services.AddPaypal(Configuration.GetSection("Paypal"));
 
             return services.BuildServiceProvider();
         }

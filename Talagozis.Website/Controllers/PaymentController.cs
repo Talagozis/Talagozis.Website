@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Talagozis.Website.App_Plugins.Services;
-using Talagozis.Website.Models.Configurations;
+using Talagozis.AspNetCore.Services.Paypal;
 using Talagozis.Website.Models.ViewModels;
 
 namespace Talagozis.Website.Controllers
 {
     public class PaymentController : BaseController
-    {       
+    {
         [HttpGet]
         public IActionResult Index()
         {
@@ -21,24 +19,21 @@ namespace Talagozis.Website.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Purchase([FromServices]IOptions<PaypalCredentials> paypalCredentials, uint productBid)
+        public async Task<IActionResult> Purchase([FromServices]IPaypalService paypalService, uint productBid)
         {
-            PaypalService paypalService = new PaypalService(paypalCredentials.Value);
-            var redirectLink = await paypalService.purchase(productBid == 1 ? 3.5m : 5m);
+            var redirectLink = await paypalService.purchase(productBid == 1 ? 3.5m : 5m, "EUR");
 
             return Redirect(redirectLink);
         }
 
-        public async Task<IActionResult> Success([FromServices]IOptions<PaypalCredentials> paypalCredentials, string paymentId, string token, string PayerID)
+        public async Task<IActionResult> Success([FromServices]IPaypalService paypalService, string paymentId, string token, string PayerID)
         {
-            PaypalService paypalService = new PaypalService(paypalCredentials.Value);
-
             try
             {
                 await paypalService.approve(PayerID, paymentId);
                 return Ok("Success!");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 return Ok("Failed!");
             }
