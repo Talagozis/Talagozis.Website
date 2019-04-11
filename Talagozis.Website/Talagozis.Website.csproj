@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.1</TargetFramework>
 	  <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
-    <Version>1.19.2.18</Version>
+    <Version>1.19.4.11</Version>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 	  <Description>Talagozis personal web site and blog.</Description>
@@ -38,6 +38,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Properties\PublishProfiles\" />
+		<Folder Include="wwwroot\lib\manisa\images\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Include="Views\Layout\CV.cshtml" />
