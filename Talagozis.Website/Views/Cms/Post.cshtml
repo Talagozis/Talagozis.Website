@@ -21,7 +21,20 @@
         ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Path),
         ogDescription = Model.BlogPost.Heading.shortDescription,
         ogImage = Model.BlogArchive.Heading.PrimaryImage,
-        ogSiteName = "Talagozis Christos Blog"
+        ogSiteName = "Talagozis Christos Blog",
+        twitterCard = TwitterCard.SummaryLargeImage,
+        twitterTitle = Model.BlogPost.Title,
+        twitterDomain = Context.Request.getUrl().GetLeftPart(UriPartial.Authority),
+        twitterDescription = Model.BlogPost.Heading.shortDescription,
+        twitterUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Path),
+        twitterSite = "Talagozis Christos Blog",
+        twitterCreator = "Talagozis Christos",
+        twitterImage = Model.BlogArchive.Heading.PrimaryImage,
+        twitterLabels = new Dictionary<string, string>
+        {
+            {"Category",  Model.BlogPost.Category.Title },
+            {"Tags", string.Join(" ,", Model.BlogPost.Tags.Select(a => a.Title)) },
+        }
     };
 
     Model.htmlHeader = new HtmlHeaderViewModel

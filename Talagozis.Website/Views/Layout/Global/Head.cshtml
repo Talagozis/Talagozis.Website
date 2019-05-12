@@ -2,7 +2,7 @@
 @using Talagozis.AspNetCore.Models.ViewModels.Html
 
 
-@model Talagozis.AspNetCore.Models.ViewModels.ViewModel
+@model Talagozis.AspNetCore.Models.ViewModels.IViewModel
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,14 +29,14 @@
 <link rel="apple-touch-icon" sizes="152x152" href="~/img/icons/apple-icon-152x152.png">
 <link rel="apple-touch-icon" sizes="180x180" href="~/img/icons/apple-icon-180x180.png">
 <meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="~/img/icons/ms-icon-144x144.png">
+<meta name="msapplication-TileImage" content="/img/icons/ms-icon-144x144.png">
 
 
-@if (string.IsNullOrEmpty(Model.htmlHead.title))
+@if (string.IsNullOrWhiteSpace(Model.htmlHead.title))
 {
-    throw new NotImplementedException();
+    throw new ArgumentNullException("Head title is empty or null");
 }
-<title>@Model.htmlHead.title</title>
+<title>@(Model.htmlHead.title)@(!string.IsNullOrWhiteSpace(Model.htmlHead.titleSuffix) ? " | " + Model.htmlHead.titleSuffix : string.Empty )</title>
 
 @if (!string.IsNullOrEmpty(Model.htmlHead.description))
 {
@@ -140,4 +140,48 @@
 @if (!string.IsNullOrEmpty(Model.htmlHead.fbPlaceLocationLongitude))
 {
     <meta property="place:location:longitude" content="@Model.htmlHead.fbPlaceLocationLongitude" />
+}
+
+
+@if (!string.IsNullOrEmpty(Model.htmlHead.twitterTitle))
+{
+    <meta name="twitter:title" content="@Model.htmlHead.twitterTitle" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.twitterDescription))
+{
+    <meta name="twitter:description" content="@Model.htmlHead.twitterDescription" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.twitterImage))
+{
+    <meta name="twitter:image" content="@Model.htmlHead.twitterImage" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.twitterUrl))
+{
+    <meta name="twitter:url" content="@Model.htmlHead.twitterUrl" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.twitterCreator))
+{
+    <meta name="twitter:creator" content="@Model.htmlHead.twitterCreator" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.twitterSite))
+{
+    <meta name="twitter:site" content="@Model.htmlHead.twitterSite" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.twitterDomain))
+{
+    <meta name="twitter:domain" content="@Model.htmlHead.twitterDomain" />
+}
+@if (Model.htmlHead.twitterCard.HasValue)
+{
+    <meta name="twitter:card" content="@Model.htmlHead.twitterCard.Value.toString()" />
+}
+@if (Model.htmlHead.twitterLabels != null)
+{
+    int c = 1;
+    foreach (var label in Model.htmlHead.twitterLabels)
+    {
+        c++;
+        <meta name="twitter:label@(c)" value="@label.Key" />
+        <meta name="twitter:data@(c)" value="@label.Value" />
+    }
 }
