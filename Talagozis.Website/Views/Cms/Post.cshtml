@@ -64,12 +64,11 @@
         header h1 {
             margin: 30px 0;
         }
-
-        header p {
-            margin-bottom: 2rem;
-        }
         header div.post-shortdescription {
             font-style: italic;
+        }
+        header div.post-shortdescription > p {
+            margin-bottom: 2rem;
         }
         .sidebar h3 {
             color: #d45c20;
@@ -134,7 +133,9 @@
 
                             <h1>@Model.BlogPost.Title</h1>
                             <div class="post-shortdescription">
-                                @Html.Raw(Model.BlogPost.Heading.shortDescription)
+                                <p>
+                                    @Html.Raw(Model.BlogPost.Heading.shortDescription)
+                                </p>
                             </div>
 
                         </div>
