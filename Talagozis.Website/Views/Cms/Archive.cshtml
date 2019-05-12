@@ -14,13 +14,14 @@
     Model.htmlHead = new HtmlHeadViewModel
     {
         title = Model.BlogArchive.Title,
+        titleSuffix = "Talagozis",
         description = Model.BlogArchive.Heading.shortDescription,
-        canonical = Context.Request.getUrl().GetLeftPart(UriPartial.Path),
+        canonical = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogArchive.Permalink,
         ogTitle = Model.BlogArchive.Title,
         ogType = OgType.Website,
-        ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Path),
+        ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogArchive.Permalink,
         ogDescription = Model.BlogArchive.Heading.shortDescription,
-        ogImage = Model.BlogArchive.Heading.PrimaryImage,
+        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
         ogSiteName = "Talagozis Christos Blog"
     };
 

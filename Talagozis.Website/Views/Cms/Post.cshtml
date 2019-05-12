@@ -14,6 +14,7 @@
     Model.htmlHead = new HtmlHeadViewModel
     {
         title = Model.BlogPost.Title,
+        titleSuffix = "Talagozis",
         description = Model.BlogPost.Heading.shortDescription,
         canonical = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
         ogTitle = Model.BlogPost.Title,
