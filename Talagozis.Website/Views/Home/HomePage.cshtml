@@ -167,7 +167,9 @@
                             <span>- @post.Published.Value.ToString("dd MMM yyyy") -</span>
                             <hr>
                             <div class="short-description-block">
-                                @Html.Raw(post.Heading.shortDescription)
+                                <p>
+                                    @Html.Raw(post.Heading.shortDescription)
+                                </p>
                             </div>
                         </div>
                         <div class="tags-post">
