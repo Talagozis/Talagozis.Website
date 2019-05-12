@@ -1,3 +1,4 @@
+@using Talagozis.AspNetCore.Extensions
 @using Talagozis.Website.Models.Html
 @using Talagozis.Website.Models.ViewModels
 @inject Piranha.IApi Api
@@ -9,6 +10,19 @@
 }
 
 @{
+    Model.htmlHead = new HtmlHeadViewModel
+    {
+        title = Model.BlogPost.Title,
+        description = Model.BlogPost.Heading.shortDescription,
+        canonical = Context.Request.getUrl().GetLeftPart(UriPartial.Path),
+        ogTitle = Model.BlogPost.Title,
+        ogType = OgType.Website,
+        ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Path),
+        ogDescription = Model.BlogPost.Heading.shortDescription,
+        ogImage = Model.BlogArchive.Heading.PrimaryImage,
+        ogSiteName = "Talagozis Christos Blog"
+    };
+
     Model.htmlHeader = new HtmlHeaderViewModel
     {
         title = "Blog",

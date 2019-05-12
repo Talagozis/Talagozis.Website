@@ -1,0 +1,144 @@
+﻿@using Talagozis.AspNetCore.Extensions
+@using Talagozis.AspNetCore.Models.ViewModels
+@using Talagozis.AspNetCore.Models.ViewModels.Html
+
+
+@model ViewModel
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link type="image/x-icon" rel="shortcut icon" href="~/favicon.ico" asp-append-version="true">
+<link type="image/x-icon" rel="icon" href="~/favicon.ico" asp-append-version="true">
+
+<link rel="alternate" hreflang="el-gr" href="@(Context.Request.getUrl().GetLeftPart(UriPartial.Path))" />
+
+<link rel="manifest" href="~/manifest.json" asp-append-version="true">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="icon" type="image/png" sizes="32x32" href="~/img/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="~/img/icons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="~/img/icons/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="~/img/icons/android-icon-192x192.png">
+<link rel="apple-touch-icon" sizes="57x57" href="~/img/icons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="~/img/icons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="~/img/icons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="~/img/icons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="~/img/icons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="~/img/icons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="~/img/icons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="~/img/icons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="~/img/icons/apple-icon-180x180.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="~/img/icons/ms-icon-144x144.png">
+
+
+@if (string.IsNullOrEmpty(Model.htmlHead.title))
+{
+    throw new NotImplementedException();
+}
+<title>@Model.htmlHead.title</title>
+
+@if (!string.IsNullOrEmpty(Model.htmlHead.description))
+{
+    <meta name="description" content="@Model.htmlHead.description">
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.keywords))
+{
+    <meta name="keywords" content="@Model.htmlHead.keywords">
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.canonical))
+{
+    <link rel="canonical" href="@Model.htmlHead.canonical.ToLower()" />
+}
+
+@if (!string.IsNullOrEmpty(Model.htmlHead.prefetchLink))
+{
+    <link rel="prefetch" href="@Model.htmlHead.prefetchLink.ToLower()">
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.prerenderLink))
+{
+    <link rel="prerender" href="@Model.htmlHead.prerenderLink.ToLower()">
+}
+
+
+
+@if (!string.IsNullOrEmpty(Model.htmlHead.ogTitle))
+{
+    <meta property="og:title" content="@Model.htmlHead.ogTitle" />
+}
+@if (Model.htmlHead.ogType.HasValue)
+{
+    <meta property="og:type" content="@Model.htmlHead.ogType.Value.toString()" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.ogUrl))
+{
+    <meta property="og:url" content="@Model.htmlHead.ogUrl.ToLower()" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.ogImage))
+{
+    <meta property="og:image" content="@Model.htmlHead.ogImage" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.ogDescription))
+{
+    <meta property="og:description" content="@Model.htmlHead.ogDescription" />
+}
+@if (Model.htmlHead.ogDeterminer.HasValue)
+{
+    <meta property="og:determiner" content="@Model.htmlHead.ogDeterminer.Value.toString()" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.ogLocale))
+{
+    <meta property="og:locale" content="@Model.htmlHead.ogLocale" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.ogSiteName))
+{
+    <meta property="og:site_name" content="@Model.htmlHead.ogSiteName" />
+}
+
+
+
+@if (!string.IsNullOrEmpty(Model.htmlHead.fbRestaurantRestaurant))
+{
+    <meta property="restaurant:restaurant" content="@Model.htmlHead.fbRestaurantRestaurant" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.fbRestaurantContactInfoStreetAddress))
+{
+    <meta property="restaurant:contact_info:street_address" content="@Model.htmlHead.fbRestaurantContactInfoStreetAddress" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.fbRestaurantContactInfoLocality))
+{
+    <meta property="restaurant:contact_info:locality" content="@Model.htmlHead.fbRestaurantContactInfoLocality" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.fbRestaurantContactInfoRegion))
+{
+    <meta property="restaurant:contact_info:region" content="@Model.htmlHead.fbRestaurantContactInfoRegion" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.fbRestaurantContactInfoPostalCode))
+{
+    <meta property="restaurant:contact_info:postal_code" content="@Model.htmlHead.fbRestaurantContactInfoPostalCode" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.fbRestaurantContactInfoCountryName))
+{
+    <meta property="restaurant:country_name" content="@Model.htmlHead.fbRestaurantContactInfoCountryName" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.fbRestaurantContactInfoEmail))
+{
+    <meta property="restaurant:contact_info:email" content="@Model.htmlHead.fbRestaurantContactInfoEmail" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.fbRestaurantContactInfoPhoneNumber))
+{
+    <meta property="restaurant:contact_info:phone_number" content="@Model.htmlHead.fbRestaurantContactInfoPhoneNumber" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.fbRestaurantContactInfoWebsite))
+{
+    <meta property="restaurant:contact_info:website" content="@Model.htmlHead.fbRestaurantContactInfoWebsite" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.fbPlaceLocationLatitude))
+{
+    <meta property="place:location:latitude" content="@Model.htmlHead.fbPlaceLocationLatitude" />
+}
+@if (!string.IsNullOrEmpty(Model.htmlHead.fbPlaceLocationLongitude))
+{
+    <meta property="place:location:longitude" content="@Model.htmlHead.fbPlaceLocationLongitude" />
+}

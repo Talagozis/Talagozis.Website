@@ -1,3 +1,4 @@
+@using Talagozis.AspNetCore.Extensions
 @using Talagozis.Website.Models.Cv
 @using Talagozis.Website.Models
 @using Talagozis.Website.Models.Html
@@ -10,6 +11,18 @@
 }
 
 @{
+    Model.htmlHead = new HtmlHeadViewModel
+    {
+        title = "Talagozis Christos Blog",
+        description = "Talagozis personal blog about technology.",
+        canonical = Context.Request.getUrl().GetLeftPart(UriPartial.Path),
+        ogTitle = "Talagozis Christos Blog",
+        ogType = OgType.Website,
+        ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Path),
+        ogDescription = "Talagozis personal blog about technology.",
+        ogSiteName = "Talagozis Christos Blog"
+    };
+
     Model.htmlHeader = new HtmlHeaderViewModel
     {
         title = "Home",
