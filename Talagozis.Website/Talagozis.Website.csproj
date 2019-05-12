@@ -2,7 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.1</TargetFramework>
-	  <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+	  <RazorCompileOnPublish>false</RazorCompileOnPublish>
+	  <!--<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>-->
     <Version>1.19.5.12</Version>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

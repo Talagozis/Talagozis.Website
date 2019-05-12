@@ -1,4 +1,5 @@
-﻿@using Talagozis.AspNetCore.Models.ViewModels.Html
+﻿@using Talagozis.AspNetCore.Extensions
+@using Talagozis.AspNetCore.Models.ViewModels.Html
 
 @model Talagozis.Website.Models.ViewModels.PaymentViewModel
 
@@ -7,6 +8,19 @@
 }
 
 @{
+    Model.htmlHead = new HtmlHeadViewModel
+    {
+        title = "Talagozis Christos Donation",
+        titleSuffix = "Talagozis",
+        description = "Talagozis personal blog about technology.",
+        canonical = Context.Request.getUrl().GetLeftPart(UriPartial.Path),
+        ogTitle = "Talagozis Christos Blog",
+        ogType = OgType.Website,
+        ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Path),
+        ogDescription = "Talagozis personal blog about technology.",
+        ogSiteName = "Talagozis Christos Blog"
+    };
+
     Model.htmlHeader = new HtmlHeaderViewModel
     {
         title = "Payment",
