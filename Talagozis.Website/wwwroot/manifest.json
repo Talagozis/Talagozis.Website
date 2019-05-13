@@ -1,8 +1,11 @@
 {
-  "name": "Talagozis Christos Blog",
-  "short_name": "Talagozis",
-  "description": "Talagozis Christos Blog Site",
-  "background_color": "#3ac3cb",
-  "theme_color": "#3ac3cb",
-  "prefer_related_applications": false
+  	"version": "1.0.0.0",
+	"name": "Talagozis Christos Blog",
+	"short_name": "Talagozis",
+	"description": "Talagozis Christos Blog Site",
+	"start_url": "/?utm_source=a2hs",
+	"display": "standalone",
+	"background_color": "#3ac3cb",
+	"theme_color": "#3ac3cb",
+	"prefer_related_applications": false
 }
