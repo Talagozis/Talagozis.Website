@@ -127,7 +127,7 @@ internal class CVRepository
                 new WorkExperience
                 {
                     companyName = "Nektar Kourtidis Bros S.A.",
-                    position = "Leader Developer / Scrum Master",
+                    position = "Lead Developer / Scrum Master",
                     startDate = new DateTime(2014, 8, 1),
                     endDate = null,
                     description = "Design and develop the Enterprise Resource Planning platform using microservices architecture in .NET, Azure, Cognitive services and much more.",
