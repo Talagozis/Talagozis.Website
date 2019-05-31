@@ -54,8 +54,10 @@ namespace Talagozis.Website.Controllers
             var flutterArchiveId = new Guid("09b2c5b9-21ac-4ffe-8413-5bc0256b7756");
             var reactJsArchiveId = new Guid("6e23dca6-c9ae-4560-af54-ffffea6edefd");
             var aspNetCoreArchiveId = new Guid("bdfcd253-fd56-4554-8b81-94de6a3dea83");
+            var dotnetArchiveId = new Guid("e03275f2-e5d7-4be8-a9ee-88a8136109ff");
+            var lifeOfProgrammerArchiveId = new Guid("a1d84800-7ba6-4444-87f2-5c909942d75f");
 
-			var archives = new List<BlogArchive>
+            var archives = new List<BlogArchive>
             {
                 _api.Archives.GetById<BlogArchive>(csharpArchiveId, 1, null, null, null),
                 _api.Archives.GetById<BlogArchive>(javaArchiveId, 1, null, null, null),
@@ -65,7 +67,9 @@ namespace Talagozis.Website.Controllers
                 _api.Archives.GetById<BlogArchive>(flutterArchiveId, 1, null, null, null),
                 _api.Archives.GetById<BlogArchive>(reactJsArchiveId, 1, null, null, null),
                 _api.Archives.GetById<BlogArchive>(aspNetCoreArchiveId, 1, null, null, null),
-            }.Where(a => a.Published.HasValue).ToList();
+                _api.Archives.GetById<BlogArchive>(dotnetArchiveId, 1, null, null, null),
+                _api.Archives.GetById<BlogArchive>(lifeOfProgrammerArchiveId, 1, null, null, null),
+            }.Where(a => a.Published.HasValue).OrderByDescending(a => a.Archive.Posts.Max(b => b.Published)).ToList();
 
             BlogViewModel blogViewModel = new BlogViewModel
             {
