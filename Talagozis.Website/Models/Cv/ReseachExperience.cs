@@ -11,5 +11,6 @@ namespace Talagozis.Website.Models.Cv
         public DateTime? endDate { get; set; }
         public string description { get; set; }
         public string link { get; set; }
+        public string publicationLink { get; set; }
     }
 }

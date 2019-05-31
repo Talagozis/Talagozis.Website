@@ -98,7 +98,7 @@ internal class CVRepository
                         new Course { name = "Digital devices "},
                         new Course { name = "Computer Architecture "},
                         new Course { name = "Software Design "},
-                        new Course { name = "  Script Programming using Javascript"}
+                        new Course { name = "Script Programming using Javascript"}
                     },
                     projects = new List<Project>(),
                 },
@@ -127,7 +127,7 @@ internal class CVRepository
                 new WorkExperience
                 {
                     companyName = "Nektar Kourtidis Bros S.A.",
-                    position = "Chief Technology Officer",
+                    position = "Leader Developer / Scrum Master",
                     startDate = new DateTime(2014, 8, 1),
                     endDate = null,
                     description = "Design and develop the Enterprise Resource Planning platform using microservices architecture in .NET, Azure, Cognitive services and much more.",
@@ -155,6 +155,7 @@ internal class CVRepository
                         new Project { name = "Amvrosia Web Api", description = TEST_TEXT },
                         new Project { name = "Amvrosia Payment Portal", description = TEST_TEXT },
                         new Project { name = "Amvrosia Desktop Application", description = TEST_TEXT },
+                        new Project { name = "Amvrosia Progressive Web App", description = TEST_TEXT },
                     },
                 },
                 new WorkExperience
@@ -187,8 +188,8 @@ internal class CVRepository
                     typeOfBusiness = "Software development for vacation booking",
                     projects = new List<Project>
                     {
-                        new Project { name = "BlumenRiviera.com", description = "Online property booking." },
-                        new Project { name = "SyncUBooking", description = "Online property booking synchronization." },
+                        new Project { name = "BlumenRiviera.com", description = "Online property booking platform." },
+                        new Project { name = "SyncUBooking", description = "Online property booking synchronization engine." },
                     },
                 },
                 new WorkExperience
@@ -217,7 +218,7 @@ internal class CVRepository
                     startDate = new DateTime(2016, 7, 12),
                     endDate = null,
                     description = "Research and develop algorithms for data clustering using Matlab tools and Python.",
-
+                    publicationLink = @"https://waset.org/publications/10008128/a-parallel-implementation-of-k-means-in-matlab",
                 },
                 new ResearchExperience
                 {
@@ -239,7 +240,7 @@ internal class CVRepository
                     startDate = new DateTime(2012, 11, 18),
                     endDate = new DateTime(2016, 7, 1),
                     description = "Develop algorithms for information classification optimization through parallel processing.",
-
+                    publicationLink = @"https://pdfs.semanticscholar.org/9aab/9d4d1213051ff3b7ea5aab8a5dd41e18f7e6.pdf?_ga=2.12012215.2026984106.1559296832-1893411076.1559296832",
                 },
             },
             awards = new List<Awards>
