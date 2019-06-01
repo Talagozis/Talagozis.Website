@@ -15,7 +15,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Talagozis.AspNetCore.Services.Paypal;
-using PaypalCredentials = Talagozis.Website.Models.Configurations.PaypalCredentials;
+using WebMarkupMin.AspNetCore2;
 
 namespace Talagozis.Website
 {
@@ -60,6 +60,10 @@ namespace Talagozis.Website
             //services.AddOptions();
 
             services.AddPaypal(Configuration.GetSection("Paypal"));
+
+            services.AddWebMarkupMin(options => { options.DisablePoweredByHttpHeaders = true; })
+                    .AddHttpCompression();
+
 
             return services.BuildServiceProvider();
         }
@@ -121,6 +125,8 @@ namespace Talagozis.Website
             app.UsePiranhaManager();
 
             // Piranha.App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
+
+            app.UseWebMarkupMin();
 
             app.UseMvc(routes =>
             {
