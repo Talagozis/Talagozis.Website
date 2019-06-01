@@ -62,6 +62,7 @@ namespace Talagozis.Website
             services.AddPaypal(Configuration.GetSection("Paypal"));
 
             services.AddWebMarkupMin(options => { options.DisablePoweredByHttpHeaders = true; })
+                    .AddHtmlMinification()
                     .AddHttpCompression();
 
 
