@@ -21,13 +21,13 @@
         <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/main.css" />
-        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/default-color.manisa.css" />
-        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/manisa-icon.css" />
-        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/lightbox.min.css" />
-        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/slick.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/main.css" asp-append-version="true" />
+        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/default-color.manisa.css" asp-append-version="true" />
+        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/manisa-icon.css" asp-append-version="true" />
+        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/lightbox.min.css" asp-append-version="true" />
+        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/slick.css" asp-append-version="true" />
 
-        <link rel="stylesheet" type="text/css" href="~/css/home/custom.css?v=20181213" />
+        <link rel="stylesheet" type="text/css" href="~/css/home/custom.css" asp-append-version="true" />
 
         @RenderSection("css", true)
     </environment>
@@ -37,13 +37,13 @@
         <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/main.css" />
-        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/default-color.manisa.css" />
-        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/manisa-icon.css" />
-        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/lightbox.min.css" />
-        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/slick.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/main.css" asp-append-version="true" />
+        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/default-color.manisa.css" asp-append-version="true" />
+        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/manisa-icon.css" asp-append-version="true" />
+        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/lightbox.min.css" asp-append-version="true" />
+        <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/slick.css" asp-append-version="true" />
 
-        <link rel="stylesheet" type="text/css" href="~/css/home/custom.css?v=20181213" />
+        <link rel="stylesheet" type="text/css" href="~/css/home/custom.css" asp-append-version="true" />
 
         @RenderSection("css", true)
     </environment>
@@ -114,39 +114,15 @@
     </footer>
 
     <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
         <!-- <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script> -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-        <script src="~/lib/vertica/js/main.js" asp-append-version="true"></script>
-        <script src="~/lib/vertica/vendor/jquery.easing.min.js"></script>
-        <script src="~/lib/vertica/vendor/jquery.mousewheel.min.js"></script>
-        <script src="~/lib/vertica/vendor/jquery.nicescroll.min.js"></script>
-        <script src="~/lib/vertica/vendor/jquery.nicescroll.plus.js"></script>
-        <script src="~/lib/vertica/vendor/waypoints.min.js"></script>
-        <script src="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.min.js"></script>
-        <script src="~/lib/vertica/vendor/jquery.bxslider.min.js"></script>
-        <script src="~/lib/vertica/vendor/jquery.validate.min.js"></script>
-        <script src="~/lib/vertica/vendor/placeholders.jquery.min.js"></script>
-        <script src="~/lib/vertica/vendor/cross-browser.js"></script>
 
         @RenderSection("js", true)
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js" asp-fallback-src="~/lib/jquery/dist/jquery.min.js" asp-fallback-test="window.jQuery" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-        <script src="~/lib/vertica/js/main.js" asp-append-version="true"></script>
-        <script src="~/lib/vertica/vendor/jquery.easing.min.js"></script>
-        <script src="~/lib/vertica/vendor/jquery.mousewheel.min.js"></script>
-        <script src="~/lib/vertica/vendor/jquery.nicescroll.min.js"></script>
-        <script src="~/lib/vertica/vendor/jquery.nicescroll.plus.js"></script>
-        <script src="~/lib/vertica/vendor/waypoints.min.js"></script>
-        <script src="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.min.js"></script>
-        <script src="~/lib/vertica/vendor/jquery.bxslider.min.js"></script>
-        <script src="~/lib/vertica/vendor/jquery.validate.min.js"></script>
-        <script src="~/lib/vertica/vendor/placeholders.jquery.min.js"></script>
-        <script src="~/lib/vertica/vendor/cross-browser.js"></script>
 
         @RenderSection("js", true)
     </environment>

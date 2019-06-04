@@ -192,11 +192,15 @@ $(document).ready(function () {
     });
     
     // Counter Up
+    if ($('.counter').counterUp) {
+        $('.counter').counterUp({
+            delay: 20,
+            time: 1500
+        });
+    }
+
+
     
-    $('.counter').counterUp({
-        delay: 20,
-        time: 1500
-    });
     
     // Active Shuffle
     
@@ -350,17 +354,19 @@ $(document).ready(function () {
     });
     
     // Slider Background
-    
-    $('.slider').slick({
-        infinite: true,
-        speed: 500,
-        fade: true,
-        cssEase: 'linear',
-        autoplay: true,
-        autoplaySpeed: 5000,
-        prevArrow: '<span class="slick-prev"> < </span>',
-        nextArrow: '<span class="slick-next"> > </span>'
-    });
+    if ($('.slider').slick) {
+        $('.slider').slick({
+            infinite: true,
+            speed: 500,
+            fade: true,
+            cssEase: 'linear',
+            autoplay: true,
+            autoplaySpeed: 5000,
+            prevArrow: '<span class="slick-prev"> < </span>',
+            nextArrow: '<span class="slick-next"> > </span>'
+        });
+    }
+
     
     // Paralax
 
