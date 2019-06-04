@@ -7,7 +7,7 @@
     Layout = "~/Views/Layout/Home.cshtml";
 }
 
-@{    
+@{
     Model.htmlHead = new HtmlHeadViewModel
     {
         title = "Talagozis Christos Contact",
@@ -25,10 +25,10 @@
     {
         title = "Contact",
         breadcrumps = new List<Breadcrump>
-        {
-            new Breadcrump {text = "Home"},
-            new Breadcrump {controller = "Home",action = "Contact", text = "Contact"},
-        },
+{
+    new Breadcrump {text = "Home"},
+    new Breadcrump {controller = "Home",action = "Contact", text = "Contact"},
+},
     };
 }
 
@@ -38,62 +38,52 @@
             margin-bottom: 80px;
             text-align: center;
         }
-
-            .section-head h3 {
-                font-weight: 900;
-                font-size: 40px;
-                position: relative;
-                display: inline-block;
-                z-index: 4;
-            }
-
+        .section-head h3 {
+            font-weight: 900;
+            font-size: 40px;
+            position: relative;
+            display: inline-block;
+            z-index: 4;
+        }
         .contact {
             padding-bottom: 30px;
         }
-
-            .contact .info .item {
-                margin-bottom: 30px;
-            }
-
-                .contact .info .item span {
-                    display: inline-block
-                }
-
-                .contact .info .item .icon {
-                    font-size: 25px;
-                    margin-bottom: 15px;
-                    width: 60px;
-                    height: 60px;
-                    line-height: 60px;
-                    background: #019d9b;
-                    border-radius: 50%;
-                    -webkit-transition: all .5s;
-                    transition: all .5s;
-                    color: white;
-                }
-
-                .contact .info .item h6 {
-                    font-weight: 700;
-                    margin-bottom: 10px;
-                }
-
-            .contact .form input[type="text"], .contact .form input[type="email"], .contact .form textarea {
-                width: 100%;
-                border: 0;
-                border-radius: 5px;
-                padding: 10px;
-                background: #f4f4f4;
-            }
-
-            .contact .form .buton {
-                padding: 10px 40px;
-            }
-
+        .contact .info .item {
+            margin-bottom: 30px;
+        }
+        .contact .info .item span {
+            display: inline-block
+        }
+        .contact .info .item .icon {
+            font-size: 25px;
+            margin-bottom: 15px;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            background: #019d9b;
+            border-radius: 50%;
+            -webkit-transition: all .5s;
+            transition: all .5s;
+            color: white;
+        }
+        .contact .info .item h6 {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .contact .form input[type="text"], .contact .form input[type="email"], .contact .form textarea {
+            width: 100%;
+            border: 0;
+            border-radius: 5px;
+            padding: 10px;
+            background: #f4f4f4;
+        }
+        .contact .form .buton {
+            padding: 10px 40px;
+        }
         .buton-bg {
             background: #1c1c1c;
             color: #eee;
         }
-
         .buton {
             padding: 10px 30px;
             border: 1px solid #1c1c1c;
@@ -106,7 +96,7 @@
 }
 
 @section js {
-    <script src="~/js/manisa.js"></script>
+    <script src="~/lib/manisa/js/manisa.js" asp-append-version="true"></script>
 }
 
 

@@ -28,10 +28,10 @@
     {
         title = "Blog",
         breadcrumps = new List<Breadcrump>
-        {
-            new Breadcrump {text = "Home"},
-            new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
-        },
+{
+    new Breadcrump {text = "Home"},
+    new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
+},
     };
 }
 
@@ -41,52 +41,37 @@
             background-image: url('/images/pattern.jpg');
             background-size: auto;
         }
-
         section.header, section.blog {
             width: auto;
         }
-
         section.header {
             background-position: inherit;
         }
-
         .header-blog {
             margin-bottom: 0;
             height: 350px;
         }
-
-            .header-blog h1 {
-                height: 350px;
-                line-height: 350px;
-            }
-
+        .header-blog h1 {
+            height: 350px;
+            line-height: 350px;
+        }
         .blog-page .col-lg-4 {
             margin-bottom: 80px;
         }
-
         .blog .post .img-post {
             border-bottom: 1px solid #eeeeee;
         }
-
         .img-post a {
             display: block;
         }
-
-            .img-post a img.img-fluid {
-                width: 100%;
-            }
+        .img-post a img.img-fluid {
+            width: 100%;
+        }
     </style>
 }
 
 @section js {
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="~/js/manisa.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
-    <script>
-        particlesJS.load('particles-js', '/js/particlesjs-config.json', function () {
-            console.log('callback - particles.js config loaded');
-        });
-    </script>
+    <script src="~/lib/manisa/js/manisa.js" asp-append-version="true"></script>
 }
 
 

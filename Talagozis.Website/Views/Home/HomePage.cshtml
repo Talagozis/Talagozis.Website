@@ -41,62 +41,56 @@
             background-position: 50% 80%;
             height: 460px;
         }
-
         section.blog, section.stat, section.contact {
             background-image: url('/images/pattern.jpg');
             background-size: auto;
         }
-
         section.header, section.blog, section.educ, section.stat, section.contact {
             width: auto;
         }
-
+        section.header {
+            background-image: none;
+            height: auto;
+        }
+        section.header #particles-js {
+            position: relative;
+        }
         section.blog {
             padding-bottom: 180px;
             margin-bottom: 0;
             border-bottom: 1px solid #D9D9D9;
         }
-
         section.educ {
             padding-bottom: 140px;
             background-color: #F9F9F9;
         }
-
         section.contact {
             padding-bottom: 60px;
             margin-bottom: 0;
         }
-
         .educ .education .title .infos-educ .info-timeline span {
             display: inline;
             letter-spacing: 0.4px;
         }
-
         .infos-post .short-description-block {
             font-size: 14px;
         }
-
-            .infos-post .short-description-block a {
-                color: #007bff;
-            }
-
+        .infos-post .short-description-block a {
+            color: #007bff;
+        }
         .blog .post .infos-post h3 {
             min-height: 90px;
         }
-
         .blog .post .infos-post p {
             min-height: 150px;
             line-height: 1.6;
         }
-
         .blog .btn-manisa {
             margin: 100px auto 0;
         }
-
         .educ .btn-manisa {
             margin: 60px auto 0;
         }
-
         .category-post span.title {
             white-space: nowrap;
         }
@@ -105,7 +99,7 @@
 
 @section js {
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="~/js/manisa.js"></script>
+    <script src="~/lib/manisa/js/manisa.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
     <script>
         particlesJS.load('particles-js', '/js/particlesjs-config.json', function () {
@@ -114,8 +108,8 @@
     </script>
 }
 
-<section class="header row" style="background-image: none; height: auto;">
-    <div class="col" id="particles-js" style="position: relative;">
+<section class="header row">
+    <div class="col" id="particles-js">
 
         <div class="title">
             <h1>Hi! I am <span class="pattaya">Christos</span></h1>
@@ -156,7 +150,7 @@
                             </a>
                         </div>
                         <div class="img-post">
-                            <a href="blog-post.html" target="_blank">
+                            <a href="@post.Permalink" target="_blank">
                                 <img src="@Url.Content(post.Heading.PrimaryImage.Resize(Api, 334, 222))" class="img-fluid" alt="img-post">
                             </a>
                         </div>
