@@ -59,7 +59,7 @@ namespace Talagozis.Website
 
             //services.AddOptions();
 
-            services.AddPaypal(Configuration.GetSection("Paypal"));
+            services.AddPaypalService(Configuration.GetSection("Paypal"));
 
             services.AddWebMarkupMin(options => { options.DisablePoweredByHttpHeaders = true; })
                     .AddHtmlMinification()
