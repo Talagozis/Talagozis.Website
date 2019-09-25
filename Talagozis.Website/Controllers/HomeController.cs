@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
+using Piranha.Models;
 using Talagozis.Website.Models;
 using Talagozis.Website.Models.Cv;
 using Talagozis.Website.Models.ViewModels;
@@ -18,33 +20,34 @@ namespace Talagozis.Website.Controllers
             _api = api;
         }
         
-        public IActionResult Index()
+        public Task<IActionResult> Index()
         {
             return this.HomePage();
         }
 
-        public IActionResult HomePage()
+        public async Task<IActionResult> HomePage()
         {
             CVRepository cVRepository = new CVRepository();
             Person person = cVRepository.GetMyCV();
 
-            var allPosts = _api.Posts.GetAll<BlogPost>().Where(a => _api.Archives.GetById<BlogArchive>(a.BlogId, 1, null, null, null).Published.HasValue);
+            var allPosts = (await _api.Posts.GetAllBySiteIdAsync<BlogPost>())/*.Where(a => _api.Archives.GetById(a.BlogId, 1, null, null, null).Published.HasValue)*/;
 
-            List<BlogArchive> archives = _api.Posts.GetAll<BlogPost>().Select(a => _api.Archives.GetById<BlogArchive>(a.BlogId, 1, null, null, null)).ToList();
-            archives = archives.Where(a => a.Published.HasValue).ToList();
-            archives = archives.GroupBy(p => p.Id).Select(g => g.First()).ToList();
+            //List<BlogArchive> archives = (await _api.Posts..GetAllAsync()).Select(a => _api.Archives..GetById<BlogArchive>(a.BlogId, 1, null, null, null)).ToList();
+            //archives = archives.Where(a => a.Published.HasValue).ToList();
+            //archives = archives.GroupBy(p => p.Id).Select(g => g.First()).ToList();
 
             HomePageViewModel homePageViewModel = new HomePageViewModel
             {
                 Person = person,
-                Archives = archives,
+                //Archives = archives,
+                Archives = new List<BlogArchive>(),
                 LatestPosts = allPosts.ToList()
             };
 
 			return View("~/Views/Home/HomePage.cshtml", homePageViewModel);
         }
 
-        public IActionResult Blog()
+        public async Task<IActionResult> Blog()
         {
             var csharpArchiveId = new Guid("f6682da4-11f4-40b4-b118-470bcc198613");
             var javaArchiveId = new Guid("e8ed04db-e33b-46fe-97d7-e0e025a269e2");
@@ -57,25 +60,28 @@ namespace Talagozis.Website.Controllers
             var dotnetArchiveId = new Guid("e03275f2-e5d7-4be8-a9ee-88a8136109ff");
             var lifeOfProgrammerArchiveId = new Guid("a1d84800-7ba6-4444-87f2-5c909942d75f");
 
-            var archives = new List<BlogArchive>
+            var archives = new List<PostArchive<PostBase>>
             {
-                _api.Archives.GetById<BlogArchive>(csharpArchiveId, 1, null, null, null),
-                _api.Archives.GetById<BlogArchive>(javaArchiveId, 1, null, null, null),
-                _api.Archives.GetById<BlogArchive>(javascriptArchiveId, 1, null, null, null),
-                _api.Archives.GetById<BlogArchive>(machineLearningArchiveId, 1, null, null, null),
-                _api.Archives.GetById<BlogArchive>(ionicArchiveId, 1, null, null, null),
-                _api.Archives.GetById<BlogArchive>(flutterArchiveId, 1, null, null, null),
-                _api.Archives.GetById<BlogArchive>(reactJsArchiveId, 1, null, null, null),
-                _api.Archives.GetById<BlogArchive>(aspNetCoreArchiveId, 1, null, null, null),
-                _api.Archives.GetById<BlogArchive>(dotnetArchiveId, 1, null, null, null),
-                _api.Archives.GetById<BlogArchive>(lifeOfProgrammerArchiveId, 1, null, null, null),
-            }.Where(a => a.Published.HasValue).OrderByDescending(a => a.Archive.Posts.Max(b => b.Published)).ToList();
+                await _api.Archives.GetByIdAsync<PostBase>(csharpArchiveId, 1, null, null, null),
+                await _api.Archives.GetByIdAsync<PostBase>(javaArchiveId, 1, null, null, null),
+                await _api.Archives.GetByIdAsync<PostBase>(javascriptArchiveId, 1, null, null, null),
+                await _api.Archives.GetByIdAsync<PostBase>(machineLearningArchiveId, 1, null, null, null),
+                await _api.Archives.GetByIdAsync<PostBase>(ionicArchiveId, 1, null, null, null),
+                await _api.Archives.GetByIdAsync<PostBase>(flutterArchiveId, 1, null, null, null),
+                await _api.Archives.GetByIdAsync<PostBase>(reactJsArchiveId, 1, null, null, null),
+                await _api.Archives.GetByIdAsync<PostBase>(aspNetCoreArchiveId, 1, null, null, null),
+                await _api.Archives.GetByIdAsync<PostBase>(dotnetArchiveId, 1, null, null, null),
+                await _api.Archives.GetByIdAsync<PostBase>(lifeOfProgrammerArchiveId, 1, null, null, null),
+            }/*.Where(a => a..Published.HasValue).OrderByDescending(a => a.Archive.Posts.Max(b => b.Published))*/.ToList();
+
+            var categories = (await this._api.Posts.GetAllBySiteIdAsync()).Select(a => a.Category);
+            var tags = (await this._api.Posts.GetAllBySiteIdAsync()).Select(a => a.Tags);
 
             BlogViewModel blogViewModel = new BlogViewModel
             {
                 Archives = archives,
-                Categories = archives.SelectMany(a => _api.Categories.GetAll(a.Id)).ToList(),
-                Tags = archives.SelectMany(a => _api.Tags.GetAll(a.Id)).ToList(),
+                Categories = categories.ToList(),
+                Tags = tags.ToList(),
             };
 
             return View("~/Views/Home/Blog.cshtml", blogViewModel);

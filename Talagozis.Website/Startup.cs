@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +15,7 @@ using Piranha.AspNetCore.Identity.SQLite;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Talagozis.AspNetCore.Extensions;
 using Talagozis.AspNetCore.Services.Paypal;
 using WebMarkupMin.AspNetCore2;
 
@@ -40,24 +42,29 @@ namespace Talagozis.Website
             Directory.CreateDirectory("../uploads");
             Directory.CreateDirectory("../logs");
 
+            services.AddLocalization(options =>
+                options.ResourcesPath = "Resources"
+            );
+
             services.Configure<MvcOptions>(options =>
             {
                 // options.Filters.Add(new RequireHttpsAttribute());
             });
 
-            services.AddMvc(config =>
-            {
-                config.ModelBinderProviders.Insert(0, new Piranha.Manager.Binders.AbstractModelBinderProvider());
-            });
+            services.AddMvc().AddPiranhaManagerOptions().SetCompatibilityVersion(CompatibilityVersion.Version_2_2); ;
+
+            services.AddPiranha();
             services.AddPiranhaApplication();
             services.AddPiranhaFileStorage(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads/"), "~/uploads/");
-            services.AddPiranhaImageSharp();            
+            services.AddPiranhaImageSharp();
+            services.AddPiranhaManager();
+            //services.AddSingleton<ICache, Piranha.Cache.SimpleCache>();
+            services.AddMemoryCache();
+            services.AddPiranhaMemoryCache();
+            //services.AddOptions();
+
             services.AddPiranhaEF(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
             services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
-            services.AddPiranhaManager();
-            services.AddSingleton<ICache, Piranha.Cache.MemCache>();
-
-            //services.AddOptions();
 
             services.AddPaypalService(Configuration.GetSection("Paypal"));
 
@@ -70,10 +77,12 @@ namespace Talagozis.Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider services)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider services, IApi api)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseExceptionHandlerLogger(ex => Console.WriteLine(ex.Message));
 
             if (env.IsDevelopment())
             {
@@ -90,11 +99,11 @@ namespace Talagozis.Website
             }
 
             // Initialize Piranha
-            var api = services.GetService<IApi>();
-            App.Init();
+            //var api = services.GetService<IApi>();
+            App.Init(api);
 
             // Configure cache level
-            App.CacheLevel = Piranha.Cache.CacheLevel.None;
+            App.CacheLevel = Piranha.Cache.CacheLevel.Basic;
 
             // Build content types
             var pageTypeBuilder = new Piranha.AttributeBuilder.PageTypeBuilder(api)

@@ -21,7 +21,7 @@
         ogType = OgType.Website,
         ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
         ogDescription = Model.BlogPost.Heading.shortDescription,
-        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
+        //ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
         ogSiteName = "Talagozis Christos Blog",
         twitterCard = TwitterCard.SummaryLargeImage,
         twitterTitle = Model.BlogPost.Title,
@@ -30,7 +30,7 @@
         twitterUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
         twitterSite = "Talagozis Christos Blog",
         twitterCreator = "Talagozis Christos",
-        twitterImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
+        //twitterImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
         twitterLabels = new Dictionary<string, string>
         {
             {"Category",  Model.BlogPost.Category.Title },
@@ -45,7 +45,7 @@
         {
             new Breadcrump {text = "Home"},
             new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
-            new Breadcrump {plainSlug = Model.BlogArchive.Permalink, text = Model.BlogArchive.Title},
+            //new Breadcrump {plainSlug = Model.BlogArchive.Permalink, text = Model.BlogArchive.Title},
             new Breadcrump {plainSlug = Model.BlogPost.Slug, text = Model.BlogPost.Title},
         },
     };
@@ -159,9 +159,9 @@
                                     foreach (var tag in Model.BlogPost.Tags)
                                     {
                                         <span class="tag">
-                                            <a class="tag-label" href="@Model.BlogArchive.Permalink/tag/@tag.Slug">
+                                            @*<a class="tag-label" href="@Model.BlogArchive.Permalink/tag/@tag.Slug">
                                                 @tag.Title@(tag != Model.BlogPost.Tags.Last() ? ", " : "")
-                                            </a>
+                                            </a>*@
                                         </span>
                                     }
                                 }
@@ -193,7 +193,7 @@
                     @foreach (var category in Model.Categories)
                     {
                         <li class="label label-default">
-                            <a href="@Model.BlogArchive.Permalink/category/@category.Slug">@category.Title</a>
+                            @*<a href="@Model.BlogArchive.Permalink/category/@category.Slug">@category.Title</a>*@
                         </li>
                     }
                 </ul>
@@ -205,7 +205,7 @@
                     @foreach (var tag in Model.Tags)
                     {
                         <li class="label label-default">
-                            <a href="@Model.BlogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>
+                            @*<a href="@Model.BlogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>*@
                         </li>
                     }
                 </ul>
