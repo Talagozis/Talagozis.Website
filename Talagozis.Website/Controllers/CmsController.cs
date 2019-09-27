@@ -32,24 +32,7 @@ namespace Talagozis.Website.Controllers
         /// <param name="page">The optional page</param>
         /// <param name="category">The optional category</param>
         /// <param name="tag">The optional tag</param>
-        //[Route("archive")]
-        //public async Task<IActionResult> Archive(Guid id, int? year = null, int? month = null, int? page = null, Guid? category = null, Guid? tag = null) 
-        //{
-        //    Models.BlogArchive model;
-
-        //    if (category.HasValue)
-        //        model = _api.Archives.GetByCategoryId<Models.BlogArchive>(id, category.Value, page, year, month);
-        //    else if (tag.HasValue)
-        //        model = _api.Archives.GetByTagId<Models.BlogArchive>(id, tag.Value, page, year, month);
-        //    else model = _api.Archives.GetById<Models.BlogArchive>(id, page, year, month);
-
-        //    ArchiveViewModel archiveViewModel = new ArchiveViewModel
-        //    {
-        //        BlogArchive = model,
-        //    };
-
-        //    return View(archiveViewModel);
-        //}
+        [Route("archive")]
         public async Task<IActionResult> Archive(Guid id, int? year = null, int? month = null, int? page = null, Guid? category = null, Guid? tag = null)
         {
             var model = await _api.Pages.GetByIdAsync<BlogArchive>(id);
@@ -71,14 +54,15 @@ namespace Talagozis.Website.Controllers
         [Route("post")]
         public async Task<IActionResult> Post(Guid id)
         {
-            var model = await _api.Posts.GetByIdAsync<BlogPost>(id);
+            BlogPost blogPost = await _api.Posts.GetByIdAsync<BlogPost>(id);
+
+            BlogArchive blogArchive = await this._api.Pages.GetByIdAsync<BlogArchive>(blogPost.BlogId);
+            blogArchive.Archive = await _api.Archives.GetByIdAsync(blogPost.BlogId, null, null, null, null, null);
 
             PostViewModel postViewModel = new PostViewModel
             {
-                BlogPost = model,
-                PostArchive = await _api.Archives.GetByIdAsync<PostBase>(model.BlogId, null, null, null, null, null, null),
-                Categories = (await this._api.Posts.GetAllCategoriesAsync(model.BlogId)).ToList(),
-                Tags = (await this._api.Posts.GetAllTagsAsync(model.BlogId)).ToList(),
+                BlogPost = blogPost,
+                BlogArchive = blogArchive,
             };
 
             return View(postViewModel);

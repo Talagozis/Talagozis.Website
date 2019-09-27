@@ -21,7 +21,7 @@
         ogType = OgType.Website,
         ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
         ogDescription = Model.BlogPost.Heading.shortDescription,
-        //ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
+        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
         ogSiteName = "Talagozis Christos Blog",
         twitterCard = TwitterCard.SummaryLargeImage,
         twitterTitle = Model.BlogPost.Title,
@@ -30,7 +30,7 @@
         twitterUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
         twitterSite = "Talagozis Christos Blog",
         twitterCreator = "Talagozis Christos",
-        //twitterImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
+        twitterImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
         twitterLabels = new Dictionary<string, string>
         {
             {"Category",  Model.BlogPost.Category.Title },
@@ -45,7 +45,7 @@
         {
             new Breadcrump {text = "Home"},
             new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
-            //new Breadcrump {plainSlug = Model.BlogArchive.Permalink, text = Model.BlogArchive.Title},
+            new Breadcrump {plainSlug = Model.BlogArchive.Permalink, text = Model.BlogArchive.Title},
             new Breadcrump {plainSlug = Model.BlogPost.Slug, text = Model.BlogPost.Title},
         },
     };
@@ -168,7 +168,7 @@
                             </p>
                             <p class="pull-right">
                                 <span style="color: #f5f5f5;">Published:</span>
-                                <strong>@Model.BlogPost.Published.Value.ToString("dd MMMM yyyy")</strong>
+                                <strong>@Model.BlogPost.Published?.ToString("dd MMMM yyyy")</strong>
                             </p>
 
                         </div>
@@ -190,10 +190,10 @@
             <div class="" style="margin-bottom: 30px;">
                 <h3>Categories in this archive</h3>
                 <ul class="list-unstyled">
-                    @foreach (var category in Model.Categories)
+                    @foreach (var category in Model.BlogArchive.Archive.Posts.Select(a => a.Category))
                     {
                         <li class="label label-default">
-                            @*<a href="@Model.BlogArchive.Permalink/category/@category.Slug">@category.Title</a>*@
+                            <a href="@Model.BlogArchive.Permalink/category/@category.Slug">@category.Title</a>
                         </li>
                     }
                 </ul>
@@ -202,10 +202,10 @@
             <div style="margin-bottom: 30px;">
                 <h3>Tags in this archive</h3>
                 <ul class="list-unstyled">
-                    @foreach (var tag in Model.Tags)
+                    @foreach (var tag in Model.BlogArchive.Archive.Posts.SelectMany(a => a.Tags).GroupBy(a => a.Id).Select(a => a.First()))
                     {
                         <li class="label label-default">
-                            @*<a href="@Model.BlogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>*@
+                            <a href="@Model.BlogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>
                         </li>
                     }
                 </ul>

@@ -7,9 +7,7 @@ namespace Talagozis.Website.Models.ViewModels
 {
     public class BlogViewModel : ViewModel
     {
-        public ICollection<PostArchive<PostBase>> Archives { get; set; }
-        public ICollection<Taxonomy> Categories { get; set; }
-        public ICollection<TaxonomyList> Tags { get; set; }
+        public ICollection<BlogArchive> Archives { get; set; }
 
     }
 }
