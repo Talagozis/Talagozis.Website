@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +14,8 @@ using Piranha.AspNetCore.Identity.SQLite;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Piranha.AttributeBuilder;
+using Piranha.Cache;
 using Talagozis.AspNetCore.Extensions;
 using Talagozis.AspNetCore.Services.Paypal;
 using WebMarkupMin.AspNetCore2;
@@ -30,7 +31,7 @@ namespace Talagozis.Website
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            this.Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -58,15 +59,14 @@ namespace Talagozis.Website
             services.AddPiranhaFileStorage(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads/"), "~/uploads/");
             services.AddPiranhaImageSharp();
             services.AddPiranhaManager();
-            //services.AddSingleton<ICache, Piranha.Cache.SimpleCache>();
-            services.AddMemoryCache();
+            //services.AddMemoryCache();
             services.AddPiranhaMemoryCache();
             //services.AddOptions();
 
             services.AddPiranhaEF(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
             services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
 
-            services.AddPaypalService(Configuration.GetSection("Paypal"));
+            services.AddPaypalService(this.Configuration.GetSection("Paypal"));
 
             services.AddWebMarkupMin(options => { options.DisablePoweredByHttpHeaders = true; })
                     .AddHtmlMinification()
@@ -79,7 +79,7 @@ namespace Talagozis.Website
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider services, IApi api)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
             app.UseExceptionHandlerLogger(ex => Console.WriteLine(ex.Message));
@@ -94,31 +94,29 @@ namespace Talagozis.Website
                 var options = new RewriteOptions().AddRedirectToHttps();
                 app.UseRewriter(options);
 
-                //app.UseDeveloperExceptionPage();
                 app.UseExceptionHandler("/Home/Error");
             }
 
             // Initialize Piranha
-            //var api = services.GetService<IApi>();
             App.Init(api);
 
             // Configure cache level
-            App.CacheLevel = Piranha.Cache.CacheLevel.Basic;
+            App.CacheLevel = CacheLevel.Full;
 
             // Build content types
-            var pageTypeBuilder = new Piranha.AttributeBuilder.PageTypeBuilder(api)
+            var pageTypeBuilder = new PageTypeBuilder(api)
                 .AddType(typeof(Models.BlogArchive))
                 .AddType(typeof(Models.StandardPage))
 				.AddType(typeof(Models.HomePage))
 				.Build()
                 .DeleteOrphans();
 
-            var postTypeBuilder = new Piranha.AttributeBuilder.PostTypeBuilder(api)
+            var postTypeBuilder = new PostTypeBuilder(api)
                 .AddType(typeof(Models.BlogPost))
                 .Build()
                 .DeleteOrphans();
 
-            var siteTypeBuilder = new Piranha.AttributeBuilder.SiteTypeBuilder(api)
+            var siteTypeBuilder = new SiteTypeBuilder(api)
                 .AddType(typeof(Models.BlogSite))
                 .Build()
                 .DeleteOrphans();
