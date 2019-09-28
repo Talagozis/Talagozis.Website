@@ -86,7 +86,7 @@
     <div class="container">
         <div class="row">
 
-            @foreach (BlogArchive archive in Model.Archives)
+            @foreach (BlogArchive archive in Model.Archives.OrderByDescending(a => a.Archive.Posts.Max(b => b.Published)))
             {
                 <div class="col-lg-4 col-md-12">
                     <div class="post">
@@ -101,7 +101,7 @@
                                     @archive.Title
                                 </a>
                             </h3>
-                            @*<span>- Latest: 30 sept 2017 -</span>*@
+                            <span>- Latest: @archive.Archive.Posts.Max(b => b.Published)?.ToString("dd MMM yyyy") -</span>
                             <hr>
                             <div>
                                 <p>
@@ -112,20 +112,20 @@
                         <div class="tags-post">
                             <i class="manisa-tag"></i>
                             <span>
-                                @{ var selectedTags = Model.Tags.Where(a => a.BlogId == archive.Id).Take(3).ToList();}
-                                @foreach (var tag in selectedTags)
+                                @{ var selectedTags = archive.Archive.Posts.SelectMany(a => a.Tags); }
+                                @foreach (var tag in selectedTags.Take(3))
                                 {
                                     <a href="@archive.Permalink/tag/@tag.Slug" target="_blank">
-                                        @tag.Title@(tag != selectedTags.Last(a => a.BlogId == archive.Id) ? ", " : "")
+                                        @tag.Title@(tag != selectedTags.Take(3).Last() ? ", " : "")
                                     </a>
                                 }
                             </span>
                         </div>
                         @*<div class="comments-post d-none d-sm-block">
-                                <a href="#" target="_blank">
-                                    <span>220</span><i class="manisa-bubble"></i>
-                                </a>
-                            </div>*@
+                            <a href="#" target="_blank">
+                                <span>220</span><i class="manisa-bubble"></i>
+                            </a>
+                        </div>*@
                     </div>
                 </div>
             }
