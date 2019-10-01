@@ -41,71 +41,59 @@
             background-position: 50% 80%;
             height: 460px;
         }
-
         section.blog, section.stat, section.contact {
             background-image: url('/images/pattern.jpg');
             background-size: auto;
         }
-
+        section.blog .infos-post {
+            padding-top: 20px;
+        }
         section.header, section.blog, section.educ, section.stat, section.contact {
             width: auto;
         }
-
         section.header {
             background-image: none;
             height: auto;
         }
-
             section.header #particles-js {
                 position: relative;
             }
-
         section.blog {
             padding-bottom: 180px;
             margin-bottom: 0;
             border-bottom: 1px solid #D9D9D9;
         }
-
         section.educ {
             padding-bottom: 140px;
             background-color: #F9F9F9;
         }
-
         section.contact {
             padding-bottom: 60px;
             margin-bottom: 0;
         }
-
         .educ .education .title .infos-educ .info-timeline span {
             display: inline;
             letter-spacing: 0.4px;
         }
-
         .infos-post .short-description-block {
             font-size: 14px;
         }
-
             .infos-post .short-description-block a {
                 color: #007bff;
             }
-
         .blog .post .infos-post h3 {
             min-height: 90px;
         }
-
         .blog .post .infos-post p {
             min-height: 150px;
             line-height: 1.6;
         }
-
         .blog .btn-manisa {
             margin: 100px auto 0;
         }
-
         .educ .btn-manisa {
             margin: 60px auto 0;
         }
-
         .category-post span.title {
             white-space: nowrap;
         }
@@ -162,11 +150,11 @@
                                 </span>
                             </a>
                         </div>
-                        <div class="img-post">
+                        @*<div class="img-post">
                             <a href="@post.Permalink" target="_blank">
                                 <img src="@Url.Content(post.Heading.PrimaryImage.Resize(Api, 334, 222))" class="img-fluid" alt="img-post">
                             </a>
-                        </div>
+                        </div>*@
                         <div class="infos-post">
                             <h3>
                                 <a href="@post.Permalink">@post.Title</a>
