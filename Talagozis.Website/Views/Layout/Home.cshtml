@@ -6,15 +6,20 @@
 <html lang="en">
 <head>
     <!-- Semantic, Seo head -->
-    <partial name="~/Views/Layout/Global/Head.cshtml"  />
-    
+    <partial name="~/Views/Layout/Global/Head.cshtml" />
+
+    <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <link rel="manifest" href="~/manifest.json">
     <meta name="theme-color" content="#3ac3cb">
+
     <meta name="msapplication-TileColor" content="#3ac3cb">
     <meta name="msapplication-navbutton-color" content="#3ac3cb">
     <meta name="apple-mobile-web-app-status-bar-style" content="#3ac3cb">
 
     <meta name="google-site-verification" content="S1X7cY9BACeSAkVE-OOhvwmyAYzRrhFSO7OF1Lx0jvg" />
-    
+
     <environment names="Development">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" />
         @*<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800" />*@
@@ -46,10 +51,9 @@
         @RenderSection("css", true)
     </environment>
 
-	@Html.Raw(JavaScriptSnippet.FullScript)
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body style="overflow: auto;">
-
     <nav class="navbar navbar-inverse navbar-expand-lg @(Model.htmlHeader?.breadcrumps != null && Model.htmlHeader.breadcrumps.Any() ? "smooth" : string.Empty)">
         <div class="container">
             <div class="navbar-header">
@@ -106,10 +110,13 @@
         @RenderBody()
     </div>
 
-    <footer class="text-center" style="border-top: solid #e2e2e2 1px;">    
+    <footer class="text-center" style="border-top: solid #e2e2e2 1px;">
         @{ Html.RenderPartial("~/Views/Home/_footer.cshtml"); }
         @{ Html.RenderPartial("~/Views/Layout/Global/subfooter.cshtml"); }
     </footer>
+
+    <!-- Global Loggers, Analytics etc etc -->
+    @{ Html.RenderPartial("~/views/layout/global/js.cshtml"); }
 
     <environment names="Development">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
