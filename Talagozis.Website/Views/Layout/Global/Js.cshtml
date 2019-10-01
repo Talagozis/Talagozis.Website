@@ -1,4 +1,16 @@
-﻿@if (Context.Request.Headers["X-Logger-Tracking"] != "28E245EC432A4049BB62942920CA1DBB")
+﻿<script>
+    if ('serviceWorker' in navigator) {
+        if (navigator.serviceWorker.controller)
+            console.debug('[PWA Builder] active service worker found, no need to register');
+
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register("/service-worker.js")
+                .then(a => console.log('[PWA Builder] service worker installed'))
+                .catch(err => console.error('[PWA Builder]  Error: ', err));
+        });
+    }
+</script>
+@if (Context.Request.Headers["X-Logger-Tracking"] != "28E245EC432A4049BB62942920CA1DBB")
 {
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48776471-2"></script>

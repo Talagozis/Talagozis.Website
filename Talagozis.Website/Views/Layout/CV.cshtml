@@ -79,52 +79,38 @@
 
         @RenderSection("js", true)
 	</environment>
-	<environment names="Staging,Production">
-		<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-				asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-				asp-fallback-test="window.jQuery"
-				crossorigin="anonymous"
-				integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-		</script>
-		<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-				asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-				asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-				crossorigin="anonymous"
-				integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-		</script>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
 
-		<script src="~/lib/vertica/js/main.js" asp-append-version="true"></script>
+        <script src="~/lib/vertica/js/main.js" asp-append-version="true"></script>
 
-		<script src="~/lib/vertica/vendor/jquery.easing.min.js"></script>
-		<script src="~/lib/vertica/vendor/jquery.mousewheel.min.js"></script>
-		<script src="~/lib/vertica/vendor/jquery.nicescroll.min.js"></script>
-		<script src="~/lib/vertica/vendor/jquery.nicescroll.plus.js"></script>
-		<script src="~/lib/vertica/vendor/waypoints.min.js"></script>
-		<script src="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.min.js"></script>
-		<script src="~/lib/vertica/vendor/jquery.bxslider.min.js"></script>
-		<script src="~/lib/vertica/vendor/jquery.validate.min.js"></script>
-		<script src="~/lib/vertica/vendor/placeholders.jquery.min.js"></script>
-		<script src="~/lib/vertica/vendor/cross-browser.js"></script>
-		
-		@if (Context.Request.Headers["X-Logger-Tracking"] != "28E245EC432A4049BB62942920CA1DBB")
-		{
-			<!-- Global site tag (gtag.js) - Google Analytics -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-48776471-2"></script>
-			<script>
-				window.dataLayer = window.dataLayer || [];
-				function gtag(){dataLayer.push(arguments);}
-				gtag('js', new Date());
+        <script src="~/lib/vertica/vendor/jquery.easing.min.js"></script>
+        <script src="~/lib/vertica/vendor/jquery.mousewheel.min.js"></script>
+        <script src="~/lib/vertica/vendor/jquery.nicescroll.min.js"></script>
+        <script src="~/lib/vertica/vendor/jquery.nicescroll.plus.js"></script>
+        <script src="~/lib/vertica/vendor/waypoints.min.js"></script>
+        <script src="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.min.js"></script>
+        <script src="~/lib/vertica/vendor/jquery.bxslider.min.js"></script>
+        <script src="~/lib/vertica/vendor/jquery.validate.min.js"></script>
+        <script src="~/lib/vertica/vendor/placeholders.jquery.min.js"></script>
+        <script src="~/lib/vertica/vendor/cross-browser.js"></script>
 
-				gtag('config', 'UA-48776471-2');
-			</script>
-
-			<script> 
-				var ci = '1DiMxeW9WFob2g5ZQNNXrrx2kRyGd7ELDV47A9rRpSr4doyzaB7UC6TIfqBOPq6Y'; var d = document; var i = d.createElement('script'); i.src = '//logger.talagozis.com/Content/Script/request.js?cache=' + new Date().getFullYear() + new Date().getMonth() + new Date().getDate(); d.head.appendChild(i); 
-			</script>
-		}
+        <!-- Global Loggers, Analytics etc etc -->
+        @{ Html.RenderPartial("~/views/layout/global/js.cshtml"); }
 
         @RenderSection("js", true)
-	</environment>
+    </environment>
 
 	@RenderSection("Scripts", required: false)
 </body>

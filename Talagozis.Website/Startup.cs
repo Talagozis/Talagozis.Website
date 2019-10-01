@@ -131,7 +131,14 @@ namespace Talagozis.Website
             });
             app.UseStaticFiles(new StaticFileOptions
             {
-                OnPrepareResponse = ctx => ctx.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + 60 * 60 * 24 * 366
+                OnPrepareResponse = ctx =>
+                {
+                    TimeSpan age = new TimeSpan(366, 0, 0, 0); 
+                    if (string.Equals(ctx.File.Name, "service-worker.js", StringComparison.CurrentCultureIgnoreCase))
+                        age = new TimeSpan(0, 0, 0, 0);
+
+                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + age.TotalSeconds.ToString("0");
+                }
             });
             app.UseAuthentication();
             app.UsePiranha();
