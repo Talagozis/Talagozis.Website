@@ -2,27 +2,27 @@
 
 // Loading Screen 
     
-$(window).on('load', function () {
+//$(window).on('load', function () {
     
-    "use strict";
+//    "use strict";
 
-    $('.loading-overlay .sk-cube-grid').fadeOut(1000, function () {
+//    $('.loading-overlay .sk-cube-grid').fadeOut(1000, function () { // jquery.slim
 
-        $(this).parent().fadeOut(1000, function () {
+//        $(this).parent().fadeOut(1000, function () { // jquery.slim
 
-            $('body').css('overflow', 'auto');
-//            $(this).remove();
+//            $('body').css('overflow', 'auto');
+////            $(this).remove();
 
-        });
+//        });
 
-    });
+//    });
 
-});
+//});
 
 $(document).ready(function () {
    
     "use strict";
-    
+
     var sections = $('section'),
         documentEl = $(document),
         parallaxBg = $('.header-paralax'),
@@ -31,9 +31,12 @@ $(document).ready(function () {
         smoothScroll = $("nav ul li a"),
         progressBar = $(".progress-bar"),
         scrolltop = $('.scrolltop'),
-        colors   = $('.color-option .colors li'),
-        dl   = $('.color-option .dl li'),
-        // Typed Plugin
+        colors = $('.color-option .colors li'),
+        dl = $('.color-option .dl li');
+
+    // Typed Plugin
+    var typed = null;
+    if (typeof Typed !== 'undefined') {
         typed = new Typed('#typed', {
             // strings: ["Need some Magic?", "or some Science?", "Software Engineer"], /* Here Type Your Title */
             stringsElement: '#typed-strings',
@@ -42,6 +45,8 @@ $(document).ready(function () {
             backDelay: 1500,
             backSpeed: 20
         });
+    }
+        
     
     // Horizontal Navbar
     
@@ -93,7 +98,7 @@ $(document).ready(function () {
         
         $("html, body").animate({
             
-            scrollTop : $("#" + $(this).data("value")).offset().top
+            //scrollTop : $("#" + $(this).data("value")).offset().top // jquery.slim
             
         }, 1000);
         
@@ -230,18 +235,18 @@ $(document).ready(function () {
     
     $('.show-more, .show-less').on("click", function () {
         
-        $('.portfolio .gallery .less').fadeIn(1000, function () {
+        //$('.portfolio .gallery .less').fadeIn(1000, function () { // jquery.slim
             
-            $('.show-more').hide();
-            $('.show-less').show();
-            $('.show-less').on("click", function () {
+        //    $('.show-more').hide();
+        //    $('.show-less').show();
+        //    $('.show-less').on("click", function () {
                 
-                $('.portfolio .gallery .less').fadeOut(500);
-                $('.show-less').hide(200);
-                $('.show-more').show(200);
-            });
+        //        //$('.portfolio .gallery .less').fadeOut(500); // jquery.slim
+        //        $('.show-less').hide(200);
+        //        $('.show-more').show(200);
+        //    });
             
-        });
+        //});
         
     });
     
@@ -294,9 +299,9 @@ $(document).ready(function () {
         
         var sc = $(this).scrollTop();
         if (sc > 1700) {
-            scrolltop.fadeIn(1000);
+            //scrolltop.fadeIn(1000); // jquery.slim
         } else {
-            scrolltop.fadeOut(1000);
+            //scrolltop.fadeOut(1000); // jquery.slim
         }
         
     });

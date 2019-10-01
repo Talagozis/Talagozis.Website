@@ -45,6 +45,9 @@
             background-image: url('/images/pattern.jpg');
             background-size: auto;
         }
+        section.blog .infos-post {
+            padding-top: 20px;
+        }
         section.header, section.blog, section.educ, section.stat, section.contact {
             width: auto;
         }
@@ -52,9 +55,9 @@
             background-image: none;
             height: auto;
         }
-        section.header #particles-js {
-            position: relative;
-        }
+            section.header #particles-js {
+                position: relative;
+            }
         section.blog {
             padding-bottom: 180px;
             margin-bottom: 0;
@@ -75,9 +78,9 @@
         .infos-post .short-description-block {
             font-size: 14px;
         }
-        .infos-post .short-description-block a {
-            color: #007bff;
-        }
+            .infos-post .short-description-block a {
+                color: #007bff;
+            }
         .blog .post .infos-post h3 {
             min-height: 90px;
         }
@@ -99,12 +102,10 @@
 
 @section js {
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="~/lib/manisa/js/manisa.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+    <script src="~/lib/manisa/js/manisa.js" asp-append-version="true"></script>
     <script>
-        particlesJS.load('particles-js', '/js/particlesjs-config.json', function () {
-            console.log('callback - particles.js config loaded');
-        });
+        particlesJS.load('particles-js', '/js/particlesjs-config.json');
     </script>
 }
 
@@ -149,11 +150,11 @@
                                 </span>
                             </a>
                         </div>
-                        <div class="img-post">
+                        @*<div class="img-post">
                             <a href="@post.Permalink" target="_blank">
                                 <img src="@Url.Content(post.Heading.PrimaryImage.Resize(Api, 334, 222))" class="img-fluid" alt="img-post">
                             </a>
-                        </div>
+                        </div>*@
                         <div class="infos-post">
                             <h3>
                                 <a href="@post.Permalink">@post.Title</a>

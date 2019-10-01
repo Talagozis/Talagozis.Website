@@ -14,6 +14,7 @@ using Piranha.AspNetCore.Identity.SQLite;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.Net.Http.Headers;
 using Piranha.AttributeBuilder;
 using Piranha.Cache;
 using Talagozis.AspNetCore.Extensions;
@@ -125,9 +126,13 @@ namespace Talagozis.Website
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads")),
-                RequestPath = new PathString("/uploads")
+                RequestPath = new PathString("/uploads"),
+                OnPrepareResponse = ctx => ctx.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + 60 * 60 * 24 * 366
             });
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx => ctx.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + 60 * 60 * 24 * 366
+            });
             app.UseAuthentication();
             app.UsePiranha();
             app.UsePiranhaManager();
