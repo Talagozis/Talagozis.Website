@@ -84,7 +84,7 @@
         a.tag-label {
             color: #ef6c00;
         }
-        .list-unstyled {;
+        .list-unstyled {
             padding: 0 8px;
         }
         .label-default {
@@ -129,10 +129,10 @@
         }
         <div class="container-fluid">
             <div class="row">
-                <div class="col-10">
+                <div class="col-12 col-sm-10">
 
                     <div class="row justify-content-center">
-                        <div class="col-sm-10">
+                        <div class="col-12 col-sm-10">
 
                             <h1>@Model.BlogPost.Title</h1>
                             <div class="post-shortdescription">
@@ -145,7 +145,7 @@
                     </div>
 
                     <div class="row justify-content-center">
-                        <div class="col-sm-10">
+                        <div class="col-12 col-sm-10">
 
                             <p class="pull-left">
                                 <span style="color: #f5f5f5;">Category</span>
@@ -181,11 +181,7 @@
 
     <section class="row post">
 
-        <div class="col-9 body">
-            @Html.DisplayFor(m => m.BlogPost.Blocks)
-        </div>
-
-        <div class="col-3 sidebar">
+        <div class="col-12  order-sm-2 col-sm-3 sidebar">
 
             <div class="" style="margin-bottom: 30px;">
                 <h3>Categories in this archive</h3>
@@ -211,6 +207,10 @@
                 </ul>
             </div>
 
+        </div>
+
+        <div class="col-12 order-sm-1 col-sm-9 body">
+            @Html.DisplayFor(m => m.BlogPost.Blocks)
         </div>
 
     </section>

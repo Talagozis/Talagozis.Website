@@ -111,12 +111,12 @@
     </div>
 
     <footer class="text-center" style="border-top: solid #e2e2e2 1px;">
-        @{ Html.RenderPartial("~/Views/Home/_footer.cshtml"); }
-        @{ Html.RenderPartial("~/Views/Layout/Global/subfooter.cshtml"); }
+        @{ await Html.RenderPartialAsync("~/Views/Home/_footer.cshtml"); }
+        @{ await Html.RenderPartialAsync("~/Views/Layout/Global/subfooter.cshtml"); }
     </footer>
 
     <!-- Global Loggers, Analytics etc etc -->
-    @{ Html.RenderPartial("~/views/layout/global/js.cshtml"); }
+    @{ await Html.RenderPartialAsync("~/views/layout/global/js.cshtml"); }
 
     <environment names="Development">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
