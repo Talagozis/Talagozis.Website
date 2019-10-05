@@ -33,13 +33,13 @@ namespace Talagozis.Website.Controllers
                 await paypalService.approve(PayerID, paymentId);
                 return Ok("Success!");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Ok("Failed!");
             }
         }
 
-        public async Task<IActionResult> Canceled()
+        public IActionResult Canceled()
         {
 
             return Ok("Canceled!");

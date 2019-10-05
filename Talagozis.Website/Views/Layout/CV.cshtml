@@ -107,7 +107,7 @@
         <script src="~/lib/vertica/vendor/cross-browser.js"></script>
 
         <!-- Global Loggers, Analytics etc etc -->
-        @{ Html.RenderPartial("~/views/layout/global/js.cshtml"); }
+        @{ await Html.RenderPartialAsync("~/views/layout/global/js.cshtml"); }
 
         @RenderSection("js", true)
     </environment>
