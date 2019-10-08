@@ -33,9 +33,6 @@ body nav.navbar ul a{
     color: white; 
     font-weight: bold;
 }
-img {
-    max-width: 100%;
-}
 footer {
     background-color: #fefefe;
 }

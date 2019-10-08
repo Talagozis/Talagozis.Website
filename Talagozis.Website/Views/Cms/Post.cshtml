@@ -54,7 +54,7 @@
 
 
 @section css {
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css" rel="stylesheet" type="text/css">
 
     <style>
         header {
@@ -69,6 +69,9 @@
         }
         header div.post-shortdescription > p {
             margin-bottom: 2rem;
+        }
+        img {
+            max-width: 100%;
         }
         .sidebar h3 {
             color: #d45c20;
@@ -186,7 +189,7 @@
             <div class="" style="margin-bottom: 30px;">
                 <h3>Categories in this archive</h3>
                 <ul class="list-unstyled">
-                    @foreach (var category in Model.BlogArchive.Archive.Posts.Select(a => a.Category))
+                    @foreach (var category in Model.BlogArchive.Archive.Posts.Select(a => a.Category).GroupBy(a => a.Id).Select(a => a.First()))
                     {
                         <li class="label label-default">
                             <a href="@Model.BlogArchive.Permalink/category/@category.Slug">@category.Title</a>
