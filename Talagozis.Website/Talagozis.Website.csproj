@@ -5,7 +5,7 @@
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
 	  <RazorCompileOnPublish>false</RazorCompileOnPublish>
 	  <!--<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>-->
-    <Version>1.19.10.5</Version>
+    <Version>1.19.10.8</Version>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 	  <Description>Talagozis personal web site and blog.</Description>
@@ -32,7 +32,7 @@
 		<PackageReference Include="Piranha.Local.FileStorage" Version="7.0.0" />
 		<PackageReference Include="Piranha.Manager" Version="7.0.5" />
 		<PackageReference Include="Piranha.Manager.Localization" Version="7.0.4" />
-		<PackageReference Include="Talagozis.AspNetCore" Version="1.19.8.303" />
+		<PackageReference Include="Talagozis.AspNetCore" Version="1.19.10.61" />
 		<PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.7.0" />
 	</ItemGroup>
 	<ItemGroup>

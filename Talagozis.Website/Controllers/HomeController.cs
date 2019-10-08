@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Piranha;
-using Piranha.Data;
-using Piranha.Models;
 using Talagozis.Website.Models;
 using Talagozis.Website.Models.Cv;
 using Talagozis.Website.Models.ViewModels;
@@ -21,12 +20,12 @@ namespace Talagozis.Website.Controllers
             _api = api;
         }
         
-        public Task<IActionResult> Index()
+        public Task<IActionResult> Index([FromServices] ILogger<HomeController> logger)
         {
-            return this.HomePage();
+            return this.HomePage(logger);
         }
 
-        public async Task<IActionResult> HomePage()
+        public async Task<IActionResult> HomePage([FromServices] ILogger<HomeController> logger)
         {
             CVRepository cVRepository = new CVRepository();
             Person person = cVRepository.GetMyCV();
