@@ -5,7 +5,7 @@
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
 	  <RazorCompileOnPublish>false</RazorCompileOnPublish>
 	  <!--<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>-->
-    <Version>1.19.10.8</Version>
+    <Version>1.19.12.8</Version>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 	  <Description>Talagozis personal web site and blog.</Description>
@@ -23,16 +23,16 @@
 		<PackageReference Include="Microsoft.AspNetCore.All" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
 		<PackageReference Include="PayPal" Version="2.0.0-rc2" />
-		<PackageReference Include="Piranha" Version="7.0.3" />
-		<PackageReference Include="Piranha.AspNetCore" Version="7.0.1" />
-		<PackageReference Include="Piranha.AspNetCore.Identity.SQLite" Version="7.0.0" />
-		<PackageReference Include="Piranha.AttributeBuilder" Version="7.0.1" />
-		<PackageReference Include="Piranha.Data.EF" Version="7.0.2" />
-		<PackageReference Include="Piranha.ImageSharp" Version="7.0.0-rc1" />
-		<PackageReference Include="Piranha.Local.FileStorage" Version="7.0.0" />
-		<PackageReference Include="Piranha.Manager" Version="7.0.5" />
-		<PackageReference Include="Piranha.Manager.Localization" Version="7.0.4" />
-		<PackageReference Include="Talagozis.AspNetCore" Version="1.19.10.61" />
+		<PackageReference Include="Piranha" Version="7.1.0" />
+		<PackageReference Include="Piranha.AspNetCore" Version="7.1.0" />
+		<PackageReference Include="Piranha.AspNetCore.Identity.SQLite" Version="7.1.0" />
+		<PackageReference Include="Piranha.AttributeBuilder" Version="7.1.0" />
+		<PackageReference Include="Piranha.Data.EF" Version="7.1.0" />
+		<PackageReference Include="Piranha.ImageSharp" Version="7.1.0-rc1" />
+		<PackageReference Include="Piranha.Local.FileStorage" Version="7.1.0" />
+		<PackageReference Include="Piranha.Manager" Version="7.1.0" />
+		<PackageReference Include="Piranha.Manager.Localization" Version="7.1.0" />
+		<PackageReference Include="Talagozis.AspNetCore" Version="1.19.10.171" />
 		<PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.7.0" />
 	</ItemGroup>
 	<ItemGroup>
