@@ -17,6 +17,7 @@ using System.IO;
 using Microsoft.Net.Http.Headers;
 using Piranha.AttributeBuilder;
 using Piranha.Cache;
+using Piranha.Manager.Editor;
 using Talagozis.AspNetCore.Extensions;
 using Talagozis.AspNetCore.Services.Logger;
 using Talagozis.AspNetCore.Services.Logger.ColoredConsole;
@@ -71,6 +72,7 @@ namespace Talagozis.Website
             services.AddPiranhaFileStorage(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads/"), "~/uploads/");
             services.AddPiranhaImageSharp();
             services.AddPiranhaManager();
+            services.AddPiranhaTinyMCE();
             //services.AddMemoryCache();
             services.AddPiranhaMemoryCache();
             //services.AddOptions();
@@ -158,6 +160,8 @@ namespace Talagozis.Website
             app.UseAuthentication();
             app.UsePiranha();
             app.UsePiranhaManager();
+            EditorConfig.FromFile("editorconfig.json");
+            app.UsePiranhaTinyMCE();
 
             // Piranha.App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
 
