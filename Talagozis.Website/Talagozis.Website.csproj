@@ -5,11 +5,11 @@
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
 	  <RazorCompileOnPublish>false</RazorCompileOnPublish>
 	  <!--<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>-->
-    <Version>1.19.12.8</Version>
+    <Version>1.20.2.3</Version>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 	  <Description>Talagozis personal web site and blog.</Description>
-	  <Copyright>Talagozis 2013-2019</Copyright>
+	  <Copyright>Talagozis 2013-2020</Copyright>
 	  <PackageProjectUrl>https://github.com/Talagozis/Talagozis.Website</PackageProjectUrl>
 	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
@@ -32,7 +32,8 @@
 		<PackageReference Include="Piranha.Local.FileStorage" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager.Localization" Version="7.1.0" />
-		<PackageReference Include="Talagozis.AspNetCore" Version="1.19.10.171" />
+		<PackageReference Include="Piranha.Manager.TinyMCE" Version="7.1.0" />
+		<PackageReference Include="Talagozis.AspNetCore" Version="1.19.12.122" />
 		<PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.7.0" />
 	</ItemGroup>
 	<ItemGroup>
