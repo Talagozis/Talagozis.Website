@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Piranha;
+using Talagozis.Website.App_Plugins.Repositories;
 using Talagozis.Website.Models;
 using Talagozis.Website.Models.Cv;
 using Talagozis.Website.Models.ViewModels;

@@ -212,7 +212,14 @@
                                 <span class="roundtimeline"></span>
                                 <div class="info-timeline">
                                     <h5>@education.title</h5>
-                                    <span class="date">Graduation @(education.graduationDate.ToString("MMMM yyyy"))</span>
+                                    @if (education.graduationDate.HasValue)
+                                    {
+                                        <span class="date">Graduation @(education.graduationDate.Value.ToString("MMMM yyyy"))</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="date">Graduation pending</span>
+                                    }
                                     <span> | </span>
                                     <span class="job">@education.university</span>
                                     <p>@education.description</p>
