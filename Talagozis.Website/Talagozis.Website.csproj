@@ -5,7 +5,8 @@
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
 	  <RazorCompileOnPublish>false</RazorCompileOnPublish>
 	  <!--<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>-->
-    <Version>1.20.2.3</Version>
+    <Version>1.20.4.6</Version>
+    <Authors>Talagozis</Authors>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 	  <Description>Talagozis personal web site and blog.</Description>
@@ -45,10 +46,6 @@
 	<ItemGroup>
 		<Folder Include="Properties\PublishProfiles\" />
 		<Folder Include="wwwroot\lib\manisa\images\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Include="Views\Layout\CV.cshtml" />
-	  <None Include="Views\Layout\Home.cshtml" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Update="Views\Payment\Payment.cshtml">
