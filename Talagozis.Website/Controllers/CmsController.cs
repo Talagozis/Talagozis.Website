@@ -36,7 +36,7 @@ namespace Talagozis.Website.Controllers
         public async Task<IActionResult> Archive(Guid id, int? year = null, int? month = null, int? page = null, Guid? category = null, Guid? tag = null)
         {
             var model = await _api.Pages.GetByIdAsync<BlogArchive>(id);
-            model.Archive = await _api.Archives.GetByIdAsync(id, page, category, tag, year, month);
+            model.Archive = await _api.Archives.GetByIdAsync(id, page, category, tag, year, month, pageSize: 20);
 
             ArchiveViewModel archiveViewModel = new ArchiveViewModel
             {
@@ -57,7 +57,7 @@ namespace Talagozis.Website.Controllers
             BlogPost blogPost = await _api.Posts.GetByIdAsync<BlogPost>(id);
 
             BlogArchive blogArchive = await this._api.Pages.GetByIdAsync<BlogArchive>(blogPost.BlogId);
-            blogArchive.Archive = await _api.Archives.GetByIdAsync(blogPost.BlogId, null, null, null, null, null);
+            blogArchive.Archive = await _api.Archives.GetByIdAsync(blogPost.BlogId, null, null, null, null, null, pageSize: 20);
 
             PostViewModel postViewModel = new PostViewModel
             {
