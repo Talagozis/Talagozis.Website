@@ -3,7 +3,6 @@ using Piranha;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Piranha.Models;
 using Talagozis.Website.Models;
 using Talagozis.Website.Models.ViewModels;
 

@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Piranha;
@@ -19,10 +18,6 @@ using Piranha.AttributeBuilder;
 using Piranha.Cache;
 using Piranha.Manager.Editor;
 using Talagozis.AspNetCore.Extensions;
-using Talagozis.AspNetCore.Services.Logger;
-using Talagozis.AspNetCore.Services.Logger.ColoredConsole;
-using Talagozis.AspNetCore.Services.Logger.File;
-using Talagozis.AspNetCore.Services.Logger.Trace;
 using Talagozis.AspNetCore.Services.Paypal;
 using WebMarkupMin.AspNetCore2;
 
@@ -44,28 +39,20 @@ namespace Talagozis.Website
 
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             Directory.CreateDirectory("../database");
             Directory.CreateDirectory("../uploads");
             Directory.CreateDirectory("../logs");
 
-            services.AddLocalization(options =>
-                options.ResourcesPath = "Resources"
-            );
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.Configure<MvcOptions>(options =>
             {
                 // options.Filters.Add(new RequireHttpsAttribute());
             });
 
-            services.AddMvc().AddPiranhaManagerOptions().SetCompatibilityVersion(CompatibilityVersion.Version_2_2); ;
-
-            //services.AddLogging();
-            services.AddLoggerBackgroundService();
-            services.AddColoredConsoleLoggerService(a => { a.Color = ConsoleColor.Cyan; a.EventId = 1; a.LogLevel = LogLevel.Warning; });
-            services.AddTraceLoggerService(a => { a.EventId = 1; a.LogLevel = LogLevel.Warning; });
-            services.AddFileLoggerService(a => { a.EventId = 1; a.LogLevel = LogLevel.Warning; });
+            services.AddMvc().AddPiranhaManagerOptions().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddPiranha();
             services.AddPiranhaApplication();
@@ -85,27 +72,17 @@ namespace Talagozis.Website
             services.AddWebMarkupMin(options => { options.DisablePoweredByHttpHeaders = true; })
                 .AddHtmlMinification()
                 .AddHttpCompression();
-
-
-            return services.BuildServiceProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider services, IApi api)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApi api)
         {
-            //loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
-            //loggerFactory.AddDebug();
-            loggerFactory.AddFileLoggerProvider(services);
-
-
             app.UseExceptionHandlerLogger(ex => Console.WriteLine(ex.Message));
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
-                loggerFactory.AddColoredConsoleLoggerProvider(services);
-                loggerFactory.AddTraceLoggerProvider(services);
             }
             else
             {

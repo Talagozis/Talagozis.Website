@@ -15,27 +15,29 @@ namespace Talagozis.Website.Controllers
     public class HomeController : BaseController
     {
         private readonly IApi _api;
+        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(IApi api) 
+        public HomeController(IApi api, ILogger<HomeController> logger) 
         {
-            _api = api;
+            this._api = api;
+            this._logger = logger;
         }
         
-        public Task<IActionResult> Index([FromServices] ILogger<HomeController> logger)
+        public Task<IActionResult> Index()
         {
-            return this.HomePage(logger);
+            return this.HomePage();
         }
 
-        public async Task<IActionResult> HomePage([FromServices] ILogger<HomeController> logger)
+        public async Task<IActionResult> HomePage()
         {
             CVRepository cVRepository = new CVRepository();
             Person person = cVRepository.GetMyCV();
 
-            IEnumerable<BlogArchive> allArchives = await _api.Pages.GetAllAsync<BlogArchive>();
+            IEnumerable<BlogArchive> allArchives = await this._api.Pages.GetAllAsync<BlogArchive>();
             allArchives = allArchives.Where(a => a.Published.HasValue).ToList();
             allArchives = allArchives.GroupBy(p => p.Id).Select(g => g.First()).ToList();
 
-            IEnumerable<BlogPost> allPosts = (await _api.Posts.GetAllBySiteIdAsync<BlogPost>()).Where(a => allArchives.Any(b => b.Id == a.BlogId));
+            IEnumerable<BlogPost> allPosts = (await this._api.Posts.GetAllBySiteIdAsync<BlogPost>()).Where(a => allArchives.Any(b => b.Id == a.BlogId));
 
             HomePageViewModel homePageViewModel = new HomePageViewModel
             {
@@ -44,18 +46,18 @@ namespace Talagozis.Website.Controllers
                 LatestPosts = allPosts.ToList()
             };
 
-			return View("~/Views/Home/HomePage.cshtml", homePageViewModel);
+			return this.View("~/Views/Home/HomePage.cshtml", homePageViewModel);
         }
 
         public async Task<IActionResult> Blog()
         {
-            IEnumerable<BlogArchive> allArchives = await _api.Pages.GetAllAsync<BlogArchive>();
+            IEnumerable<BlogArchive> allArchives = await this._api.Pages.GetAllAsync<BlogArchive>();
             allArchives = allArchives.Where(a => a.Published.HasValue).ToList();
             allArchives = allArchives.GroupBy(p => p.Id).Select(g => g.First()).ToList();
 
             foreach (var blogArchive in allArchives)
             {
-                blogArchive.Archive = await _api.Archives.GetByIdAsync(blogArchive.Id, null, null, null, null, null);
+                blogArchive.Archive = await this._api.Archives.GetByIdAsync(blogArchive.Id, null, null, null, null, null);
             }
 
             BlogViewModel blogViewModel = new BlogViewModel
@@ -63,7 +65,7 @@ namespace Talagozis.Website.Controllers
                 Archives = allArchives.ToList()
             };
 
-            return View("~/Views/Home/Blog.cshtml", blogViewModel);
+            return this.View("~/Views/Home/Blog.cshtml", blogViewModel);
         }
 
         public IActionResult CV()
@@ -72,14 +74,14 @@ namespace Talagozis.Website.Controllers
 
             Person person = cVRepository.GetMyCV();
 
-            return View("~/Views/Home/CV.cshtml", person);
+            return this.View("~/Views/Home/CV.cshtml", person);
         }
 
         public IActionResult Contact()
         {
             ContactViewModel contactViewModel = new ContactViewModel();
 
-            return View("~/Views/Home/Contact.cshtml", contactViewModel);
+            return this.View("~/Views/Home/Contact.cshtml", contactViewModel);
         }
 
         public Person getJson()
@@ -91,7 +93,7 @@ namespace Talagozis.Website.Controllers
 
         public IActionResult Error()
         {
-            return View("~/Views/Shared/Error.cshtml");
+            return this.View("~/Views/Shared/Error.cshtml");
         }
 
     }
