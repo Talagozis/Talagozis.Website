@@ -38,7 +38,7 @@
 		<PackageReference Include="Piranha.Manager" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager.Localization" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager.TinyMCE" Version="7.1.0" />
-		<PackageReference Include="Talagozis.AspNetCore" Version="1.20.2.181" />
+		<PackageReference Include="Talagozis.AspNetCore" Version="1.20.4.114" />
 		<PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.8.1" />
 	</ItemGroup>
 
