@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Talagozis.AspNetCore.Services.Logger;
 using Talagozis.AspNetCore.Services.Logger.ColoredConsole;
+using Talagozis.AspNetCore.Services.Logger.File;
+using Talagozis.AspNetCore.Services.Logger.Trace;
 
 namespace Talagozis.Website
 {
@@ -37,34 +39,59 @@ namespace Talagozis.Website
                         loggingBuilder.AddConfiguration(hostingContext.Configuration.GetSection("Logging")); 
                         loggingBuilder.SetMinimumLevel(LogLevel.Trace);
 
-                        loggingBuilder.AddColoredConsole(a =>
-                        {
-                            a.Add(new ColoredConsoleLoggerConfiguration
-                            {
-                                Color = ConsoleColor.Yellow,
-                                EventId = 101,
-                                LogLevel = LogLevel.Warning,
-                            });
-                            a.Add(new ColoredConsoleLoggerConfiguration
-                            {
-                                Color = ConsoleColor.Cyan,
-                                EventId = 101,
-                                LogLevel = LogLevel.Information,
-                            });
-                            a.Add(new ColoredConsoleLoggerConfiguration
-                            {
-                                Color = ConsoleColor.Gray,
-                                EventId = 101,
-                                LogLevel = LogLevel.Debug,
-                            });
-                            a.Add(new ColoredConsoleLoggerConfiguration
-                            {
-                                Color = ConsoleColor.DarkMagenta,
-                                EventId = 101,
-                                LogLevel = LogLevel.Trace,
-                            });
-                        });
+//                        loggingBuilder.AddFile(a =>
+//                        {
+//                            a.folderPath = Path.Combine(Directory.GetCurrentDirectory(), "../logs/");
+//                            a.Add(new FileLoggerConfiguration
+//                            {
+//                                //eventId = 0,
+//                                logLevel = LogLevel.Warning
+//                            });
+//                            a.Add(new FileLoggerConfiguration
+//                            {
+//                                //eventId = 0,
+//                                logLevel = LogLevel.Error
+//                            });
+//                            a.Add(new FileLoggerConfiguration
+//                            {
+//                                //eventId = 0,
+//                                logLevel = LogLevel.Critical
+//                            });
+//                        });
+//#if DEBUG
+//                        loggingBuilder.AddTrace(a =>
+//                        {
+//                            //a.eventId 0 
+//                        });
 
+//                        loggingBuilder.AddColoredConsole(a =>
+//                        {
+//                            a.Add(new ColoredConsoleLoggerConfiguration
+//                            {
+//                                namespacePrefix = "",
+//                                color = ConsoleColor.Yellow,
+//                                logLevel = LogLevel.Warning,
+//                            });
+//                            a.Add(new ColoredConsoleLoggerConfiguration
+//                            {
+//                                namespacePrefix = "",
+//                                color = ConsoleColor.Cyan,
+//                                logLevel = LogLevel.Information,
+//                            });
+//                            a.Add(new ColoredConsoleLoggerConfiguration
+//                            {
+//                                namespacePrefix = "Talagozis",
+//                                color = ConsoleColor.Gray,
+//                                logLevel = LogLevel.Debug,
+//                            });
+//                            a.Add(new ColoredConsoleLoggerConfiguration
+//                            {
+//                                namespacePrefix = "Talagozis",
+//                                color = ConsoleColor.DarkMagenta,
+//                                logLevel = LogLevel.Trace,
+//                            });
+//                        });
+//#endif
                     });
         }
     }

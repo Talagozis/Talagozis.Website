@@ -43,7 +43,6 @@ namespace Talagozis.Website
         {
             Directory.CreateDirectory("../database");
             Directory.CreateDirectory("../uploads");
-            Directory.CreateDirectory("../logs");
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
