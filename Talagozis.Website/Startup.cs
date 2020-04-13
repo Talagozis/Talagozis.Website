@@ -25,18 +25,18 @@ namespace Talagozis.Website
 {
     public class Startup
     {
-        private readonly IConfigurationRoot _configuration;
+        private readonly IConfiguration _configuration;
 
-        public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env, IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            this._configuration = builder.Build();
+            //var builder = new ConfigurationBuilder()
+            //    .SetBasePath(env.ContentRootPath)
+            //    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            //    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+            //    .AddEnvironmentVariables();
+            //this._configuration = builder.Build();
+            this._configuration = configuration;
         }
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -91,32 +91,7 @@ namespace Talagozis.Website
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            // Initialize Piranha
-            App.Init(api);
-
-            // Configure cache level
-            App.CacheLevel = CacheLevel.Full;
-
-            // Build content types
-            var pageTypeBuilder = new PageTypeBuilder(api)
-                .AddType(typeof(Models.BlogArchive))
-                .AddType(typeof(Models.StandardPage))
-				.AddType(typeof(Models.HomePage))
-				.Build()
-                .DeleteOrphans();
-
-            var postTypeBuilder = new PostTypeBuilder(api)
-                .AddType(typeof(Models.BlogPost))
-                .Build()
-                .DeleteOrphans();
-
-            var siteTypeBuilder = new SiteTypeBuilder(api)
-                .AddType(typeof(Models.BlogSite))
-                .Build()
-                .DeleteOrphans();
-
-
-            app.UseStaticFiles(new StaticFileOptions()
+            app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads")),
                 RequestPath = new PathString("/uploads"),
@@ -134,12 +109,9 @@ namespace Talagozis.Website
                 }
             });
             app.UseAuthentication();
-            app.UsePiranha();
-            app.UsePiranhaManager();
-            EditorConfig.FromFile("editorconfig.json");
-            app.UsePiranhaTinyMCE();
 
-            // Piranha.App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
+            api.configuration();
+            app.usePiranhaCms();
 
             app.UseWebMarkupMin();
 
@@ -164,4 +136,45 @@ namespace Talagozis.Website
             });
         }
     }
+
+    internal static class PiranhaConfiguration
+    {
+        internal static void configuration(this IApi api)
+        {
+            // Initialize Piranha
+            App.Init(api);
+
+            // Configure cache level
+            App.CacheLevel = CacheLevel.Full;
+
+            // Build content types
+            new PageTypeBuilder(api)
+                .AddType(typeof(Models.BlogArchive))
+                .AddType(typeof(Models.StandardPage))
+                .AddType(typeof(Models.HomePage))
+                .Build()
+                .DeleteOrphans();
+
+            new PostTypeBuilder(api)
+                .AddType(typeof(Models.BlogPost))
+                .Build()
+                .DeleteOrphans();
+
+            new SiteTypeBuilder(api)
+                .AddType(typeof(Models.BlogSite))
+                .Build()
+                .DeleteOrphans();
+        }
+
+        internal static void usePiranhaCms(this IApplicationBuilder app)
+        {
+            app.UsePiranha();
+            app.UsePiranhaManager();
+            EditorConfig.FromFile("editorconfig.json");
+            app.UsePiranhaTinyMCE();
+
+            // Piranha.App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
+        }
+    }
+
 }
