@@ -71,6 +71,7 @@ namespace Talagozis.Website
             services.AddWebMarkupMin(options => { options.DisablePoweredByHttpHeaders = true; })
                 .AddHtmlMinification()
                 .AddHttpCompression();
+            services.AddApplicationInsightsTelemetry();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,7 +82,6 @@ namespace Talagozis.Website
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {

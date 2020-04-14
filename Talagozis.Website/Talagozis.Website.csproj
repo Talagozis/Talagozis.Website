@@ -2,14 +2,15 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.2</TargetFramework>
-    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	  <RazorCompileOnPublish>True</RazorCompileOnPublish>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <SelfContained>True</SelfContained>
     <!--<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>-->
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.20.4.13</Version>
+    <Version>1.20.4.14</Version>
     <Authors>Talagozis</Authors>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -25,8 +26,8 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.All" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
+		<PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
 		<PackageReference Include="PayPal" Version="2.0.0-rc2" />
 		<PackageReference Include="Piranha" Version="7.1.0" />
 		<PackageReference Include="Piranha.AspNetCore" Version="7.1.0" />
@@ -38,9 +39,10 @@
 		<PackageReference Include="Piranha.Manager" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager.Localization" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager.TinyMCE" Version="7.1.0" />
-		<PackageReference Include="Talagozis.AspNetCore" Version="1.20.4.131" />
+		<PackageReference Include="Talagozis.AspNetCore" Version="1.20.4.141" />
 		<PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.8.1" />
-	</ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.12.0" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />

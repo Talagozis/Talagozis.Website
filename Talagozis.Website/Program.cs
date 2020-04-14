@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -20,7 +21,7 @@ namespace Talagozis.Website
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
-            return new WebHostBuilder()
+            return WebHost.CreateDefaultBuilder()
                 .ConfigureAppConfiguration((hostContext, configurationBuilder) => 
                 {
                     configurationBuilder.SetBasePath(hostContext.HostingEnvironment.ContentRootPath)
@@ -28,12 +29,9 @@ namespace Talagozis.Website
                         .AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true)
                         .AddEnvironmentVariables();
                 })
-                .UseKestrel()
                 .ConfigureKestrel((context, options) => options.AddServerHeader = true)
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
                 .ConfigureServices(serviceCollection => serviceCollection.AddLoggerBackgroundService())
                 .ConfigureLogging((hostingContext, loggingBuilder) =>
                 {
@@ -44,6 +42,10 @@ namespace Talagozis.Website
                     loggingBuilder.AddFile(a =>
                     {
                         a.folderPath = Path.Combine(Directory.GetCurrentDirectory(), "../logs/");
+                        a.Add(new FileLoggerConfiguration
+                        {
+                            logLevel = LogLevel.Information
+                        });
                         a.Add(new FileLoggerConfiguration
                         {
                             logLevel = LogLevel.Warning
