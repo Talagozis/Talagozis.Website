@@ -18,8 +18,8 @@ using Piranha.AttributeBuilder;
 using Piranha.Cache;
 using Piranha.Manager.Editor;
 using Talagozis.AspNetCore.Extensions;
-using Talagozis.AspNetCore.Services.Paypal;
 using WebMarkupMin.AspNetCore2;
+using Talagozis.AspNetCore.Payments.Paypal;
 
 namespace Talagozis.Website
 {

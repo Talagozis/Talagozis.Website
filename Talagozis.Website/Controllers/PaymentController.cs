@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Talagozis.AspNetCore.Services.Paypal;
+using Talagozis.AspNetCore.Payments.Models;
+using Talagozis.AspNetCore.Payments.Paypal.Abstractions;
 using Talagozis.Website.Models.ViewModels;
 
 namespace Talagozis.Website.Controllers
@@ -21,7 +22,11 @@ namespace Talagozis.Website.Controllers
         [HttpPost]
         public async Task<IActionResult> Purchase([FromServices]IPaypalService paypalService, uint productBid)
         {
-            var redirectLink = await paypalService.purchase(productBid == 1 ? 3.5m : 5m, "EUR");
+            string returnUrl = "/payment/success";
+            string cancelUrl = "/payment/canceled";
+
+            //var redirectLink = await paypalService.purchase<PayPalCheckoutSdk.Orders.Order>(productBid == 1 ? 3.5m : 5m, Currency.EUR, returnUrl, cancelUrl); 
+            var redirectLink = await paypalService.purchase<AspNetCore.Payments.Paypal.SDK.Payment>(productBid == 1 ? 3.5m : 5m, Currency.EUR, returnUrl, cancelUrl);
 
             return Redirect(redirectLink);
         }
@@ -30,7 +35,14 @@ namespace Talagozis.Website.Controllers
         {
             try
             {
-                await paypalService.approve(PayerID, paymentId);
+                if (!string.IsNullOrWhiteSpace(token))
+                    await paypalService.approve(token);
+                else if (!string.IsNullOrWhiteSpace(paymentId) && !string.IsNullOrWhiteSpace(PayerID))
+                    await paypalService.approve(PayerID, paymentId);
+                else
+                    throw new Exception();
+
+
                 return Ok("Success!");
             }
             catch (Exception)
