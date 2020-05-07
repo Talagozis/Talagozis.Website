@@ -61,7 +61,7 @@ namespace Talagozis.Website
             services.AddPiranhaTinyMCE();
             //services.AddMemoryCache();
             services.AddPiranhaMemoryCache();
-            //services.AddOptions();
+            services.AddOptions();
 
             services.AddPiranhaEF(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
             services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
