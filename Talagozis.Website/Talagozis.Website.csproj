@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.20.4.14</Version>
+    <Version>1.20.5.7</Version>
     <Authors>Talagozis</Authors>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -38,9 +38,10 @@
 		<PackageReference Include="Piranha.Manager" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager.Localization" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager.TinyMCE" Version="7.1.0" />
-		<PackageReference Include="Talagozis.AspNetCore" Version="1.20.4.141" />
+		<PackageReference Include="Talagozis.AspNetCore" Version="1.20.5.72" />
+		<PackageReference Include="Talagozis.Payments" Version="1.20.5.72" />
 		<PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.8.1" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.12.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.14.0" />
   </ItemGroup>
 
 	<ItemGroup>
