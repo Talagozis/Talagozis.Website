@@ -8,8 +8,8 @@ namespace Talagozis.Website.Controllers
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            ViewBag.startTime = DateTime.Now;
-            ViewBag.AssemblyVersion = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+            this.ViewBag.startTime = DateTime.Now;
+            this.ViewBag.AssemblyVersion = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version.ToString() ?? string.Empty;
 
             base.OnActionExecuting(context);
         }

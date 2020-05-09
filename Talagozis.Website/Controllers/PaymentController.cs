@@ -17,7 +17,7 @@ namespace Talagozis.Website.Controllers
         {
             PaymentViewModel paymentViewModel = new PaymentViewModel();
 
-            return View("~/Views/Payment/Payment.cshtml", paymentViewModel);
+            return this.View("~/Views/Payment/Payment.cshtml", paymentViewModel);
         }
 
         [HttpPost]
@@ -27,9 +27,9 @@ namespace Talagozis.Website.Controllers
             string cancelUrl = "/payment/canceled";
 
             //var redirectLink = await paypalService.purchase<PayPalCheckoutSdk.Orders.Order>(productBid == 1 ? 3.5m : 5m, Currency.EUR, returnUrl, cancelUrl); 
-            Payment payment = await paypalService.paymentCreate(productBid == 1 ? 3.5m : 5m, Talagozis.Payments.Models.Currency.EUR, returnUrl, cancelUrl);
+            Payment payment = await paypalService.paymentCreate(productBid == 1 ? 3.5m : 5m, Payments.Models.Currency.EUR, returnUrl, cancelUrl);
 
-            return Redirect(payment.getRedirectionUrl());
+            return this.Redirect(payment.getRedirectionUrl());
         }
 
         public async Task<IActionResult> Success([FromServices]IPaypalService paypalService, string paymentId, string token, string PayerID)
@@ -44,23 +44,23 @@ namespace Talagozis.Website.Controllers
                     throw new Exception();
 
 
-                return Ok("Success!");
+                return this.Ok("Success!");
             }
             catch (Exception)
             {
-                return Ok("Failed!");
+                return this.Ok("Failed!");
             }
         }
 
         public IActionResult Canceled()
         {
 
-            return Ok("Canceled!");
+            return this.Ok("Canceled!");
         }
 
         public IActionResult Error()
         {
-            return View("~/Views/Shared/Error.cshtml");
+            return this.View("~/Views/Shared/Error.cshtml");
         }
 
     }

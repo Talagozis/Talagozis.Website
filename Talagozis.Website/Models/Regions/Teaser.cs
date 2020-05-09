@@ -40,8 +40,8 @@ namespace Talagozis.Website.Models.Regions
         public HtmlField Body { get; set; }
 
         public Teaser() {
-            PageLink = new PageField();
-            PostLink = new PostField();
+            this.PageLink = new PageField();
+            this.PostLink = new PostField();
         }
     }
 }

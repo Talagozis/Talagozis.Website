@@ -5,7 +5,7 @@
 
         window.addEventListener('load', function () {
             navigator.serviceWorker.register("/service-worker.js")
-                .then(a => console.log('[PWA Builder] service worker installed'))
+                .then(() => console.log('[PWA Builder] service worker installed'))
                 .catch(err => console.error('[PWA Builder]  Error: ', err));
         });
     }

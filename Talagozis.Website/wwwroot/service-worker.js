@@ -28,7 +28,7 @@ workbox.routing.setDefaultHandler(
 registerRoute(
     ({ url }) => url.origin === "https://fonts.googleapis.com",
     new StaleWhileRevalidate({
-        cacheName: "google-fonts-stylesheets",
+        cacheName: "google-fonts-stylesheets"
     }),
     "GET"
 );
@@ -43,7 +43,7 @@ registerRoute(
             }),
             new ExpirationPlugin({
                 maxAgeSeconds: 60 * 60 * 24 * 365,
-                maxEntries: 30,
+                maxEntries: 30
             })
         ]
     }),
@@ -62,7 +62,7 @@ registerRoute(
 registerRoute(
     ({ request }) => request.destination === "script",
     new StaleWhileRevalidate({
-        cacheName: "static-resources-js",
+        cacheName: "static-resources-js"
     }),
     "GET"
 );
@@ -70,7 +70,7 @@ registerRoute(
 registerRoute(
     ({ request }) => request.destination === "font",
     new StaleWhileRevalidate({
-        cacheName: "static-resources-font",
+        cacheName: "static-resources-font"
     }),
     "GET"
 );
@@ -78,7 +78,7 @@ registerRoute(
 registerRoute(
     ({ request }) => request.destination === "image",
     new StaleWhileRevalidate({
-        cacheName: "static-resources-img",
+        cacheName: "static-resources-img"
     }),
     "GET"
 );
@@ -86,7 +86,7 @@ registerRoute(
 registerRoute(
     ({ request }) => console.log(request.destination) && request.destination === "object",
     new StaleWhileRevalidate({
-        cacheName: "static-resources-json",
+        cacheName: "static-resources-json"
     }),
     "GET"
 );

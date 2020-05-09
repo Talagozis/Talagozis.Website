@@ -26,6 +26,7 @@ namespace Talagozis.Website
     public class Startup
     {
         private readonly IConfiguration _configuration;
+        private readonly IHostingEnvironment _env;
 
         public Startup(IHostingEnvironment env, IConfiguration configuration)
         {
@@ -36,6 +37,7 @@ namespace Talagozis.Website
             //    .AddEnvironmentVariables();
             //this._configuration = builder.Build();
             this._configuration = configuration;
+            this._env = env;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

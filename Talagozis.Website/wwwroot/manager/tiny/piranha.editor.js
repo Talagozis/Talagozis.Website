@@ -25,14 +25,14 @@ piranha.editor.addInline = function (id, toolbarId) {
         style_formats: piranha.editorconfig.style_formats,
         file_picker_callback: function (callback, value, meta) {
             // Provide file and text for the link dialog
-            if (meta.filetype == 'file') {
+            if (meta.filetype === "file") {
                 piranha.mediapicker.openCurrentFolder(function (data) {
                     callback(data.publicUrl, { text: data.filename });
                 }, null);
             }
 
             // Provide image and alt text for the image dialog
-            if (meta.filetype == 'image') {
+            if (meta.filetype === "image") {
                 piranha.mediapicker.openCurrentFolder(function (data) {
                     callback(data.publicUrl, { alt: "" });
                 }, "image");
@@ -47,5 +47,5 @@ piranha.editor.addInline = function (id, toolbarId) {
 //
 piranha.editor.remove = function (id) {
     tinymce.remove(tinymce.get(id));
-    $("#" + id).parent().find('.tiny-brand').remove();
+    $("#" + id).parent().find(".tiny-brand").remove();
 };

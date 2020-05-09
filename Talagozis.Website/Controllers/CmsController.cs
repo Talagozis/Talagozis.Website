@@ -18,7 +18,7 @@ namespace Talagozis.Website.Controllers
         /// <param name="api">The current api</param>
         public CmsController(IApi api) 
         {
-            _api = api;
+            this._api = api;
         }
 
 
@@ -34,15 +34,15 @@ namespace Talagozis.Website.Controllers
         [Route("archive")]
         public async Task<IActionResult> Archive(Guid id, int? year = null, int? month = null, int? page = null, Guid? category = null, Guid? tag = null)
         {
-            var model = await _api.Pages.GetByIdAsync<BlogArchive>(id);
-            model.Archive = await _api.Archives.GetByIdAsync(id, page, category, tag, year, month, pageSize: 20);
+            var model = await this._api.Pages.GetByIdAsync<BlogArchive>(id);
+            model.Archive = await this._api.Archives.GetByIdAsync(id, page, category, tag, year, month, pageSize: 20);
 
             ArchiveViewModel archiveViewModel = new ArchiveViewModel
             {
                 BlogArchive = model,
             };
 
-            return View(archiveViewModel);
+            return this.View(archiveViewModel);
         }
 
 
@@ -53,10 +53,10 @@ namespace Talagozis.Website.Controllers
         [Route("post")]
         public async Task<IActionResult> Post(Guid id)
         {
-            BlogPost blogPost = await _api.Posts.GetByIdAsync<BlogPost>(id);
+            BlogPost blogPost = await this._api.Posts.GetByIdAsync<BlogPost>(id);
 
             BlogArchive blogArchive = await this._api.Pages.GetByIdAsync<BlogArchive>(blogPost.BlogId);
-            blogArchive.Archive = await _api.Archives.GetByIdAsync(blogPost.BlogId, null, null, null, null, null, pageSize: 20);
+            blogArchive.Archive = await this._api.Archives.GetByIdAsync(blogPost.BlogId, null, null, null, null, null, pageSize: 20);
 
             PostViewModel postViewModel = new PostViewModel
             {
@@ -64,7 +64,7 @@ namespace Talagozis.Website.Controllers
                 BlogArchive = blogArchive,
             };
 
-            return View(postViewModel);
+            return this.View(postViewModel);
         }
 
         /// <summary>
@@ -74,9 +74,9 @@ namespace Talagozis.Website.Controllers
         [Route("page")]
         public async Task<IActionResult> Page(Guid id) 
         {
-            var model = await _api.Pages.GetByIdAsync<Models.StandardPage>(id);
+            var model = await this._api.Pages.GetByIdAsync<StandardPage>(id);
 
-            return View(model);
+            return this.View(model);
         }
 
     }

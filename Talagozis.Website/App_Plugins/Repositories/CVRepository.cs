@@ -7,7 +7,7 @@ namespace Talagozis.Website.App_Plugins.Repositories
     internal class CVRepository
     {
         //private static string TEST_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
-        private static string TEST_TEXT = string.Empty;
+        private const string TEST_TEXT = "";
 
 
         public Person GetMyCV() =>
@@ -496,9 +496,9 @@ namespace Talagozis.Website.App_Plugins.Repositories
                         link = string.Empty,
                     },
                 },
-                coreSkills = new List<CoreSkill> { },
-                interests = new List<Interest> { },
-                portfolios = new List<Portfolio> { },
+                coreSkills = new List<CoreSkill>(),
+                interests = new List<Interest>(),
+                portfolios = new List<Portfolio>(),
             };
     }
 }
