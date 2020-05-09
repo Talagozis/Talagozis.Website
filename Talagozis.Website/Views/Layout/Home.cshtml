@@ -20,10 +20,11 @@
 
     <meta name="google-site-verification" content="S1X7cY9BACeSAkVE-OOhvwmyAYzRrhFSO7OF1Lx0jvg" />
 
+    @{ await Html.RenderPartialAsync("~/Views/Layout/Global/css.cshtml"); }
+
     <environment names="Development">
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" />
-        @*<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800" />*@
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"> 
+        <link rel="stylesheet" crossorigin="anonymous" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN">
 
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/main.css" asp-append-version="true" />
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/default-color.manisa.css" asp-append-version="true" />
@@ -32,13 +33,10 @@
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/slick.css" asp-append-version="true" />
 
         <link rel="stylesheet" type="text/css" href="~/css/home/custom.css" asp-append-version="true" />
-
-        @RenderSection("css", true)
     </environment>
     <environment names="Staging,Production">
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" />
-        @*<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800" />*@
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"> 
+        <link rel="stylesheet" crossorigin="anonymous" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN">
 
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/main.css" asp-append-version="true" />
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/default-color.manisa.css" asp-append-version="true" />
@@ -46,10 +44,10 @@
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/lightbox.min.css" asp-append-version="true" />
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/slick.css" asp-append-version="true" />
 
-        <link rel="stylesheet" type="text/css" href="~/css/home/custom.css" asp-append-version="true" />
-
-        @RenderSection("css", true)
+        <link rel="stylesheet" type="text/css" href="~/css/home/custom.min.css" asp-append-version="true" />
     </environment>
+
+    @RenderSection("css", true)
 
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>

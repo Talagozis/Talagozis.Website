@@ -1,0 +1,86 @@
+@font-face {
+  font-family: Bebas Neue;
+  src: url('../../fonts/BebasNeue.otf');
+  /* src: url(http://www.example.org/mycustomfont.ttf) format("truetype"); */
+}
+
+body {
+    font-family: 'Open Sans', 'Poppins', sans-serif;
+}
+body nav.navbar {
+    z-index: 1;
+}
+body nav.navbar.smooth {
+    box-shadow: 0 0 4px rgba(51, 51, 51, 0.10);
+}
+body nav.navbar, body nav.breadcrumb {
+    margin-bottom: 0;
+    border-radius: 0;
+    background: url('/images/pattern.jpg');
+}
+body nav.navbar ul a{
+    font-weight: 600; 
+    color: #424242;
+    letter-spacing: 0.1px;
+}
+
+.nav-item.strong {
+    padding: 1px 12px;
+    border-radius: 27px;
+    background-color: #019d9b;
+}
+.nav-item.strong a {
+    color: white; 
+    font-weight: bold;
+}
+footer {
+    background-color: #fefefe;
+}
+.intro-title1 {
+    font-size: 36px;
+}
+@media (min-width: 768px) {
+    .intro-title1 {
+        font-size: 40px;
+    }
+}
+@media (min-width:992px) {
+  .intro-title1 {
+    font-size: 46px;
+  }
+}
+@media (min-width: 1300px) {
+    .container {
+        width: 1270px;
+    }
+}
+.project-name {
+  font-size: 13px;
+  font-weight: bold;
+}
+.project-description {
+  color: #999999;
+}
+
+/*Bootstrap 4*/
+.nav-item {
+  margin: 0 10px;
+}
+.nav-item a {
+  font-size: 16px;
+}
+
+body nav.breadcrumb {
+    padding: .3rem 1rem;
+    box-shadow: 0 0 15px -2px rgba(51, 51, 51, 0.15);
+    position: relative;
+}
+ol.breadcrumb {
+    margin-bottom: 0;
+    padding: 0 1rem;
+    background-color: transparent;
+}
+ol.breadcrumb a {
+    font-size: 0.9rem;
+    color: #757575;
+}

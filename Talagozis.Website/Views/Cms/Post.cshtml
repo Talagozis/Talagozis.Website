@@ -57,6 +57,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css" rel="stylesheet" type="text/css">
 
     <style>
+        h1, h2, h3 {
+            font-family: 'Baloo Bhaina 2', 'Open Sans', 'Poppins', sans-serif;
+        }
         header {
             background-color: #34434e;
             color: white;
@@ -152,7 +155,7 @@
 
                             <p class="pull-left">
                                 <span style="color: #f5f5f5;">Category</span>
-                                <a class="category-label" href="/category/@Model.BlogPost.Category.Slug">@Model.BlogPost.Category.Title</a>
+                                <a class="category-label" href="@Model.BlogArchive.Permalink/category/@Model.BlogPost.Category.Slug">@Model.BlogPost.Category.Title</a>
                                 
                                 @if (Model.BlogPost.Tags.Any())
                                 {
@@ -162,9 +165,9 @@
                                     foreach (var tag in Model.BlogPost.Tags)
                                     {
                                         <span class="tag">
-                                            @*<a class="tag-label" href="@Model.BlogArchive.Permalink/tag/@tag.Slug">
+                                            <a class="tag-label" href="@Model.BlogArchive.Permalink/tag/@tag.Slug">
                                                 @tag.Title@(tag != Model.BlogPost.Tags.Last() ? ", " : "")
-                                            </a>*@
+                                            </a>
                                         </span>
                                     }
                                 }
