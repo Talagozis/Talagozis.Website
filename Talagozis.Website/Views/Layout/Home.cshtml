@@ -19,11 +19,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#3ac3cb">
 
     <meta name="google-site-verification" content="S1X7cY9BACeSAkVE-OOhvwmyAYzRrhFSO7OF1Lx0jvg" />
+    
+    
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" />
+    @*<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800" />*@
 
     <environment names="Development">
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" />
-        @*<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800" />*@
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T">
+        <link rel="stylesheet" type="text/css" crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN">
 
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/main.css" asp-append-version="true" />
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/default-color.manisa.css" asp-append-version="true" />
@@ -32,13 +35,10 @@
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/slick.css" asp-append-version="true" />
 
         <link rel="stylesheet" type="text/css" href="~/css/home/custom.css" asp-append-version="true" />
-
-        @RenderSection("css", true)
     </environment>
     <environment names="Staging,Production">
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" />
-        @*<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800" />*@
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T">        
+        <link rel="stylesheet" type="text/css" crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN">
 
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/main.css" asp-append-version="true" />
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/default-color.manisa.css" asp-append-version="true" />
@@ -47,9 +47,9 @@
         <link rel="stylesheet" type="text/css" href="~/lib/manisa/css/slick.css" asp-append-version="true" />
 
         <link rel="stylesheet" type="text/css" href="~/css/home/custom.css" asp-append-version="true" />
-
-        @RenderSection("css", true)
     </environment>
+
+    @RenderSection("css", true)
 
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
@@ -117,18 +117,11 @@
 
     <!-- Global Loggers, Analytics etc etc -->
     @{ await Html.RenderPartialAsync("~/views/layout/global/js.cshtml"); }
+    
+    <script crossorigin="anonymous" src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" ></script>
+    <script crossorigin="anonymous" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"></script>
 
-    <environment names="Development">
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-        <!-- <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script> -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        @RenderSection("js", true)
-    </environment>
-    <environment names="Staging,Production">
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        @RenderSection("js", true)
-    </environment>
+    @RenderSection("js", true)
 
     @RenderSection("Scripts", required: false)
 </body>
