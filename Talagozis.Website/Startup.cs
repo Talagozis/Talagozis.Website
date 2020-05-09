@@ -18,7 +18,7 @@ using Piranha.AttributeBuilder;
 using Piranha.Cache;
 using Piranha.Manager.Editor;
 using Talagozis.AspNetCore.Extensions;
-using Talagozis.AspNetCore.Services.Paypal;
+using Talagozis.Payments.Paypal;
 using WebMarkupMin.AspNetCore2;
 
 namespace Talagozis.Website
@@ -61,7 +61,7 @@ namespace Talagozis.Website
             services.AddPiranhaTinyMCE();
             //services.AddMemoryCache();
             services.AddPiranhaMemoryCache();
-            //services.AddOptions();
+            services.AddOptions();
 
             services.AddPiranhaEF(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
             services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
