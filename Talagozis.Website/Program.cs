@@ -6,9 +6,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Talagozis.AspNetCore.Services.Logger;
-using Talagozis.AspNetCore.Services.Logger.ColoredConsole;
-using Talagozis.AspNetCore.Services.Logger.File;
+using Talagozis.Logging;
+using Talagozis.Logging.ColoredConsole;
+using Talagozis.Logging.File;
 
 namespace Talagozis.Website
 {
