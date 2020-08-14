@@ -5,12 +5,12 @@
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	  <RazorCompileOnPublish>True</RazorCompileOnPublish>
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
-    <SelfContained>True</SelfContained>
+    <SelfContained>False</SelfContained>
     <!--<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>-->
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.20.5.11</Version>
+    <Version>1.20.8.14</Version>
     <Authors>Talagozis</Authors>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -23,6 +23,7 @@
   <PropertyGroup>
     <ApplicationInsightsResourceId>/subscriptions/78ff8d1d-d1d1-49ae-9764-b761494f266d/resourcegroups/Talagozis.Website/providers/microsoft.insights/components/Talagozis.Website</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/78ff8d1d-d1d1-49ae-9764-b761494f266d/resourcegroups/Talagozis.Website/providers/microsoft.insights/components/Talagozis.Website</ApplicationInsightsAnnotationResourceId>
+    <UserSecretsId>79d71417-e826-41c0-bed6-1e8b1829d88a</UserSecretsId>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -38,10 +39,10 @@
 		<PackageReference Include="Piranha.Manager" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager.Localization" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager.TinyMCE" Version="7.1.0" />
-		<PackageReference Include="Talagozis.AspNetCore" Version="1.20.5.111" />
-		<PackageReference Include="Talagozis.Logging" Version="1.20.5.111" />
-		<PackageReference Include="Talagozis.Payments" Version="1.20.5.81" />
-		<PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.8.1" />
+		<PackageReference Include="Talagozis.AspNetCore" Version="1.20.7.191" />
+		<PackageReference Include="Talagozis.Logging" Version="1.20.7.12" />
+		<PackageReference Include="Talagozis.Payments" Version="1.20.7.12" />
+		<PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.8.8" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.14.0" />
   </ItemGroup>
 
