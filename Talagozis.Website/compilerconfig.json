@@ -2,5 +2,13 @@
   {
     "outputFile": "wwwroot/css/Home/custom.css",
     "inputFile": "wwwroot/css/Home/custom.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Cms/Archive.css",
+    "inputFile": "wwwroot/css/Cms/Archive.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/Cms/Post.css",
+    "inputFile": "wwwroot/css/Cms/Post.scss"
   }
 ]

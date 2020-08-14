@@ -1,15 +1,18 @@
-﻿<script>
-    if ('serviceWorker' in navigator) {
-        if (navigator.serviceWorker.controller)
-            console.debug('[PWA Builder] active service worker found, no need to register');
+﻿<environment include="Staging,Production">
+    <script>
+        if ('serviceWorker' in navigator) {
+            if (navigator.serviceWorker.controller)
+                console.debug('[PWA Builder] active service worker found, no need to register');
 
-        window.addEventListener('load', function () {
-            navigator.serviceWorker.register("/service-worker.js")
-                .then(() => console.log('[PWA Builder] service worker installed'))
-                .catch(err => console.error('[PWA Builder]  Error: ', err));
-        });
-    }
-</script>
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register("/service-worker.js")
+                    .then(() => console.log('[PWA Builder] service worker installed'))
+                    .catch(err => console.error('[PWA Builder]  Error: ', err));
+            });
+        }
+    </script>
+</environment>
+
 <environment include="Production">
     @if (Context.Request.Headers["X-Logger-Tracking"] != "28E245EC432A4049BB62942920CA1DBB")
     {

@@ -22,6 +22,10 @@ body nav.navbar ul a {
   color: #424242;
   letter-spacing: 0.1px; }
 
+.background {
+  background-image: url("/images/pattern.jpg");
+  background-size: auto; }
+
 .nav-item.strong {
   padding: 1px 12px;
   border-radius: 27px;
