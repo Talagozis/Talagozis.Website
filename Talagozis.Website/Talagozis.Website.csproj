@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.20.8.14</Version>
+    <Version>1.20.8.20</Version>
     <Authors>Talagozis</Authors>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -39,7 +39,7 @@
 		<PackageReference Include="Piranha.Manager" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager.Localization" Version="7.1.0" />
 		<PackageReference Include="Piranha.Manager.TinyMCE" Version="7.1.0" />
-		<PackageReference Include="Talagozis.AspNetCore" Version="1.20.7.191" />
+		<PackageReference Include="Talagozis.AspNetCore" Version="1.20.8.142" />
 		<PackageReference Include="Talagozis.Logging" Version="1.20.7.12" />
 		<PackageReference Include="Talagozis.Payments" Version="1.20.7.12" />
 		<PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.8.8" />
@@ -48,15 +48,6 @@
 
 	<ItemGroup>
 		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<WCFMetadata Include="Connected Services" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Properties\PublishProfiles\" />
-		<Folder Include="wwwroot\lib\manisa\images\" />
 	</ItemGroup>
 
 </Project>
