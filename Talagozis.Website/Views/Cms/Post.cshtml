@@ -21,7 +21,7 @@
         ogType = OgType.Website,
         ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
         ogDescription = Model.BlogPost.Heading.shortDescription,
-        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
+        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.Heading.PrimaryImage),
         ogSiteName = "Talagozis Christos Blog",
         twitterCard = TwitterCard.SummaryLargeImage,
         twitterTitle = Model.BlogPost.Title,
@@ -30,7 +30,7 @@
         twitterUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
         twitterSite = "Talagozis Christos Blog",
         twitterCreator = "Talagozis Christos",
-        twitterImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
+        twitterImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.Heading.PrimaryImage),
         twitterLabels = new Dictionary<string, string>
 {
             {"Category",  Model.BlogPost.Category.Title },
@@ -45,7 +45,7 @@
 {
             new Breadcrump {text = "Home"},
             new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
-            new Breadcrump {plainSlug = Model.BlogArchive.Permalink, text = Model.BlogArchive.Title},
+            new Breadcrump {plainSlug = Model.blogArchive.Permalink, text = Model.blogArchive.Title},
             new Breadcrump {plainSlug = Model.BlogPost.Slug, text = Model.BlogPost.Title},
         },
     };
@@ -100,7 +100,7 @@
 
                             <p class="pull-left grey">
                                 <span class="">Category</span>
-                                <a class="category-label" href="@Model.BlogArchive.Permalink/category/@Model.BlogPost.Category.Slug">@Model.BlogPost.Category.Title</a>
+                                <a class="category-label" href="@Model.blogArchive.Permalink/category/@Model.BlogPost.Category.Slug">@Model.BlogPost.Category.Title</a>
 
                                 @if (Model.BlogPost.Tags.Any())
                                 {
@@ -110,7 +110,7 @@
                                     foreach (var tag in Model.BlogPost.Tags)
                                     {
                                         <span class="tag">
-                                            <a class="tag-label" href="@Model.BlogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>@(tag != Model.BlogPost.Tags.Last() ? ", " : "")
+                                            <a class="tag-label" href="@Model.blogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>@(tag != Model.BlogPost.Tags.Last() ? ", " : "")
                                         </span>
                                     }
                                 }
@@ -135,24 +135,24 @@
         <div class="col-12  order-sm-2 col-sm-3 sidebar">
 
             <div>
-                <h3>Categories in this archive</h3>
+                <h3>Categories in this page</h3>
                 <ul class="list-unstyled">
-                    @foreach (var category in Model.BlogArchive.Archive.Posts.Select(a => a.Category).GroupBy(a => a.Id).Select(a => a.First()))
+                    @foreach (var category in Model.PostArchive.Posts.Select(a => a.Category).GroupBy(a => a.Id).Select(a => a.First()))
                     {
                         <li class="label label-default">
-                            <a href="@Model.BlogArchive.Permalink/category/@category.Slug">@category.Title</a>
+                            <a href="@Model.blogArchive.Permalink/category/@category.Slug">@category.Title</a>
                         </li>
                     }
                 </ul>
             </div>
 
             <div>
-                <h3>Tags in this archive</h3>
+                <h3>Tags in this page</h3>
                 <ul class="list-unstyled">
-                    @foreach (var tag in Model.BlogArchive.Archive.Posts.SelectMany(a => a.Tags).GroupBy(a => a.Id).Select(a => a.First()))
+                    @foreach (var tag in Model.PostArchive.Posts.SelectMany(a => a.Tags).GroupBy(a => a.Id).Select(a => a.First()))
                     {
                         <li class="label label-default">
-                            <a href="@Model.BlogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>
+                            <a href="@Model.blogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>
                         </li>
                     }
                 </ul>

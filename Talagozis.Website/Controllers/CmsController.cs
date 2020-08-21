@@ -3,6 +3,7 @@ using Piranha;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Piranha.Models;
 using Talagozis.Website.Models;
 using Talagozis.Website.Models.ViewModels;
 
@@ -23,7 +24,7 @@ namespace Talagozis.Website.Controllers
 
 
         /// <summary>
-        /// Gets the blog archive with the given id.
+        /// Gets the blog page with the given id.
         /// </summary>
         /// <param name="id">The unique page id</param>
         /// <param name="year">The optional year</param>
@@ -31,15 +32,16 @@ namespace Talagozis.Website.Controllers
         /// <param name="page">The optional page</param>
         /// <param name="category">The optional category</param>
         /// <param name="tag">The optional tag</param>
-        [Route("archive")]
+        [Route("page")]
         public async Task<IActionResult> Archive(Guid id, int? year = null, int? month = null, int? page = null, Guid? category = null, Guid? tag = null)
         {
-            var model = await this._api.Pages.GetByIdAsync<BlogArchive>(id);
-            model.Archive = await this._api.Archives.GetByIdAsync(id, page, category, tag, year, month, pageSize: 20);
+            BlogArchive blogArchive = await this._api.Pages.GetByIdAsync<BlogArchive>(id);
+            PostArchive<BlogPost> postArchive = await this._api.Archives.GetByIdAsync<BlogPost>(id, page, category, tag, year, month, pageSize: 20);
 
             ArchiveViewModel archiveViewModel = new ArchiveViewModel
             {
-                BlogArchive = model,
+                blogArchive = blogArchive,
+                PostArchive = postArchive
             };
 
             return this.View(archiveViewModel);
@@ -56,12 +58,13 @@ namespace Talagozis.Website.Controllers
             BlogPost blogPost = await this._api.Posts.GetByIdAsync<BlogPost>(id);
 
             BlogArchive blogArchive = await this._api.Pages.GetByIdAsync<BlogArchive>(blogPost.BlogId);
-            blogArchive.Archive = await this._api.Archives.GetByIdAsync(blogPost.BlogId, null, null, null, null, null, pageSize: 20);
+            PostArchive<BlogPost> postArchive = await this._api.Archives.GetByIdAsync<BlogPost>(blogPost.BlogId, null, null, null, null, null, pageSize: 20);
 
             PostViewModel postViewModel = new PostViewModel
             {
                 BlogPost = blogPost,
-                BlogArchive = blogArchive,
+                blogArchive = blogArchive,
+                PostArchive = postArchive
             };
 
             return this.View(postViewModel);

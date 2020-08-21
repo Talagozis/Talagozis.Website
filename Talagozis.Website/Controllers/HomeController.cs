@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Piranha;
+using Piranha.Models;
 using Talagozis.Website.App_Plugins.Repositories;
 using Talagozis.Website.Models;
 using Talagozis.Website.Models.Cv;
@@ -51,18 +52,21 @@ namespace Talagozis.Website.Controllers
 
         public async Task<IActionResult> Blog()
         {
-            IEnumerable<BlogArchive> allArchives = await this._api.Pages.GetAllAsync<BlogArchive>();
+            ICollection<BlogArchive> allArchives = (await this._api.Pages.GetAllAsync<BlogArchive>()).ToList();
             allArchives = allArchives.Where(a => a.Published.HasValue).ToList();
             allArchives = allArchives.GroupBy(p => p.Id).Select(g => g.First()).ToList();
 
-            foreach (var blogArchive in allArchives)
+            ICollection<PostArchive<BlogPost>> postArchives = new List<PostArchive<BlogPost>>();
+
+            foreach (BlogArchive blogArchive in allArchives)
             {
-                blogArchive.Archive = await this._api.Archives.GetByIdAsync(blogArchive.Id, null, null, null, null, null);
+                postArchives.Add(await this._api.Archives.GetByIdAsync<BlogPost>(blogArchive.Id, null, null, null, null, null));
             }
 
             BlogViewModel blogViewModel = new BlogViewModel
             {
-                Archives = allArchives.ToList()
+                //Archives = allArchives.ToList(),
+                PostArchives = postArchives,
             };
 
             return this.View("~/Views/Home/Blog.cshtml", blogViewModel);

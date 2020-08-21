@@ -174,7 +174,7 @@
                             <span>
                                 @foreach (var tag in post.Tags)
                                 {
-                                    <a href="@archive.Permalink/tag/@tag.Slug">
+                                    <a href="@(archive.Permalink)/tag/@tag.Slug">
                                         @tag.Title@(tag != post.Tags.Last() ? ", " : "")
                                     </a>
                                 }

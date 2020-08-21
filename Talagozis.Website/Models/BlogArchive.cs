@@ -4,8 +4,8 @@ using Piranha.Models;
 
 namespace Talagozis.Website.Models
 {
-    [PageType(Title = "Blog archive", UseBlocks = false)]
-    public class BlogArchive  : ArchivePage<BlogArchive>
+    [PageType(Title = "Blog page", UseBlocks = false, IsArchive = true)]
+    public class BlogArchive  : Page<BlogArchive>
     {
         /// <summary>
         /// Gets/sets the heading.
