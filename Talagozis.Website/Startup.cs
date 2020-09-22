@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Piranha;
-using Piranha.AspNetCore.Identity.SQLite;
+using Piranha.AspNetCore.Identity.SQLServer;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
@@ -20,7 +20,7 @@ using Piranha.Manager.Editor;
 using Talagozis.AspNetCore.Extensions;
 using Talagozis.Payments.Paypal;
 using WebMarkupMin.AspNetCore2;
-using Piranha.Data.EF.SQLite;
+using Piranha.Data.EF.SQLServer;
 
 namespace Talagozis.Website
 {
@@ -53,7 +53,7 @@ namespace Talagozis.Website
 
             services.AddHttpsRedirection(options => options.HttpsPort = 443);
 
-            services.configureServices();
+            services.configureServices(this._configuration);
 
             services.AddOptions();
 
@@ -132,9 +132,9 @@ namespace Talagozis.Website
 
     internal static class PiranhaConfiguration
     {
-        internal static void configureServices(this IServiceCollection services)
+        internal static void configureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "../database"));
+            //Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "../database"));
             Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "../uploads"));
 
             services.AddPiranha(piranhaServiceBuilder =>
@@ -144,8 +144,8 @@ namespace Talagozis.Website
                 piranhaServiceBuilder.UseManager();
                 piranhaServiceBuilder.UseTinyMCE();
                 piranhaServiceBuilder.UseMemoryCache();
-                piranhaServiceBuilder.UseEF<SQLiteDb>(options => options.UseSqlite("Filename=../database/piranha.blog2.db"));
-                piranhaServiceBuilder.UseIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=../database/piranha.blog2.db"));
+                piranhaServiceBuilder.UseEF<SQLServerDb>(options => options.UseSqlServer(configuration.GetConnectionString("PiranhaConnection")));
+                piranhaServiceBuilder.UseIdentityWithSeed<IdentitySQLServerDb>(options => options.UseSqlServer(configuration.GetConnectionString("AuthConnection")));
             });
             //services.AddPiranhaApplication();
         }
