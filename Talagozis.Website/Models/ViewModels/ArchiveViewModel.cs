@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Piranha.Models;
 using Talagozis.AspNetCore.Models.ViewModels;
+using Talagozis.Website.Models.Cms.PageTypes;
+using Talagozis.Website.Models.Cms.PostTypes;
 
 namespace Talagozis.Website.Models.ViewModels
 {

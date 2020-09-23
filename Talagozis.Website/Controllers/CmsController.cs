@@ -4,7 +4,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Piranha.Models;
-using Talagozis.Website.Models;
+using Talagozis.Website.Models.Cms.PageTypes;
+using Talagozis.Website.Models.Cms.PostTypes;
 using Talagozis.Website.Models.ViewModels;
 
 namespace Talagozis.Website.Controllers
@@ -32,7 +33,7 @@ namespace Talagozis.Website.Controllers
         /// <param name="page">The optional page</param>
         /// <param name="category">The optional category</param>
         /// <param name="tag">The optional tag</param>
-        [Route("page")]
+        [Route("archive")]
         public async Task<IActionResult> Archive(Guid id, int? year = null, int? month = null, int? page = null, Guid? category = null, Guid? tag = null)
         {
             BlogArchive blogArchive = await this._api.Pages.GetByIdAsync<BlogArchive>(id);

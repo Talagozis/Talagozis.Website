@@ -1,8 +1,9 @@
+using System;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
 using Piranha.Models;
 
-namespace Talagozis.Website.Models.Regions
+namespace Talagozis.Website.Models.Cms.Regions
 {
     public class SiteInfo
     {

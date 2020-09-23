@@ -21,6 +21,9 @@ using Talagozis.AspNetCore.Extensions;
 using Talagozis.Payments.Paypal;
 using WebMarkupMin.AspNetCore2;
 using Piranha.Data.EF.SQLServer;
+using Talagozis.Website.Models.Cms.PageTypes;
+using Talagozis.Website.Models.Cms.PostTypes;
+using Talagozis.Website.Models.Cms.SiteTypes;
 
 namespace Talagozis.Website
 {
@@ -134,7 +137,6 @@ namespace Talagozis.Website
     {
         internal static void configureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            //Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "../database"));
             Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "../uploads"));
 
             services.AddPiranha(piranhaServiceBuilder =>
@@ -145,7 +147,7 @@ namespace Talagozis.Website
                 piranhaServiceBuilder.UseTinyMCE();
                 piranhaServiceBuilder.UseMemoryCache();
                 piranhaServiceBuilder.UseEF<SQLServerDb>(options => options.UseSqlServer(configuration.GetConnectionString("PiranhaConnection")));
-                piranhaServiceBuilder.UseIdentityWithSeed<IdentitySQLServerDb>(options => options.UseSqlServer(configuration.GetConnectionString("AuthConnection")));
+                piranhaServiceBuilder.UseIdentityWithSeed<IdentitySQLServerDb>(options => options.UseSqlServer(configuration.GetConnectionString("PiranhaAuthConnection")));
             });
             //services.AddPiranhaApplication();
         }
@@ -160,19 +162,19 @@ namespace Talagozis.Website
 
             // Build content types
             new PageTypeBuilder(api)
-                .AddType(typeof(Models.BlogArchive))
-                .AddType(typeof(Models.StandardPage))
-                .AddType(typeof(Models.HomePage))
+                .AddType(typeof(BlogArchive))
+                .AddType(typeof(StandardPage))
+                .AddType(typeof(HomePage))
                 .Build()
                 .DeleteOrphans();
 
             new PostTypeBuilder(api)
-                .AddType(typeof(Models.BlogPost))
+                .AddType(typeof(BlogPost))
                 .Build()
                 .DeleteOrphans();
 
             new SiteTypeBuilder(api)
-                .AddType(typeof(Models.BlogSite))
+                .AddType(typeof(BlogSite))
                 .Build()
                 .DeleteOrphans();
         }

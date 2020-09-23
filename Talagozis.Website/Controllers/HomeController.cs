@@ -7,7 +7,8 @@ using Microsoft.Extensions.Logging;
 using Piranha;
 using Piranha.Models;
 using Talagozis.Website.App_Plugins.Repositories;
-using Talagozis.Website.Models;
+using Talagozis.Website.Models.Cms.PageTypes;
+using Talagozis.Website.Models.Cms.PostTypes;
 using Talagozis.Website.Models.Cv;
 using Talagozis.Website.Models.ViewModels;
 
@@ -65,8 +66,8 @@ namespace Talagozis.Website.Controllers
 
             BlogViewModel blogViewModel = new BlogViewModel
             {
-                //Archives = allArchives.ToList(),
-                PostArchives = postArchives,
+                Archives = allArchives.ToList(),
+                PostArchives = postArchives.Where(a => a.Posts.Any(b => b.IsPublished)).ToList(),
             };
 
             return this.View("~/Views/Home/Blog.cshtml", blogViewModel);

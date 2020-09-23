@@ -15,13 +15,13 @@
     {
         title = Model.blogArchive.Title,
         titleSuffix = "Talagozis",
-        description = Model.blogArchive.Heading.shortDescription,
+        description = Model.blogArchive.MetaDescription,
         canonical = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.blogArchive.Permalink,
-        ogTitle = Model.blogArchive.Title,
+        ogTitle = Model.blogArchive.OgTitle,
         ogType = OgType.Website,
         ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.blogArchive.Permalink,
-        ogDescription = Model.blogArchive.Heading.shortDescription,
-        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.Heading.PrimaryImage),
+        ogDescription = Model.blogArchive.OgDescription,
+        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.OgImage),
         ogSiteName = "Talagozis Christos Blog"
     };
 
@@ -141,7 +141,7 @@
                             </p>
 
                             <p>
-                                @Html.Raw(post.Heading.shortDescription)
+                                @Html.Raw(post.Heading.Ingress)
                             </p>
                             <p class="post-category">
                                 <span>Category:</span>

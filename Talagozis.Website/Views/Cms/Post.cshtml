@@ -15,24 +15,24 @@
     {
         title = Model.BlogPost.Title,
         titleSuffix = "Talagozis",
-        description = Model.BlogPost.Heading.shortDescription,
+        description = Model.BlogPost.MetaDescription,
         canonical = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
-        ogTitle = Model.BlogPost.Title,
+        ogTitle = Model.BlogPost.OgTitle,
         ogType = OgType.Website,
         ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
-        ogDescription = Model.BlogPost.Heading.shortDescription,
-        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.Heading.PrimaryImage),
+        ogDescription = Model.BlogPost.OgDescription,
+        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.OgImage),
         ogSiteName = "Talagozis Christos Blog",
         twitterCard = TwitterCard.SummaryLargeImage,
         twitterTitle = Model.BlogPost.Title,
         twitterDomain = Context.Request.getUrl().GetLeftPart(UriPartial.Authority),
-        twitterDescription = Model.BlogPost.Heading.shortDescription,
+        twitterDescription = Model.BlogPost.MetaDescription ?? Model.BlogPost.OgDescription,
         twitterUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
         twitterSite = "Talagozis Christos Blog",
         twitterCreator = "Talagozis Christos",
-        twitterImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.Heading.PrimaryImage),
+        twitterImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.OgImage),
         twitterLabels = new Dictionary<string, string>
-{
+        {
             {"Category",  Model.BlogPost.Category.Title },
             {"Tags", string.Join(" ,", Model.BlogPost.Tags.Select(a => a.Title)) },
         }
@@ -88,7 +88,7 @@
                             <h1>@Model.BlogPost.Title</h1>
                             <div class="post-shortdescription">
                                 <p>
-                                    @Html.Raw(Model.BlogPost.Heading.shortDescription)
+                                    @Html.Raw(Model.BlogPost.Heading.Ingress)
                                 </p>
                             </div>
 

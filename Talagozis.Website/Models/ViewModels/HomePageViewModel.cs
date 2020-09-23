@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Talagozis.AspNetCore.Models.ViewModels;
+using Talagozis.Website.Models.Cms.PageTypes;
+using Talagozis.Website.Models.Cms.PostTypes;
 using Talagozis.Website.Models.Cv;
 
 namespace Talagozis.Website.Models.ViewModels
