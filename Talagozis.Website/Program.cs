@@ -24,7 +24,7 @@ namespace Talagozis.Website
                 {
                     webBuilder.UseStartup<Startup>();
                     webBuilder.ConfigureKestrel((context, options) => options.AddServerHeader = true);
-                    //webBuilder.ConfigureKestrel(a => a.AllowSynchronousIO = true);
+                    webBuilder.ConfigureKestrel(a => a.AllowSynchronousIO = true);
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .ConfigureServices(a => a.AddLoggerBackgroundService())

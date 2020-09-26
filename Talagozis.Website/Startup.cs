@@ -75,7 +75,9 @@ namespace Talagozis.Website
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+#if DEBUG
                 app.UseDatabaseErrorPage();
+#endif
             }
             else
             {
