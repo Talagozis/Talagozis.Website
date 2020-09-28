@@ -119,13 +119,13 @@
             <div class="inner-border">
                 <header>
                     <div class="row ">
-                        <div class="col-4">
+                        <div class="col-4 d-none d-md-block">
                             <a href="@post.Permalink">
                                 @{ var img = post.Heading.PrimaryImage.HasValue ? post.Heading.PrimaryImage : Model.blogArchive.PostFallback.PrimaryImage;}
                                 <img src="@Url.Content(img.Resize(Api, 310, 194))" style="width: 100%; max-width: 100%; max-height: 194px; object-fit: contain; ">
                             </a>
                         </div>
-                        <div class="col-8">
+                        <div class="col-12 col-md-8">
 
                             <h2 class="post-title">
                                 <a href="@post.Permalink">@post.Title</a>
