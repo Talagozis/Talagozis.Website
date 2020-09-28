@@ -47,8 +47,9 @@
     </environment>
     <style>
         section.header-blog-post {
-            background-image: url(@Url.Content(Model.blogArchive.Heading.PrimaryImage.Resize(Api, 720, 480)));
+            background-image: url(@Url.Content((Model.blogArchive.Heading.CoverImage.HasValue ? Model.blogArchive.Heading.CoverImage : Model.blogArchive.Heading.PrimaryImage)));
             background-position: center;
+            background-size: auto;
         }
     </style>
 }
@@ -66,10 +67,20 @@
     Func<string> MonthName = () => Model.PostArchive.Month.HasValue ? new DateTime(2018, Model.PostArchive.Month.Value, 1).ToString("MMMM", CultureInfo.InvariantCulture) : string.Empty;
 }
 
-<section class="header-blog-post text-center active-nav row">
+<section class="header-blog-post active-nav row">
     <div class="overlay">
-        <div class="title">
-            <h1>@Model.blogArchive.Title</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 herocontent">
+                    <div class="title2">
+                        <h1>@Model.blogArchive.Title</h1>
+                    </div>
+                    <div class="subtitle">
+                        <h5>@Model.blogArchive.Heading.SubTitle</h5>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </section>
