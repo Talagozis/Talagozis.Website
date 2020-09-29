@@ -8,6 +8,9 @@ section.header-blog-post {
         max-height: 250px;
         padding: 6% 0;
         text-align: left;
+        @media (max-width: 768px) {
+            padding: 6%;
+        }
         .title2 h1 {
             font-size: 36px;
             line-height: 42px;

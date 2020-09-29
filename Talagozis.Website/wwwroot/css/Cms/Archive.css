@@ -7,6 +7,9 @@
     max-height: 250px;
     padding: 6% 0;
     text-align: left; }
+    @media (max-width: 768px) {
+      section.header-blog-post .herocontent {
+        padding: 6%; } }
     section.header-blog-post .herocontent .title2 h1 {
       font-size: 36px;
       line-height: 42px;
