@@ -23,8 +23,8 @@ header {
       margin-bottom: 2rem; }
 
 section.post .label {
-  display: inline;
-  padding: .2em .6em .3em;
+  display: inline-block;
+  padding: .05em 0.6em .1em;
   font-size: 80%;
   font-weight: 700;
   line-height: 2;
@@ -32,7 +32,7 @@ section.post .label {
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
-  margin-right: 2px; }
+  margin: 0px 4px 5px 0px; }
   section.post .label a {
     color: #fff; }
 

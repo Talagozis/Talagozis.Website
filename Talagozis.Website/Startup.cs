@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Piranha;
-using Piranha.AspNetCore.Identity.SQLite;
+using Piranha.AspNetCore.Identity.SQLServer;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using Piranha.AttributeBuilder;
 using Piranha.Cache;
@@ -20,77 +20,72 @@ using Piranha.Manager.Editor;
 using Talagozis.AspNetCore.Extensions;
 using Talagozis.Payments.Paypal;
 using WebMarkupMin.AspNetCore2;
+using Piranha.Data.EF.SQLServer;
+using Talagozis.Website.Models.Cms.PageTypes;
+using Talagozis.Website.Models.Cms.PostTypes;
+using Talagozis.Website.Models.Cms.SiteTypes;
 
 namespace Talagozis.Website
 {
     public class Startup
     {
         private readonly IConfiguration _configuration;
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
 
-        public Startup(IHostingEnvironment env, IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
-            //var builder = new ConfigurationBuilder()
-            //    .SetBasePath(env.ContentRootPath)
-            //    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            //    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
-            //    .AddEnvironmentVariables();
-            //this._configuration = builder.Build();
             this._configuration = configuration;
             this._env = env;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+
         public void ConfigureServices(IServiceCollection services)
         {
-            Directory.CreateDirectory("../database");
-            Directory.CreateDirectory("../uploads");
-
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            services.Configure<MvcOptions>(options =>
-            {
-                // options.Filters.Add(new RequireHttpsAttribute());
-            });
+            services.AddControllersWithViews()
+#if DEBUG
+                .AddRazorRuntimeCompilation()
+#endif
+                ;
+            services.AddRazorPages().AddPiranhaManagerOptions()
+#if DEBUG
+                .AddRazorRuntimeCompilation()
+#endif
+                ;
 
-            services.AddMvc().AddPiranhaManagerOptions().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddHttpsRedirection(options => options.HttpsPort = 443);
 
-            services.AddPiranha();
-            services.AddPiranhaApplication();
-            services.AddPiranhaFileStorage(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads/"), "~/uploads/");
-            services.AddPiranhaImageSharp();
-            services.AddPiranhaManager();
-            services.AddPiranhaTinyMCE();
-            //services.AddMemoryCache();
-            services.AddPiranhaMemoryCache();
+            services.configureServices(this._configuration);
+
             services.AddOptions();
-
-            services.AddPiranhaEF(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
-            services.AddPiranhaIdentityWithSeed<IdentitySQLiteDb>(options => options.UseSqlite("Filename=../database/piranha.blog.db"));
 
             services.AddPaypalService(this._configuration.GetSection("Paypal"));
 
-            services.AddWebMarkupMin(options => { options.DisablePoweredByHttpHeaders = true; })
-                .AddHtmlMinification()
-                .AddHttpCompression();
+            services.AddWebMarkupMin(options => { options.DisablePoweredByHttpHeaders = true; }).AddHtmlMinification().AddHttpCompression();
+
             services.AddApplicationInsightsTelemetry();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApi api)
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApi api, ILogger<Startup> logger)
         {
-            app.UseExceptionHandlerLogger(ex => Console.WriteLine(ex.Message));
+            app.UseExceptionHandlerLogger(ex => logger.LogError(ex, ex.Message));
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+#if DEBUG
+                app.UseDatabaseErrorPage();
+#endif
             }
             else
             {
-                var options = new RewriteOptions().AddRedirectToHttps();
-                app.UseRewriter(options);
-
+                app.UseHttpsRedirection();
                 app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+                app.UseStatusCodePages();
             }
 
             app.UseStaticFiles(new StaticFileOptions
@@ -110,37 +105,55 @@ namespace Talagozis.Website
                     ctx.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + age.TotalSeconds.ToString("0");
                 }
             });
+            app.UseWebMarkupMin();
+
+            app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             api.configuration();
             app.usePiranhaCms();
 
-            app.UseWebMarkupMin();
-
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                //routes.MapRoute(
+                endpoints.MapControllers();
+                //endpoints.MapControllerRoute(
                 //    name: "areaRoute",
-                //    template: "{area:exists}/{controller}/{action}/{id?}",
-                //    defaults: new { controller = "Home", action = "Index" }
-                //);
-
-                routes.MapRoute(
+                //    pattern: "{area:exists}/{controller}/{action}/{id?}",
+                //    defaults: new { controller = "Home", action = "Index" });
+                endpoints.MapControllerRoute(
                     name: "defaultHome",
-                    template: "{action}",
-                    defaults: new { controller = "Home", action = "Index" }
-                );
-
-                routes.MapRoute(
+                    pattern: "{action}",
+                    defaults: new { controller = "Home", action = "Index" });
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=home}/{action=index}/{id?}"
-                );
+                    pattern: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Home", action = "Index" });
+                endpoints.MapRazorPages();
+                endpoints.MapPiranhaManager();
             });
         }
     }
 
     internal static class PiranhaConfiguration
     {
+        internal static void configureServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "../uploads"));
+
+            services.AddPiranha(piranhaServiceBuilder =>
+            {
+                piranhaServiceBuilder.UseFileStorage(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads/"), "~/uploads/");
+                piranhaServiceBuilder.UseImageSharp();
+                piranhaServiceBuilder.UseManager();
+                piranhaServiceBuilder.UseTinyMCE();
+                piranhaServiceBuilder.UseMemoryCache();
+                piranhaServiceBuilder.UseEF<SQLServerDb>(options => options.UseSqlServer(configuration.GetConnectionString("PiranhaConnection")));
+                piranhaServiceBuilder.UseIdentityWithSeed<IdentitySQLServerDb>(options => options.UseSqlServer(configuration.GetConnectionString("PiranhaAuthConnection")));
+            });
+            //services.AddPiranhaApplication();
+        }
+
         internal static void configuration(this IApi api)
         {
             // Initialize Piranha
@@ -151,29 +164,33 @@ namespace Talagozis.Website
 
             // Build content types
             new PageTypeBuilder(api)
-                .AddType(typeof(Models.BlogArchive))
-                .AddType(typeof(Models.StandardPage))
-                .AddType(typeof(Models.HomePage))
+                .AddType(typeof(BlogArchive))
+                .AddType(typeof(StandardPage))
+                .AddType(typeof(HomePage))
                 .Build()
                 .DeleteOrphans();
 
             new PostTypeBuilder(api)
-                .AddType(typeof(Models.BlogPost))
+                .AddType(typeof(BlogPost))
                 .Build()
                 .DeleteOrphans();
 
             new SiteTypeBuilder(api)
-                .AddType(typeof(Models.BlogSite))
+                .AddType(typeof(BlogSite))
                 .Build()
                 .DeleteOrphans();
         }
 
         internal static void usePiranhaCms(this IApplicationBuilder app)
         {
-            app.UsePiranha();
-            app.UsePiranhaManager();
             EditorConfig.FromFile("editorconfig.json");
-            app.UsePiranhaTinyMCE();
+
+            app.UsePiranha(options => 
+            {
+                options.UseManager();
+                options.UseTinyMCE();
+                options.UseIdentity();
+            });
 
             // Piranha.App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
         }

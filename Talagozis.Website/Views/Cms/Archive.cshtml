@@ -13,15 +13,15 @@
 @{
     Model.htmlHead = new HtmlHeadViewModel
     {
-        title = Model.BlogArchive.Title,
+        title = Model.blogArchive.Title,
         titleSuffix = "Talagozis",
-        description = Model.BlogArchive.Heading.shortDescription,
-        canonical = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogArchive.Permalink,
-        ogTitle = Model.BlogArchive.Title,
+        description = Model.blogArchive.MetaDescription,
+        canonical = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.blogArchive.Permalink,
+        ogTitle = Model.blogArchive.OgTitle,
         ogType = OgType.Website,
-        ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogArchive.Permalink,
-        ogDescription = Model.BlogArchive.Heading.shortDescription,
-        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
+        ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.blogArchive.Permalink,
+        ogDescription = Model.blogArchive.OgDescription,
+        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.OgImage),
         ogSiteName = "Talagozis Christos Blog"
     };
 
@@ -32,7 +32,7 @@
         {
             new Breadcrump {text = "Home"},
             new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
-            new Breadcrump {plainSlug = Model.BlogArchive.Permalink, text = Model.BlogArchive.Title}
+            new Breadcrump {plainSlug = Model.blogArchive.Permalink, text = Model.blogArchive.Title}
         },
     };
 }
@@ -47,8 +47,9 @@
     </environment>
     <style>
         section.header-blog-post {
-            background-image: url(@Url.Content(Model.BlogArchive.Heading.PrimaryImage.Resize(Api, 720, 480)));
+            background-image: url(@Url.Content((Model.blogArchive.Heading.CoverImage.HasValue ? Model.blogArchive.Heading.CoverImage : Model.blogArchive.Heading.PrimaryImage)));
             background-position: center;
+            background-size: auto;
         }
     </style>
 }
@@ -56,49 +57,59 @@
 @section js { }
 
 @{
-    ViewBag.Title = Model.BlogArchive.Title;
+    ViewBag.Title = Model.blogArchive.Title;
 
-    Func<string> BlogLink = () => Model.BlogArchive.Permalink
-                                  + (Model.BlogArchive.Archive.Category != null ? $"/category/{Model.BlogArchive.Archive.Category.Slug}" : "")
-                                  + (Model.BlogArchive.Archive.Year.HasValue ? $"/{Model.BlogArchive.Archive.Year}" : "")
-                                  + (Model.BlogArchive.Archive.Month.HasValue ? $"/{Model.BlogArchive.Archive.Month}" : "");
+    Func<string> BlogLink = () => Model.blogArchive.Permalink
+                                  + (Model.PostArchive.Category != null ? $"/category/{Model.PostArchive.Category.Slug}" : "")
+                                  + (Model.PostArchive.Year.HasValue ? $"/{Model.PostArchive.Year}" : "")
+                                  + (Model.PostArchive.Month.HasValue ? $"/{Model.PostArchive.Month}" : "");
 
-    Func<string> MonthName = () => Model.BlogArchive.Archive.Month.HasValue ? new DateTime(2018, Model.BlogArchive.Archive.Month.Value, 1).ToString("MMMM", CultureInfo.InvariantCulture) : string.Empty;
+    Func<string> MonthName = () => Model.PostArchive.Month.HasValue ? new DateTime(2018, Model.PostArchive.Month.Value, 1).ToString("MMMM", CultureInfo.InvariantCulture) : string.Empty;
 }
 
-<section class="header-blog-post text-center active-nav row">
+<section class="header-blog-post active-nav row">
     <div class="overlay">
-        <div class="title">
-            <h1>@Model.BlogArchive.Title</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 herocontent">
+                    <div class="title2">
+                        <h1>@Model.blogArchive.Title</h1>
+                    </div>
+                    <div class="subtitle">
+                        <h5>@Model.blogArchive.Heading.SubTitle</h5>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </section>
 
-<section class="container archive">
+<section class="container page">
     
-    @if (Model.BlogArchive.Archive.Category != null)
+    @if (Model.PostArchive.Category != null)
     {
         <div class="row">
             <div class="col blog-filter-header">
-                <h1>Category: @Model.BlogArchive.Archive.Category.Title</h1>
+                <h1>Category: @Model.PostArchive.Category.Title</h1>
             </div>
         </div>
         <hr />
     }
-    else if (Model.BlogArchive.Archive.Tag != null)
+    else if (Model.PostArchive.Tag != null)
     {
         <div class="row">
             <div class="col blog-filter-header">
-                <h1>Tag: @Model.BlogArchive.Archive.Tag.Title</h1>
+                <h1>Tag: @Model.PostArchive.Tag.Title</h1>
             </div>
         </div>
         <hr />
     }
-    else if (Model.BlogArchive.Archive.Year.HasValue)
+    else if (Model.PostArchive.Year.HasValue)
     {
         <div class="row">
             <div class="col blog-filter-header">
-                <h1>Posts from @MonthName = () @Model.BlogArchive.Archive.Year</h1>
+                <h1>Posts from @MonthName = () @Model.PostArchive.Year</h1>
             </div>
         </div>
         <hr />
@@ -113,23 +124,19 @@
     }
 
 
-    @foreach (var post in Model.BlogArchive.Archive.Posts)
+    @foreach (var post in Model.PostArchive.Posts)
     {
         <article class="post">
             <div class="inner-border">
                 <header>
-                    @if (false && post.Regions.Heading.PrimaryImage.HasValue)
-                    {
-                        <div class="row justify-content-center">
-                            <div class="col-sm">
-                                <a href="@post.Permalink">
-                                    <img src="@Url.Content(post.Regions.Heading.PrimaryImage.Resize(Api, 360, 360))">
-                                </a>
-                            </div>
-                        </div>
-                    }
                     <div class="row ">
-                        <div class="col-sm-10">
+                        <div class="col-4 d-none d-md-block">
+                            <a href="@post.Permalink">
+                                @{ var img = post.Heading.PrimaryImage.HasValue ? post.Heading.PrimaryImage : Model.blogArchive.PostFallback.PrimaryImage;}
+                                <img src="@Url.Content(img.Resize(Api, 310, 194))" style="width: 100%; max-width: 100%; max-height: 194px; object-fit: contain; ">
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-8">
 
                             <h2 class="post-title">
                                 <a href="@post.Permalink">@post.Title</a>
@@ -137,15 +144,15 @@
 
                             <p class="post-published">
                                 <span>Published:</span>
-                                <strong>@post.Published.Value.ToString("dd MMMM yyyy")</strong>
+                                <strong>@post.Published?.ToString("dd MMMM yyyy")</strong>
                             </p>
 
                             <p>
-                                @Html.Raw(post.Regions.Heading.shortDescription)
+                                @Html.Raw(post.Heading.Ingress)
                             </p>
                             <p class="post-category">
                                 <span>Category:</span>
-                                <a href="@Model.BlogArchive.Permalink/category/@post.Category.Slug">
+                                <a href="@Model.blogArchive.Permalink/category/@post.Category.Slug">
                                     @post.Category.Title
                                 </a>
 
@@ -156,10 +163,10 @@
                                     <span>Tags:</span>
                                     foreach (var tag in post.Tags)
                                     {
-                                        <span class="tags-post" style="background-color: #019d9b; border-radius: 27px; padding: 2px 10px; margin-right: 4px;">
+                                        <span class="tags-post" style="background-color: #019d9b; border-radius: 27px; padding: 2px 10px; margin-right: 4px; display: inline-block;">
                                             <i class="manisa-tag"></i>
                                             <span>
-                                                <a href="@Model.BlogArchive.Permalink/tag/@tag.Slug" style="color: white;">@tag.Title</a>
+                                                <a href="@Model.blogArchive.Permalink/tag/@tag.Slug" style="color: white;">@tag.Title</a>
                                             </span>
                                         </span>
                                     }
@@ -179,7 +186,7 @@
         </article>
     }
 
-    @if (Model.BlogArchive.Archive.TotalPages > 1)
+    @if (Model.PostArchive.TotalPages > 1)
     {
         <div class="row">
             <div class="col-sm">
@@ -192,23 +199,23 @@
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="@BlogLink = ()/page/@Math.Max(1, Model.BlogArchive.Archive.CurrentPage - 1)">
+                            <a class="page-link" href="@BlogLink = ()/page/@Math.Max(1, Model.PostArchive.CurrentPage - 1)">
                                 <span aria-hidden="true">&lsaquo;</span>
                                 <span class="sr-only">Previous</span>
                             </a>
                         </li>
-                        @for (var n = 1; n <= Model.BlogArchive.Archive.TotalPages; n++)
+                        @for (var n = 1; n <= Model.PostArchive.TotalPages; n++)
                         {
-                            <li class="page-item @(Model.BlogArchive.Archive.CurrentPage == n ? "active" : "")"><a class="page-link" href="@BlogLink = ()/page/@n">@n</a></li>
+                            <li class="page-item @(Model.PostArchive.CurrentPage == n ? "active" : "")"><a class="page-link" href="@BlogLink = ()/page/@n">@n</a></li>
                         }
                         <li class="page-item">
-                            <a class="page-link" href="@BlogLink = ()/page/@Math.Min(Model.BlogArchive.Archive.TotalPages, Model.BlogArchive.Archive.CurrentPage + 1)">
+                            <a class="page-link" href="@BlogLink = ()/page/@Math.Min(Model.PostArchive.TotalPages, Model.PostArchive.CurrentPage + 1)">
                                 <span aria-hidden="true">&rsaquo;</span>
                                 <span class="sr-only">Next</span>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="@BlogLink = ()/page/@Model.BlogArchive.Archive.TotalPages">
+                            <a class="page-link" href="@BlogLink = ()/page/@Model.PostArchive.TotalPages">
                                 <span aria-hidden="true">&raquo;</span>
                                 <span class="sr-only">Next</span>
                             </a>

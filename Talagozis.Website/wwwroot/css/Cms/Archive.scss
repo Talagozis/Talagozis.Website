@@ -1,6 +1,30 @@
 section.header-blog-post {
-    height: 250px;
+    height: 220px;
     width: auto;
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+    .herocontent {
+        max-height: 250px;
+        padding: 6% 0;
+        text-align: left;
+        @media (max-width: 768px) {
+            padding: 6%;
+        }
+        .title2 h1 {
+            font-size: 36px;
+            line-height: 42px;
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+        .subtitle h5 {
+            font-size: 20px;
+            line-height: 26px;
+            color: #fff;
+            letter-spacing: 0.4px;
+        }
+    }
 }
 
 .blog-filter-header h1 {

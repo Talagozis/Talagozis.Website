@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Talagozis.Logging;
 using Talagozis.Logging.ColoredConsole;
@@ -16,52 +15,51 @@ namespace Talagozis.Website
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        {
-            return WebHost.CreateDefaultBuilder()
-                .ConfigureAppConfiguration((hostContext, configurationBuilder) => 
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    configurationBuilder.SetBasePath(hostContext.HostingEnvironment.ContentRootPath)
-                        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                        .AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true)
-                        .AddEnvironmentVariables();
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureKestrel((context, options) => options.AddServerHeader = true);
+                    webBuilder.ConfigureKestrel(a => a.AllowSynchronousIO = true);
                 })
-                .ConfigureKestrel((context, options) => options.AddServerHeader = true)
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseStartup<Startup>()
-                .ConfigureServices(serviceCollection => serviceCollection.AddLoggerBackgroundService())
+                .ConfigureServices(a => a.AddLoggerBackgroundService())
                 .ConfigureLogging((hostingContext, loggingBuilder) =>
                 {
                     loggingBuilder.ClearProviders();
                     loggingBuilder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                     loggingBuilder.SetMinimumLevel(LogLevel.Trace);
 
-                    loggingBuilder.AddFile(a =>
-                    {
-                        a.folderPath = Path.Combine(Directory.GetCurrentDirectory(), "../logs/");
-                        a.Add(new FileLoggerConfiguration
-                        {
-                            logLevel = LogLevel.Information
-                        });
-                        a.Add(new FileLoggerConfiguration
-                        {
-                            logLevel = LogLevel.Warning
-                        });
-                        a.Add(new FileLoggerConfiguration
-                        {
-                            logLevel = LogLevel.Error
-                        });
-                        a.Add(new FileLoggerConfiguration
-                        {
-                            logLevel = LogLevel.Critical
-                        });
-                    });
-
                     loggingBuilder.AddColoredConsole(hostingContext.Configuration.GetSection("Logging:ColoredConsole"));
+
+                    if (!hostingContext.HostingEnvironment.IsDevelopment())
+                        loggingBuilder.AddFile(a =>
+                        {
+                            a.folderPath = Path.Combine(Directory.GetCurrentDirectory(), "../logs/");
+                            a.Add(new FileLoggerConfiguration
+                            {
+                                logLevel = LogLevel.Information
+                            });
+                            a.Add(new FileLoggerConfiguration
+                            {
+                                logLevel = LogLevel.Warning
+                            });
+                            a.Add(new FileLoggerConfiguration
+                            {
+                                logLevel = LogLevel.Error
+                            });
+                            a.Add(new FileLoggerConfiguration
+                            {
+                                logLevel = LogLevel.Critical
+                            });
+                        });
+
                 });
-        }
+
     }
+
 }

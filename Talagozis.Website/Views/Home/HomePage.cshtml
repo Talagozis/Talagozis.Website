@@ -1,7 +1,8 @@
 @using Talagozis.AspNetCore.Extensions
 @using Talagozis.AspNetCore.Models.ViewModels.Html
 @using Talagozis.Website.Models.Cv
-@using Talagozis.Website.Models
+@using Talagozis.Website.Models.Cms.PageTypes
+@using Talagozis.Website.Models.Cms.PostTypes
 
 @inject Piranha.IApi Api
 @model Talagozis.Website.Models.ViewModels.HomePageViewModel
@@ -165,7 +166,7 @@
                             <hr>
                             <div class="short-description-block">
                                 <p>
-                                    @Html.Raw(post.Heading.shortDescription)
+                                    @Html.Raw(post.Heading.SubTitle)
                                 </p>
                             </div>
                         </div>
@@ -174,7 +175,7 @@
                             <span>
                                 @foreach (var tag in post.Tags)
                                 {
-                                    <a href="@archive.Permalink/tag/@tag.Slug">
+                                    <a href="@(archive.Permalink)/tag/@tag.Slug">
                                         @tag.Title@(tag != post.Tags.Last() ? ", " : "")
                                     </a>
                                 }
