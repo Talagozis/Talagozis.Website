@@ -117,6 +117,39 @@ namespace Talagozis.Website.App_Plugins.Repositories
                 {
                     new WorkExperience
                     {
+                        position = "Platform Integrator",
+                        companyName = "Interworks Cloud",
+                        startDate = new DateTime(2019, 7, 1),
+                        endDate = new DateTime(2020, 10, 1),
+                        description = "Analyze, develop and test thrid party intagrations with the core platform.",
+                        typeOfBusiness = string.Empty,
+                        projects = new List<Project>
+                        {
+                            new Project
+                            {
+                                name = "GSuite integration",
+                                typeOfBusiness = string.Empty,
+                                description = "Two-way integration with GSuite platform.",
+                                tags = new []{ ".NET Core", "ASP.NET", "C#", "ReactJs", "Typescript" }
+                            },
+                            new Project
+                            {
+                                name = "Acronis integration",
+                                typeOfBusiness = string.Empty,
+                                description = "Two-way integration with Acronis platform.",
+                                tags = new []{ ".NET Core", "ASP.NET", "C#" }
+                            },
+                            new Project
+                            {
+                                name = "BitTitan integration",
+                                typeOfBusiness = string.Empty,
+                                description = "Two-way integration with BitTitan platform.",
+                                tags = new []{ ".NET Core", "ASP.NET", "C#" }
+                            }
+                        }
+                    },
+                    new WorkExperience
+                    {
                         companyName = "Freelancer",
                         position = "Full-Stack Software Developer",
                         startDate = new DateTime(2014, 10, 1),
