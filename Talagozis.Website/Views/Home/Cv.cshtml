@@ -10,6 +10,41 @@
         h1, h2, h3 {
             font-family: 'Open Sans', 'Poppins', sans-serif;
         }
+        .no-padding {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        @@media print {
+            .no-print, .no-print *
+            {
+                display: none !important;
+            }
+            .no-page-break {
+                page-break-inside: avoid;
+            }
+            .inline-block {
+                display: inline-block;
+            }
+            .profile-infos .section-item-title-1 {
+                font-weight: normal;
+            }
+            .profile-infos .section-item-title-1::after {
+                content: ":";
+            }
+            .profile-infos .line-content p {
+                font-weight: 700;
+                font-size: 1.9rem;
+            }
+            .fa {
+                display: none;
+            }
+            h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+                line-height: 1.2;
+            }
+            #tqShowIP {
+                display: none;
+            }
+        }
     </style>
 }
 
@@ -42,13 +77,13 @@
 
 <!-- SIDE MENU
 ========================================================= -->
-<div class="side-menu-open hidden-sm hidden-xs">
+<div class="side-menu-open hidden-sm hidden-xs no-print">
   <!-- Menu-button -->
     <a href="#" class="btn btn-default side-menu-button"><i class="fa fa-bars"></i> MENU</a>
   <!-- /menu-button -->
 </div>
 <!-- Side Menu container -->
-<div class="side-menu">
+<div class="side-menu no-print">
   <!-- close button -->
   <span id="side-menu-close"><i class="fa fa-times"></i></span>
   <!-- /close button -->
@@ -101,7 +136,7 @@
   <div class="row" id="intro">
 
     <!-- Header Colors -->
-    <div class="col-md-10 col-sm-10  col-md-offset-2 col-sm-offset-1 clearfix top-colors">
+    <div class="col-md-10 col-sm-10  col-md-offset-2 col-sm-offset-1 clearfix top-colors no-print">
       <div class="top-color top-color1"></div>
       <div class="top-color top-color2"></div>
       <div class="top-color top-color3"></div>
@@ -114,7 +149,7 @@
     <div class="col-md-10 col-sm-10 col-md-offset-2 col-sm-offset-1 resume-container">
       
       <!-- Header Buttons -->
-      <div class="row">
+      <div class="row no-print">
         <div class="header-buttons col-md-10 col-md-offset-1">
           <!-- Download Resume Button -->
           <a href="/content/201706/CV Christos Talagozis (English).pdf" class="btn btn-default btn-top-resume"><i class="fa fa-download"></i><span class="btn-hide-text">Download my resume</span></a>
@@ -129,7 +164,7 @@
       <!-- =============== PROFILE INTRO ====================-->
       <div class="profile-intro row">
         <!-- Left Collum with Avatar pic -->
-        <div class="col-md-4 profile-col">
+        <div class="col-md-4 col-sm-4 col-xs-4 profile-col">
           <!-- Avatar pic -->
           <div class="profile-pic">
             <div class="profile-border">
@@ -143,9 +178,9 @@
         <!-- /Left columm with avatar pic -->
   
         <!-- Right Columm -->
-        <div class="col-md-7">
+        <div class="col-md-7 col-sm-7 col-xs-7">
           <!-- Welcome Title-->
-          <h1 class="intro-title1">Hi, i'm <span class="color1 bold">@Model.fullName!</span></h1>
+          <h1 class="intro-title1">Hi, I'm <span class="color1 bold">@Model.fullName!</span></h1>
           <!-- /Welcome Title -->
           <!-- Job - -->
           <h2 class="intro-title2">
@@ -183,7 +218,7 @@
                   </div>
                   <!-- /VERTICAL MARGIN -->
                   <!-- SECTION TITLE -->
-                  <div class="line row">
+                  <div class="line row no-print">
                       <!-- Margin Collums (necessary for the timeline effect) -->
                       <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
                       <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height">
@@ -201,149 +236,134 @@
                       <!-- / Margin Collum-->
                   </div>
                   <!-- /SECTION TITLE -->
-                  <!-- SECTION ITEM -->
-                  <div class="line row">
-                      <!-- Margin Collums (necessary for the timeline effect) -->
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-                      <!-- /Margin Collums -->
-                      <!-- Item Content -->
-                      <div class="col-md-8 content-wrap bg1">
-                          <div class="line-content">
-                              <!-- Subtitle -->
-                              <h3 class="section-item-title-1">Full Name</h3>
-                              <!-- /Subtitle -->
-                              <!-- content -->
-                              <p>@Model.fullName</p>
-                              <!-- /Content -->
+                  <div class="col-md-12 col-xs-6 no-padding">
+                      <!-- SECTION ITEM -->
+                      <div class="line row">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content">
+                                  <!-- Subtitle -->
+                                  <h3 class="section-item-title-1 inline-block">Full Name</h3>
+                                  <!-- /Subtitle -->
+                                  <!-- content -->
+                                  <p class="inline-block">@Model.fullName</p>
+                                  <!-- /Content -->
+                              </div>
                           </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum-->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum-->
                       </div>
-                      <!-- /Item Content -->
-                      <!-- Margin Collum-->
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      <!-- /Margin Collum-->
                   </div>
                   <!-- /SECTION ITEM -->
                   <!-- SECTION ITEM -->
-                  <div class="line row">
-                      <!-- Margin Collums (necessary for the timeline effect) -->
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-                      <!-- /Margin Collums -->
-                      <!-- Item Content -->
-                      <div class="col-md-8 content-wrap bg1">
-                          <div class="line-content">
-                              <!-- Subtitle -->
-                              <h3 class="section-item-title-1">Nationality</h3>
-                              <!-- /Subtitle -->
-                              <!-- content -->
-                              <p>@Model.nationality</p>
-                              <!-- /Content -->
+                  <div class="col-md-12 col-xs-6 no-padding">
+                      <div class="line row">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content">
+                                  <!-- Subtitle -->
+                                  <h3 class="section-item-title-1 inline-block">Nationality</h3>
+                                  <!-- /Subtitle -->
+                                  <!-- content -->
+                                  <p class="inline-block">@Model.nationality</p>
+                                  <!-- /Content -->
+                              </div>
                           </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum-->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum-->
                       </div>
-                      <!-- /Item Content -->
-                      <!-- Margin Collum-->
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      <!-- /Margin Collum-->
                   </div>
                   <!-- /SECTION ITEM -->
                   <!-- SECTION ITEM -->
-                  <div class="line row">
-                      <!-- Margin Collums (necessary for the timeline effect) -->
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-                      <!-- /Margin Collums -->
-                      <!-- Item Content -->
-                      <div class="col-md-8 content-wrap bg1">
-                          <div class="line-content">
-                              <!-- Subtitle -->
-                              <h3 class="section-item-title-1">Born</h3>
-                              <!-- /Subtitle -->
-                              <!-- content -->
-                              <p>@Model.dob.ToString("dd MMM yyyy") - @Model.pob</p>
-                              <!-- /Content -->
+                  <div class="col-md-12 col-xs-6  no-padding">
+                      <div class="line row">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content">
+                                  <!-- Subtitle -->
+                                  <h3 class="section-item-title-1 inline-block">Born</h3>
+                                  <!-- /Subtitle -->
+                                  <!-- content -->
+                                  <p class="inline-block">@Model.dob.ToString("dd MMM yyyy") - @Model.pob</p>
+                                  <!-- /Content -->
+                              </div>
                           </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum-->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum-->
                       </div>
-                      <!-- /Item Content -->
-                      <!-- Margin Collum-->
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      <!-- /Margin Collum-->
-                  </div>
-                  <!-- /SECTION ITEM -->
-                  @*
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Address</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <p>@Model.address</p>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->
-                  *@
-                  <!-- SECTION ITEM -->
-                  <div class="line row">
-                      <!-- Margin Collums (necessary for the timeline effect) -->
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point"></div>
-                      <!-- /Margin Collums -->
-                      <!-- Item Content -->
-                      <div class="col-md-8 content-wrap bg1">
-                          <div class="line-content">
-                              <!-- Subtitle -->
-                              <h3 class="section-item-title-1">Email</h3>
-                              <!-- /Subtitle -->
-                              <!-- content -->
-                              <p>@Model.email</p>
-                              <!-- /Content -->
-                          </div>
-                      </div>
-                      <!-- /Item Content -->
-                      <!-- Margin Collum -->
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      <!-- /Margin Collums -->
                   </div>
                   <!-- /SECTION ITEM -->
                   <!-- SECTION ITEM -->
-                  <div class="line row">
-                      <!-- Margin Collums (necessary for the timeline effect) -->
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point"></div>
-                      <!-- Margin Collums (necessary for the timeline effect) -->
-                      <!-- Item Content -->
-                      <div class="col-md-8 content-wrap bg1">
-                          <div class="line-content">
-                              <!-- Subtitle -->
-                              <h3 class="section-item-title-1">Find Me On</h3>
-                              <!-- /Subtitle -->
-                              <!-- content -->
-                              <a href="@Model.linkedinLink" class="btn btn-default" target="_blank">
-                                  <i class="fa fa-linkedin"></i>
-                              </a>
-                              <a href="@Model.githubLink" class="btn btn-default" target="_blank">
-                                  <i class="fa fa-github"></i>
-                              </a>
-                              <!-- /Content -->
+                  <div class="col-md-12 col-xs-6  no-padding">
+                      <div class="line row">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point"></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8  content-wrap bg1">
+                              <div class="line-content">
+                                  <!-- Subtitle -->
+                                  <h3 class="section-item-title-1 inline-block">Email</h3>
+                                  <!-- /Subtitle -->
+                                  <!-- content -->
+                                  <p class="inline-block">@Model.email</p>
+                                  <!-- /Content -->
+                              </div>
                           </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collums -->
                       </div>
-                      <!-- /Item Content -->
-                      <!-- Margin Collum -->
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      <!-- /Margin Collum -->
+                  </div>
+                  <!-- /SECTION ITEM -->
+                  <!-- SECTION ITEM -->
+                  <div class="col-md-12 no-padding">
+                      <div class="line row">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point"></div>
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content">
+                                  <!-- Subtitle -->
+                                  <h3 class="section-item-title-1 inline-block">Find Me On</h3>
+                                  <!-- /Subtitle -->
+                                  <!-- content -->
+                                  <a href="@Model.linkedinLink" class="btn btn-default inline-block" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa fa-linkedin"></i>
+                                  </a>
+                                  <a href="@Model.githubLink" class="btn btn-default inline-block" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa fa-github"></i>
+                                  </a>
+                                  <!-- /Content -->
+                              </div>
+                          </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum -->
+                      </div>
                   </div>
                   <!-- /SECTION ITEM -->
               </section>
@@ -381,7 +401,7 @@
                   <!-- SECTION ITEM -->
                   @foreach (Education education in Model.educations.OrderByDescending(a => a.graduationDate))
                   {
-                      <div class="line row">
+                      <div class="line row no-page-break">
                           <!-- Margin Collums (necessary for the timeline effect) -->
                           <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
                           <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education"></div>
@@ -478,7 +498,7 @@
                   <!-- SECTION ITEM -->
                   @foreach (WorkExperience workExperience in Model.workExperience.OrderByDescending(a => a.startDate))
                   {
-                      <div class="line row">
+                      <div class="line row no-page-break">
                           <!-- Margin Collums (necessary for the timeline effect) -->
                           <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
                           <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work "></div>
@@ -573,7 +593,7 @@
                   <!-- SECTION ITEM -->
                   @foreach (ResearchExperience researchExperience in Model.researchExperience.OrderByDescending(a => a.startDate))
                   {
-                      <div class="line row">
+                      <div class="line row no-page-break">
                           <!-- Margin Collums (necessary for the timeline effect) -->
                           <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
                           <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education2"></div>
@@ -595,7 +615,7 @@
                                       <p>Tutors: <strong>@(string.Join(',', researchExperience.tutorNames))</strong></p>
                                       @if (!string.IsNullOrEmpty(researchExperience.publicationLink))
                                       {
-                                          <p>Publication: <strong><a href="@(researchExperience.publicationLink)" target="_blank">Link</a></strong></p>
+                                          <p>Publication: <strong class="no-print"><a href="@(researchExperience.publicationLink)" target="_blank">Link</a></strong></p>
                                       }
                                       <p>@researchExperience.description</p>
                                   </div>
@@ -611,54 +631,9 @@
                   <!-- /SECTION ITEM -->
 
               </section>
-          <!-- ==>> /SECTION: REASEARCH EXPERIENCE <<==== -->
-          
-          
-
-
-              @*<section class="timeline openscourcecontributions" id="openscourcecontributions">
-
-                  <div class="line row timeline-margin">
-                      <div class="content-wrap">
-                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
-                          <div class="col-md-9 bg1 full-height"></div>
-                      </div>
-                  </div>
-
-                  <div class="line row">
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
-                      <div class="col-md-8 content-wrap bg1">
-                          <h2 class="section-title">Research Experience</h2>
-                      </div>
-                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                  </div>
-                  @foreach (OpenSourceContribution openSourceContribution in Model.openSourceContributions.OrderByDescending(a => a.repository))
-                  {
-                      <div class="line row">
-                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work "></div>
-                          <div class="col-md-8 content-wrap bg1">
-                              <div class="line-content line-content-education">
-                                  <h3 class="section-item-title-1">@openSourceContribution.repository</h3>
-                                  <h4 class="job"><i class="fa fa-flag"></i> @openSourceContribution.position - <span class="job-date">@openSourceContribution.startDate.ToString("MMMM yyyy") - @(openSourceContribution.endDate.HasValue ? openSourceContribution.endDate.Value.ToString("MMMM yyyy") : "Current")</span></h4>
-                                  <div class="job-description">
-                                      <p>@openSourceContribution.description</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                      </div>
-                  }
-
-              </section>*@
-          
-          
-          
-
-          <!-- ====>> SECTION: AWARD <<====-->
-              <section class="timeline work-experience" id="award">
+              <!-- ==>> /SECTION: REASEARCH EXPERIENCE <<==== -->
+              <!-- ====>> SECTION: AWARD <<====-->
+              <section class="timeline work-experience no-page-break" id="award">
 
                   <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
                   <div class="line row timeline-margin">
@@ -721,6 +696,48 @@
 
               </section>
               <!-- ==>> /SECTION: AWARD <<==== -->
+
+
+
+              @*<section class="timeline openscourcecontributions" id="openscourcecontributions">
+
+            <div class="line row timeline-margin">
+                <div class="content-wrap">
+                    <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                    <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+                    <div class="col-md-9 bg1 full-height"></div>
+                </div>
+            </div>
+
+            <div class="line row">
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
+                <div class="col-md-8 content-wrap bg1">
+                    <h2 class="section-title">Research Experience</h2>
+                </div>
+                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            </div>
+            @foreach (OpenSourceContribution openSourceContribution in Model.openSourceContributions.OrderByDescending(a => a.repository))
+            {
+                <div class="line row">
+                    <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                    <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work "></div>
+                    <div class="col-md-8 content-wrap bg1">
+                        <div class="line-content line-content-education">
+                            <h3 class="section-item-title-1">@openSourceContribution.repository</h3>
+                            <h4 class="job"><i class="fa fa-flag"></i> @openSourceContribution.position - <span class="job-date">@openSourceContribution.startDate.ToString("MMMM yyyy") - @(openSourceContribution.endDate.HasValue ? openSourceContribution.endDate.Value.ToString("MMMM yyyy") : "Current")</span></h4>
+                            <div class="job-description">
+                                <p>@openSourceContribution.description</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                </div>
+            }
+
+        </section>*@
+
+
               @*
         <!-- ====>> SECTION: SKILLS <<====-->
         <section class="timeline skills" id="skills">
@@ -1355,7 +1372,7 @@
         <!-- ==>> /SECTION: CONTACT -->
               *@
               <!-- ====>> SECTION: THANK YOU <<====-->
-              <section class="timeline profile-infos">
+              <section class="timeline profile-infos no-print ">
 
                   <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
                   <div class="line row timeline-margin timeline-margin-big">
@@ -1393,7 +1410,7 @@
       <!-- ============  /TIMELINE ================= -->
 
       <!-- ============  FOOTER ================= -->
-      <footer id="footer" class="row">
+      <footer id="footer" class="row no-print">
         <!-- Put your Quote Here-->
         <p class="quote">“Ideas are the beginning points of all fortunes”</p>
         <!-- /Quote -->
