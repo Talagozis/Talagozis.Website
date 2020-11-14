@@ -13,6 +13,6 @@ namespace Talagozis.Website.Models.Cv
         public ICollection<Link> links { get; set; }
         public string githubLink { get; set; }
         public string description { get; set; }
-        public string[] tags { get; set; }
+        public ICollection<string> tags { get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace Talagozis.Website.Controllers
         public async Task<IActionResult> HomePage()
         {
             CVRepository cVRepository = new CVRepository();
-            Person person = cVRepository.GetMyCV();
+            Person person = CVRepository.GetMyCV();
 
             IEnumerable<BlogArchive> allArchives = await this._api.Pages.GetAllAsync<BlogArchive>();
             allArchives = allArchives.Where(a => a.Published.HasValue).ToList();
@@ -77,7 +77,7 @@ namespace Talagozis.Website.Controllers
         {
             CVRepository cVRepository = new CVRepository();
 
-            Person person = cVRepository.GetMyCV();
+            Person person = CVRepository.GetMyCV();
 
             return this.View("~/Views/Home/CV.cshtml", person);
         }
@@ -93,7 +93,7 @@ namespace Talagozis.Website.Controllers
         {
             CVRepository cVRepository = new CVRepository();
 
-            return cVRepository.GetMyCV();
+            return CVRepository.GetMyCV();
         }
 
         public IActionResult Error()

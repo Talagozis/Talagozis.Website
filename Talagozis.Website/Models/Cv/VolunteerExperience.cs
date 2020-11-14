@@ -7,7 +7,7 @@ namespace Talagozis.Website.Models.Cv
     {
         public string organizationName { get; set; }
         public string position { get; set; }
-        public VolunteerCause[] causes { get; set; }
+        public ICollection<VolunteerCause> causes { get; set; }
         public DateTime startDate { get; set; }
         public DateTime? endDate { get; set; }
         public string description { get; set; }

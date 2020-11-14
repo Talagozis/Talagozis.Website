@@ -10,7 +10,7 @@ namespace Talagozis.Website.App_Plugins.Repositories
         private const string TEST_TEXT = "";
 
 
-        public Person GetMyCV() =>
+        public static Person GetMyCV() =>
             new Person
             {
                 avatarPicturePath = "talagozis.jpg",

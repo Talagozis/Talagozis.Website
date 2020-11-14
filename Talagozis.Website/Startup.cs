@@ -24,6 +24,7 @@ using Piranha.Data.EF.SQLServer;
 using Talagozis.Website.Models.Cms.PageTypes;
 using Talagozis.Website.Models.Cms.PostTypes;
 using Talagozis.Website.Models.Cms.SiteTypes;
+using System.Globalization;
 
 namespace Talagozis.Website
 {
@@ -102,7 +103,7 @@ namespace Talagozis.Website
                     if (string.Equals(ctx.File.Name, "service-worker.js", StringComparison.CurrentCultureIgnoreCase))
                         age = new TimeSpan(0, 0, 0, 0);
 
-                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + age.TotalSeconds.ToString("0");
+                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + age.TotalSeconds.ToString("0", CultureInfo.InvariantCulture);
                 }
             });
             app.UseWebMarkupMin();

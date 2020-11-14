@@ -11,7 +11,7 @@ using Talagozis.Logging.File;
 
 namespace Talagozis.Website
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {

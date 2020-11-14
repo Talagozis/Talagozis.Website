@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Talagozis.Website.Models.Cv
 {
@@ -13,14 +14,16 @@ namespace Talagozis.Website.Models.Cv
         public string fullName => (this.forename + " " + this.surname).Trim();
         public DateTime dob { get; set; }
 
-        public string age {
-            get {
+        public string age
+        {
+            get
+            {
                 var today = DateTime.Today;
                 var age = today.Year - this.dob.Year;
-                if (this.dob.Date > today.AddYears(-age)) {
-                    return (age-1).ToString();
-                }
-                return age--.ToString();
+                if (this.dob.Date > today.AddYears(-age))
+                    return (age - 1).ToString("##", CultureInfo.InvariantCulture);
+
+                return age--.ToString("##", CultureInfo.InvariantCulture);
             }
         }
 
@@ -45,7 +48,7 @@ namespace Talagozis.Website.Models.Cv
                                                  .TrimEnd('/');
         public string twitterLink { get; set; }
         public string twitterLabel => this.twitterLink;
-        public string[] jobTitles { get; set; }
+        public ICollection<string> jobTitles { get; set; }
         public string description { get; set; }
         public ICollection<Education> educations { get; set; }
         public ICollection<WorkExperience> workExperience { get; set; }

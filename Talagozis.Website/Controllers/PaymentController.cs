@@ -23,6 +23,9 @@ namespace Talagozis.Website.Controllers
         [HttpPost]
         public async Task<IActionResult> Purchase([FromServices]IPaypalService paypalService, uint productBid)
         {
+            if (paypalService == null)
+                throw new ArgumentNullException(nameof(paypalService));
+
             string returnUrl = "/payment/success";
             string cancelUrl = "/payment/canceled";
 
@@ -36,6 +39,9 @@ namespace Talagozis.Website.Controllers
         {
             try
             {
+                if (paypalService == null)
+                    throw new ArgumentNullException(nameof(paypalService));
+
                 if (!string.IsNullOrWhiteSpace(token))
                     await paypalService.ordersCapture(token);
                 else if (!string.IsNullOrWhiteSpace(paymentId) && !string.IsNullOrWhiteSpace(PayerID))
@@ -46,7 +52,7 @@ namespace Talagozis.Website.Controllers
 
                 return this.Ok("Success!");
             }
-            catch (Exception)
+            catch(Exception ex) when (!(ex is ArgumentNullException))
             {
                 return this.Ok("Failed!");
             }
