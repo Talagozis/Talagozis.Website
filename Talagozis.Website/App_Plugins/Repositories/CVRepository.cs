@@ -121,7 +121,7 @@ namespace Talagozis.Website.App_Plugins.Repositories
                         companyName = "Interworks Cloud",
                         startDate = new DateTime(2019, 7, 1),
                         endDate = new DateTime(2020, 10, 1),
-                        description = "Analyze, develop and test thrid party intagrations with the core platform.",
+                        description = "Analyze, develop and test third party integrations with the core platform.",
                         typeOfBusiness = string.Empty,
                         projects = new List<Project>
                         {
@@ -347,7 +347,7 @@ namespace Talagozis.Website.App_Plugins.Repositories
                         position = "Machine Learning Engineer",
                         companyName = "StarBet",
                         startDate = new DateTime(2018, 3, 1),
-                        endDate = new DateTime(2019, 10, 1),
+                        endDate = new DateTime(2020, 9, 1),
                         description = "Design and develop binomial regression and classification algorithm.",
                         typeOfBusiness = string.Empty,
                         links = new List<Link>
@@ -361,8 +361,7 @@ namespace Talagozis.Website.App_Plugins.Repositories
                                 name = "Recurrent Deep Conversion",
                                 typeOfBusiness = "Betting foresight",
                                 description = "Anomaly detection and score predictions on international football matches.",
-                                tags = new []{"F#", "ML.NET", "TensorFlow", },
-
+                                tags = new []{ "C#", "F#", ".NET Core", "ML.NET", "TensorFlow", },
                             }
                         }
                     },
