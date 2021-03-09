@@ -49,7 +49,7 @@
         <link rel="stylesheet" type="text/css" href="~/css/home/custom.min.css" asp-append-version="true" />
     </environment>
 
-    @RenderSection("css", true)
+    @await RenderSectionAsync("css", true)
 
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
@@ -121,8 +121,8 @@
     <script crossorigin="anonymous" src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" ></script>
     <script crossorigin="anonymous" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"></script>
 
-    @RenderSection("js", true)
+@await RenderSectionAsync("js", true)
 
-    @RenderSection("Scripts", required: false)
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
