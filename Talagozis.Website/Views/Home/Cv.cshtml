@@ -6,6 +6,46 @@
 @model Talagozis.Website.Models.Cv.Person
 
 @section css {
+    <style>
+        h1, h2, h3 {
+            font-family: 'Open Sans', 'Poppins', sans-serif;
+        }
+        .no-padding {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        @@media print {
+            .no-print, .no-print *
+            {
+                display: none !important;
+            }
+            .no-page-break {
+                page-break-inside: avoid;
+            }
+            .inline-block {
+                display: inline-block;
+            }
+            .profile-infos .section-item-title-1 {
+                font-weight: normal;
+            }
+            .profile-infos .section-item-title-1::after {
+                content: ":";
+            }
+            .profile-infos .line-content p {
+                font-weight: 700;
+                font-size: 1.9rem;
+            }
+            .fa {
+                display: none;
+            }
+            h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+                line-height: 1.25;
+            }
+            #tqShowIP {
+                display: none;
+            }
+        }
+    </style>
 }
 
 @section js {
@@ -37,13 +77,13 @@
 
 <!-- SIDE MENU
 ========================================================= -->
-<div class="side-menu-open hidden-sm hidden-xs">
+<div class="side-menu-open hidden-sm hidden-xs no-print">
   <!-- Menu-button -->
     <a href="#" class="btn btn-default side-menu-button"><i class="fa fa-bars"></i> MENU</a>
   <!-- /menu-button -->
 </div>
 <!-- Side Menu container -->
-<div class="side-menu">
+<div class="side-menu no-print">
   <!-- close button -->
   <span id="side-menu-close"><i class="fa fa-times"></i></span>
   <!-- /close button -->
@@ -96,7 +136,7 @@
   <div class="row" id="intro">
 
     <!-- Header Colors -->
-    <div class="col-md-10 col-sm-10  col-md-offset-2 col-sm-offset-1 clearfix top-colors">
+    <div class="col-md-10 col-sm-10  col-md-offset-2 col-sm-offset-1 clearfix top-colors no-print">
       <div class="top-color top-color1"></div>
       <div class="top-color top-color2"></div>
       <div class="top-color top-color3"></div>
@@ -109,7 +149,7 @@
     <div class="col-md-10 col-sm-10 col-md-offset-2 col-sm-offset-1 resume-container">
       
       <!-- Header Buttons -->
-      <div class="row">
+      <div class="row no-print">
         <div class="header-buttons col-md-10 col-md-offset-1">
           <!-- Download Resume Button -->
           <a href="/content/201706/CV Christos Talagozis (English).pdf" class="btn btn-default btn-top-resume"><i class="fa fa-download"></i><span class="btn-hide-text">Download my resume</span></a>
@@ -124,7 +164,7 @@
       <!-- =============== PROFILE INTRO ====================-->
       <div class="profile-intro row">
         <!-- Left Collum with Avatar pic -->
-        <div class="col-md-4 profile-col">
+        <div class="col-md-4 col-sm-4 col-xs-4 profile-col">
           <!-- Avatar pic -->
           <div class="profile-pic">
             <div class="profile-border">
@@ -138,9 +178,9 @@
         <!-- /Left columm with avatar pic -->
   
         <!-- Right Columm -->
-        <div class="col-md-7">
+        <div class="col-md-7 col-sm-7 col-xs-7">
           <!-- Welcome Title-->
-          <h1 class="intro-title1">Hi, i'm <span class="color1 bold">@Model.fullName!</span></h1>
+          <h1 class="intro-title1">Hi, I'm <span class="color1 bold">@Model.fullName!</span></h1>
           <!-- /Welcome Title -->
           <!-- Job - -->
           <h2 class="intro-title2">
@@ -163,379 +203,504 @@
       
       <!-- ============  TIMELINE ================= -->
       <div class="timeline-wrap">
-        <div class="timeline-bg">
+          <div class="timeline-bg">
 
-          <!-- ====>> SECTION: PROFILE INFOS <<====-->
-          <section class="timeline profile-infos">
+              <!-- ====>> SECTION: PROFILE INFOS <<====-->
+              <section class="timeline profile-infos">
 
-            <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
-            <div class="line row timeline-margin">
-              <div class="content-wrap">
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
-                <div class="col-md-9 bg1 full-height"></div>
-              </div>
-            </div>
-            <!-- /VERTICAL MARGIN -->
-
-            <!-- SECTION TITLE -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height">
-              </div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <!-- Section title -->
-                <h2 class="section-title">Profile</h2>
-                <!-- /Section title -->
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- / Margin Collum-->
-            </div>
-            <!-- /SECTION TITLE -->
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Full Name</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <p>@Model.fullName</p>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->
-            
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Nationality</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <p>@Model.nationality</p>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Born</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <p>@Model.dob.ToString("dd MMM yyyy") - @Model.pob</p>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->   
-@*
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Address</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <p>@Model.address</p>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->
-*@
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point"></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Email</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <p>@Model.email</p>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collums -->
-            </div>
-            <!-- /SECTION ITEM -->
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point"></div>
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Find Me On</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                    <a href="@Model.linkedinLink" class="btn btn-default" target="_blank">
-                        <i class="fa fa-linkedin"></i>
-                    </a>
-                    <a href="@Model.githubLink" class="btn btn-default" target="_blank">
-                        <i class="fa fa-github"></i>
-                    </a>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum -->
-            </div>
-            <!-- /SECTION ITEM --> 
-          </section>
-          <!-- ==>> /SECTION: PROFILE INFOS -->     
-            
-
-            <!-- ====>> SECTION: EDUCATION <<====-->
-          <section class="timeline education" id="education">
-
-            <!-- Margin (necessary for the timeline effect) -->
-            <div class="line row timeline-margin">
-              <div class="content-wrap">
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
-                <div class="col-md-9 bg1 full-height"></div>
-              </div>
-            </div>
-            <!-- /Margin -->
-
-            <!-- SECTION TITLE -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>              
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <!-- Section title -->
-                <h2 class="section-title">Education</h2>
-                <!-- /Section title -->
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION TITLE -->
-
-            <!-- SECTION ITEM -->
-            @foreach(Education education in Model.educations.OrderByDescending(a => a.graduationDate))
-            {            
-              <div class="line row">
-                <!-- Margin Collums (necessary for the timeline effect) -->
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education"></div>
-                <!-- /Margin Collums -->
-                <!-- Item Content -->
-                <div class="col-md-8 content-wrap bg1">
-                  <div class="line-content line-content-education">
-                    <!-- Graduation title -->
-                    <h3 class="section-item-title-1">@education.title</h3>
-                    <!-- /Graduation title -->
-                    <!-- Graduation time -->
-                      <h4 class="graduation-time">
-                        <i class="fa fa-university"></i>
-                        <span>@education.university (@education.courseYears Years Course)</span>
-                        <span class="graduation-date">Graduation @education.graduationDate.ToString("MMMM yyyy")</span>
-                      </h4>
-                    <!-- /Graduation time -->
-                    <!-- content -->
-                      <div class="graduation-description">
-                          @if(!string.IsNullOrWhiteSpace(education.thesisTitle))
-                          {
-                              <p>Thesis: <strong>@education.thesisTitle</strong></p>
-                          }
-                          @if (education.projects != null && education.projects.Any())
-                          {
-                            <p>Projects: </p>
-                            <ul class="" style="padding-left: 40px; margin-bottom: 20px;">
-                              @foreach (Project project in education.projects)
-                              {
-                                  <li class="">
-                                      <span class="project-name">@project.name</span>
-                                      @if (!string.IsNullOrWhiteSpace(project.description))
-                                      {
-                                          <p class="project-description">@project.description</p>
-                                      }
-                                  </li>
-                              }
-                            </ul>
-                          }
-                          <p>Main courses:</p>
-                          <ul class="" style="padding-left: 40px; margin-bottom: 20px;">
-                              @foreach (Course course in education.mainCourses)
-                              {
-                                  <li class="">@course.name</li>
-                              }
-                          </ul>
+                  <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
+                  <div class="line row timeline-margin">
+                      <div class="content-wrap">
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+                          <div class="col-md-9 bg1 full-height"></div>
                       </div>
-                    <!-- /Content -->
                   </div>
-                </div>
-                <!-- /Item Content -->
-                <!-- Margin Collum -->
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <!-- /Margin Collum -->
-              </div>
-            }
-            <!-- /SECTION ITEM -->   
-    
-          </section>
-          <!-- ==>> /SECTION: EDUCATION <<==== -->  
-            
-
-            <!-- ====>> SECTION: WORK EXPERIENCE <<====-->
-          <section class="timeline work-experience" id="works">
-
-            <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
-            <div class="line row timeline-margin">
-              <div class="content-wrap">
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
-                <div class="col-md-9 bg1 full-height"></div>
-              </div>
-            </div>
-            <!-- /VERTICAL MARGIN -->
-
-            <!-- SECTION TITLE -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <!-- Section title -->
-                <h2 class="section-title">Work Experience</h2>
-                <!-- /Section title -->
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION TITLE -->
-
-            <!-- SECTION ITEM -->
-            @foreach(WorkExperience workExperience in Model.workExperience.OrderByDescending(a => a.startDate))
-            {     
-              <div class="line row">
-                <!-- Margin Collums (necessary for the timeline effect) -->
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work "></div>
-                <!-- /Margin Collums -->
-                <!-- Item Content -->
-                <div class="col-md-8 content-wrap bg1">
-                  <div class="line-content line-content-education">
-                    <!-- Work Place -->
-                    <h3 class="section-item-title-1">@workExperience.companyName</h3>
-                    <!-- /work place -->
-                    <!-- Graduation time -->
-                    <h4 class="job"><i class="fa fa-flag"></i> @workExperience.position - <span class="job-date">@workExperience.startDate.ToString("MMMM yyyy") - @(workExperience.endDate.HasValue ? workExperience.endDate.Value.ToString("MMMM yyyy") : "Current")</span></h4>
-                    <!-- /Graduation time -->
-                    <!-- content -->
-                    <div class="job-description">
-                        <p>@workExperience.description</p>
-                        @if (workExperience.projects != null && workExperience.projects.Any())
-                        {
-                            <p>Projects: </p>
-                            <ul class="" style="padding-left:40px; margin-bottom:20px;">
-                                @foreach(Project project in workExperience.projects)
-                                {
-                                    <li class="">
-                                        <span class="project-name">@project.name</span>
-                                        @if(!string.IsNullOrWhiteSpace(project.description))
-                                        {
-                                            <p class="project-description">@project.description</p>
-                                        }
-                                    </li>
-                                }
-                            </ul>
-                        }
-                    </div>
-                    <!-- /Content -->
+                  <!-- /VERTICAL MARGIN -->
+                  <!-- SECTION TITLE -->
+                  <div class="line row no-print">
+                      <!-- Margin Collums (necessary for the timeline effect) -->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height">
+                      </div>
+                      <!-- /Margin Collums -->
+                      <!-- Item Content -->
+                      <div class="col-md-8 content-wrap bg1">
+                          <!-- Section title -->
+                          <h2 class="section-title">Profile</h2>
+                          <!-- /Section title -->
+                      </div>
+                      <!-- /Item Content -->
+                      <!-- Margin Collum-->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <!-- / Margin Collum-->
                   </div>
-                </div>
-                <!-- /Item Content -->
-                <!-- Margin Collum-->
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <!-- /Margin Collum-->
-              </div>
-            }
-            <!-- /SECTION ITEM -->
+                  <!-- /SECTION TITLE -->
+                  <div class="col-md-12 col-xs-6 no-padding">
+                      <!-- SECTION ITEM -->
+                      <div class="line row">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content">
+                                  <!-- Subtitle -->
+                                  <h3 class="section-item-title-1 inline-block">Full Name</h3>
+                                  <!-- /Subtitle -->
+                                  <!-- content -->
+                                  <p class="inline-block">@Model.fullName</p>
+                                  <!-- /Content -->
+                              </div>
+                          </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum-->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum-->
+                      </div>
+                  </div>
+                  <!-- /SECTION ITEM -->
+                  <!-- SECTION ITEM -->
+                  <div class="col-md-12 col-xs-6 no-padding">
+                      <div class="line row">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content">
+                                  <!-- Subtitle -->
+                                  <h3 class="section-item-title-1 inline-block">Nationality</h3>
+                                  <!-- /Subtitle -->
+                                  <!-- content -->
+                                  <p class="inline-block">@Model.nationality</p>
+                                  <!-- /Content -->
+                              </div>
+                          </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum-->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum-->
+                      </div>
+                  </div>
+                  <!-- /SECTION ITEM -->
+                  <!-- SECTION ITEM -->
+                  <div class="col-md-12 col-xs-6  no-padding">
+                      <div class="line row">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content">
+                                  <!-- Subtitle -->
+                                  <h3 class="section-item-title-1 inline-block">Born</h3>
+                                  <!-- /Subtitle -->
+                                  <!-- content -->
+                                  <p class="inline-block">@Model.dob.ToString("dd MMM yyyy") - @Model.pob</p>
+                                  <!-- /Content -->
+                              </div>
+                          </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum-->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum-->
+                      </div>
+                  </div>
+                  <!-- /SECTION ITEM -->
+                  <!-- SECTION ITEM -->
+                  <div class="col-md-12 col-xs-6  no-padding">
+                      <div class="line row">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point"></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8  content-wrap bg1">
+                              <div class="line-content">
+                                  <!-- Subtitle -->
+                                  <h3 class="section-item-title-1 inline-block">Email</h3>
+                                  <!-- /Subtitle -->
+                                  <!-- content -->
+                                  <p class="inline-block">@Model.email</p>
+                                  <!-- /Content -->
+                              </div>
+                          </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collums -->
+                      </div>
+                  </div>
+                  <!-- /SECTION ITEM -->
+                  <!-- SECTION ITEM -->
+                  <div class="col-md-12 no-padding">
+                      <div class="line row">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point"></div>
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content">
+                                  <!-- Subtitle -->
+                                  <h3 class="section-item-title-1 inline-block">Find Me On</h3>
+                                  <!-- /Subtitle -->
+                                  <!-- content -->
+                                  <a href="@Model.linkedinLink" class="btn btn-default inline-block" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa fa-linkedin"></i>
+                                  </a>
+                                  <a href="@Model.githubLink" class="btn btn-default inline-block" target="_blank" rel="noopener noreferrer">
+                                      <i class="fa fa-github"></i>
+                                  </a>
+                                  <!-- /Content -->
+                              </div>
+                          </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum -->
+                      </div>
+                  </div>
+                  <!-- /SECTION ITEM -->
+              </section>
+              <!-- ==>> /SECTION: PROFILE INFOS -->
+              <!-- ====>> SECTION: EDUCATION <<====-->
+              <section class="timeline education" id="education">
 
-          </section>
-          <!-- ==>> /SECTION: WORK EXPERIENCE <<==== --> 
+                  <!-- Margin (necessary for the timeline effect) -->
+                  <div class="line row timeline-margin">
+                      <div class="content-wrap">
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+                          <div class="col-md-9 bg1 full-height"></div>
+                      </div>
+                  </div>
+                  <!-- /Margin -->
+                  <!-- SECTION TITLE -->
+                  <div class="line row">
+                      <!-- Margin Collums (necessary for the timeline effect) -->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
+                      <!-- /Margin Collums -->
+                      <!-- Item Content -->
+                      <div class="col-md-8 content-wrap bg1">
+                          <!-- Section title -->
+                          <h2 class="section-title">Education</h2>
+                          <!-- /Section title -->
+                      </div>
+                      <!-- /Item Content -->
+                      <!-- Margin Collum-->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <!-- /Margin Collum-->
+                  </div>
+                  <!-- /SECTION TITLE -->
+                  <!-- SECTION ITEM -->
+                  @foreach (Education education in Model.educations.OrderByDescending(a => a.graduationDate))
+                  {
+                      <div class="line row no-page-break">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education"></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content line-content-education">
+                                  <!-- Graduation title -->
+                                  <h3 class="section-item-title-1">@education.title</h3>
+                                  <!-- /Graduation title -->
+                                  <!-- Graduation time -->
+                                  <h4 class="graduation-time">
+                                      <i class="fa fa-university"></i>
+                                      <span>@education.university (@education.courseYears Years Course)</span>
+                                      @if (education.graduationDate.HasValue)
+                                      {
+                                          <span class="graduation-date">Graduation @education.graduationDate.Value.ToString("MMMM yyyy")</span>
+                                      }
+                                  </h4>
+                                  <!-- /Graduation time -->
+                                  <!-- content -->
+                                  <div class="graduation-description">
+                                      @if (!string.IsNullOrWhiteSpace(education.thesisTitle))
+                                      {
+                                          <p>Thesis: <strong>@education.thesisTitle</strong></p>
+                                      }
+                                      @if (education.projects != null && education.projects.Any())
+                                      {
+                                          <p>Projects: </p>
+                                          <ul class="" style="padding-left: 40px; margin-bottom: 20px;">
+                                              @foreach (Project project in education.projects)
+                                              {
+                                                  <li class="">
+                                                      <span class="project-name">@project.name</span>
+                                                      @if (!string.IsNullOrWhiteSpace(project.description))
+                                                      {
+                                                          <p class="project-description">@project.description</p>
+                                                      }
+                                                  </li>
+                                              }
+                                          </ul>
+                                      }
+                                      <p>Main courses:</p>
+                                      <ul class="" style="padding-left: 40px; margin-bottom: 20px;">
+                                          @foreach (Course course in education.mainCourses)
+                                          {
+                                              <li class="">@course.name</li>
+                                          }
+                                      </ul>
+                                  </div>
+                                  <!-- /Content -->
+                              </div>
+                          </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum -->
+                      </div>
+                  }
+                  <!-- /SECTION ITEM -->
+
+              </section>
+              <!-- ==>> /SECTION: EDUCATION <<==== -->
+              <!-- ====>> SECTION: WORK EXPERIENCE <<====-->
+              <section class="timeline work-experience" id="works">
+
+                  <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
+                  <div class="line row timeline-margin">
+                      <div class="content-wrap">
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+                          <div class="col-md-9 bg1 full-height"></div>
+                      </div>
+                  </div>
+                  <!-- /VERTICAL MARGIN -->
+                  <!-- SECTION TITLE -->
+                  <div class="line row">
+                      <!-- Margin Collums (necessary for the timeline effect) -->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
+                      <!-- /Margin Collums -->
+                      <!-- Item Content -->
+                      <div class="col-md-8 content-wrap bg1">
+                          <!-- Section title -->
+                          <h2 class="section-title">Work Experience</h2>
+                          <!-- /Section title -->
+                      </div>
+                      <!-- /Item Content -->
+                      <!-- Margin Collum-->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <!-- /Margin Collum-->
+                  </div>
+                  <!-- /SECTION TITLE -->
+                  <!-- SECTION ITEM -->
+                  @foreach (WorkExperience workExperience in Model.workExperience.OrderByDescending(a => a.startDate))
+                  {
+                      <div class="line row no-page-break">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work "></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content line-content-education">
+                                  <!-- Work Place -->
+                                  <h3 class="section-item-title-1">@workExperience.companyName</h3>
+                                  <!-- /work place -->
+                                  <!-- Graduation time -->
+                                  <h4 class="job"><i class="fa fa-flag"></i> @workExperience.position - <span class="job-date">@workExperience.startDate.ToString("MMMM yyyy") - @(workExperience.endDate.HasValue ? workExperience.endDate.Value.ToString("MMMM yyyy") : "Current")</span></h4>
+                                  <!-- /Graduation time -->
+                                  <!-- content -->
+                                  <div class="job-description">
+                                      <p>@workExperience.description</p>
+                                      @if (workExperience.projects != null && workExperience.projects.Any())
+                                      {
+                                          <p>Projects: </p>
+                                          <ul class="" style="padding-left:40px; margin-bottom:20px;">
+                                              @foreach (Project project in workExperience.projects)
+                                              {
+                                                  <li class="">
+                                                      <span class="project-name">@project.name</span>
+                                                      @if (!string.IsNullOrWhiteSpace(project.typeOfBusiness))
+                                                      {
+                                                          <span>|</span>
+                                                          <span>@project.typeOfBusiness</span>
+                                                      }
+                                                      @if (!string.IsNullOrWhiteSpace(project.description))
+                                                      {
+                                                          <p class="project-description">@project.description</p>
+                                                      }
+                                                  </li>
+                                              }
+                                          </ul>
+                                          @if (workExperience.tags != null && workExperience.tags.Any())
+                                          {
+                                              <p style="line-height: 21px;">
+                                                  <span>Tags:</span>
+                                                  @foreach (var tag in workExperience.tags.OrderBy(a => a))
+                                                  {
+                                                      <span class="label label-default">@tag</span>
+                                                  }
+                                              </p>
+                                          }
+                                      }
+                                  </div>
+                                  <!-- /Content -->
+                              </div>
+                          </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum-->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum-->
+                      </div>
+                  }
+                  <!-- /SECTION ITEM -->
+
+              </section>
+              <!-- ==>> /SECTION: WORK EXPERIENCE <<==== -->
+              <!-- ====>> SECTION: REASEARCH EXPERIENCE <<====-->
+              <section class="timeline education" id="workexperience">
+
+                  <!-- Margin (necessary for the timeline effect) -->
+                  <div class="line row timeline-margin">
+                      <div class="content-wrap">
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+                          <div class="col-md-9 bg1 full-height"></div>
+                      </div>
+                  </div>
+                  <!-- /Margin -->
+                  <!-- SECTION TITLE -->
+                  <div class="line row">
+                      <!-- Margin Collums (necessary for the timeline effect) -->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
+                      <!-- /Margin Collums -->
+                      <!-- Item Content -->
+                      <div class="col-md-8 content-wrap bg1">
+                          <!-- Section title -->
+                          <h2 class="section-title">Research Experience</h2>
+                          <!-- /Section title -->
+                      </div>
+                      <!-- /Item Content -->
+                      <!-- Margin Collum-->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <!-- /Margin Collum-->
+                  </div>
+                  <!-- /SECTION TITLE -->
+                  <!-- SECTION ITEM -->
+                  @foreach (ResearchExperience researchExperience in Model.researchExperience.OrderByDescending(a => a.startDate))
+                  {
+                      <div class="line row no-page-break">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education2"></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content line-content-education">
+                                  <!-- Research Place -->
+                                  <h3 class="section-item-title-1">@researchExperience.title</h3>
+                                  <!-- /research place -->
+                                  <!-- Graduation time -->
+                                  <h4 class="job">
+                                      <i class="fa fa-university"></i> @researchExperience.organizationName -
+                                      <span class="job-date">@researchExperience.startDate.ToString("MMMM yyyy") - @(researchExperience.endDate.HasValue ? researchExperience.endDate.Value.ToString("MMMM yyyy") : "Current")</span>
+                                  </h4>
+                                  <!-- /Graduation time -->
+                                  <!-- content -->
+                                  <div class="job-description">
+                                      <p>Tutors: <strong>@(string.Join(',', researchExperience.tutorNames))</strong></p>
+                                      @if (!string.IsNullOrEmpty(researchExperience.publicationLink))
+                                      {
+                                          <p>Publication: <strong class="no-print"><a href="@(researchExperience.publicationLink)" target="_blank">Link</a></strong></p>
+                                      }
+                                      <p>@researchExperience.description</p>
+                                  </div>
+                                  <!-- /Content -->
+                              </div>
+                          </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum-->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum-->
+                      </div>
+                  }
+                  <!-- /SECTION ITEM -->
+
+              </section>
+              <!-- ==>> /SECTION: REASEARCH EXPERIENCE <<==== -->
+              <!-- ====>> SECTION: AWARD <<====-->
+              <section class="timeline work-experience no-page-break" id="award">
+
+                  <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
+                  <div class="line row timeline-margin">
+                      <div class="content-wrap">
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+                          <div class="col-md-9 bg1 full-height"></div>
+                      </div>
+                  </div>
+                  <!-- /VERTICAL MARGIN -->
+                  <!-- SECTION TITLE -->
+                  <div class="line row">
+                      <!-- Margin Collums (necessary for the timeline effect) -->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+                      <!-- /Margin Collums -->
+                      <!-- Item Content -->
+                      <div class="col-md-8 content-wrap bg1">
+                          <!-- Section title -->
+                          <h2 class="section-title">Awards</h2>
+                          <!-- /Section title -->
+                      </div>
+                      <!-- /Item Content -->
+                      <!-- Margin Collum-->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <!-- /Margin Collum-->
+                  </div>
+                  <!-- /SECTION TITLE -->
+                  <!-- SECTION ITEM -->
+                  @foreach (Awards award in Model.awards.OrderByDescending(a => a.issueDate))
+                  {
+                      <div class="line row">
+                          <!-- Margin Collums (necessary for the timeline effect) -->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work2 "></div>
+                          <!-- /Margin Collums -->
+                          <!-- Item Content -->
+                          <div class="col-md-8 content-wrap bg1">
+                              <div class="line-content line-content-education">
+                                  <!-- Work Place -->
+                                  <h3 class="section-item-title-1">@award.title</h3>
+                                  <!-- /work place -->
+                                  <!-- Graduation time -->
+                                  <h4 class="job"><i class="fa fa-flag"></i> @award.issuer - <span class="job-date">@award.issueDate.ToString("MMMM yyyy")</span></h4>
+                                  <!-- /Graduation time -->
+                                  <!-- content -->
+                                  <div class="job-description">
+                                      <p>@award.description</p>
+                                  </div>
+                                  <!-- /Content -->
+                              </div>
+                          </div>
+                          <!-- /Item Content -->
+                          <!-- Margin Collum-->
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <!-- /Margin Collum-->
+                      </div>
+                  }
+                  <!-- /SECTION ITEM -->
+
+              </section>
+              <!-- ==>> /SECTION: AWARD <<==== -->
 
 
-          <!-- ====>> SECTION: REASEARCH EXPERIENCE <<====-->
-        <section class="timeline education" id="education">
 
-            <!-- Margin (necessary for the timeline effect) -->
+              @*<section class="timeline openscourcecontributions" id="openscourcecontributions">
+
             <div class="line row timeline-margin">
                 <div class="content-wrap">
                     <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
@@ -543,813 +708,709 @@
                     <div class="col-md-9 bg1 full-height"></div>
                 </div>
             </div>
-            <!-- /Margin -->
 
-            <!-- SECTION TITLE -->
             <div class="line row">
-                <!-- Margin Collums (necessary for the timeline effect) -->
                 <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>    
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <!-- Section title -->
-                <h2 class="section-title">Research Experience</h2>
-                <!-- /Section title -->
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION TITLE -->
-
-            <!-- SECTION ITEM -->
-            @foreach(ResearchExperience researchExperience in Model.researchExperience.OrderByDescending(a => a.startDate))
-            {     
-              <div class="line row">
-                <!-- Margin Collums (necessary for the timeline effect) -->
-                  <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                  <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-education2"></div>
-                <!-- /Margin Collums -->
-                <!-- Item Content -->
+                <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
                 <div class="col-md-8 content-wrap bg1">
-                  <div class="line-content line-content-education">
-                    <!-- Research Place -->
-                    <h3 class="section-item-title-1">@researchExperience.title</h3>
-                    <!-- /research place -->
-                    <!-- Graduation time -->
-                    <h4 class="job">
-                      <i class="fa fa-university"></i> @researchExperience.organizationName - 
-                      <span class="job-date">@researchExperience.startDate.ToString("MMMM yyyy") - @(researchExperience.endDate.HasValue ? researchExperience.endDate.Value.ToString("MMMM yyyy") : "Current")</span>
-                    </h4>
-                    <!-- /Graduation time -->
-                    <!-- content -->
-                    <div class="job-description">
-                        <p>Tutors: <strong>@(string.Join(',', researchExperience.tutorNames))</strong></p>
-                        @if(!string.IsNullOrEmpty(researchExperience.publicationLink))
-                        {
-                            <p>Publication: <strong><a href="@(researchExperience.publicationLink)" target="_blank">Link</a></strong></p>
-                        }
-                        <p>@researchExperience.description</p>
-                    </div>
-                    <!-- /Content -->
-                  </div>
+                    <h2 class="section-title">Research Experience</h2>
                 </div>
-                <!-- /Item Content -->
-                <!-- Margin Collum-->
                 <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <!-- /Margin Collum-->
-              </div>
+            </div>
+            @foreach (OpenSourceContribution openSourceContribution in Model.openSourceContributions.OrderByDescending(a => a.repository))
+            {
+                <div class="line row">
+                    <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                    <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work "></div>
+                    <div class="col-md-8 content-wrap bg1">
+                        <div class="line-content line-content-education">
+                            <h3 class="section-item-title-1">@openSourceContribution.repository</h3>
+                            <h4 class="job"><i class="fa fa-flag"></i> @openSourceContribution.position - <span class="job-date">@openSourceContribution.startDate.ToString("MMMM yyyy") - @(openSourceContribution.endDate.HasValue ? openSourceContribution.endDate.Value.ToString("MMMM yyyy") : "Current")</span></h4>
+                            <div class="job-description">
+                                <p>@openSourceContribution.description</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                </div>
             }
-            <!-- /SECTION ITEM -->
 
-          </section>
-          <!-- ==>> /SECTION: REASEARCH EXPERIENCE <<==== --> 
+        </section>*@
 
 
-          <!-- ====>> SECTION: AWARD <<====-->
-          <section class="timeline work-experience" id="works">
+              @*
+        <!-- ====>> SECTION: SKILLS <<====-->
+        <section class="timeline skills" id="skills">
 
+          <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
+          <div class="line row timeline-margin">
+            <div class="content-wrap">
+              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+              <div class="col-md-9 bg1 full-height"></div>
+            </div>
+          </div>
+          <!-- /VERTICAL MARGIN -->
+
+          <!-- SECTION TITLE -->
+          <div class="line row">
             <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
-            <div class="line row timeline-margin">
-              <div class="content-wrap">
-                  <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                  <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
-                  <div class="col-md-9 bg1 full-height"></div>
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
+            <!-- /VERTICAL MARGIN (necessary for the timeline effect) -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <!-- Section title -->
+              <h2 class="section-title">Skills</h2>
+              <!-- /Section title -->
+            </div>
+            <!-- /Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!-- /Margin Collum-->
+          </div>
+          <!-- /SECTION TITLE -->
+
+          <!-- SECTION ITEM -->
+          <div class="line row">
+            <!-- Margin Collums (necessary for the timeline effect) -->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+            <!-- / Margin Collums -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <div class="line-content">
+                <!-- Subtitle -->
+                <h3 class="section-item-title-1">Professional Skills</h3>
+                <!-- /Subtitle -->
+                <!-- content -->
+                <ul class="skills-list">
+                  <!-- item-list -->
+                  <li>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" data-percent="70%" style="width: 70%;">
+                          <span class="sr-only">70% Complete</span>
+                      </div>
+                      <span class="progress-type">Comunication</span>
+                      <span class="progress-completed">70%</span>
+                    </div>
+                  </li>
+                  <!-- /item list -->
+                  <!-- item-list -->
+                  <li>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-2" role="progressbar" data-percent="90%" style="width: 90%;">
+                          <span class="sr-only">90% Complete</span>
+                      </div>
+                      <span class="progress-type">Leadership</span>
+                      <span class="progress-completed">90%</span>
+                    </div>
+                  </li>
+                  <!-- /item list -->
+                  <!-- item-list -->
+                  <li>
+                    <div class="progress" title="Doing my best!">
+                      <div class="progress-bar progress-bar-3" role="progressbar" data-percent="85%" style="width: 85%;">
+                          <span class="sr-only">85% Complete</span>
+                      </div>
+                      <span class="progress-type">Confidence</span>
+                      <span class="progress-completed">85%</span>
+                    </div>
+                  </li>
+                  <!-- /item list -->
+                </ul>
+                <!-- /Content -->
               </div>
             </div>
-            <!-- /VERTICAL MARGIN -->
+            <!-- /Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!-- /Margin Collum-->
+          </div>
+          <!-- /SECTION ITEM -->
 
-            <!-- SECTION TITLE -->
-            <div class="line row">
-                <!-- Margin Collums (necessary for the timeline effect) -->
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
-                <!-- /Margin Collums -->
-                <!-- Item Content -->
-                <div class="col-md-8 content-wrap bg1">
-                    <!-- Section title -->
-                    <h2 class="section-title">Awards</h2>
-                    <!-- /Section title -->
-                </div>
-                <!-- /Item Content -->
-                <!-- Margin Collum-->
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION TITLE -->
-
-            <!-- SECTION ITEM -->
-            @foreach(Awards award in Model.awards.OrderByDescending(a => a.issueDate))
-            {     
-              <div class="line row">
-                <!-- Margin Collums (necessary for the timeline effect) -->
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-work2 "></div>
-                <!-- /Margin Collums -->
-                <!-- Item Content -->
-                <div class="col-md-8 content-wrap bg1">
-                  <div class="line-content line-content-education">
-                    <!-- Work Place -->
-                    <h3 class="section-item-title-1">@award.title</h3>
-                    <!-- /work place -->
-                    <!-- Graduation time -->
-                    <h4 class="job"><i class="fa fa-flag"></i> @award.issuer - <span class="job-date">@award.issueDate.ToString("MMMM yyyy")</span></h4>
-                    <!-- /Graduation time -->
-                    <!-- content -->
-                    <div class="job-description">
-                        <p>@award.description</p>                        
+          <!-- SECTION ITEM -->
+          <div class="line row">
+            <!-- Margin Collums (necessary for the timeline effect) -->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+            <!-- /Margin Collums -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <div class="line-content">
+                <!-- Subtitle -->
+                <h3 class="section-item-title-1">Software Skills</h3>
+                <!-- /Subtitle -->
+                <!-- content -->
+                <ul class="skills-list">
+                  <!-- item-list -->
+                  <li>
+                    <div class="progress">
+                      <div class="progress-bar" data-percent="85%" role="progressbar" style="width: 85%;">
+                          <span class="sr-only">85% Complete</span>
+                      </div>
+                      <span class="progress-type">Adobe Photoshop</span>
+                      <span class="progress-completed">85%</span>
                     </div>
-                    <!-- /Content -->
+                  </li>
+                  <!-- /item list -->
+                  <!-- item-list -->
+                  <li>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-2" data-percent="90%" role="progressbar" style="width: 90%;">
+                          <span class="sr-only">90% Complete</span>
+                      </div>
+                      <span class="progress-type">Adobe Illustrator</span>
+                      <span class="progress-completed">90%</span>
+                    </div>
+                  </li>
+                  <!-- /item list -->
+                  <!-- item-list -->
+                  <li>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-3" data-percent="40%" role="progressbar" style="width: 40%;">
+                          <span class="sr-only">40% Complete</span>
+                      </div>
+                      <span class="progress-type">Adobe Fireworks</span>
+                      <span class="progress-completed">40%</span>
+                    </div>
+                  </li>
+                  <!-- /item list -->
+                </ul>
+                <!-- /Content -->
+              </div>
+            </div>
+            <!-- /Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!-- /Margin Collum-->
+          </div>
+          <!-- /SECTION ITEM -->
+
+          <!-- SECTION ITEM -->
+          <div class="line row">
+            <!-- Margin Collums (necessary for the timeline effect) -->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+            <!-- /Margin Collums (necessary for the timeline effect) -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <div class="line-content">
+                <!-- Subtitle -->
+                <h3 class="section-item-title-1">Code Skills</h3>
+                <!-- /Subtitle -->
+                <!-- content -->
+                <ul class="skills-list">
+                  <!-- item-list -->
+                  <li>
+                    <div class="progress">
+                      <div class="progress-bar" data-percent="90%" role="progressbar" style="width: 90%;">
+                          <span class="sr-only">90% Complete</span>
+                      </div>
+                      <span class="progress-type">HTML5 / CSS3</span>
+                      <span class="progress-completed">90%</span>
+                    </div>
+                  </li>
+                  <!-- /item list -->
+                  <!-- item-list -->
+                  <li>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-2" data-percent="60%" role="progressbar" style="width: 60%;">
+                          <span class="sr-only">60% Complete</span>
+                      </div>
+                      <span class="progress-type">Javascript</span>
+                      <span class="progress-completed">60%</span>
+                    </div>
+                  </li>
+                  <!-- /item list -->
+                  <!-- item-list -->
+                  <li>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-3" data-percent="40%" role="progressbar" style="width: 40%;">
+                          <span class="sr-only">40% Complete</span>
+                      </div>
+                      <span class="progress-type">PHP</span>
+                      <span class="progress-completed">40%</span>
+                    </div>
+                  </li>
+                  <!-- /item list -->
+                </ul>
+                <!-- /Content -->
+              </div>
+            </div>
+            <!-- /Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!-- /Margin Collum-->
+          </div>
+          <!-- /SECTION ITEM -->
+        </section>
+        <!-- ==>> /SECTION: SKILLS -->
+
+        <!-- ====>> SECTION: INTERESTS <<====-->
+        <section class="timeline" id="interests">
+
+          <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
+          <div class="line row timeline-margin">
+            <div class="content-wrap">
+              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+              <div class="col-md-9 bg1 full-height"></div>
+            </div>
+          </div>
+          <!-- /VERTICAL MARGIN -->
+
+          <!-- SECTION TITLE -->
+          <div class="line row">
+            <!-- Margin Collums (necessary for the timeline effect) -->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
+            <!-- /Margin Collums -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <!-- Section title -->
+              <h2 class="section-title">Interests</h2>
+              <!-- /Section title -->
+            </div>
+            <!-- /Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!-- /Margin Collum-->
+          </div>
+          <!-- /SECTION TITLE -->
+
+          <!-- SECTION ITEM -->
+          <div class="line row">
+            <!-- Margin Collums (necessary for the timeline effect) -->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+            <!-- /Margin Collums -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <div class="line-content">
+                <!-- Subtitle -->
+                <h3 class="section-item-title-1">Art</h3>
+                <!-- /Subtitle -->
+                <!-- content -->
+                <p>Praesent tellus ligula, tincidunt et fringilla vel, tincidunt ut dui. Nulla feugiat, lacus ac malesuada lobortis, elit nunc congue nunc, vel imperdiet lorem leo a lectus.</p>
+                <!-- /Content -->
+              </div>
+            </div>
+            <!-- /Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!-- /Margin Collum-->
+          </div>
+          <!-- /SECTION ITEM -->
+
+          <!-- SECTION ITEM -->
+          <div class="line row">
+            <!-- Margin Collums (necessary for the timeline effect) -->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+            <!-- /Margin Collums -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <div class="line-content">
+                <!-- Subtitle -->
+                <h3 class="section-item-title-1">Games</h3>
+                <!-- /Subtitle -->
+                <!-- content -->
+                <p>Praesent tellus ligula, tincidunt et fringilla vel, tincidunt ut dui. Nulla feugiat, lacus ac malesuada lobortis, elit nunc congue nunc, vel imperdiet lorem leo a lectus.</p>
+                <!-- /Content -->
+              </div>
+            </div>
+            <!-- /Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!-- /Margin Collum-->
+          </div>
+          <!-- /SECTION ITEM -->
+
+          <!-- SECTION ITEM -->
+          <div class="line row">
+            <!-- Margin Collums (necessary for the timeline effect) -->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+            <!-- /Margin Collums -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <div class="line-content">
+                <!-- Subtitle -->
+                <h3 class="section-item-title-1">Books</h3>
+                <!-- /Subtitle -->
+                <!-- content -->
+                <p>Praesent tellus ligula, tincidunt et fringilla vel, tincidunt ut dui. Nulla feugiat, lacus ac malesuada lobortis, elit nunc congue nunc, vel imperdiet lorem leo a lectus.</p>
+                <!-- /Content -->
+              </div>
+            </div>
+            <!-- /Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!-- /Margin Collum-->
+          </div>
+          <!-- /SECTION ITEM -->
+        </section>
+        <!-- ==>> /SECTION: INTERESTS -->
+
+         <!-- ====>> SECTION: PORTFOLIO <<====-->
+        <section class="timeline portfolio" id="portfolio">
+
+          <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
+          <div class="line row timeline-margin">
+            <div class="content-wrap">
+              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+              <div class="col-md-9 bg1 full-height"></div>
+            </div>
+          </div>
+          <!-- /VERTICAL MARGIN -->
+
+          <!-- SECTION TITLE -->
+          <div class="line row">
+            <!-- Margin Collums (necessary for the timeline effect) -->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
+            <!-- /Margin Collums -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <!-- Section title -->
+              <h2 class="section-title">Portfólio</h2>
+              <!-- /Section title -->
+            </div>
+            <!-- Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!-- /Margin Collum-->
+          </div>
+          <!-- /SECTION TITLE -->
+
+          <!-- SECTION ITEM -->
+          <div class="line row">
+            <!-- Margin Collums (necessary for the timeline effect) -->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+            <!-- /Margin Collums -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <div class="line-content">
+                <!-- Subtitle -->
+                <h3 class="section-item-title-1">Some Works</h3>
+                <!-- /Subtitle -->
+                <!-- content -->
+                <div class="portfolio-itens clearfix">
+                  <!-- Portfolio item -->
+                  <div class="portfolio-item">
+                    <!-- Link to the item image (Put the long description on  "a" title)-->
+                    <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
+                      <div class="hover">
+                        <p class="zoomi"><i class="fa fa-search"></i></p>
+                        <!-- Item short title -->
+                        <p class="portfolio-item-title"><strong>John's Rex</strong><br/> Business Card</p>
+                      </div>
+                      <div class="hover-bg-wrapper">
+                        <div class="hover-bg"></div>
+                      </div>
+                      <div class="portfolio-item-thumbnail">
+                        <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
+                        <img src="img/portfolio-item-thumb.jpg" alt="">
+                      </div>
+                    </a>
                   </div>
-                </div>
-                <!-- /Item Content -->
-                <!-- Margin Collum-->
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <!-- /Margin Collum-->
-              </div>
-            }
-            <!-- /SECTION ITEM -->
+                  <!-- /Portfolio item -->
 
-          </section>
-          <!-- ==>> /SECTION: AWARD <<==== --> 
-
-
-          @*
-          <!-- ====>> SECTION: SKILLS <<====-->
-          <section class="timeline skills" id="skills">
-
-            <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
-            <div class="line row timeline-margin">
-              <div class="content-wrap">
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
-                <div class="col-md-9 bg1 full-height"></div>
-              </div>
-            </div>
-            <!-- /VERTICAL MARGIN -->
-
-            <!-- SECTION TITLE -->
-            <div class="line row">
-              <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
-              <!-- /VERTICAL MARGIN (necessary for the timeline effect) -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <!-- Section title -->
-                <h2 class="section-title">Skills</h2>
-                <!-- /Section title -->
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION TITLE -->
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- / Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Professional Skills</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <ul class="skills-list">
-                    <!-- item-list -->
-                    <li>
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" data-percent="70%" style="width: 70%;">
-                            <span class="sr-only">70% Complete</span>
-                        </div>
-                        <span class="progress-type">Comunication</span>
-                        <span class="progress-completed">70%</span>
+                  <!-- Portfolio item -->
+                  <div class="portfolio-item">
+                    <!-- Link to the item image (Put the long description on  "a" title)-->
+                    <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
+                      <div class="hover">
+                        <p class="zoomi"><i class="fa fa-search"></i></p>
+                        <!-- Item short title -->
+                        <p class="portfolio-item-title"><strong>John's Rex</strong><br/> Website</p>
                       </div>
-                    </li>
-                    <!-- /item list -->
-                    <!-- item-list -->
-                    <li>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-2" role="progressbar" data-percent="90%" style="width: 90%;">
-                            <span class="sr-only">90% Complete</span>
-                        </div>
-                        <span class="progress-type">Leadership</span>
-                        <span class="progress-completed">90%</span>
+                      <div class="hover-bg-wrapper">
+                        <div class="hover-bg"></div>
                       </div>
-                    </li>
-                    <!-- /item list -->
-                    <!-- item-list -->
-                    <li>
-                      <div class="progress" title="Doing my best!">
-                        <div class="progress-bar progress-bar-3" role="progressbar" data-percent="85%" style="width: 85%;">
-                            <span class="sr-only">85% Complete</span>
-                        </div>
-                        <span class="progress-type">Confidence</span>
-                        <span class="progress-completed">85%</span>
+                      <div class="portfolio-item-thumbnail">
+                        <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
+                        <img src="img/portfolio-item-thumb.jpg" alt="">
                       </div>
-                    </li>
-                    <!-- /item list -->
-                  </ul>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->
-            
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Software Skills</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <ul class="skills-list">
-                    <!-- item-list -->
-                    <li>
-                      <div class="progress">
-                        <div class="progress-bar" data-percent="85%" role="progressbar" style="width: 85%;">
-                            <span class="sr-only">85% Complete</span>
-                        </div>
-                        <span class="progress-type">Adobe Photoshop</span>
-                        <span class="progress-completed">85%</span>
-                      </div>
-                    </li>
-                    <!-- /item list -->
-                    <!-- item-list -->
-                    <li>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-2" data-percent="90%" role="progressbar" style="width: 90%;">
-                            <span class="sr-only">90% Complete</span>
-                        </div>
-                        <span class="progress-type">Adobe Illustrator</span>
-                        <span class="progress-completed">90%</span>
-                      </div>
-                    </li>
-                    <!-- /item list -->
-                    <!-- item-list -->
-                    <li>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-3" data-percent="40%" role="progressbar" style="width: 40%;">
-                            <span class="sr-only">40% Complete</span>
-                        </div>
-                        <span class="progress-type">Adobe Fireworks</span>
-                        <span class="progress-completed">40%</span>
-                      </div>
-                    </li>
-                    <!-- /item list -->
-                  </ul>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->   
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums (necessary for the timeline effect) -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Code Skills</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <ul class="skills-list">
-                    <!-- item-list -->
-                    <li>
-                      <div class="progress">
-                        <div class="progress-bar" data-percent="90%" role="progressbar" style="width: 90%;">
-                            <span class="sr-only">90% Complete</span>
-                        </div>
-                        <span class="progress-type">HTML5 / CSS3</span>
-                        <span class="progress-completed">90%</span>
-                      </div>
-                    </li>
-                    <!-- /item list -->
-                    <!-- item-list -->
-                    <li>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-2" data-percent="60%" role="progressbar" style="width: 60%;">
-                            <span class="sr-only">60% Complete</span>
-                        </div>
-                        <span class="progress-type">Javascript</span>
-                        <span class="progress-completed">60%</span>
-                      </div>
-                    </li>
-                    <!-- /item list -->
-                    <!-- item-list -->
-                    <li>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-3" data-percent="40%" role="progressbar" style="width: 40%;">
-                            <span class="sr-only">40% Complete</span>
-                        </div>
-                        <span class="progress-type">PHP</span>
-                        <span class="progress-completed">40%</span>
-                      </div>
-                    </li>
-                    <!-- /item list -->
-                  </ul>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM --> 
-          </section>
-          <!-- ==>> /SECTION: SKILLS -->
-
-          <!-- ====>> SECTION: INTERESTS <<====-->
-          <section class="timeline" id="interests">
-
-            <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
-            <div class="line row timeline-margin">
-              <div class="content-wrap">
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
-                <div class="col-md-9 bg1 full-height"></div>
-              </div>
-            </div>
-            <!-- /VERTICAL MARGIN -->
-
-            <!-- SECTION TITLE -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <!-- Section title -->
-                <h2 class="section-title">Interests</h2>
-                <!-- /Section title -->
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION TITLE -->
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Art</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <p>Praesent tellus ligula, tincidunt et fringilla vel, tincidunt ut dui. Nulla feugiat, lacus ac malesuada lobortis, elit nunc congue nunc, vel imperdiet lorem leo a lectus.</p>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->
-            
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Games</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <p>Praesent tellus ligula, tincidunt et fringilla vel, tincidunt ut dui. Nulla feugiat, lacus ac malesuada lobortis, elit nunc congue nunc, vel imperdiet lorem leo a lectus.</p>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->   
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Books</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <p>Praesent tellus ligula, tincidunt et fringilla vel, tincidunt ut dui. Nulla feugiat, lacus ac malesuada lobortis, elit nunc congue nunc, vel imperdiet lorem leo a lectus.</p>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM --> 
-          </section>
-          <!-- ==>> /SECTION: INTERESTS -->
-
-           <!-- ====>> SECTION: PORTFOLIO <<====-->
-          <section class="timeline portfolio" id="portfolio">
-
-            <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
-            <div class="line row timeline-margin">
-              <div class="content-wrap">
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
-                <div class="col-md-9 bg1 full-height"></div>
-              </div>
-            </div>
-            <!-- /VERTICAL MARGIN -->
-
-            <!-- SECTION TITLE -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <!-- Section title -->
-                <h2 class="section-title">Portfólio</h2>
-                <!-- /Section title -->
-              </div>
-              <!-- Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION TITLE -->
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Some Works</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <div class="portfolio-itens clearfix">                      
-                    <!-- Portfolio item -->
-                    <div class="portfolio-item">
-                      <!-- Link to the item image (Put the long description on  "a" title)-->
-                      <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
-                        <div class="hover">
-                          <p class="zoomi"><i class="fa fa-search"></i></p>
-                          <!-- Item short title -->
-                          <p class="portfolio-item-title"><strong>John's Rex</strong><br/> Business Card</p>
-                        </div>
-                        <div class="hover-bg-wrapper">
-                          <div class="hover-bg"></div>
-                        </div>
-                        <div class="portfolio-item-thumbnail">
-                          <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
-                          <img src="img/portfolio-item-thumb.jpg" alt="">
-                        </div>                        
-                      </a>
-                    </div>
-                    <!-- /Portfolio item -->  
-
-                    <!-- Portfolio item -->
-                    <div class="portfolio-item">
-                      <!-- Link to the item image (Put the long description on  "a" title)-->
-                      <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
-                        <div class="hover">
-                          <p class="zoomi"><i class="fa fa-search"></i></p>
-                          <!-- Item short title -->
-                          <p class="portfolio-item-title"><strong>John's Rex</strong><br/> Website</p>
-                        </div>
-                        <div class="hover-bg-wrapper">
-                          <div class="hover-bg"></div>
-                        </div>
-                        <div class="portfolio-item-thumbnail">
-                          <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
-                          <img src="img/portfolio-item-thumb.jpg" alt="">
-                        </div>                        
-                      </a>
-                    </div>
-                    <!-- /Portfolio item -->    
-
-                    <!-- Portfolio item -->
-                    <div class="portfolio-item">
-                      <!-- Link to the item image (Put the long description on  "a" title)-->
-                      <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
-                        <div class="hover">
-                          <p class="zoomi"><i class="fa fa-search"></i></p>
-                          <!-- Item short title -->
-                          <p class="portfolio-item-title"><strong>Spetacular</strong><br/>Shirt Design</p>
-                        </div>
-                        <div class="hover-bg-wrapper">
-                          <div class="hover-bg"></div>
-                        </div>
-                        <div class="portfolio-item-thumbnail">
-                          <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
-                          <img src="img/portfolio-item-thumb.jpg" alt="">
-                        </div>                        
-                      </a>
-                    </div>
-                    <!-- /Portfolio item -->   
-
-                    <!-- Portfolio item -->
-                    <div class="portfolio-item">
-                      <!-- Link to the item image (Put the long description on  "a" title)-->
-                      <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
-                        <div class="hover">
-                          <p class="zoomi"><i class="fa fa-search"></i></p>
-                          <!-- Item short title -->
-                          <p class="portfolio-item-title"><strong>Mr. Chicken</strong><br/> Website</p>
-                        </div>
-                        <div class="hover-bg-wrapper">
-                          <div class="hover-bg"></div>
-                        </div>
-                        <div class="portfolio-item-thumbnail">
-                          <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
-                          <img src="img/portfolio-item-thumb.jpg" alt="">
-                        </div>                        
-                      </a>
-                    </div>
-                    <!-- /Portfolio item -->  
-
-                    <!-- Portfolio item -->
-                    <div class="portfolio-item">
-                      <!-- Link to the item image (Put the long description on  "a" title)-->
-                      <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
-                        <div class="hover">
-                          <p class="zoomi"><i class="fa fa-search"></i></p>
-                          <!-- Item short title -->
-                          <p class="portfolio-item-title"><strong>Super Lab</strong><br/> Website</p>
-                        </div>
-                        <div class="hover-bg-wrapper">
-                          <div class="hover-bg"></div>
-                        </div>
-                        <div class="portfolio-item-thumbnail">
-                          <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
-                          <img src="img/portfolio-item-thumb.jpg" alt="">
-                        </div>                        
-                      </a>
-                    </div>
-                    <!-- /Portfolio item -->  
-
-                    <!-- Portfolio item -->
-                    <div class="portfolio-item">
-                      <!-- Link to the item image (Put the long description on  "a" title)-->
-                      <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
-                        <div class="hover">
-                          <p class="zoomi"><i class="fa fa-search"></i></p>
-                          <!-- Item short title -->
-                          <p class="portfolio-item-title"><strong>Awesome</strong><br/> Branding</p>
-                        </div>
-                        <div class="hover-bg-wrapper">
-                          <div class="hover-bg"></div>
-                        </div>
-                        <div class="portfolio-item-thumbnail">
-                          <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
-                          <img src="img/portfolio-item-thumb.jpg" alt="">
-                        </div>                        
-                      </a>
-                    </div>
-                    <!-- /Portfolio item -->   
-
-                    <!-- Portfolio item -->
-                    <div class="portfolio-item">
-                      <!-- Link to the item image (Put the long description on  "a" title)-->
-                      <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
-                        <div class="hover">
-                          <p class="zoomi"><i class="fa fa-search"></i></p>
-                          <!-- Item short title -->
-                          <p class="portfolio-item-title"><strong>Petrelli's</strong><br/> Business Card</p>
-                        </div>
-                        <div class="hover-bg-wrapper">
-                          <div class="hover-bg"></div>
-                        </div>
-                        <div class="portfolio-item-thumbnail">
-                          <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
-                          <img src="img/portfolio-item-thumb.jpg" alt="">
-                        </div>                        
-                      </a>
-                    </div>
-                    <!-- /Portfolio item -->   
-
-                    <!-- Portfolio item -->
-                    <div class="portfolio-item">
-                      <!-- Link to the item image (Put the long description on  "a" title)-->
-                      <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
-                        <div class="hover">
-                          <p class="zoomi"><i class="fa fa-search"></i></p>
-                          <!-- Item short title -->
-                          <p class="portfolio-item-title"><strong>Guia D</strong><br/> App Design</p>
-                        </div>
-                        <div class="hover-bg-wrapper">
-                          <div class="hover-bg"></div>
-                        </div>
-                        <div class="portfolio-item-thumbnail">
-                          <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
-                          <img src="img/portfolio-item-thumb.jpg" alt="">
-                        </div>                        
-                      </a>
-                    </div>
-                    <!-- /Portfolio item -->                    
+                    </a>
                   </div>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- /Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->
-          </section>
-          <!-- ==>> /SECTION: PORTFOLIO -->
-        
-          <!-- ====>> SECTION: CONTACT <<====-->
-          <section class="timeline" id="contact">
+                  <!-- /Portfolio item -->
 
-            <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
-            <div class="line row timeline-margin">
-              <div class="content-wrap">
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
-                <div class="col-md-9 bg1 full-height"></div>
-              </div>
-            </div>
-            <!-- /VERTICAL MARGIN -->
-
-            <!-- SECTION TITLE -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <!-- Section title -->
-                <h2 class="section-title">Contact</h2>
-                <!-- /Section title -->
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- / Margin Collum-->
-            </div>
-            <!-- /SECTION TITLE -->
-
-            <!-- SECTION ITEM -->
-            <div class="line row">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-mail "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content contact-content">
-                  <!-- Subtitle -->
-                  <h3 class="section-item-title-1">Send me a message</h3>
-                  <!-- /Subtitle -->
-                  <!-- content -->
-                  <div class="row">
-                    <div class="col-md-8 contact-form-wrapper">
-                      <!-- Contact form -->
-                      <form id="contactForm" method="post" class="form" role="form">
-                        <!-- Form Field -->
-                        <div class="form-group">
-                          <input class="form-control required" id="name" name="name" placeholder="Name" type="text" required />
-                        </div>
-                        <!-- /Form Field -->
-                        <!-- Form Field -->
-                        <div class="form-group">
-                          <input class="form-control required" id="email" name="email" placeholder="Email" type="email" required />
-                        </div>
-                        <!-- /Form Field -->
-                        <!-- Form Field -->
-                        <div class="form-group">
-                          <input class="form-control required" id="subject" type="text" name="subject" placeholder="Subject" required>
-                        </div>
-                        <!-- /Form Field -->
-                        <!-- Form Field -->
-                        <div class="form-group">
-                          <textarea class="form-control required" id="message" name="message" placeholder="Message" rows="5" required></textarea>
-                        </div>
-                        <!-- /Form Field -->
-                        <!-- Form Field -->
-                        <div class="form-group">
-                          <input type="submit" class="btn btn-default form-send" value="Send!">
-                        </div>  
-                        <!-- /Form Field -->
-                      </form>
-                      <!-- /Contact Form -->     
-                    </div>
-                    <!-- Contact infos -->                 
-                    <div class="col-md-4 contact-infos">
-                      <h4 class="contact-subtitle-1">Address</h4>
-                      <p>451 Lorem Ipsum, Austin - Texas - U.S.A</p>
-                      <h4 class="contact-subtitle-1">Phone</h4>
-                      <p>+61 3 8376 6284</p>
-                      <h4 class="contact-subtitle-1">Mail</h4>
-                      <p>john.Rex@dotrex.com</p>
-                    </div>
-                    <!-- /Contact infos --> 
+                  <!-- Portfolio item -->
+                  <div class="portfolio-item">
+                    <!-- Link to the item image (Put the long description on  "a" title)-->
+                    <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
+                      <div class="hover">
+                        <p class="zoomi"><i class="fa fa-search"></i></p>
+                        <!-- Item short title -->
+                        <p class="portfolio-item-title"><strong>Spetacular</strong><br/>Shirt Design</p>
+                      </div>
+                      <div class="hover-bg-wrapper">
+                        <div class="hover-bg"></div>
+                      </div>
+                      <div class="portfolio-item-thumbnail">
+                        <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
+                        <img src="img/portfolio-item-thumb.jpg" alt="">
+                      </div>
+                    </a>
                   </div>
-                  <!-- /Content -->
-                </div>
-              </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!--/ Margin Collum-->
-            </div>
-            <!-- /SECTION ITEM -->            
-          </section>
-          <!-- ==>> /SECTION: CONTACT -->
-          *@
-          <!-- ====>> SECTION: THANK YOU <<====-->
-          <section class="timeline profile-infos">
+                  <!-- /Portfolio item -->
 
-            <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
-            <div class="line row timeline-margin timeline-margin-big">
-              <div class="content-wrap">
-                <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-                <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
-                <div class="col-md-9 bg1 full-height"></div>
-              </div>
-            </div>
-            <!-- /VERTICAL MARGIN -->
+                  <!-- Portfolio item -->
+                  <div class="portfolio-item">
+                    <!-- Link to the item image (Put the long description on  "a" title)-->
+                    <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
+                      <div class="hover">
+                        <p class="zoomi"><i class="fa fa-search"></i></p>
+                        <!-- Item short title -->
+                        <p class="portfolio-item-title"><strong>Mr. Chicken</strong><br/> Website</p>
+                      </div>
+                      <div class="hover-bg-wrapper">
+                        <div class="hover-bg"></div>
+                      </div>
+                      <div class="portfolio-item-thumbnail">
+                        <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
+                        <img src="img/portfolio-item-thumb.jpg" alt="">
+                      </div>
+                    </a>
+                  </div>
+                  <!-- /Portfolio item -->
 
-            <!-- SECTION ITEM -->
-            <div class="line row line-thank-you">
-              <!-- Margin Collums (necessary for the timeline effect) -->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
-              <!-- /Margin Collums -->
-              <!-- Item Content -->
-              <div class="col-md-8 content-wrap bg1">
-                <div class="line-content">
-                  <!-- Subtitle -->
-                  <h3 class="thank-you">Thank You!</h3>
-                  <!-- /Subtitle -->
+                  <!-- Portfolio item -->
+                  <div class="portfolio-item">
+                    <!-- Link to the item image (Put the long description on  "a" title)-->
+                    <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
+                      <div class="hover">
+                        <p class="zoomi"><i class="fa fa-search"></i></p>
+                        <!-- Item short title -->
+                        <p class="portfolio-item-title"><strong>Super Lab</strong><br/> Website</p>
+                      </div>
+                      <div class="hover-bg-wrapper">
+                        <div class="hover-bg"></div>
+                      </div>
+                      <div class="portfolio-item-thumbnail">
+                        <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
+                        <img src="img/portfolio-item-thumb.jpg" alt="">
+                      </div>
+                    </a>
+                  </div>
+                  <!-- /Portfolio item -->
+
+                  <!-- Portfolio item -->
+                  <div class="portfolio-item">
+                    <!-- Link to the item image (Put the long description on  "a" title)-->
+                    <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
+                      <div class="hover">
+                        <p class="zoomi"><i class="fa fa-search"></i></p>
+                        <!-- Item short title -->
+                        <p class="portfolio-item-title"><strong>Awesome</strong><br/> Branding</p>
+                      </div>
+                      <div class="hover-bg-wrapper">
+                        <div class="hover-bg"></div>
+                      </div>
+                      <div class="portfolio-item-thumbnail">
+                        <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
+                        <img src="img/portfolio-item-thumb.jpg" alt="">
+                      </div>
+                    </a>
+                  </div>
+                  <!-- /Portfolio item -->
+
+                  <!-- Portfolio item -->
+                  <div class="portfolio-item">
+                    <!-- Link to the item image (Put the long description on  "a" title)-->
+                    <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
+                      <div class="hover">
+                        <p class="zoomi"><i class="fa fa-search"></i></p>
+                        <!-- Item short title -->
+                        <p class="portfolio-item-title"><strong>Petrelli's</strong><br/> Business Card</p>
+                      </div>
+                      <div class="hover-bg-wrapper">
+                        <div class="hover-bg"></div>
+                      </div>
+                      <div class="portfolio-item-thumbnail">
+                        <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
+                        <img src="img/portfolio-item-thumb.jpg" alt="">
+                      </div>
+                    </a>
+                  </div>
+                  <!-- /Portfolio item -->
+
+                  <!-- Portfolio item -->
+                  <div class="portfolio-item">
+                    <!-- Link to the item image (Put the long description on  "a" title)-->
+                    <a href="img/portfolio-item-zoom.jpg" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed molestie purus." class="nivobox" data-lightbox-gallery="portfolio">
+                      <div class="hover">
+                        <p class="zoomi"><i class="fa fa-search"></i></p>
+                        <!-- Item short title -->
+                        <p class="portfolio-item-title"><strong>Guia D</strong><br/> App Design</p>
+                      </div>
+                      <div class="hover-bg-wrapper">
+                        <div class="hover-bg"></div>
+                      </div>
+                      <div class="portfolio-item-thumbnail">
+                        <!-- Thumbnail of the portfolio image (400x360 for retina display) -->
+                        <img src="img/portfolio-item-thumb.jpg" alt="">
+                      </div>
+                    </a>
+                  </div>
+                  <!-- /Portfolio item -->
                 </div>
+                <!-- /Content -->
               </div>
-              <!-- /Item Content -->
-              <!-- Margin Collum-->
-              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
-              <!-- / Margin Collum-->
             </div>
-            <!-- /SECTION ITEM -->            
-          </section>
-          <!-- ==>> /SECTION: PROFILE INFOS -->
-        </div>
+            <!-- Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!-- /Margin Collum-->
+          </div>
+          <!-- /SECTION ITEM -->
+        </section>
+        <!-- ==>> /SECTION: PORTFOLIO -->
+
+        <!-- ====>> SECTION: CONTACT <<====-->
+        <section class="timeline" id="contact">
+
+          <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
+          <div class="line row timeline-margin">
+            <div class="content-wrap">
+              <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+              <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+              <div class="col-md-9 bg1 full-height"></div>
+            </div>
+          </div>
+          <!-- /VERTICAL MARGIN -->
+
+          <!-- SECTION TITLE -->
+          <div class="line row">
+            <!-- Margin Collums (necessary for the timeline effect) -->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs timeline-title full-height"></div>
+            <!-- /Margin Collums -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <!-- Section title -->
+              <h2 class="section-title">Contact</h2>
+              <!-- /Section title -->
+            </div>
+            <!-- /Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!-- / Margin Collum-->
+          </div>
+          <!-- /SECTION TITLE -->
+
+          <!-- SECTION ITEM -->
+          <div class="line row">
+            <!-- Margin Collums (necessary for the timeline effect) -->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-mail "></div>
+            <!-- /Margin Collums -->
+            <!-- Item Content -->
+            <div class="col-md-8 content-wrap bg1">
+              <div class="line-content contact-content">
+                <!-- Subtitle -->
+                <h3 class="section-item-title-1">Send me a message</h3>
+                <!-- /Subtitle -->
+                <!-- content -->
+                <div class="row">
+                  <div class="col-md-8 contact-form-wrapper">
+                    <!-- Contact form -->
+                    <form id="contactForm" method="post" class="form" role="form">
+                      <!-- Form Field -->
+                      <div class="form-group">
+                        <input class="form-control required" id="name" name="name" placeholder="Name" type="text" required />
+                      </div>
+                      <!-- /Form Field -->
+                      <!-- Form Field -->
+                      <div class="form-group">
+                        <input class="form-control required" id="email" name="email" placeholder="Email" type="email" required />
+                      </div>
+                      <!-- /Form Field -->
+                      <!-- Form Field -->
+                      <div class="form-group">
+                        <input class="form-control required" id="subject" type="text" name="subject" placeholder="Subject" required>
+                      </div>
+                      <!-- /Form Field -->
+                      <!-- Form Field -->
+                      <div class="form-group">
+                        <textarea class="form-control required" id="message" name="message" placeholder="Message" rows="5" required></textarea>
+                      </div>
+                      <!-- /Form Field -->
+                      <!-- Form Field -->
+                      <div class="form-group">
+                        <input type="submit" class="btn btn-default form-send" value="Send!">
+                      </div>
+                      <!-- /Form Field -->
+                    </form>
+                    <!-- /Contact Form -->
+                  </div>
+                  <!-- Contact infos -->
+                  <div class="col-md-4 contact-infos">
+                    <h4 class="contact-subtitle-1">Address</h4>
+                    <p>451 Lorem Ipsum, Austin - Texas - U.S.A</p>
+                    <h4 class="contact-subtitle-1">Phone</h4>
+                    <p>+61 3 8376 6284</p>
+                    <h4 class="contact-subtitle-1">Mail</h4>
+                    <p>john.Rex@dotrex.com</p>
+                  </div>
+                  <!-- /Contact infos -->
+                </div>
+                <!-- /Content -->
+              </div>
+            </div>
+            <!-- /Item Content -->
+            <!-- Margin Collum-->
+            <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+            <!--/ Margin Collum-->
+          </div>
+          <!-- /SECTION ITEM -->
+        </section>
+        <!-- ==>> /SECTION: CONTACT -->
+              *@
+              <!-- ====>> SECTION: THANK YOU <<====-->
+              <section class="timeline profile-infos no-print ">
+
+                  <!-- VERTICAL MARGIN (necessary for the timeline effect) -->
+                  <div class="line row timeline-margin timeline-margin-big">
+                      <div class="content-wrap">
+                          <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                          <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height"></div>
+                          <div class="col-md-9 bg1 full-height"></div>
+                      </div>
+                  </div>
+                  <!-- /VERTICAL MARGIN -->
+                  <!-- SECTION ITEM -->
+                  <div class="line row line-thank-you">
+                      <!-- Margin Collums (necessary for the timeline effect) -->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <div class="col-md-2 timeline-progress hidden-sm hidden-xs full-height timeline-point "></div>
+                      <!-- /Margin Collums -->
+                      <!-- Item Content -->
+                      <div class="col-md-8 content-wrap bg1">
+                          <div class="line-content">
+                              <!-- Subtitle -->
+                              <h3 class="thank-you">Thank You!</h3>
+                              <!-- /Subtitle -->
+                          </div>
+                      </div>
+                      <!-- /Item Content -->
+                      <!-- Margin Collum-->
+                      <div class="col-md-1 bg1 timeline-space full-height hidden-sm hidden-xs"></div>
+                      <!-- / Margin Collum-->
+                  </div>
+                  <!-- /SECTION ITEM -->
+              </section>
+              <!-- ==>> /SECTION: PROFILE INFOS -->
+          </div>
       </div>
       <!-- ============  /TIMELINE ================= -->
 
       <!-- ============  FOOTER ================= -->
-      <footer id="footer" class="row">
+      <footer id="footer" class="row no-print">
         <!-- Put your Quote Here-->
         <p class="quote">“Ideas are the beginning points of all fortunes”</p>
         <!-- /Quote -->

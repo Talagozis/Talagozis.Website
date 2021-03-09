@@ -1,6 +1,8 @@
 @using Talagozis.AspNetCore.Extensions
 @using Talagozis.AspNetCore.Models.ViewModels.Html
-@using Talagozis.Website.Models
+@using Piranha.Models
+@using Talagozis.Website.Models.Cms.PostTypes
+@using Microsoft.EntityFrameworkCore.Internal
 
 @inject Piranha.IApi Api
 
@@ -49,11 +51,13 @@
         }
         .header-blog {
             margin-bottom: 0;
-            height: 350px;
+            max-height: 350px;
+            height: 30vh;
         }
         .header-blog h1 {
-            height: 350px;
-            line-height: 350px;
+            max-height: 350px;
+            height: 30vh;
+            line-height: 30vh;
         }
         .blog-page .col-lg-4 {
             margin-bottom: 80px;
@@ -86,13 +90,15 @@
     <div class="container">
         <div class="row">
 
-            @foreach (BlogArchive archive in Model.Archives.OrderByDescending(a => a.Archive.Posts.Max(b => b.Published)))
+            @foreach (PostArchive<BlogPost> postArchive in Model.PostArchives.OrderByDescending(a => a.Posts.Max(b => b.Published)))
             {
+                var post = postArchive.Posts.OrderByDescending(a => a.Published).First();
+                var archive = Model.Archives.Single(a => a.Id == post.BlogId);
                 <div class="col-lg-4 col-md-12">
                     <div class="post">
                         <div class="img-post">
                             <a href="@archive.Permalink">
-                                <img src="@Url.Content(archive.Heading.PrimaryImage.Resize(Api, 430, 290))" class="img-fluid" alt="archive.Title" />
+                                <img src="@Url.Content(archive.Heading.PrimaryImage.Resize(Api, 430, 290))" class="img-fluid" alt="page.Title" />
                             </a>
                         </div>
                         <div class="infos-post">
@@ -101,18 +107,18 @@
                                     @archive.Title
                                 </a>
                             </h3>
-                            <span>- Latest: @archive.Archive.Posts.Max(b => b.Published)?.ToString("dd MMM yyyy") -</span>
+                            <span>- Latest: @post.Published?.ToString("dd MMM yyyy") -</span>
                             <hr>
                             <div>
                                 <p>
-                                    @Html.Raw(archive.Heading.shortDescription)
+                                    @Html.Raw(archive.Heading.Ingress)
                                 </p>
                             </div>
                         </div>
                         <div class="tags-post">
                             <i class="manisa-tag"></i>
                             <span>
-                                @{ var selectedTags = archive.Archive.Posts.SelectMany(a => a.Tags); }
+                                @{ var selectedTags = postArchive.Posts.SelectMany(a => a.Tags).Distinct((a, b) => b.Id == a.Id).ToList(); }
                                 @foreach (var tag in selectedTags.Take(3))
                                 {
                                     <a href="@archive.Permalink/tag/@tag.Slug" target="_blank">

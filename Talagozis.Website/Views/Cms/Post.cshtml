@@ -15,22 +15,22 @@
     {
         title = Model.BlogPost.Title,
         titleSuffix = "Talagozis",
-        description = Model.BlogPost.Heading.shortDescription,
+        description = Model.BlogPost.MetaDescription,
         canonical = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
-        ogTitle = Model.BlogPost.Title,
+        ogTitle = Model.BlogPost.OgTitle,
         ogType = OgType.Website,
         ogUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
-        ogDescription = Model.BlogPost.Heading.shortDescription,
-        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
+        ogDescription = Model.BlogPost.OgDescription,
+        ogImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.OgImage),
         ogSiteName = "Talagozis Christos Blog",
         twitterCard = TwitterCard.SummaryLargeImage,
         twitterTitle = Model.BlogPost.Title,
         twitterDomain = Context.Request.getUrl().GetLeftPart(UriPartial.Authority),
-        twitterDescription = Model.BlogPost.Heading.shortDescription,
+        twitterDescription = Model.BlogPost.MetaDescription ?? Model.BlogPost.OgDescription,
         twitterUrl = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Model.BlogPost.Permalink,
         twitterSite = "Talagozis Christos Blog",
         twitterCreator = "Talagozis Christos",
-        twitterImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.BlogArchive.Heading.PrimaryImage),
+        twitterImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.OgImage),
         twitterLabels = new Dictionary<string, string>
         {
             {"Category",  Model.BlogPost.Category.Title },
@@ -42,10 +42,10 @@
     {
         title = "Blog",
         breadcrumps = new List<Breadcrump>
-        {
+{
             new Breadcrump {text = "Home"},
             new Breadcrump {controller = "Home", action = "Blog", text = "Blog"},
-            new Breadcrump {plainSlug = Model.BlogArchive.Permalink, text = Model.BlogArchive.Title},
+            new Breadcrump {plainSlug = Model.blogArchive.Permalink, text = Model.blogArchive.Title},
             new Breadcrump {plainSlug = Model.BlogPost.Slug, text = Model.BlogPost.Title},
         },
     };
@@ -56,65 +56,13 @@
 @section css {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css" rel="stylesheet" type="text/css">
 
+    <environment names="Development">
+        <link rel="stylesheet" type="text/css" href="~/css/Cms/Post.css" asp-append-version="true" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" type="text/css" href="~/css/Cms/Post.min.css" asp-append-version="true" />
+    </environment>
     <style>
-        header {
-            background-color: #34434e;
-            color: white;
-        }
-        header h1 {
-            margin: 30px 0;
-        }
-        header div.post-shortdescription {
-            font-style: italic;
-        }
-        header div.post-shortdescription > p {
-            margin-bottom: 2rem;
-        }
-        img {
-            max-width: 100%;
-        }
-        .sidebar h3 {
-            color: #d45c20;
-            font-size: 1.4rem;
-            border-bottom: 1px solid #eee;
-            margin: .5em 0 .3em;
-            margin-top: 0.5em;
-            padding-bottom: 8px;
-        }
-        a.category-label {
-            color: #ef6c00;
-        }
-        a.tag-label {
-            color: #ef6c00;
-        }
-        .list-unstyled {
-            padding: 0 8px;
-        }
-        .label-default {
-            background-color: #777;
-        }
-        .label {
-            display: inline;
-            padding: .2em .6em .3em;
-            font-size: 80%;
-            font-weight: 700;
-            line-height: 2;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: .25em;
-            margin-right: 2px;
-        }
-        .label a {
-            color: #fff;
-        }
-        div.codeblock {
-            padding: 15px 10px;
-            border-radius: 2px;
-        }
-        section.post .body {
-            text-align: justify;
-        }
     </style>
 }
 
@@ -140,7 +88,7 @@
                             <h1>@Model.BlogPost.Title</h1>
                             <div class="post-shortdescription">
                                 <p>
-                                    @Html.Raw(Model.BlogPost.Heading.shortDescription)
+                                    @Html.Raw(Model.BlogPost.Heading.SubTitle)
                                 </p>
                             </div>
 
@@ -150,28 +98,28 @@
                     <div class="row justify-content-center">
                         <div class="col-12 col-sm-10">
 
-                            <p class="pull-left">
-                                <span style="color: #f5f5f5;">Category</span>
-                                <a class="category-label" href="/category/@Model.BlogPost.Category.Slug">@Model.BlogPost.Category.Title</a>
-                                
+                            <p class="pull-left grey">
+                                <span class="">Category</span>
+                                <a class="category-label" href="@Model.blogArchive.Permalink/category/@Model.BlogPost.Category.Slug">@Model.BlogPost.Category.Title</a>
+
                                 @if (Model.BlogPost.Tags.Any())
                                 {
                                     <span class="sep">|</span>
 
-                                    <span style="color: #f5f5f5;">Tags:</span>
+                                    <span>Tags:</span>
                                     foreach (var tag in Model.BlogPost.Tags)
                                     {
                                         <span class="tag">
-                                            @*<a class="tag-label" href="@Model.BlogArchive.Permalink/tag/@tag.Slug">
-                                                @tag.Title@(tag != Model.BlogPost.Tags.Last() ? ", " : "")
-                                            </a>*@
+                                            <a class="tag-label" href="@Model.blogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>@(tag != Model.BlogPost.Tags.Last() ? ", " : "")
                                         </span>
                                     }
                                 }
                             </p>
-                            <p class="pull-right">
-                                <span style="color: #f5f5f5;">Published:</span>
-                                <strong>@Model.BlogPost.Published?.ToString("dd MMMM yyyy")</strong>
+                            <p class="pull-right grey">
+                                <span>Published:</span>
+                                <strong class="date-value">
+                                    @Model.BlogPost.Published?.ToString("dd MMMM yyyy")
+                                </strong>
                             </p>
 
                         </div>
@@ -186,25 +134,25 @@
 
         <div class="col-12  order-sm-2 col-sm-3 sidebar">
 
-            <div class="" style="margin-bottom: 30px;">
-                <h3>Categories in this archive</h3>
+            <div>
+                <h3>Categories in this page</h3>
                 <ul class="list-unstyled">
-                    @foreach (var category in Model.BlogArchive.Archive.Posts.Select(a => a.Category).GroupBy(a => a.Id).Select(a => a.First()))
+                    @foreach (var category in Model.PostArchive.Posts.Select(a => a.Category).GroupBy(a => a.Id).Select(a => a.First()))
                     {
                         <li class="label label-default">
-                            <a href="@Model.BlogArchive.Permalink/category/@category.Slug">@category.Title</a>
+                            <a href="@Model.blogArchive.Permalink/category/@category.Slug">@category.Title</a>
                         </li>
                     }
                 </ul>
             </div>
 
-            <div style="margin-bottom: 30px;">
-                <h3>Tags in this archive</h3>
+            <div>
+                <h3>Tags in this page</h3>
                 <ul class="list-unstyled">
-                    @foreach (var tag in Model.BlogArchive.Archive.Posts.SelectMany(a => a.Tags).GroupBy(a => a.Id).Select(a => a.First()))
+                    @foreach (var tag in Model.PostArchive.Posts.SelectMany(a => a.Tags).GroupBy(a => a.Id).Select(a => a.First()))
                     {
                         <li class="label label-default">
-                            <a href="@Model.BlogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>
+                            <a href="@Model.blogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>
                         </li>
                     }
                 </ul>

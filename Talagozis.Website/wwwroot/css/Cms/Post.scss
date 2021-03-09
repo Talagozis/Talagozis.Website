@@ -1,0 +1,95 @@
+h1, h2, h3 {
+    font-family: 'Baloo Bhaina 2', 'Open Sans', 'Poppins', sans-serif;
+}
+
+img {
+    max-width: 100%;
+}
+
+div.codeblock {
+    padding: 15px 10px;
+    border-radius: 2px;
+}
+
+
+header {
+    background-color: #34434e;
+    color: white;
+
+    h1 {
+        margin: 30px 0;
+    }
+
+    p.grey {
+        color: #e5e5e5;
+    }
+
+    .date-value {
+        color: white;
+    }
+
+    div.post-shortdescription {
+        font-style: italic;
+
+        & > p {
+            margin-bottom: 2rem;
+        }
+    }
+}
+
+
+section.post {
+    .label {
+        display: inline-block;
+        padding: .05em 0.6em .1em;
+        font-size: 80%;
+        font-weight: 700;
+        line-height: 2;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+        margin: 0px 4px 5px 0px;
+
+        a {
+            color: #fff;
+        }
+    }
+
+    .body {
+        text-align: justify;
+    }
+
+    .sidebar {
+        h3 {
+            color: #d45c20;
+            font-size: 1.4rem;
+            border-bottom: 1px solid #eee;
+            margin: .5em 0 .3em;
+            margin-top: 0.5em;
+            padding-bottom: 8px;
+        }
+
+        & > div {
+            margin-bottom: 30px;
+        }
+
+        .list-unstyled {
+            padding: 0 8px;
+        }
+    }
+}
+
+a {
+    &.category-label,
+    &.tag-label {
+        color: #ef6c00;
+    }
+}
+
+
+
+.label-default {
+    background-color: #777;
+}
+

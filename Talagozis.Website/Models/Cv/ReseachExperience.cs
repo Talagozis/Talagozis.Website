@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Talagozis.Website.Models.Cv
 {
@@ -6,7 +7,7 @@ namespace Talagozis.Website.Models.Cv
     {
         public string title { get; set; }
         public string organizationName { get; set; }
-        public string[] tutorNames { get; set; }
+        public ICollection<string> tutorNames { get; set; }
         public DateTime startDate { get; set; }
         public DateTime? endDate { get; set; }
         public string description { get; set; }

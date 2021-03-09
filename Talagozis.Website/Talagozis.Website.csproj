@@ -1,59 +1,80 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-	<PropertyGroup>
-		<TargetFramework>netcoreapp2.1</TargetFramework>
-    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
-	  <RazorCompileOnPublish>false</RazorCompileOnPublish>
-	  <!--<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>-->
-    <Version>1.20.2.3</Version>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <SelfContained>False</SelfContained>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <!--<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>-->
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>1.20.11.14</Version>
+    <Authors>Talagozis</Authors>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-	  <Description>Talagozis personal web site and blog.</Description>
-	  <Copyright>Talagozis 2013-2020</Copyright>
-	  <PackageProjectUrl>https://github.com/Talagozis/Talagozis.Website</PackageProjectUrl>
-	  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>Talagozis personal web site and blog.</Description>
+    <Copyright>Talagozis 2013-2020</Copyright>
+    <PackageProjectUrl>https://github.com/Talagozis/Talagozis.Website</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot/**/*.tsx" CopyToPublishDirectory="Always" />
+    <Content Update="**/*.scss" CopyToPublishDirectory="False" />
+    <Content Update="**/*.jsx" CopyToPublishDirectory="False" />
+  </ItemGroup>
 
   <PropertyGroup>
     <ApplicationInsightsResourceId>/subscriptions/78ff8d1d-d1d1-49ae-9764-b761494f266d/resourcegroups/Talagozis.Website/providers/microsoft.insights/components/Talagozis.Website</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/78ff8d1d-d1d1-49ae-9764-b761494f266d/resourcegroups/Talagozis.Website/providers/microsoft.insights/components/Talagozis.Website</ApplicationInsightsAnnotationResourceId>
+    <UserSecretsId>79d71417-e826-41c0-bed6-1e8b1829d88a</UserSecretsId>
   </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.All" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
-		<PackageReference Include="PayPal" Version="2.0.0-rc2" />
-		<PackageReference Include="Piranha" Version="7.1.0" />
-		<PackageReference Include="Piranha.AspNetCore" Version="7.1.0" />
-		<PackageReference Include="Piranha.AspNetCore.Identity.SQLite" Version="7.1.0" />
-		<PackageReference Include="Piranha.AttributeBuilder" Version="7.1.0" />
-		<PackageReference Include="Piranha.Data.EF" Version="7.1.0" />
-		<PackageReference Include="Piranha.ImageSharp" Version="7.1.0-rc1" />
-		<PackageReference Include="Piranha.Local.FileStorage" Version="7.1.0" />
-		<PackageReference Include="Piranha.Manager" Version="7.1.0" />
-		<PackageReference Include="Piranha.Manager.Localization" Version="7.1.0" />
-		<PackageReference Include="Piranha.Manager.TinyMCE" Version="7.1.0" />
-		<PackageReference Include="Talagozis.AspNetCore" Version="1.19.12.122" />
-		<PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.7.0" />
-	</ItemGroup>
-	<ItemGroup>
-		<DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
-	</ItemGroup>
-	<ItemGroup>
-		<WCFMetadata Include="Connected Services" />
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="Properties\PublishProfiles\" />
-		<Folder Include="wwwroot\lib\manisa\images\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <None Include="Views\Layout\CV.cshtml" />
-	  <None Include="Views\Layout\Home.cshtml" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Content Update="Views\Payment\Payment.cshtml">
-	    <Pack>$(IncludeRazorContentInPack)</Pack>
-	  </Content>
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.10" />
+    <PackageReference Include="Piranha" Version="8.4.2" />
+    <PackageReference Include="Piranha.AspNetCore" Version="8.4.1" />
+    <PackageReference Include="Piranha.AspNetCore.Identity.SqlServer" Version="8.4.0" />
+    <PackageReference Include="Piranha.AttributeBuilder" Version="8.4.0" />
+    <PackageReference Include="Piranha.Data.EF" Version="8.4.0" />
+    <PackageReference Include="Piranha.Data.EF.SqlServer" Version="8.4.0" />
+    <PackageReference Include="Piranha.ImageSharp" Version="8.4.0" />
+    <PackageReference Include="Piranha.Local.FileStorage" Version="8.4.0" />
+    <PackageReference Include="Piranha.Manager" Version="8.4.1" />
+    <PackageReference Include="Piranha.Manager.Localization" Version="8.4.1" />
+    <PackageReference Include="Piranha.Manager.TinyMCE" Version="8.4.0" />
+    <PackageReference Include="Talagozis.AspNetCore" Version="1.20.9.211" />
+    <PackageReference Include="Talagozis.Logging" Version="1.20.7.12" />
+    <PackageReference Include="Talagozis.Payments" Version="1.20.7.12" />
+    <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.8.11" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.16.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+    <PackageReference Include="Piranha.Analyzers" Version="8.4.0.18">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.MiddlewareAnalysis" Version="3.1.10" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
 
 </Project>

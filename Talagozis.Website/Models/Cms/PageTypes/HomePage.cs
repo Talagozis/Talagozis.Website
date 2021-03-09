@@ -1,8 +1,8 @@
+using System;
 using Piranha.AttributeBuilder;
-using Piranha.Extend.Fields;
 using Piranha.Models;
 
-namespace Talagozis.Website.Models
+namespace Talagozis.Website.Models.Cms.PageTypes
 {
     [PageType(Title = "HomePage")]
     [PageTypeRoute(Title = "Home", Route = "/home")]    

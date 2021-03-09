@@ -16,9 +16,9 @@
 
     <meta name="google-site-verification" content="S1X7cY9BACeSAkVE-OOhvwmyAYzRrhFSO7OF1Lx0jvg" />
 
+    @{ await Html.RenderPartialAsync("~/Views/Layout/Global/css.cshtml"); }
 
-	<environment names="Development">    
-		<link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+	<environment names="Development">
 		<link href="~/lib/bootstrap/dist/css/bootstrap.css"  rel="stylesheet" />
 		
 		<link href="~/lib/vertica/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -28,27 +28,24 @@
 		
 		<link href="~/lib/vertica/css/styles.css" rel="stylesheet" />
 
-		<link href="~/css/home/custom.css" rel="stylesheet" />  
-
-		@RenderSection("css", true)
+        <link rel="stylesheet" type="text/css" href="~/css/home/custom.css" asp-append-version="true" />
 	</environment>
-	<environment names="Staging,Production">
-		<link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-		
-		<link href="~/lib/vertica/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.css" rel="stylesheet">
-		<link href="~/lib/vertica/vendor/nivo-lightbox/themes/default/default.css" rel="stylesheet" type="text/css" />
-		<link href="~/lib/vertica/vendor/animate.css" rel="stylesheet">
-		
-		<link href="~/lib/vertica/css/styles.css" rel="stylesheet"/>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
 
-		<link href="~/css/home/custom.css" rel="stylesheet" />        
+        <link href="~/lib/vertica/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="~/lib/vertica/vendor/nivo-lightbox/nivo-lightbox.css" rel="stylesheet">
+        <link href="~/lib/vertica/vendor/nivo-lightbox/themes/default/default.css" rel="stylesheet" type="text/css" />
+        <link href="~/lib/vertica/vendor/animate.css" rel="stylesheet">
 
-		@RenderSection("css", true)
-	</environment>
+        <link href="~/lib/vertica/css/styles.css" rel="stylesheet" />
+
+        <link rel="stylesheet" type="text/css" href="~/css/home/custom.min.css" asp-append-version="true" />
+    </environment>
+
+    @RenderSection("css", true)
 	
 	@Html.Raw(JavaScriptSnippet.FullScript)
 </head>
@@ -57,7 +54,7 @@
 		@RenderBody()
 		<hr />
 		<footer>
-			<p>&copy; 2017 - Talagozis Christos</p>
+			<p style="text-align: center;">&copy; @DateTime.Now.Year - Talagozis Christos</p>
 		</footer>
 	</div>
 

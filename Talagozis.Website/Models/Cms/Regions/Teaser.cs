@@ -1,8 +1,9 @@
+using System;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
 using Piranha.Models;
 
-namespace Talagozis.Website.Models.Regions
+namespace Talagozis.Website.Models.Cms.Regions
 {
     /// <summary>
     /// Simple region for a teaser.
@@ -40,8 +41,8 @@ namespace Talagozis.Website.Models.Regions
         public HtmlField Body { get; set; }
 
         public Teaser() {
-            PageLink = new PageField();
-            PostLink = new PostField();
+            this.PageLink = new PageField();
+            this.PostLink = new PostField();
         }
     }
 }

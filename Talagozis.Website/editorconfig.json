@@ -5,7 +5,6 @@
 	"statusbar": false,
 	"inline": true,
 	"convert_urls": false,
-	"forced_root_block": false,
 	"plugins": "autoresize autolink code hr paste lists piranhaimage piranhalink",
 	"width": "100%",
 	"autoresize_min_height": 0,

@@ -1,7 +1,8 @@
 @using Talagozis.AspNetCore.Extensions
 @using Talagozis.AspNetCore.Models.ViewModels.Html
 @using Talagozis.Website.Models.Cv
-@using Talagozis.Website.Models
+@using Talagozis.Website.Models.Cms.PageTypes
+@using Talagozis.Website.Models.Cms.PostTypes
 
 @inject Piranha.IApi Api
 @model Talagozis.Website.Models.ViewModels.HomePageViewModel
@@ -165,7 +166,7 @@
                             <hr>
                             <div class="short-description-block">
                                 <p>
-                                    @Html.Raw(post.Heading.shortDescription)
+                                    @Html.Raw(post.Heading.SubTitle)
                                 </p>
                             </div>
                         </div>
@@ -174,7 +175,7 @@
                             <span>
                                 @foreach (var tag in post.Tags)
                                 {
-                                    <a href="@archive.Permalink/tag/@tag.Slug">
+                                    <a href="@(archive.Permalink)/tag/@tag.Slug">
                                         @tag.Title@(tag != post.Tags.Last() ? ", " : "")
                                     </a>
                                 }
@@ -212,7 +213,14 @@
                                 <span class="roundtimeline"></span>
                                 <div class="info-timeline">
                                     <h5>@education.title</h5>
-                                    <span class="date">Graduation @(education.graduationDate.ToString("MMMM yyyy"))</span>
+                                    @if (education.graduationDate.HasValue)
+                                    {
+                                        <span class="date">Graduation @(education.graduationDate.Value.ToString("MMMM yyyy"))</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="date">Graduation pending</span>
+                                    }
                                     <span> | </span>
                                     <span class="job">@education.university</span>
                                     <p>@education.description</p>
@@ -273,7 +281,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12 number">
                     <i class="manisa-heart"></i>
-                    <span class="counter">@Model.Person.workExperience.Count()</span>
+                    <span class="counter">@Model.Person.workExperience.Count</span>
                     <p>Happy Client</p>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12 number">
@@ -283,7 +291,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12 number">
                     <i class="manisa-star"></i>
-                    <span class="counter">@(Model.Person.educations.Where(a => a.projects != null).SelectMany(a => a.projects).Where(a => a != null).Count() + Model.Person.workExperience.Where(a => a.projects != null).SelectMany(a => a.projects).Count())</span>
+                    <span class="counter">@(Model.Person.educations.Where(a => a.projects != null).SelectMany(a => a.projects).Count(a => a != null) + Model.Person.workExperience.Where(a => a.projects != null).SelectMany(a => a.projects).Count())</span>
                     <p>Successful Projects</p>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12 number">
