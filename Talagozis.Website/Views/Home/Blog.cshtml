@@ -2,7 +2,6 @@
 @using Talagozis.AspNetCore.Models.ViewModels.Html
 @using Piranha.Models
 @using Talagozis.Website.Models.Cms.PostTypes
-@using Microsoft.EntityFrameworkCore.Internal
 
 @inject Piranha.IApi Api
 
@@ -118,7 +117,7 @@
                         <div class="tags-post">
                             <i class="manisa-tag"></i>
                             <span>
-                                @{ var selectedTags = postArchive.Posts.SelectMany(a => a.Tags).Distinct((a, b) => b.Id == a.Id).ToList(); }
+                                @{ var selectedTags = postArchive.Posts.SelectMany(a => a.Tags).GroupBy(a => a.Id).Select(a => a.First()).ToList(); }
                                 @foreach (var tag in selectedTags.Take(3))
                                 {
                                     <a href="@archive.Permalink/tag/@tag.Slug" target="_blank">

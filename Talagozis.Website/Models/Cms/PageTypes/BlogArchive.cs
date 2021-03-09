@@ -7,7 +7,7 @@ using Piranha.Models;
 namespace Talagozis.Website.Models.Cms.PageTypes
 {
     [PageType(Title = "Blog archive", UseBlocks = false, IsArchive = true)]
-    [PageTypeRoute(Title = "Default", Route = "/archive")]
+    [ContentTypeRoute(Title = "Default", Route = "/archive")]
     public class BlogArchive  : Page<BlogArchive>
     {
         public new string MetaTitle => !string.IsNullOrWhiteSpace(base.MetaTitle) ? base.MetaTitle : this.Title;

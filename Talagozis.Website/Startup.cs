@@ -19,7 +19,7 @@ using Piranha.Cache;
 using Piranha.Manager.Editor;
 using Talagozis.AspNetCore.Extensions;
 using Talagozis.Payments.Paypal;
-using WebMarkupMin.AspNetCore2;
+using WebMarkupMin.AspNetCore5;
 using Piranha.Data.EF.SQLServer;
 using Talagozis.Website.Models.Cms.PageTypes;
 using Talagozis.Website.Models.Cms.PostTypes;
@@ -164,19 +164,11 @@ namespace Talagozis.Website
             App.CacheLevel = CacheLevel.Full;
 
             // Build content types
-            new PageTypeBuilder(api)
+            new ContentTypeBuilder(api)
                 .AddType(typeof(BlogArchive))
                 .AddType(typeof(StandardPage))
                 .AddType(typeof(HomePage))
-                .Build()
-                .DeleteOrphans();
-
-            new PostTypeBuilder(api)
                 .AddType(typeof(BlogPost))
-                .Build()
-                .DeleteOrphans();
-
-            new SiteTypeBuilder(api)
                 .AddType(typeof(BlogSite))
                 .Build()
                 .DeleteOrphans();
