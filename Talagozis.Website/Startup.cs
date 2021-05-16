@@ -167,6 +167,7 @@ namespace Talagozis.Website
             new ContentTypeBuilder(api)
                 .AddType(typeof(BlogArchive))
                 .AddType(typeof(StandardPage))
+                .AddType(typeof(CulturePage))
                 .AddType(typeof(HomePage))
                 .AddType(typeof(BlogPost))
                 .AddType(typeof(BlogSite))

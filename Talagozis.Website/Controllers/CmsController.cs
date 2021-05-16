@@ -7,6 +7,7 @@ using Piranha.Models;
 using Talagozis.Website.Models.Cms.PageTypes;
 using Talagozis.Website.Models.Cms.PostTypes;
 using Talagozis.Website.Models.ViewModels;
+using System.Globalization;
 
 namespace Talagozis.Website.Controllers
 {
@@ -61,11 +62,14 @@ namespace Talagozis.Website.Controllers
             BlogArchive blogArchive = await this._api.Pages.GetByIdAsync<BlogArchive>(blogPost.BlogId);
             PostArchive<BlogPost> postArchive = await this._api.Archives.GetByIdAsync<BlogPost>(blogPost.BlogId, null, null, null, null, null, pageSize: 20);
 
+            CulturePage parentPage = blogArchive.ParentId.HasValue ? await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value) : null;
+
             PostViewModel postViewModel = new PostViewModel
             {
                 BlogPost = blogPost,
                 blogArchive = blogArchive,
-                PostArchive = postArchive
+                PostArchive = postArchive,
+                cultureInfo = parentPage?.Culture?.Value?.cultureInfo ?? CultureInfo.InvariantCulture
             };
 
             return this.View(postViewModel);

@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Piranha;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
@@ -17,6 +20,18 @@ namespace Talagozis.Website.Models.Cms.PostTypes
 
         [Region(Title = "Heading", Icon = "fas fa-hard-hat")]
         public BlogPostHeading Heading { get; set; }
+
+        [Region(Title = "Related Culture Post")]
+        public IList<RelatedCultureRegion> RelatedCulturePost { get; set; }
+    }
+
+    public class RelatedCultureRegion
+    {
+        [Field]
+        public DataSelectField<CultureItem> Culture { get; set; }
+
+        [Field]
+        public PostField RelatedPost { get; set; }
     }
 
     public class BlogPostHeading
@@ -30,4 +45,5 @@ namespace Talagozis.Website.Models.Cms.PostTypes
         [Field(Title = "Subtitle")]
         public TextField SubTitle { get; set; }
     }
+
 }
