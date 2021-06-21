@@ -9,7 +9,7 @@ namespace Talagozis.Website.Controllers
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             this.ViewBag.startTime = DateTime.Now;
-            this.ViewBag.AssemblyVersion = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version.ToString() ?? string.Empty;
+            this.ViewBag.AssemblyVersion = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? string.Empty;
 
             base.OnActionExecuting(context);
         }
