@@ -15,5 +15,6 @@ namespace Talagozis.Website.Models.ViewModels
         public BlogPost BlogPost { get; set; }
         public BlogArchive blogArchive { get; set; }
         public PostArchive<BlogPost> PostArchive { get; set; }
+        public IDictionary<CultureInfo, BlogPost> CultureRelatedBlogPosts { get; set; }
     }
 }

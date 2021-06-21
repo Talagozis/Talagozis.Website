@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Piranha.Models;
@@ -8,22 +9,31 @@ using Talagozis.Website.Models.Cms.PageTypes;
 using Talagozis.Website.Models.Cms.PostTypes;
 using Talagozis.Website.Models.ViewModels;
 using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
+using Talagozis.Website.Models.Cms.Regions;
 
 namespace Talagozis.Website.Controllers
 {
     public class CmsController : BaseController
     {
         private readonly IApi _api;
+        private readonly ILogger<CmsController> _logger;
+        private CultureInfo _requestCulture;
 
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
-        /// <param name="api">The current api</param>
-        public CmsController(IApi api) 
+        public CmsController(IApi api, ILogger<CmsController> logger)
         {
-            this._api = api;
+            this._api = api ?? throw new ArgumentNullException(nameof(api));
+            this._logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+        {
+            this._requestCulture = context.HttpContext.Features.Get<IRequestCultureFeature>()?.RequestCulture?.Culture ?? throw new InvalidOperationException($"The {nameof(CultureInfo)} for this request is not defined.");
+
+            await base.OnActionExecutionAsync(context, next);
+        }
 
         /// <summary>
         /// Gets the blog page with the given id.
@@ -64,12 +74,20 @@ namespace Talagozis.Website.Controllers
 
             CulturePage parentPage = blogArchive.ParentId.HasValue ? await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value) : null;
 
+            IDictionary<CultureInfo, BlogPost> cultureRelatedBlogPosts = new Dictionary<CultureInfo, BlogPost>();
+            cultureRelatedBlogPosts.Add(this._requestCulture, blogPost);
+            foreach (RelatedCultureRegion relatedCulture in blogPost.RelatedCulturePost)
+            {
+                cultureRelatedBlogPosts.Add(relatedCulture.Culture.Value.cultureInfo, await relatedCulture.RelatedPost.GetPostAsync<BlogPost>(this._api));
+            }
+
             PostViewModel postViewModel = new PostViewModel
             {
                 BlogPost = blogPost,
                 blogArchive = blogArchive,
                 PostArchive = postArchive,
-                cultureInfo = parentPage?.Culture?.Value?.cultureInfo ?? CultureInfo.InvariantCulture
+                cultureInfo = parentPage?.Culture?.Value?.cultureInfo ?? CultureInfo.InvariantCulture,
+                CultureRelatedBlogPosts = cultureRelatedBlogPosts
             };
 
             return this.View(postViewModel);

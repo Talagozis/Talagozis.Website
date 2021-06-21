@@ -106,11 +106,11 @@ namespace Talagozis.Website
 
             app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
+            app.useCms(api);
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            
-            app.useCms(api);
 
             app.UseEndpoints(endpoints =>
             {

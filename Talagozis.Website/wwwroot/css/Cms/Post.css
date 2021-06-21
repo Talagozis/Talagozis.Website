@@ -56,5 +56,8 @@ section.post .sidebar .list-unstyled {
 a.category-label, a.tag-label {
   color: #ef6c00; }
 
-.label-default {
+.label.label-default {
   background-color: #777; }
+
+.label.label-cyan {
+  background-color: #019d9b; }
