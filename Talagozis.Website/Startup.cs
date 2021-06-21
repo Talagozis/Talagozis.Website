@@ -5,26 +5,18 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using Piranha;
-using Piranha.AspNetCore.Identity.SQLServer;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
-using Piranha.AttributeBuilder;
-using Piranha.Cache;
-using Piranha.Manager.Editor;
 using Talagozis.AspNetCore.Extensions;
 using Talagozis.Payments.Paypal;
 using WebMarkupMin.AspNetCore5;
-using Piranha.Data.EF.SQLServer;
-using Talagozis.Website.Models.Cms.PageTypes;
-using Talagozis.Website.Models.Cms.PostTypes;
-using Talagozis.Website.Models.Cms.SiteTypes;
 using System.Globalization;
+using Talagozis.Website.App_Plugins.Extensions;
 
 namespace Talagozis.Website
 {
@@ -57,7 +49,7 @@ namespace Talagozis.Website
 
             services.AddHttpsRedirection(options => options.HttpsPort = 443);
 
-            services.configureServices(this._configuration);
+            services.addCmsServices(this._configuration);
 
             services.AddOptions();
 
@@ -111,9 +103,8 @@ namespace Talagozis.Website
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
-            api.configuration();
-            app.usePiranhaCms();
+            
+            app.useCms(api);
 
             app.UseEndpoints(endpoints =>
             {
@@ -136,58 +127,5 @@ namespace Talagozis.Website
         }
     }
 
-    internal static class PiranhaConfiguration
-    {
-        internal static void configureServices(this IServiceCollection services, IConfiguration configuration)
-        {
-            Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "../uploads"));
-
-            services.AddPiranha(piranhaServiceBuilder =>
-            {
-                piranhaServiceBuilder.UseFileStorage(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads/"), "~/uploads/");
-                piranhaServiceBuilder.UseImageSharp();
-                piranhaServiceBuilder.UseManager();
-                piranhaServiceBuilder.UseTinyMCE();
-                piranhaServiceBuilder.UseMemoryCache();
-                piranhaServiceBuilder.UseEF<SQLServerDb>(options => options.UseSqlServer(configuration.GetConnectionString("PiranhaConnection")));
-                piranhaServiceBuilder.UseIdentityWithSeed<IdentitySQLServerDb>(options => options.UseSqlServer(configuration.GetConnectionString("PiranhaAuthConnection")));
-            });
-            //services.AddPiranhaApplication();
-        }
-
-        internal static void configuration(this IApi api)
-        {
-            // Initialize Piranha
-            App.Init(api);
-
-            // Configure cache level
-            App.CacheLevel = CacheLevel.Full;
-
-            // Build content types
-            new ContentTypeBuilder(api)
-                .AddType(typeof(BlogArchive))
-                .AddType(typeof(StandardPage))
-                .AddType(typeof(CulturePage))
-                .AddType(typeof(HomePage))
-                .AddType(typeof(BlogPost))
-                .AddType(typeof(BlogSite))
-                .Build()
-                .DeleteOrphans();
-        }
-
-        internal static void usePiranhaCms(this IApplicationBuilder app)
-        {
-            EditorConfig.FromFile("editorconfig.json");
-
-            app.UsePiranha(options => 
-            {
-                options.UseManager();
-                options.UseTinyMCE();
-                options.UseIdentity();
-            });
-
-            // Piranha.App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
-        }
-    }
 
 }

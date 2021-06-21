@@ -34,4 +34,4 @@ dotnet_diagnostic.CA2227.severity = suggestion
 dotnet_diagnostic.CA1724.severity = suggestion
 
 # PA0002:
-dotnet_diagnostic.PA0002.severity = suggestion
+dotnet_diagnostic.PA0002.severity = warning

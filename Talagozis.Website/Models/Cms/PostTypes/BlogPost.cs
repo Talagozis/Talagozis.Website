@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Piranha;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
