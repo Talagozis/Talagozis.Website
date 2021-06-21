@@ -88,8 +88,13 @@ a {
 }
 
 
+.label {
+    &.label-default {
+        background-color: #777;
+    }
 
-.label-default {
-    background-color: #777;
+    &.label-cyan {
+        background-color: #019d9b;
+    }
 }
 

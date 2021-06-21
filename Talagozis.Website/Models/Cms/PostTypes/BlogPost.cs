@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
 using Piranha.Models;
+using Talagozis.Website.Models.Cms.Regions;
 
 namespace Talagozis.Website.Models.Cms.PostTypes
 {
@@ -16,10 +18,13 @@ namespace Talagozis.Website.Models.Cms.PostTypes
         public new ImageField OgImage => base.OgImage ?? this.Heading.PrimaryImage;
 
         [Region(Title = "Heading", Icon = "fas fa-hard-hat")]
-        public BlogPostHeading Heading { get; set; }
+        public BlogPostHeadingRegion Heading { get; set; }
+
+        [Region(Title = "Related Culture Post")]
+        public IList<RelatedCultureRegion> RelatedCulturePost { get; set; }
     }
 
-    public class BlogPostHeading
+    public class BlogPostHeadingRegion
     {
         [Field(Title = "Primary image")]
         public ImageField PrimaryImage { get; set; }
@@ -30,4 +35,5 @@ namespace Talagozis.Website.Models.Cms.PostTypes
         [Field(Title = "Subtitle")]
         public TextField SubTitle { get; set; }
     }
+
 }

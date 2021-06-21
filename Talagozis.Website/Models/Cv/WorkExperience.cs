@@ -14,6 +14,6 @@ namespace Talagozis.Website.Models.Cv
         public string typeOfBusiness { get; set; }
         public ICollection<Link> links { get; set; }
         public ICollection<Project> projects { get; set; }
-        public ICollection<string> tags => this.projects?.Where(a => a.tags != null).SelectMany(a => a.tags)?.Distinct()?.ToList() ?? new List<string>();
+        public ICollection<string> tags => this.projects?.Where(a => a.tags != null).SelectMany(a => a.tags).Distinct().ToList() ?? new List<string>();
     }
 }

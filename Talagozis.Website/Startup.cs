@@ -5,26 +5,20 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using Piranha;
-using Piranha.AspNetCore.Identity.SQLServer;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
-using Piranha.AttributeBuilder;
-using Piranha.Cache;
-using Piranha.Manager.Editor;
 using Talagozis.AspNetCore.Extensions;
 using Talagozis.Payments.Paypal;
-using WebMarkupMin.AspNetCore2;
-using Piranha.Data.EF.SQLServer;
-using Talagozis.Website.Models.Cms.PageTypes;
-using Talagozis.Website.Models.Cms.PostTypes;
-using Talagozis.Website.Models.Cms.SiteTypes;
+using WebMarkupMin.AspNetCore5;
 using System.Globalization;
+using Microsoft.Extensions.Options;
+using Talagozis.AspNetCore.Localization;
+using Talagozis.Website.App_Plugins.Extensions;
 
 namespace Talagozis.Website
 {
@@ -42,7 +36,9 @@ namespace Talagozis.Website
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.Configure<LanguageRouteConstraintOption>(this._configuration.GetSection(nameof(LanguageRouteConstraintOption)));
+            services.AddLocalization("en", this._configuration.GetSection(nameof(LanguageRouteConstraintOption)));
+            //services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddControllersWithViews()
 #if DEBUG
@@ -57,9 +53,7 @@ namespace Talagozis.Website
 
             services.AddHttpsRedirection(options => options.HttpsPort = 443);
 
-            services.configureServices(this._configuration);
-
-            services.AddOptions();
+            services.addCmsServices(this._configuration);
 
             services.AddPaypalService(this._configuration.GetSection("Paypal"));
 
@@ -71,6 +65,8 @@ namespace Talagozis.Website
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApi api, ILogger<Startup> logger)
         {
+            Directory.CreateDirectory(Path.Combine(env.ContentRootPath, @"../uploads"));
+
             app.UseExceptionHandlerLogger(ex => logger.LogError(ex, ex.Message));
 
             if (env.IsDevelopment())
@@ -108,12 +104,13 @@ namespace Talagozis.Website
             });
             app.UseWebMarkupMin();
 
+            app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
+
+            app.useCms(api);
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
-            api.configuration();
-            app.usePiranhaCms();
 
             app.UseEndpoints(endpoints =>
             {
@@ -136,65 +133,5 @@ namespace Talagozis.Website
         }
     }
 
-    internal static class PiranhaConfiguration
-    {
-        internal static void configureServices(this IServiceCollection services, IConfiguration configuration)
-        {
-            Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "../uploads"));
-
-            services.AddPiranha(piranhaServiceBuilder =>
-            {
-                piranhaServiceBuilder.UseFileStorage(Path.Combine(Directory.GetCurrentDirectory(), @"../uploads/"), "~/uploads/");
-                piranhaServiceBuilder.UseImageSharp();
-                piranhaServiceBuilder.UseManager();
-                piranhaServiceBuilder.UseTinyMCE();
-                piranhaServiceBuilder.UseMemoryCache();
-                piranhaServiceBuilder.UseEF<SQLServerDb>(options => options.UseSqlServer(configuration.GetConnectionString("PiranhaConnection")));
-                piranhaServiceBuilder.UseIdentityWithSeed<IdentitySQLServerDb>(options => options.UseSqlServer(configuration.GetConnectionString("PiranhaAuthConnection")));
-            });
-            //services.AddPiranhaApplication();
-        }
-
-        internal static void configuration(this IApi api)
-        {
-            // Initialize Piranha
-            App.Init(api);
-
-            // Configure cache level
-            App.CacheLevel = CacheLevel.Full;
-
-            // Build content types
-            new PageTypeBuilder(api)
-                .AddType(typeof(BlogArchive))
-                .AddType(typeof(StandardPage))
-                .AddType(typeof(HomePage))
-                .Build()
-                .DeleteOrphans();
-
-            new PostTypeBuilder(api)
-                .AddType(typeof(BlogPost))
-                .Build()
-                .DeleteOrphans();
-
-            new SiteTypeBuilder(api)
-                .AddType(typeof(BlogSite))
-                .Build()
-                .DeleteOrphans();
-        }
-
-        internal static void usePiranhaCms(this IApplicationBuilder app)
-        {
-            EditorConfig.FromFile("editorconfig.json");
-
-            app.UsePiranha(options => 
-            {
-                options.UseManager();
-                options.UseTinyMCE();
-                options.UseIdentity();
-            });
-
-            // Piranha.App.Modules.Get<Piranha.Manager.Module>().Styles.Add("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
-        }
-    }
 
 }

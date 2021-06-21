@@ -45,9 +45,9 @@
         <link rel="stylesheet" type="text/css" href="~/css/home/custom.min.css" asp-append-version="true" />
     </environment>
 
-    @RenderSection("css", true)
-	
-	@Html.Raw(JavaScriptSnippet.FullScript)
+    @await RenderSectionAsync("css", true)
+
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body data-spy="scroll" data-target="#side-menu">
 	<div class="container body-content">
@@ -74,8 +74,8 @@
 		<script src="~/lib/vertica/vendor/placeholders.jquery.min.js"></script>
 		<script src="~/lib/vertica/vendor/cross-browser.js"></script>
 
-        @RenderSection("js", true)
-	</environment>
+        @await RenderSectionAsync("js", true)
+    </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
@@ -106,9 +106,10 @@
         <!-- Global Loggers, Analytics etc etc -->
         @{ await Html.RenderPartialAsync("~/views/layout/global/js.cshtml"); }
 
-        @RenderSection("js", true)
+
+        @await RenderSectionAsync("js", true)
     </environment>
 
-	@RenderSection("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

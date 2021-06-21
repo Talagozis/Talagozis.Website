@@ -61,7 +61,7 @@ namespace Talagozis.Website.Controllers
 
             foreach (BlogArchive blogArchive in allArchives)
             {
-                postArchives.Add(await this._api.Archives.GetByIdAsync<BlogPost>(blogArchive.Id, null, null, null, null, null));
+                postArchives.Add(await this._api.Archives.GetByIdAsync<BlogPost>(blogArchive.Id, null));
             }
 
             BlogViewModel blogViewModel = new BlogViewModel

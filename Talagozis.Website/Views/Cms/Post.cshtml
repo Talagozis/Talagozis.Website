@@ -1,6 +1,7 @@
 @using Talagozis.AspNetCore.Extensions
 @using Talagozis.AspNetCore.Models.ViewModels.Html
 @using Talagozis.Website.Models.ViewModels
+@using Piranha.Models
 
 @inject Piranha.IApi Api
 
@@ -32,7 +33,7 @@
         twitterCreator = "Talagozis Christos",
         twitterImage = Context.Request.getUrl().GetLeftPart(UriPartial.Authority) + Url.Content(Model.blogArchive.OgImage),
         twitterLabels = new Dictionary<string, string>
-        {
+{
             {"Category",  Model.BlogPost.Category.Title },
             {"Tags", string.Join(" ,", Model.BlogPost.Tags.Select(a => a.Title)) },
         }
@@ -55,7 +56,6 @@
 
 @section css {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css" rel="stylesheet" type="text/css">
-
     <environment names="Development">
         <link rel="stylesheet" type="text/css" href="~/css/Cms/Post.css" asp-append-version="true" />
     </environment>
@@ -135,28 +135,52 @@
         <div class="col-12  order-sm-2 col-sm-3 sidebar">
 
             <div>
-                <h3>Categories in this page</h3>
+                <h3>Read this post in</h3>
                 <ul class="list-unstyled">
-                    @foreach (var category in Model.PostArchive.Posts.Select(a => a.Category).GroupBy(a => a.Id).Select(a => a.First()))
+                    @foreach (var language in Model.CultureRelatedBlogPosts.OrderBy(a => a.Key.TwoLetterISOLanguageName))
                     {
-                        <li class="label label-default">
-                            <a href="@Model.blogArchive.Permalink/category/@category.Slug">@category.Title</a>
+                        <li class="label label-cyan">
+                            <strong style="font-size: 0.95rem;">
+                                <a href="@language.Value.Permalink">
+                                    @language.Key.EnglishName @(!Equals(language.Key.EnglishName, language.Key.NativeName) ? $"({language.Key.NativeName})" : string.Empty)
+                                </a>
+                            </strong>
                         </li>
                     }
                 </ul>
             </div>
 
-            <div>
-                <h3>Tags in this page</h3>
-                <ul class="list-unstyled">
-                    @foreach (var tag in Model.PostArchive.Posts.SelectMany(a => a.Tags).GroupBy(a => a.Id).Select(a => a.First()))
-                    {
-                        <li class="label label-default">
-                            <a href="@Model.blogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>
-                        </li>
-                    }
-                </ul>
-            </div>
+            @{ var categories = Model.PostArchive.Posts.Select(a => a.Category).GroupBy(a => a.Id).Select(a => a.First()).ToList(); }
+            @if (categories.Any())
+            {
+                <div>
+                    <h3>Categories in this page</h3>
+                    <ul class="list-unstyled">
+                        @foreach (var category in categories)
+                        {
+                            <li class="label label-default">
+                                <a href="@Model.blogArchive.Permalink/category/@category.Slug">@category.Title</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+            
+            @{ var tags = Model.PostArchive.Posts.SelectMany(a => a.Tags).GroupBy(a => a.Id).Select(a => a.First()).ToList(); }
+            @if (tags.Any())
+            {
+                <div>
+                    <h3>Tags in this page</h3>
+                    <ul class="list-unstyled">
+                            @foreach (var tag in tags)
+                            {
+                                <li class="label label-default">
+                                    <a href="@Model.blogArchive.Permalink/tag/@tag.Slug">@tag.Title</a>
+                                </li>
+                            }
+                    </ul>
+                </div>
+            }
 
         </div>
 

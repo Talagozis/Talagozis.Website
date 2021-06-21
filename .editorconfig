@@ -32,3 +32,6 @@ dotnet_diagnostic.CA2227.severity = suggestion
 
 # CA1724: Type names should not match namespaces
 dotnet_diagnostic.CA1724.severity = suggestion
+
+# PA0002:
+dotnet_diagnostic.PA0002.severity = warning
