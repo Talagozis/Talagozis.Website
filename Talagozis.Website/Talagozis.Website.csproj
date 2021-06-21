@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.21.5.16</Version>
+    <Version>1.21.6.21</Version>
     <Authors>Talagozis</Authors>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -20,6 +20,10 @@
     <PackageProjectUrl>https://github.com/Talagozis/Talagozis.Website</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="wwwroot/**/*.tsx" CopyToPublishDirectory="Always" />
@@ -34,41 +38,37 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.6" />
-    <PackageReference Include="Piranha" Version="9.0.1" />
-    <PackageReference Include="Piranha.AspNetCore" Version="9.0.1" />
-    <PackageReference Include="Piranha.AspNetCore.Identity.SqlServer" Version="9.0.0" />
-    <PackageReference Include="Piranha.AttributeBuilder" Version="9.0.1" />
-    <PackageReference Include="Piranha.Data.EF" Version="9.0.0" />
-    <PackageReference Include="Piranha.Data.EF.SqlServer" Version="9.0.0" />
-    <PackageReference Include="Piranha.ImageSharp" Version="9.0.0" />
-    <PackageReference Include="Piranha.Local.FileStorage" Version="9.0.0" />
-    <PackageReference Include="Piranha.Manager" Version="9.0.1" />
-    <PackageReference Include="Piranha.Manager.Localization" Version="9.0.1" />
-    <PackageReference Include="Piranha.Manager.TinyMCE" Version="9.0.0" />
-    <PackageReference Include="Talagozis.AspNetCore" Version="1.20.11.171" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.7" />
+    <PackageReference Include="Piranha" Version="9.1.0" />
+    <PackageReference Include="Piranha.AspNetCore" Version="9.1.0" />
+    <PackageReference Include="Piranha.AspNetCore.Identity.SqlServer" Version="9.1.0" />
+    <PackageReference Include="Piranha.AttributeBuilder" Version="9.1.0" />
+    <PackageReference Include="Piranha.Data.EF" Version="9.1.0" />
+    <PackageReference Include="Piranha.Data.EF.SqlServer" Version="9.1.0" />
+    <PackageReference Include="Piranha.ImageSharp" Version="9.1.0" />
+    <PackageReference Include="Piranha.Local.FileStorage" Version="9.1.0" />
+    <PackageReference Include="Piranha.Manager" Version="9.1.0" />
+    <PackageReference Include="Piranha.Manager.Localization" Version="9.1.0" />
+    <PackageReference Include="Piranha.Manager.TinyMCE" Version="9.1.0" />
+    <PackageReference Include="Talagozis.AspNetCore" Version="1.21.6.133" />
     <PackageReference Include="Talagozis.Logging" Version="1.20.12.171" />
     <PackageReference Include="Talagozis.Payments" Version="1.20.7.12" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.17.0" />
-    <PackageReference Include="WebMarkupMin.AspNetCore5" Version="2.9.3" />
+    <PackageReference Include="WebMarkupMin.AspNetCore5" Version="2.10.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
-    <!--<PackageReference Include="Piranha.Analyzers" Version="9.0.0">
+    <PackageReference Include="Piranha.Analyzers" Version="9.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>-->
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.7" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
 </Project>
