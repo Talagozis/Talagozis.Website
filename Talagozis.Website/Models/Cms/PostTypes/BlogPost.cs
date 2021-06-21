@@ -4,6 +4,7 @@ using Piranha.AttributeBuilder;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
 using Piranha.Models;
+using Talagozis.Website.Models.Cms.Regions;
 
 namespace Talagozis.Website.Models.Cms.PostTypes
 {
@@ -17,22 +18,13 @@ namespace Talagozis.Website.Models.Cms.PostTypes
         public new ImageField OgImage => base.OgImage ?? this.Heading.PrimaryImage;
 
         [Region(Title = "Heading", Icon = "fas fa-hard-hat")]
-        public BlogPostHeading Heading { get; set; }
+        public BlogPostHeadingRegion Heading { get; set; }
 
         [Region(Title = "Related Culture Post")]
         public IList<RelatedCultureRegion> RelatedCulturePost { get; set; }
     }
 
-    public class RelatedCultureRegion
-    {
-        [Field]
-        public DataSelectField<CultureItem> Culture { get; set; }
-
-        [Field]
-        public PostField RelatedPost { get; set; }
-    }
-
-    public class BlogPostHeading
+    public class BlogPostHeadingRegion
     {
         [Field(Title = "Primary image")]
         public ImageField PrimaryImage { get; set; }

@@ -17,13 +17,13 @@ namespace Talagozis.Website.Models.Cms.PageTypes
         public new ImageField OgImage => base.OgImage ?? this.Heading.PrimaryImage;
 
         [Region(Title = "Heading", Icon = "fas fa-hard-hat")]
-        public BlogArchiveHeading Heading { get; set; }
+        public BlogArchiveHeadingRegion Heading { get; set; }
 
         [Region(Title = "Posts fallback", Icon = "fas fa-undo")]
-        public PostFallback PostFallback { get; set; }
+        public PostFallbackRegion PostFallback { get; set; }
     }
 
-    public class BlogArchiveHeading
+    public class BlogArchiveHeadingRegion
     {
         [Field(Title = "Primary image")]
         public ImageField PrimaryImage { get; set; }
@@ -38,7 +38,7 @@ namespace Talagozis.Website.Models.Cms.PageTypes
         public TextField SubTitle { get; set; }
     }
 
-    public class PostFallback
+    public class PostFallbackRegion
     {
         [Field(Title = "Primary image")]
         public ImageField PrimaryImage { get; set; }
