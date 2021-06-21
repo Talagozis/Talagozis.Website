@@ -24,12 +24,14 @@ namespace Talagozis.Website.Controllers
             this._api = api;
             this._logger = logger;
         }
-        
+
+        [HttpGet("index")]
         public Task<IActionResult> Index()
         {
             return this.HomePage();
         }
 
+        [HttpGet("home")]
         public async Task<IActionResult> HomePage()
         {
             CVRepository cVRepository = new CVRepository();
@@ -51,6 +53,7 @@ namespace Talagozis.Website.Controllers
 			return this.View("~/Views/Home/HomePage.cshtml", homePageViewModel);
         }
 
+        [HttpGet("blog")]
         public async Task<IActionResult> Blog()
         {
             ICollection<BlogArchive> allArchives = (await this._api.Pages.GetAllAsync<BlogArchive>()).ToList();
@@ -73,6 +76,7 @@ namespace Talagozis.Website.Controllers
             return this.View("~/Views/Home/Blog.cshtml", blogViewModel);
         }
 
+        [HttpGet("cv")]
         public IActionResult CV()
         {
             CVRepository cVRepository = new CVRepository();
@@ -82,6 +86,7 @@ namespace Talagozis.Website.Controllers
             return this.View("~/Views/Home/CV.cshtml", person);
         }
 
+        [HttpGet("contact")]
         public IActionResult Contact()
         {
             ContactViewModel contactViewModel = new ContactViewModel();
@@ -89,6 +94,7 @@ namespace Talagozis.Website.Controllers
             return this.View("~/Views/Home/Contact.cshtml", contactViewModel);
         }
 
+        [HttpGet("getjson")]
         public Person getJson()
         {
             CVRepository cVRepository = new CVRepository();

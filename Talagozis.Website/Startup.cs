@@ -38,14 +38,8 @@ namespace Talagozis.Website
         {
             services.Configure<LanguageRouteConstraintOption>(this._configuration.GetSection(nameof(LanguageRouteConstraintOption)));
             services.AddLocalization("en", this._configuration.GetSection(nameof(LanguageRouteConstraintOption)));
-            //services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddControllersWithViews()
-#if DEBUG
-                .AddRazorRuntimeCompilation()
-#endif
-                ;
-            services.AddRazorPages().AddPiranhaManagerOptions()
 #if DEBUG
                 .AddRazorRuntimeCompilation()
 #endif
@@ -114,21 +108,20 @@ namespace Talagozis.Website
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
                 //endpoints.MapControllerRoute(
                 //    name: "areaRoute",
                 //    pattern: "{area:exists}/{controller}/{action}/{id?}",
                 //    defaults: new { controller = "Home", action = "Index" });
-                endpoints.MapControllerRoute(
-                    name: "defaultHome",
-                    pattern: "{action}",
-                    defaults: new { controller = "Home", action = "Index" });
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index" });
-                endpoints.MapRazorPages();
-                endpoints.MapPiranhaManager();
+                //endpoints.MapControllerRoute(
+                //    name: "defaultHome",
+                //    pattern: "{action}",
+                //    defaults: new { controller = "Home", action = "Index" });
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller}/{action}/{id?}",
+                //    defaults: new { controller = "Home", action = "Index" });
+                //endpoints.MapRazorPages();
+                //endpoints.MapControllers();
             });
         }
     }
