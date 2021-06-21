@@ -38,7 +38,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.7" />
     <PackageReference Include="Piranha" Version="9.1.0" />
     <PackageReference Include="Piranha.AspNetCore" Version="9.1.0" />
     <PackageReference Include="Piranha.AspNetCore.Identity.SqlServer" Version="9.1.0" />
