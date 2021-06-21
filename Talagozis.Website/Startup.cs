@@ -16,6 +16,8 @@ using Talagozis.AspNetCore.Extensions;
 using Talagozis.Payments.Paypal;
 using WebMarkupMin.AspNetCore5;
 using System.Globalization;
+using Microsoft.Extensions.Options;
+using Talagozis.AspNetCore.Localization;
 using Talagozis.Website.App_Plugins.Extensions;
 
 namespace Talagozis.Website
@@ -34,7 +36,9 @@ namespace Talagozis.Website
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.Configure<LanguageRouteConstraintOption>(this._configuration.GetSection(nameof(LanguageRouteConstraintOption)));
+            services.AddLocalization("en", this._configuration.GetSection(nameof(LanguageRouteConstraintOption)));
+            //services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddControllersWithViews()
 #if DEBUG
@@ -51,8 +55,6 @@ namespace Talagozis.Website
 
             services.addCmsServices(this._configuration);
 
-            services.AddOptions();
-
             services.AddPaypalService(this._configuration.GetSection("Paypal"));
 
             services.AddWebMarkupMin(options => { options.DisablePoweredByHttpHeaders = true; }).AddHtmlMinification().AddHttpCompression();
@@ -63,6 +65,8 @@ namespace Talagozis.Website
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApi api, ILogger<Startup> logger)
         {
+            Directory.CreateDirectory(Path.Combine(env.ContentRootPath, @"../uploads"));
+
             app.UseExceptionHandlerLogger(ex => logger.LogError(ex, ex.Message));
 
             if (env.IsDevelopment())
@@ -99,6 +103,8 @@ namespace Talagozis.Website
                 }
             });
             app.UseWebMarkupMin();
+
+            app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
             app.UseRouting();
             app.UseAuthentication();
