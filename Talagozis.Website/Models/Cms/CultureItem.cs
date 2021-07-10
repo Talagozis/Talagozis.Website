@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Microsoft.Extensions.Options;
 using Piranha.Extend.Fields;
+using Talagozis.AspNetCore.Localization;
 
 namespace Talagozis.Website.Models.Cms
 {
@@ -26,9 +28,9 @@ namespace Talagozis.Website.Models.Cms
 
         // Gets all of the available items to choose from using
         // the injected services you specify.
-        static IEnumerable<DataSelectFieldItem> GetList()
+        static IEnumerable<DataSelectFieldItem> GetList(IOptions<LanguageRouteConstraintOption> options)
         {
-            return CultureInfo.GetCultures(CultureTypes.NeutralCultures).Select(c => new DataSelectFieldItem
+            return options.Value.getCultures().Select(c => new DataSelectFieldItem
             {
                 Id = c.TwoLetterISOLanguageName,
                 Name = $"{c.EnglishName} ({c.NativeName})"
