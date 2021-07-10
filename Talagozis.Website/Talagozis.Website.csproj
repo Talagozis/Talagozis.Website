@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.21.6.21</Version>
+    <Version>1.21.7.10</Version>
     <Authors>Talagozis</Authors>
     <RepositoryUrl>https://github.com/Talagozis/Talagozis.Website</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -38,15 +38,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Piranha" Version="9.1.0" />
+    <PackageReference Include="Piranha" Version="9.1.1" />
     <PackageReference Include="Piranha.AspNetCore" Version="9.1.0" />
     <PackageReference Include="Piranha.AspNetCore.Identity.SqlServer" Version="9.1.0" />
     <PackageReference Include="Piranha.AttributeBuilder" Version="9.1.0" />
-    <PackageReference Include="Piranha.Data.EF" Version="9.1.0" />
+    <PackageReference Include="Piranha.Data.EF" Version="9.1.1" />
     <PackageReference Include="Piranha.Data.EF.SqlServer" Version="9.1.0" />
     <PackageReference Include="Piranha.ImageSharp" Version="9.1.0" />
     <PackageReference Include="Piranha.Local.FileStorage" Version="9.1.0" />
-    <PackageReference Include="Piranha.Manager" Version="9.1.0" />
+    <PackageReference Include="Piranha.Manager" Version="9.1.1" />
     <PackageReference Include="Piranha.Manager.Localization" Version="9.1.0" />
     <PackageReference Include="Piranha.Manager.TinyMCE" Version="9.1.0" />
     <PackageReference Include="Talagozis.AspNetCore" Version="1.21.6.212" />
