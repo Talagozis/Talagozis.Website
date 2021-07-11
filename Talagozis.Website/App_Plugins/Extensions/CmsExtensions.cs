@@ -49,7 +49,7 @@ namespace Talagozis.Website.App_Plugins.Extensions
             // Build content types
             new ContentTypeBuilder(api)
                 .AddType(typeof(BlogArchive))
-                .AddType(typeof(StandardPage))
+                //.AddType(typeof(StandardPage))
                 .AddType(typeof(CulturePage))
                 .AddType(typeof(HomePage))
                 .AddType(typeof(BlogPost))
