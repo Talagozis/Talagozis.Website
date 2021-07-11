@@ -48,6 +48,10 @@ namespace Talagozis.Website.Controllers
         public async Task<IActionResult> Archive(Guid id, int? year = null, int? month = null, int? page = null, Guid? category = null, Guid? tag = null)
         {
             BlogArchive blogArchive = await this._api.Pages.GetByIdAsync<BlogArchive>(id);
+
+            if (!blogArchive.IsPublished)
+                return this.NotFound();
+
             PostArchive<BlogPost> postArchive = await this._api.Archives.GetByIdAsync<BlogPost>(id, page, category, tag, year, month, pageSize: 20);
 
             ArchiveViewModel archiveViewModel = new ArchiveViewModel
@@ -69,17 +73,21 @@ namespace Talagozis.Website.Controllers
         {
             BlogPost blogPost = await this._api.Posts.GetByIdAsync<BlogPost>(id);
 
+            if (!blogPost.IsPublished)
+                return this.NotFound();
+
             BlogArchive blogArchive = await this._api.Pages.GetByIdAsync<BlogArchive>(blogPost.BlogId);
             PostArchive<BlogPost> postArchive = await this._api.Archives.GetByIdAsync<BlogPost>(blogPost.BlogId, null, null, null, null, null, pageSize: 20);
 
             CulturePage parentPage = blogArchive.ParentId.HasValue ? await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value) : null;
 
-            IDictionary<CultureInfo, BlogPost> cultureRelatedBlogPosts = new Dictionary<CultureInfo, BlogPost>();
-            cultureRelatedBlogPosts.Add(this._requestCulture, blogPost);
-            foreach (RelatedCultureRegion relatedCulture in blogPost.RelatedCulturePost)
+            IDictionary<CultureInfo, BlogPost> cultureRelatedBlogPosts = new Dictionary<CultureInfo, BlogPost>
             {
+                { this._requestCulture, blogPost }
+            };
+
+            foreach (RelatedCultureRegion relatedCulture in blogPost.RelatedCulturePost)
                 cultureRelatedBlogPosts.Add(relatedCulture.Culture.Value.cultureInfo, await relatedCulture.RelatedPost.GetPostAsync<BlogPost>(this._api));
-            }
 
             PostViewModel postViewModel = new PostViewModel
             {
@@ -87,7 +95,7 @@ namespace Talagozis.Website.Controllers
                 blogArchive = blogArchive,
                 PostArchive = postArchive,
                 cultureInfo = parentPage?.Culture?.Value?.cultureInfo ?? CultureInfo.InvariantCulture,
-                CultureRelatedBlogPosts = cultureRelatedBlogPosts
+                CultureRelatedBlogPosts = cultureRelatedBlogPosts.Where(a => a.Value.IsPublished).ToDictionary(a => a.Key, a => a.Value)
             };
 
             return this.View(postViewModel);
