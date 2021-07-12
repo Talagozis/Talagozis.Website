@@ -49,15 +49,27 @@ namespace Talagozis.Website.Controllers
             Person person = CVRepository.GetMyCV();
 
             IEnumerable<BlogArchive> allArchives = await this._api.Pages.GetAllAsync<BlogArchive>();
-            allArchives = allArchives.Where(a => a.Published.HasValue).ToList();
+            allArchives = allArchives.Where(a => a.IsPublished).ToList();
+            allArchives = allArchives.Where(a => a.ParentId.HasValue).ToList();
             allArchives = allArchives.GroupBy(p => p.Id).Select(g => g.First()).ToList();
 
-            IEnumerable<BlogPost> allPosts = (await this._api.Posts.GetAllBySiteIdAsync<BlogPost>()).Where(a => allArchives.Any(b => b.Id == a.BlogId));
+            ICollection<BlogArchive> postArchives = new List<BlogArchive>();
+            foreach (BlogArchive blogArchive in allArchives)
+            {
+                CulturePage culturePage = blogArchive.ParentId.HasValue ? await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value) : null;
+
+                if (culturePage != null && culturePage.Culture.Value.Id == this._requestCulture.TwoLetterISOLanguageName)
+                    postArchives.Add(blogArchive);
+            }
+
+            IEnumerable<BlogPost> allPosts = (await this._api.Posts.GetAllBySiteIdAsync<BlogPost>());
+            allPosts = allPosts.Where(a => postArchives.Any(b => b.Id == a.BlogId));
+            allPosts = allPosts.Where(a => a.IsPublished);
 
             HomePageViewModel homePageViewModel = new HomePageViewModel
             {
                 Person = person,
-                Archives = allArchives.ToList(),
+                Archives = postArchives.Where(a => a.IsPublished).ToList(),
                 LatestPosts = allPosts.ToList()
             };
 
@@ -73,10 +85,11 @@ namespace Talagozis.Website.Controllers
             allArchives = allArchives.GroupBy(p => p.Id).Select(g => g.First()).ToList();
 
             ICollection<PostArchive<BlogPost>> postArchives = new List<PostArchive<BlogPost>>();
-
             foreach (BlogArchive blogArchive in allArchives)
             {
-                if((blogArchive.ParentId.HasValue && (await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value)).Culture.Value.Id == this._requestCulture.TwoLetterISOLanguageName))
+                CulturePage culturePage = blogArchive.ParentId.HasValue ? await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value) : null;
+
+                if (culturePage != null && culturePage.Culture.Value.Id == this._requestCulture.TwoLetterISOLanguageName)
                     postArchives.Add(await this._api.Archives.GetByIdAsync<BlogPost>(blogArchive.Id, null));
             }
 
