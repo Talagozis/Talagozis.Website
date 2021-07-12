@@ -14,7 +14,9 @@
 </environment>
 
 <environment include="Production">
-    @if (Context.Request.Headers["X-Logger-Tracking"] != "28E245EC432A4049BB62942920CA1DBB")
+    @if (Context.Request.Headers["X-Logger-Tracking"] != "28E245EC432A4049BB62942920CA1DBB" 
+        && !Context.Request.Query.Any(a => string.Equals(a.Key, "draft", StringComparison.OrdinalIgnoreCase) && string.Equals(a.Value, "true", StringComparison.OrdinalIgnoreCase))
+        )
     {
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48776471-2"></script>
