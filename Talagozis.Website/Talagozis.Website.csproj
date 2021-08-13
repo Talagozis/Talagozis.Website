@@ -49,10 +49,10 @@
     <PackageReference Include="Piranha.Manager" Version="9.1.1" />
     <PackageReference Include="Piranha.Manager.Localization" Version="9.1.0" />
     <PackageReference Include="Piranha.Manager.TinyMCE" Version="9.1.0" />
-    <PackageReference Include="Talagozis.AspNetCore" Version="1.21.6.212" />
+    <PackageReference Include="Talagozis.AspNetCore" Version="1.21.8.31" />
     <PackageReference Include="Talagozis.Logging" Version="1.20.12.171" />
     <PackageReference Include="Talagozis.Payments" Version="1.20.7.12" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.17.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.18.0" />
     <PackageReference Include="WebMarkupMin.AspNetCore5" Version="2.10.0" />
   </ItemGroup>
 
@@ -62,8 +62,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.9" />
   </ItemGroup>
 
   <ItemGroup>
