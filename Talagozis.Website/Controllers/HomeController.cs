@@ -128,6 +128,22 @@ namespace Talagozis.Website.Controllers
             return CVRepository.GetMyCV();
         }
 
+        [HttpGet("getPosts")]
+        public async Task<IActionResult> getPosts()
+        {
+            IEnumerable<BlogPost> blogPosts = await this._api.Posts.GetAllBySiteIdAsync<BlogPost>();
+
+            blogPosts = blogPosts.Where(a => a.IsPublished);
+
+            return this.Ok(blogPosts.Select(a => new
+            {
+                a.Title,
+                a.Permalink,
+                Published = a.Published?.ToString("yyyy-MM-dd"),
+                a.Heading?.SubTitle?.Value,
+            }));
+        }
+
         public IActionResult Error()
         {
             return this.View("~/Views/Shared/Error.cshtml");
