@@ -118,9 +118,9 @@ namespace Talagozis.Website.App_Plugins.Repositories
                     new WorkExperience
                     {
                         position = "Platform Integrator",
-                        companyName = "Interworks Cloud",
+                        companyName = "Interworks.Cloud",
                         startDate = new DateTime(2019, 7, 1),
-                        endDate = new DateTime(2020, 10, 1),
+                        endDate = new DateTime(2021, 4, 1),
                         description = "Analyze, develop and test third party integrations with the core platform.",
                         typeOfBusiness = string.Empty,
                         projects = new List<Project>
@@ -129,21 +129,28 @@ namespace Talagozis.Website.App_Plugins.Repositories
                             {
                                 name = "GSuite integration",
                                 typeOfBusiness = string.Empty,
-                                description = "Two-way integration with GSuite platform.",
+                                description = "Design, build and maintain two-way integration with GSuite platform.",
                                 tags = new []{ ".NET Core", "ASP.NET", "C#", "ReactJs", "Typescript" }
                             },
                             new Project
                             {
                                 name = "Acronis integration",
                                 typeOfBusiness = string.Empty,
-                                description = "Two-way integration with Acronis platform.",
+                                description = "Design, build and maintain two-way integration with Acronis platform.",
                                 tags = new []{ ".NET Core", "ASP.NET", "C#" }
                             },
                             new Project
                             {
                                 name = "BitTitan integration",
                                 typeOfBusiness = string.Empty,
-                                description = "Two-way integration with BitTitan platform.",
+                                description = "Design, build and maintain two-way integration with BitTitan platform.",
+                                tags = new []{ ".NET Core", "ASP.NET", "C#" }
+                            },
+                            new Project
+                            {
+                                name = "Kaspersky integration",
+                                typeOfBusiness = string.Empty,
+                                description = "Design, build and maintain two-way integration with Kaspersky platform.",
                                 tags = new []{ ".NET Core", "ASP.NET", "C#" }
                             }
                         }
@@ -247,7 +254,7 @@ namespace Talagozis.Website.App_Plugins.Repositories
                         companyName = "Nektar Kourtidis Bros S.A.",
                         position = "Lead Developer / Scrum Master",
                         startDate = new DateTime(2014, 8, 1),
-                        endDate = null,
+                        endDate = new DateTime(2021, 12, 31),
                         description = "Design and develop the Enterprise Resource Planning platform using microservices architecture and cloud computing",
                         typeOfBusiness = "Soft drinks producation",
                         projects = new List<Project>
@@ -433,9 +440,97 @@ namespace Talagozis.Website.App_Plugins.Repositories
                             },
                         },
                     },
+                    new WorkExperience
+                    {
+                        position = "Software Engineer",
+                        companyName = "Intralot",
+                        startDate = new DateTime(2021, 2, 1),
+                        endDate = new DateTime(2021, 9, 1),
+                        description = "Apply design patterns and reduce technical debt of a legacy platform.",
+                        typeOfBusiness = "Lottery, Casino and Sportsbook.",
+                        projects = new List<Project>
+                        {
+                            new Project
+                            {
+                                name = "User Management Platform",
+                                typeOfBusiness = string.Empty,
+                                description = "Reverse engineering and bug hunting for technical debt reduction.",
+                                tags = new []{ "C#", "Viual Basic", "SQL", ".NET Core", "SCI", "SonarQube", "Containers" },
+                            }
+                        }
+                    },                    
+                    new WorkExperience
+                    {
+                        position = "Software Engineer",
+                        companyName = "StatsPerform",
+                        startDate = new DateTime(2019, 8, 1),
+                        endDate = new DateTime(2021, 8, 1),
+                        description = "Modernize and migrate platform's applications to cloud.",
+                        typeOfBusiness = "Big data collection and aggregation.",
+                        projects = new List<Project>
+                        {
+                            new Project
+                            {
+                                name = "Data collection desktop tools",
+                                typeOfBusiness = string.Empty,
+                                description = "Modernize up to 80 desktop applications.",
+                                tags = new []{ "C#", "Viual Basic", "VB6", "ActiveX", "Oracle", "SonarQube" },
+                            },
+                            new Project
+                            {
+                                name = "Data collection web tools",
+                                typeOfBusiness = string.Empty,
+                                description = "Migrate up to 110 web applications to cloud.",
+                                tags = new []{ "C#", "Viual Basic", "ASP.NET", "SonarQube" },
+                            },
+                            new Project
+                            {
+                                name = "Cloud native applications",
+                                typeOfBusiness = string.Empty,
+                                description = "Rewrite up to 40 functional applications to AWS Lamba.",
+                                tags = new []{ "C#", "Viual Basic", "ASP.NET", "SonarQube" },
+                            },
+                            new Project
+                            {
+                                name = "Cloud native CI/CD",
+                                typeOfBusiness = string.Empty,
+                                description = "Re-build the continuous ingration and continuous delivery of more than 200 applications.",
+                                tags = new []{ "Jenkinks", "AWS", "AppStream", "Workspaces", "TeamCity", "Docker", "K8s", "AWS Lambda" },
+                            }
+                        }
+                    },                    
+                    new WorkExperience
+                    {
+                        position = "Software Engineer",
+                        companyName = "Websoft S.A.",
+                        startDate = new DateTime(2021, 6, 1),
+                        endDate = new DateTime(2021, 8, 1),
+                        description = "Rapidly design and develop multi-device I/O applcation.",
+                        typeOfBusiness = "Big data collection and aggregation.",
+                        projects = new List<Project>
+                        {
+                            new Project
+                            {
+                                name = "Supermarket retail application.",
+                                typeOfBusiness = "Retail software",
+                                tags = new []{ "C#", "WPF", "Oracle" },
+                            }
+                        }
+                    },
                 },
                 researchExperience = new List<ResearchExperience>
                 {
+                    new ResearchExperience
+                    {
+                        title = "Feature Subset Selection algorithm",
+                        organizationName = "Technological Educational Institute of Central Macedonia, Greece",
+                        link = string.Empty,
+                        tutorNames = new[] {"Varsamis D."},
+                        startDate = new DateTime(2016, 12, 12),
+                        endDate = null,
+                        description = "Research and develop algorithms for information classification using Matlab tools and Python.",
+
+                    },
                     new ResearchExperience
                     {
                         title = "k-Means algorithm",
@@ -445,20 +540,7 @@ namespace Talagozis.Website.App_Plugins.Repositories
                         startDate = new DateTime(2016, 7, 12),
                         endDate = null,
                         description = "Research and develop algorithms for data clustering using Matlab tools and Python.",
-                        publicationLink =
-                            @"https://waset.org/publications/10008128/a-parallel-implementation-of-k-means-in-matlab",
-                    },
-                    new ResearchExperience
-                    {
-                        title = "Feature Subset Selection algorithm",
-                        organizationName = "Technological Educational Institute of Central Macedonia, Greece",
-                        link = string.Empty,
-                        tutorNames = new[] {"Varsamis D."},
-                        startDate = new DateTime(2016, 12, 12),
-                        endDate = null,
-                        description =
-                            "Research and develop algorithms for information classification using Matlab tools and Python.",
-
+                        publicationLink = @"https://waset.org/publications/10008128/a-parallel-implementation-of-k-means-in-matlab",
                     },
                     new ResearchExperience
                     {
@@ -468,10 +550,8 @@ namespace Talagozis.Website.App_Plugins.Repositories
                         tutorNames = new[] {"Varsamis D."},
                         startDate = new DateTime(2012, 11, 18),
                         endDate = new DateTime(2016, 7, 1),
-                        description =
-                            "Develop algorithms for information classification optimization through parallel processing.",
-                        publicationLink =
-                            @"https://pdfs.semanticscholar.org/9aab/9d4d1213051ff3b7ea5aab8a5dd41e18f7e6.pdf?_ga=2.12012215.2026984106.1559296832-1893411076.1559296832",
+                        description = "Develop algorithms for information classification optimization through parallel processing.",
+                        publicationLink = @"https://pdfs.semanticscholar.org/9aab/9d4d1213051ff3b7ea5aab8a5dd41e18f7e6.pdf?_ga=2.12012215.2026984106.1559296832-1893411076.1559296832",
                     },
                 },
                 openSourceContributions = new List<OpenSourceContribution>
