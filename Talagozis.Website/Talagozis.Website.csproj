@@ -38,7 +38,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Piranha" Version="9.1.1" />
+    <PackageReference Include="Piranha" Version="9.2.0" />
     <PackageReference Include="Piranha.AspNetCore" Version="9.1.0" />
     <PackageReference Include="Piranha.AspNetCore.Identity.SqlServer" Version="9.1.0" />
     <PackageReference Include="Piranha.AttributeBuilder" Version="9.1.0" />
