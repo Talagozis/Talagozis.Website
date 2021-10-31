@@ -139,7 +139,7 @@ namespace Talagozis.Website.Controllers
             {
                 a.Title,
                 a.Permalink,
-                Published = a.Published?.ToString("yyyy-MM-dd"),
+                Published = a.Published?.ToString("yyyy-MM-dd", this._requestCulture),
                 a.Heading?.SubTitle?.Value,
             }));
         }
