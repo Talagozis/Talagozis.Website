@@ -9,21 +9,23 @@ namespace Talagozis.Website.Models.Cms
 {
     public class CultureItem
     {
+        private CultureItem(string id, CultureInfo cultureInfo) 
+        {
+            this.Id = id;
+            this.cultureInfo = cultureInfo;
+        }
+
         // The id of the page
-        public string Id { get; set; }
+        public string Id { get; private set; }
 
         // The model
-        public CultureInfo cultureInfo { get; set; }
+        public CultureInfo cultureInfo { get; private set; }
 
         // Gets a single item with the provided id using the
         // injected services you specify.
         static CultureItem GetById(string id)
         {
-            return new CultureItem
-            {
-                Id = id,
-                cultureInfo = CultureInfo.GetCultureInfo(id)
-            };
+            return new CultureItem(id, CultureInfo.GetCultureInfo(id));
         }
 
         // Gets all of the available items to choose from using

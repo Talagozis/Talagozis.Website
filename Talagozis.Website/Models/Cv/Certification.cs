@@ -1,5 +1,7 @@
 ﻿using System;
 
+#nullable disable
+
 namespace Talagozis.Website.Models.Cv
 {
     public class Certification

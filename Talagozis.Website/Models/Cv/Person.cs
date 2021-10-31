@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
+#nullable disable
+
 namespace Talagozis.Website.Models.Cv
 {
     public class Person : IPerson

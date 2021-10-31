@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+#nullable disable
+
 namespace Talagozis.Website.Models.Cv
 {
     public class VolunteerExperience
