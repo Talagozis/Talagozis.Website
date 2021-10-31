@@ -20,7 +20,7 @@ namespace Talagozis.Website.Controllers
     {
         private readonly IApi _api;
         private readonly ILogger<CmsController> _logger;
-        private CultureInfo _requestCulture;
+        private CultureInfo? _requestCulture;
 
         public CmsController(IApi api, ILogger<CmsController> logger)
         {
@@ -81,11 +81,11 @@ namespace Talagozis.Website.Controllers
             BlogArchive blogArchive = await this._api.Pages.GetByIdAsync<BlogArchive>(blogPost.BlogId);
             PostArchive<BlogPost> postArchive = await this._api.Archives.GetByIdAsync<BlogPost>(blogPost.BlogId, null, null, null, null, null, pageSize: 20);
 
-            CulturePage parentPage = blogArchive.ParentId.HasValue ? await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value) : null;
+            CulturePage? parentPage = blogArchive.ParentId.HasValue ? await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value) : null;
 
             IDictionary<CultureInfo, BlogPost> cultureRelatedBlogPosts = new Dictionary<CultureInfo, BlogPost>
             {
-                { this._requestCulture, blogPost }
+                { this._requestCulture!, blogPost }
             };
 
             foreach (RelatedCultureRegion relatedCulture in blogPost.RelatedCulturePost)

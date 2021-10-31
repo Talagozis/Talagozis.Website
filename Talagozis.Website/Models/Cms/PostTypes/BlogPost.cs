@@ -6,6 +6,8 @@ using Piranha.Extend.Fields;
 using Piranha.Models;
 using Talagozis.Website.Models.Cms.Regions;
 
+#nullable disable
+
 namespace Talagozis.Website.Models.Cms.PostTypes
 {
     [PostType(Title = "Blog post")]

@@ -6,6 +6,8 @@ using Talagozis.Website.Models.Cms.PageTypes;
 using Talagozis.Website.Models.Cms.PostTypes;
 using Talagozis.Website.Models.Cv;
 
+#nullable disable
+
 namespace Talagozis.Website.Models.ViewModels
 {
     public class HomePageViewModel : ViewModel

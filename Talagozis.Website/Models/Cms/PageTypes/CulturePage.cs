@@ -4,6 +4,8 @@ using Piranha.Extend;
 using Piranha.Extend.Fields;
 using Piranha.Models;
 
+#nullable disable
+
 namespace Talagozis.Website.Models.Cms.PageTypes
 {
     [PageType(Title = "Culture page")]

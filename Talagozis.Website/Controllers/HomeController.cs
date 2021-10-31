@@ -21,7 +21,7 @@ namespace Talagozis.Website.Controllers
     {
         private readonly IApi _api;
         private readonly ILogger<HomeController> _logger;
-        private CultureInfo _requestCulture;
+        private CultureInfo? _requestCulture;
 
         public HomeController(IApi api, ILogger<HomeController> logger) 
         {
@@ -56,9 +56,9 @@ namespace Talagozis.Website.Controllers
             ICollection<BlogArchive> postArchives = new List<BlogArchive>();
             foreach (BlogArchive blogArchive in allArchives)
             {
-                CulturePage culturePage = blogArchive.ParentId.HasValue ? await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value) : null;
+                CulturePage? culturePage = blogArchive.ParentId.HasValue ? await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value) : null;
 
-                if (culturePage != null && culturePage.Culture.Value.Id == this._requestCulture.TwoLetterISOLanguageName)
+                if (culturePage != null && culturePage.Culture.Value.Id == this._requestCulture!.TwoLetterISOLanguageName)
                     postArchives.Add(blogArchive);
             }
 
@@ -87,9 +87,9 @@ namespace Talagozis.Website.Controllers
             ICollection<PostArchive<BlogPost>> postArchives = new List<PostArchive<BlogPost>>();
             foreach (BlogArchive blogArchive in allArchives)
             {
-                CulturePage culturePage = blogArchive.ParentId.HasValue ? await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value) : null;
+                CulturePage? culturePage = blogArchive.ParentId.HasValue ? await this._api.Pages.GetByIdAsync<CulturePage>(blogArchive.ParentId.Value) : null;
 
-                if (culturePage != null && culturePage.Culture.Value.Id == this._requestCulture.TwoLetterISOLanguageName)
+                if (culturePage != null && culturePage.Culture.Value.Id == this._requestCulture!.TwoLetterISOLanguageName)
                     postArchives.Add(await this._api.Archives.GetByIdAsync<BlogPost>(blogArchive.Id, null));
             }
 

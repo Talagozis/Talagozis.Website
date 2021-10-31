@@ -1,5 +1,7 @@
 ﻿using System;
 
+#nullable disable
+
 namespace Talagozis.Website.Models.Configurations
 {
     public class PaypalCredentials

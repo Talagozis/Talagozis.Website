@@ -6,6 +6,8 @@ using Talagozis.AspNetCore.Models.ViewModels;
 using Talagozis.Website.Models.Cms.PageTypes;
 using Talagozis.Website.Models.Cms.PostTypes;
 
+#nullable disable
+
 namespace Talagozis.Website.Models.ViewModels
 {
     public class ArchiveViewModel : ViewModel
